@@ -34,7 +34,6 @@
 |---|---|---|
 | 国内主流 | [AI 工具集](https://ai-bot.cn/) · [鱼皮 AI 导航](https://ai.codefather.cn/) · [AI 智库](https://ai-zhiku.com/) · [AIbase 基地](https://www.aibase.com/zh/tools) · [WaytoAGI](https://www.waytoagi.com/zh) | 每日自动聚合 |
 | 海外主流 | [Product Hunt](https://www.producthunt.com/)（官方 RSS）· [FutureTools](https://www.futuretools.io/) · [Futurepedia](https://www.futurepedia.io/) | 每日自动聚合 |
-| 海外参考 | [There's An AI For That](https://theresanaiforthat.com/) · [Toolify.ai](https://www.toolify.ai/) | 返回 HTTP 403，仅保留在 `/admin/` 后台友链参考 |
 
 > **前后台分离**：公开首页 `/` 仅面向访客展示工具检索与导航，不包含后台统计与友链明细；站点运维明细与来源归属统一收口至独立 `/admin/` 页面（默认设置 `X-Robots-Tag: noindex, nofollow` 且不在首页留入口）。
 

@@ -1067,11 +1067,6 @@ def main():
             })
             print(f"[WARN] {src_id:12} failed: {e}")
 
-    source_stats.extend([
-        {"id": "taaft", "name": "There's An AI For That", "region": "overseas", "status": "ref_only", "count": 0, "note": "友链参考（HTTP 403 不绕过）"},
-        {"id": "toolify", "name": "Toolify.ai", "region": "overseas", "status": "ref_only", "count": 0, "note": "友链参考（HTTP 403 不绕过）"},
-    ])
-
     catalog = merge_and_build(raw_items, source_stats)
     total = catalog["stats"]["total"]
     print(

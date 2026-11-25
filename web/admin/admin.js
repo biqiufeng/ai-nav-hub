@@ -7,8 +7,6 @@ const SOURCE_URLS = {
   "producthunt": "https://www.producthunt.com/",
   "futuretools": "https://www.futuretools.io/",
   "futurepedia": "https://www.futurepedia.io/",
-  "taaft": "https://theresanaiforthat.com/",
-  "toolify": "https://www.toolify.ai/",
 };
 
 const els = {
