@@ -5,3 +5,6 @@ logs/
 web/data/catalog.json
 web/data/catalog.prev.json
 web/data/*.tmp
+node_modules/
+.cloudflare/
+package-lock.json

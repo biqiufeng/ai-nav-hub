@@ -1,0 +1,41 @@
+name: Weekly Crawl & Cloudflare Workers Deploy
+
+on:
+  schedule:
+    # Runs at 04:00 CST (UTC+8) every Monday (20:00 UTC on Sunday)
+    - cron: "0 20 * * 0"
+  workflow_dispatch:
+
+jobs:
+  crawl-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Run weekly AI navigation crawler
+        run: python3 -u crawler/fetch_all.py --output web/data/catalog.json
+
+      - name: Set up Node.js
+        if: ${{ secrets.CLOUDFLARE_API_TOKEN != '' }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Install Cloudflare CLI
+        if: ${{ secrets.CLOUDFLARE_API_TOKEN != '' }}
+        run: npm install
+
+      - name: Deploy static assets to Cloudflare Workers
+        if: ${{ secrets.CLOUDFLARE_API_TOKEN != '' }}
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          CF_CUSTOM_DOMAIN: ${{ vars.CF_CUSTOM_DOMAIN }}
+          CF_WORKER_NAME: ${{ vars.CF_WORKER_NAME }}
+        run: npx cf deploy ./web --message "Weekly scheduled catalog sync"

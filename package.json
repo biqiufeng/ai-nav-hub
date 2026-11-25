@@ -1,0 +1,11 @@
+{
+  "name": "ai-nav-hub",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "deploy:cf": "cf deploy ./web"
+  },
+  "devDependencies": {
+    "cf": "^1.0.0-beta.30"
+  }
+}

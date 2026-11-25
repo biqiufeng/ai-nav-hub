@@ -108,6 +108,26 @@ docker compose up -d --build
 
 容器启动后会自动运行首次爬取并每隔 7 天（`CRAWL_INTERVAL_SECONDS=604800`）后台自动刷新数据。
 
+## Cloudflare Workers 免费托管与绑定域名
+
+如果希望免服务器运维、直接使用全球 CDN 与免费 HTTPS 域名访问，可通过 Cloudflare Workers Static Assets 部署 `web/` 目录：
+
+```bash
+# 1. 安装开发依赖（含官方 cf CLI）与生成数据
+npm install
+python3 crawler/fetch_all.py --output web/data/catalog.json
+
+# 2. 登录 Cloudflare 并部署（可选传入已在 Cloudflare 托管的自定义域名）
+npx cf auth login
+CF_CUSTOM_DOMAIN=ai.example.com npx cf deploy ./web
+```
+
+### 每周自动同步到 Cloudflare（可选）
+
+仓库已内置 [weekly-cloudflare-deploy.yml](./.github/workflows/weekly-cloudflare-deploy.yml)，每周一 `04:00 (UTC+8)` 自动爬取并更新静态资源。如需启用，在 GitHub 仓库的 **Settings → Secrets and variables → Actions** 中添加：
+- **Secrets**：`CLOUDFLARE_API_TOKEN`、`CLOUDFLARE_ACCOUNT_ID`
+- **Variables（可选）**：`CF_CUSTOM_DOMAIN`（如 `ai.example.com`）、`CF_WORKER_NAME`（默认 `ai-nav-hub`）
+
 ## License
 
 [MIT](./LICENSE)
