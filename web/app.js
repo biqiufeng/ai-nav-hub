@@ -1,14 +1,3 @@
-const SOURCE_LABELS = {
-  "ai-bot": { name: "AI 工具集", url: "https://ai-bot.cn/" },
-  "aibase": { name: "AIbase 基地", url: "https://www.aibase.com/zh/tools" },
-  "yupi-ai": { name: "鱼皮 AI 导航", url: "https://ai.codefather.cn/" },
-  "ai-zhiku": { name: "AI 智库", url: "https://ai-zhiku.com/" },
-  "waytoagi": { name: "WaytoAGI", url: "https://www.waytoagi.com/zh" },
-  "producthunt": { name: "Product Hunt", url: "https://www.producthunt.com/" },
-  "futuretools": { name: "FutureTools", url: "https://www.futuretools.io/" },
-  "futurepedia": { name: "Futurepedia", url: "https://www.futurepedia.io/" },
-};
-
 const CAT_ICONS = {
   "对话写作": `<svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>`,
   "编程开发": `<svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>`,
@@ -23,7 +12,7 @@ const CAT_ICONS = {
 
 const QUICK_VIEWS = [
   { id: "all", label: "全部精选" },
-  { id: "hot", label: "多源热门" },
+  { id: "hot", label: "热门推荐" },
   { id: "domestic", label: "国内主流" },
   { id: "overseas", label: "海外主流" },
   { id: "favorites", label: "我的收藏" },
@@ -56,7 +45,6 @@ const state = {
   visibleLimit: PAGE_BATCH,
   region: loadRegion(),
   category: "全部",
-  sourceFilter: "",
   query: "",
   favorites: loadFavorites(),
   activeTool: null,
@@ -83,9 +71,6 @@ const els = {
   regionSegmented: document.getElementById("regionSegmented"),
   segmentedThumb: document.getElementById("segmentedThumb"),
   categoryBar: document.getElementById("categoryBar"),
-  sourceFilterPill: document.getElementById("sourceFilterPill"),
-  sourceFilterLabel: document.getElementById("sourceFilterLabel"),
-  sourceFilterClear: document.getElementById("sourceFilterClear"),
   resultCounter: document.getElementById("resultCounter"),
   clearFavBtn: document.getElementById("clearFavBtn"),
   catalogContainer: document.getElementById("catalogContainer"),
@@ -102,7 +87,6 @@ const els = {
   dialogDesc: document.getElementById("dialogDesc"),
   dialogRegionBadge: document.getElementById("dialogRegionBadge"),
   dialogCategoryBadge: document.getElementById("dialogCategoryBadge"),
-  dialogSources: document.getElementById("dialogSources"),
   dialogVisitBtn: document.getElementById("dialogVisitBtn"),
   dialogCopyBtn: document.getElementById("dialogCopyBtn"),
   dialogCopyText: document.getElementById("dialogCopyText"),
@@ -442,19 +426,15 @@ function matchesRegion(item, region) {
 }
 
 function getBaseItems() {
-  let list = state.items.filter((i) => matchesRegion(i, state.region));
-  if (state.sourceFilter) {
-    list = list.filter((i) => (i.sources || []).includes(state.sourceFilter));
-  }
-  return list;
+  return state.items.filter((i) => matchesRegion(i, state.region));
 }
 
 function isSectionMode() {
-  return state.region === "all" && state.category === "全部" && !state.query.trim() && !state.sourceFilter;
+  return state.region === "all" && state.category === "全部" && !state.query.trim();
 }
 
 function setRegion(nextRegion) {
-  if (nextRegion === state.region && !state.sourceFilter && state.category === "全部") return;
+  if (nextRegion === state.region && state.category === "全部") return;
   state.region = nextRegion;
   state.category = "全部";
   state.visibleLimit = PAGE_BATCH;
@@ -496,10 +476,9 @@ function renderSidebarInto(hostEl, isMobile = false) {
     const li = document.createElement("li");
     const btn = document.createElement("button");
     btn.type = "button";
-    btn.className = "sidebar-item" + (state.region === qv.id && !state.sourceFilter ? " is-active" : "");
+    btn.className = "sidebar-item" + (state.region === qv.id ? " is-active" : "");
     btn.innerHTML = `<span class="sidebar-item__left"><span class="sidebar-item__label">${qv.label}</span></span><span class="sidebar-item__count">${regionCounts[qv.id]}</span>`;
     btn.addEventListener("click", () => {
-      state.sourceFilter = "";
       setRegion(qv.id);
       if (isMobile) closeDrawer();
     });
@@ -543,39 +522,6 @@ function renderSidebarInto(hostEl, isMobile = false) {
   }
   gCats.appendChild(navCats);
   frag.appendChild(gCats);
-
-  // 3. Sources quick filter
-  const srcCounts = new Map();
-  for (const it of state.items) {
-    for (const s of it.sources || []) {
-      srcCounts.set(s, (srcCounts.get(s) || 0) + 1);
-    }
-  }
-  const gSrc = document.createElement("div");
-  gSrc.className = "sidebar-group";
-  gSrc.innerHTML = `<h2 class="sidebar-group__title">来源站点</h2>`;
-  const ulSrc = document.createElement("ul");
-  ulSrc.className = "sidebar-list";
-  for (const [srcId, meta] of Object.entries(SOURCE_LABELS)) {
-    const cnt = srcCounts.get(srcId) || 0;
-    if (cnt === 0) continue;
-    const li = document.createElement("li");
-    const btn = document.createElement("button");
-    btn.type = "button";
-    btn.className = "sidebar-item" + (state.sourceFilter === srcId ? " is-active" : "");
-    btn.innerHTML = `<span class="sidebar-item__left"><span class="sidebar-item__label">${meta.name}</span></span><span class="sidebar-item__count">${cnt}</span>`;
-    btn.addEventListener("click", () => {
-      state.sourceFilter = state.sourceFilter === srcId ? "" : srcId;
-      state.category = "全部";
-      state.visibleLimit = PAGE_BATCH;
-      applyFilters(true);
-      if (isMobile) closeDrawer();
-    });
-    li.appendChild(btn);
-    ulSrc.appendChild(li);
-  }
-  gSrc.appendChild(ulSrc);
-  frag.appendChild(gSrc);
 
   hostEl.replaceChildren(frag);
 }
@@ -637,13 +583,6 @@ function updateCounts() {
 
   els.clearFavBtn.hidden = !(state.region === "favorites" && map.favorites > 0);
   if (els.clearFavBtn.hidden) resetClearFavConfirm();
-
-  if (state.sourceFilter) {
-    els.sourceFilterPill.hidden = false;
-    els.sourceFilterLabel.textContent = `来源：${SOURCE_LABELS[state.sourceFilter]?.name || state.sourceFilter}`;
-  } else {
-    els.sourceFilterPill.hidden = true;
-  }
 
   positionThumb(false);
 }
@@ -779,16 +718,17 @@ function createCardElement(item, index, animateEnter, deferIndex = 16) {
   catTag.className = "tag-chip";
   catTag.textContent = item.category;
 
-  const srcText = (item.sources || [])
-    .map((s) => SOURCE_LABELS[s]?.name || s)
-    .slice(0, 2)
-    .join(" · ");
-  const srcHint = document.createElement("span");
-  srcHint.className = "source-hint";
-  srcHint.textContent =
-    (item.sources?.length || 0) > 2 ? `${srcText} +${item.sources.length - 2}` : srcText;
+  const regs = item.regions || [item.region];
+  const regHint = document.createElement("span");
+  regHint.className = "region-hint";
+  regHint.textContent =
+    regs.includes("domestic") && regs.includes("overseas")
+      ? "国内 · 海外"
+      : regs[0] === "domestic"
+        ? "国内"
+        : "海外";
 
-  foot.append(catTag, srcHint);
+  foot.append(catTag, regHint);
   card.append(top, desc, foot);
 
   card.addEventListener("click", () => openDialog(item));
@@ -870,9 +810,7 @@ function applyFilters(animateEnter = false) {
   state.filtered = baseItems.filter((it) => {
     if (state.category !== "全部" && it.category !== state.category) return false;
     if (!q) return true;
-    const hay = `${it.name} ${it.description} ${it.domain} ${it.category} ${(it.sources || [])
-      .map((s) => SOURCE_LABELS[s]?.name || s)
-      .join(" ")}`.toLowerCase();
+    const hay = `${it.name} ${it.description} ${it.domain} ${it.category}`.toLowerCase();
     return hay.includes(q);
   });
 
@@ -997,20 +935,6 @@ function openDialog(item) {
   els.dialogCopyText.textContent = "复制链接";
   els.dialogFavText.textContent = state.favorites.has(item.id) ? "已收藏 ★" : "收藏";
 
-  const frag = document.createDocumentFragment();
-  for (const srcId of item.sources || []) {
-    const info = SOURCE_LABELS[srcId];
-    const srcHref = safeHttpUrl(info?.url);
-    const a = document.createElement("a");
-    a.className = "source-chip";
-    a.href = srcHref || "#";
-    a.target = "_blank";
-    a.rel = "noopener noreferrer";
-    a.textContent = info?.name || srcId;
-    frag.appendChild(a);
-  }
-  els.dialogSources.replaceChildren(frag);
-
   els.toolDialog.removeAttribute("data-closing");
   els.toolDialog.showModal();
 }
@@ -1056,12 +980,6 @@ els.regionSegmented.querySelectorAll(".segmented__btn").forEach((btn) => {
   btn.addEventListener("click", () => setRegion(btn.dataset.region));
 });
 
-els.sourceFilterClear.addEventListener("click", () => {
-  state.sourceFilter = "";
-  state.visibleLimit = PAGE_BATCH;
-  applyFilters(true);
-});
-
 function syncSearchUI() {
   const hasVal = els.searchInput.value.length > 0;
   els.searchBox.classList.toggle("has-value", hasVal);
@@ -1089,7 +1007,6 @@ els.emptyResetBtn.addEventListener("click", () => {
     location.reload();
     return;
   }
-  state.sourceFilter = "";
   els.searchInput.value = "";
   state.query = "";
   state.category = "全部";

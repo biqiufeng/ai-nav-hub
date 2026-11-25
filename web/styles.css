@@ -688,29 +688,6 @@ body {
   flex-wrap: wrap;
 }
 
-.source-filter-pill {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  padding: 4px 10px;
-  border-radius: 999px;
-  background: var(--accent-soft);
-  color: var(--accent);
-  font-size: 12.5px;
-  font-weight: 500;
-}
-
-.source-filter-pill__close {
-  border: 0;
-  background: transparent;
-  color: inherit;
-  font: inherit;
-  font-size: 15px;
-  line-height: 1;
-  padding: 0 2px;
-  cursor: pointer;
-}
-
 .result-counter {
   font-size: 13px;
   color: var(--text-secondary);
@@ -1038,7 +1015,7 @@ body {
   white-space: nowrap;
 }
 
-.source-hint {
+.region-hint {
   font-size: 11.5px;
   color: var(--text-secondary);
   white-space: nowrap;
@@ -1312,10 +1289,6 @@ body {
 .tool-dialog__desc { margin: 0; font-size: 14.5px; line-height: 1.65; color: var(--text-primary); }
 .tool-dialog__meta { display: flex; flex-wrap: wrap; gap: 8px; }
 .meta-badge { padding: 4px 10px; border-radius: 999px; background: var(--surface-subtle); color: var(--text-secondary); font-size: 12.5px; font-weight: 500; }
-.tool-dialog__sources-label { font-size: 12.5px; color: var(--text-secondary); margin-bottom: 8px; }
-.source-chips { display: flex; flex-wrap: wrap; gap: 8px; }
-.source-chip { display: inline-flex; align-items: center; padding: 4px 10px; border-radius: 8px; border: 1px solid var(--border); background: var(--bg); color: var(--text-primary); text-decoration: none; font-size: 12.5px; }
-.source-chip:hover { border-color: var(--accent); }
 .tool-dialog__actions { display: flex; flex-wrap: wrap; gap: 10px; padding-top: 4px; }
 
 /* Toast */
