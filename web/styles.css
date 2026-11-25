@@ -297,27 +297,6 @@ body {
   gap: 10px;
 }
 
-.sync-pill {
-  display: inline-flex;
-  align-items: center;
-  gap: 7px;
-  padding: 5px 11px;
-  border-radius: 999px;
-  background: var(--surface-subtle);
-  color: var(--text-secondary);
-  font-size: 12px;
-  font-weight: 500;
-  white-space: nowrap;
-}
-
-.sync-pill__dot {
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-  background: var(--success);
-  flex-shrink: 0;
-}
-
 .theme-toggle {
   position: relative;
   display: inline-flex;
@@ -1394,7 +1373,6 @@ body {
 
 @media (max-width: 640px) {
   .top-bar__inner { padding: 10px 14px; }
-  .sync-pill { display: none; }
   .workspace-layout { padding: 18px 14px 42px; }
   .segmented__btn { padding: 6px 10px; font-size: 13px; }
   .cards-grid { grid-template-columns: 1fr; }

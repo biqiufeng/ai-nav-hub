@@ -70,7 +70,6 @@ const state = {
 
 const els = {
   topBar: document.getElementById("topBar"),
-  syncText: document.getElementById("syncText"),
   themeToggle: document.getElementById("themeToggle"),
   themeToggleLabel: document.getElementById("themeToggleLabel"),
   desktopSidebar: document.getElementById("desktopSidebar"),
@@ -1118,22 +1117,6 @@ document.addEventListener("keydown", (e) => {
 });
 
 /* ---------- Bootstrap & data fetch ---------- */
-function formatSyncDate(isoStr) {
-  const dt = isoStr ? new Date(isoStr) : null;
-  if (!dt || Number.isNaN(dt.getTime())) return "每日自动同步";
-  return `最近同步 ${new Intl.DateTimeFormat("zh-CN", {
-    month: "2-digit",
-    day: "2-digit",
-    hour: "2-digit",
-    minute: "2-digit",
-    hour12: false,
-  }).format(dt)}`;
-}
-
-function updateSyncBadge(catalog) {
-  els.syncText.textContent = formatSyncDate(catalog.generated_at);
-}
-
 async function init() {
   syncThemeAria();
   els.regionSegmented.querySelectorAll(".segmented__btn").forEach((b) => {
@@ -1150,7 +1133,6 @@ async function init() {
     state.loadFailed = false;
     state.catalog = catalog;
     state.items = Array.isArray(catalog.items) ? catalog.items : [];
-    updateSyncBadge(catalog);
     applyFilters(true);
   } catch {
     state.loadFailed = true;
