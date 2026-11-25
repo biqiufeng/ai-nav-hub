@@ -40,10 +40,14 @@
 
 ```text
 ai-nav-hub/
+├── Dockerfile                # Caddy + Python 3 轻量镜像
+├── docker-compose.yml        # Web 托管 + 每周自动爬取编排
 ├── crawler/
 │   └── fetch_all.py          # Python 3 零依赖多源聚合爬虫
 ├── deploy/
+│   ├── install.sh            # 通用 ECS 一键安装/升级脚本（Caddy / Nginx + Crontab）
 │   ├── Caddyfile             # Caddy 静态服务配置（zstd/gzip 压缩、缓存与安全头）
+│   ├── nginx.conf.template   # Nginx 站点配置模板
 │   └── run_weekly_crawl.sh   # 带 flock 互斥锁与日志轮转的每周执行脚本
 └── web/
     ├── index.html
@@ -66,21 +70,41 @@ python3 -m http.server 8080 --directory web
 
 浏览器访问 `http://127.0.0.1:8080/`。
 
-## 服务器部署（Caddy + Crontab）
+## 换 ECS 随时一键部署
+
+无论迁移到任何阿里云 / 腾讯云 ECS（Ubuntu / Debian / CentOS / Alibaba Cloud Linux），均支持以下两种零折腾部署方式（**记得在云厂商安全组/防火墙放行对应端口**）：
+
+### 方式一：宿主机一键脚本（自动配 Caddy/Nginx + 首次爬取 + 每周定时任务）
 
 ```bash
-# 1. 上传至 /opt/ai-nav-hub/ 并执行首次爬取
-chmod +x /opt/ai-nav-hub/crawler/fetch_all.py /opt/ai-nav-hub/deploy/run_weekly_crawl.sh
-/opt/ai-nav-hub/deploy/run_weekly_crawl.sh
-
-# 2. 配置 Caddy（需按实际域名或端口调整 deploy/Caddyfile）
-sudo cp /opt/ai-nav-hub/deploy/Caddyfile /etc/caddy/Caddyfile
-sudo caddy validate --config /etc/caddy/Caddyfile
-sudo systemctl reload caddy
-
-# 3. 注册每周一凌晨 04:00 定时任务
-(crontab -l 2>/dev/null; echo "0 4 * * 1 /opt/ai-nav-hub/deploy/run_weekly_crawl.sh") | crontab -
+# 默认：安装到 /opt/ai-nav-hub，监听 :80，每周一 04:00 自动爬取
+curl -fsSL https://raw.githubusercontent.com/biqiufeng/ai-nav-hub/main/deploy/install.sh | sudo bash
 ```
+
+常用自定义参数（通过环境变量传入）：
+
+```bash
+# 1. 如果机房未备案，直接改用 8080 端口
+curl -fsSL https://raw.githubusercontent.com/biqiufeng/ai-nav-hub/main/deploy/install.sh | sudo SITE_ADDR=:8080 bash
+
+# 2. 绑定已解析域名（Caddy 自动申请 HTTPS 证书）
+curl -fsSL https://raw.githubusercontent.com/biqiufeng/ai-nav-hub/main/deploy/install.sh | sudo SITE_ADDR=nav.example.com bash
+
+# 3. 若服务器已有 Nginx 并希望沿用 Nginx
+curl -fsSL https://raw.githubusercontent.com/biqiufeng/ai-nav-hub/main/deploy/install.sh | sudo WEB_SERVER=nginx SITE_ADDR=:80 bash
+```
+
+### 方式二：Docker Compose（不污染宿主机环境）
+
+```bash
+git clone https://github.com/biqiufeng/ai-nav-hub.git
+cd ai-nav-hub
+
+# 默认 80 端口启动（如需 8080 端口可改为 PORT=8080 docker compose up -d --build）
+docker compose up -d --build
+```
+
+容器启动后会自动运行首次爬取并每隔 7 天（`CRAWL_INTERVAL_SECONDS=604800`）后台自动刷新数据。
 
 ## License
 

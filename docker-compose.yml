@@ -1,0 +1,30 @@
+services:
+  web:
+    build: .
+    container_name: ai-nav-hub-web
+    restart: unless-stopped
+    ports:
+      - "${PORT:-80}:80"
+    volumes:
+      - nav_data:/opt/ai-nav-hub/web/data
+
+  crawler:
+    build: .
+    container_name: ai-nav-hub-crawler
+    restart: unless-stopped
+    environment:
+      - CRAWL_INTERVAL_SECONDS=${CRAWL_INTERVAL_SECONDS:-604800}
+    volumes:
+      - nav_data:/opt/ai-nav-hub/web/data
+      - nav_logs:/opt/ai-nav-hub/logs
+    entrypoint: ["/bin/sh", "-c"]
+    command:
+      - >
+        while true; do
+          python3 -u /opt/ai-nav-hub/crawler/fetch_all.py --output /opt/ai-nav-hub/web/data/catalog.json || true;
+          sleep "$${CRAWL_INTERVAL_SECONDS}";
+        done
+
+volumes:
+  nav_data:
+  nav_logs:
