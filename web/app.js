@@ -96,7 +96,6 @@ const els = {
   emptyResetBtn: document.getElementById("emptyResetBtn"),
   loadMoreWrap: document.getElementById("loadMoreWrap"),
   loadMoreBtn: document.getElementById("loadMoreBtn"),
-  crawlSummaryBody: document.getElementById("crawlSummaryBody"),
   toolDialog: document.getElementById("toolDialog"),
   dialogAvatar: document.getElementById("dialogAvatar"),
   dialogTitle: document.getElementById("dialogTitle"),
@@ -1121,50 +1120,18 @@ document.addEventListener("keydown", (e) => {
 /* ---------- Bootstrap & data fetch ---------- */
 function formatSyncDate(isoStr) {
   const dt = isoStr ? new Date(isoStr) : null;
-  if (!dt || Number.isNaN(dt.getTime())) return { short: "每日自动同步", full: isoStr || "未知" };
-  const short = new Intl.DateTimeFormat("zh-CN", {
+  if (!dt || Number.isNaN(dt.getTime())) return "每日自动同步";
+  return `最近同步 ${new Intl.DateTimeFormat("zh-CN", {
     month: "2-digit",
     day: "2-digit",
     hour: "2-digit",
     minute: "2-digit",
     hour12: false,
-  }).format(dt);
-  const full = new Intl.DateTimeFormat("zh-CN", {
-    year: "numeric",
-    month: "2-digit",
-    day: "2-digit",
-    hour: "2-digit",
-    minute: "2-digit",
-    second: "2-digit",
-    hour12: false,
-  }).format(dt);
-  return { short, full };
+  }).format(dt)}`;
 }
 
-function renderCrawlSummary(catalog) {
-  const { short, full } = formatSyncDate(catalog.generated_at);
-  els.syncText.textContent = `最近同步 ${short}`;
-
-  const box = els.crawlSummaryBody;
-  box.textContent = "";
-
-  const p = document.createElement("p");
-  p.textContent = `更新周期：${catalog.schedule || "每日 04:00 自动爬取"} · 最近完成时间：${full} · 去重后共计 ${catalog.items.length} 款工具（国内覆盖 ${catalog.stats?.domestic ?? 0} / 海外覆盖 ${catalog.stats?.overseas ?? 0}）。`;
-  box.appendChild(p);
-
-  const grid = document.createElement("div");
-  grid.className = "crawl-source-grid";
-  for (const s of catalog.sources_summary || []) {
-    const row = document.createElement("div");
-    row.className = "crawl-source-item";
-    const left = document.createElement("span");
-    left.textContent = s.name;
-    const right = document.createElement("span");
-    right.textContent = s.status === "ok" ? `${s.count} 条` : s.note || s.status;
-    row.append(left, right);
-    grid.appendChild(row);
-  }
-  box.appendChild(grid);
+function updateSyncBadge(catalog) {
+  els.syncText.textContent = formatSyncDate(catalog.generated_at);
 }
 
 async function init() {
@@ -1183,7 +1150,7 @@ async function init() {
     state.loadFailed = false;
     state.catalog = catalog;
     state.items = Array.isArray(catalog.items) ? catalog.items : [];
-    renderCrawlSummary(catalog);
+    updateSyncBadge(catalog);
     applyFilters(true);
   } catch {
     state.loadFailed = true;

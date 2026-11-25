@@ -18,7 +18,7 @@
 
 1. **`dark-mode`**：`:root { color-scheme: light dark }`、`light-dark()` 与 `prefers-color-scheme` 降级、合规对比度自定义滚动条（不对其做过渡动画）。
 2. **`dark-mode-toggle`**：`<meta name="color-scheme">` 紧跟同步内联防闪烁脚本、双态切换（可收回至跟随系统）、跨标签 `storage` 同步。
-3. **`content-first-noise-reduction`**：单行紧凑顶部吸顶栏、`container-type: scroll-state` 下滑收起/上滑归位（附滚动滞后降级）、次要运行统计折叠于 `<details>`。
+3. **`content-first-noise-reduction`**：单行紧凑顶部吸顶栏、`container-type: scroll-state` 下滑收起/上滑归位（附滚动滞后降级），去除冗余引导文案与后台明细展示以聚焦工具检索。
 4. **`light-dismiss-a-dialog`**：原生 `<dialog closedby="any">` + `showModal()`、`overscroll-behavior: contain`、按压/抬起坐标核验防止划选文本拖出框外误关闭。
 5. **`animate-to-from-top-layer`**：`@starting-style` + `overlay` + 独立声明 `transition-behavior: allow-discrete`，并实现 `canTransitionDisplay()` 探测与 `data-closing` 退场动画降级。
 6. **`motion`**：全站仅动画合成层属性（`transform` / `opacity`），空间位移与缩放均受 `@media (prefers-reduced-motion: no-preference)` 约束。
