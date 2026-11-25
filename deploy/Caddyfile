@@ -9,6 +9,12 @@
 		Referrer-Policy "strict-origin-when-cross-origin"
 	}
 
+	@admin path /admin /admin/*
+	header @admin {
+		X-Robots-Tag "noindex, nofollow"
+		Cache-Control "no-store"
+	}
+
 	@data path /data/*
 	header @data Cache-Control "public, max-age=300, must-revalidate"
 
