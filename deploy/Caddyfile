@@ -12,6 +12,6 @@
 	@data path /data/*
 	header @data Cache-Control "public, max-age=300, must-revalidate"
 
-	@assets path *.css *.js *.svg
+	@assets path *.css *.js *.svg *.png *.jpg
 	header @assets Cache-Control "public, max-age=300, must-revalidate"
 }

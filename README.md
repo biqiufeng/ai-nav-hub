@@ -53,7 +53,9 @@ ai-nav-hub/
     ├── index.html
     ├── styles.css
     ├── app.js
-    └── favicon.svg
+    ├── favicon.png
+    ├── apple-touch-icon.png
+    └── logo.jpg
 ```
 
 ## 本地快速运行
