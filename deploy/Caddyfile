@@ -1,0 +1,17 @@
+:80 {
+	root * /opt/ai-nav-hub/web
+	encode zstd gzip
+	file_server
+
+	header {
+		X-Content-Type-Options "nosniff"
+		X-Frame-Options "SAMEORIGIN"
+		Referrer-Policy "strict-origin-when-cross-origin"
+	}
+
+	@data path /data/*
+	header @data Cache-Control "public, max-age=300, must-revalidate"
+
+	@assets path *.css *.js *.svg
+	header @assets Cache-Control "public, max-age=300, must-revalidate"
+}
