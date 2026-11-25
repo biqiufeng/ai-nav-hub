@@ -11,12 +11,12 @@
       document.querySelector('meta[name="color-scheme"]').content = validScheme;
     } catch (e) {}
   </script>
-  <title>AI 导航聚合站 · 国内外主流 AI 工具每周同步</title>
-  <meta name="description" content="每周自动抓取汇总国内外主流 AI 工具导航站与新品动态，提供极速检索、左侧分类导航、多源交叉收录标识与本地收藏。">
+  <title>AI 导航聚合站 · 国内外主流 AI 工具每日同步</title>
+  <meta name="description" content="每日自动抓取汇总国内外主流 AI 工具导航站与新品动态，提供极速检索、左侧分类导航、多源交叉收录标识与本地收藏。">
   <link rel="icon" type="image/png" sizes="64x64" href="./favicon.png?v=4">
   <link rel="apple-touch-icon" sizes="180x180" href="./apple-touch-icon.png?v=4">
-  <link rel="stylesheet" href="./styles.css?v=4">
-  <script type="module" src="./app.js?v=3"></script>
+  <link rel="stylesheet" href="./styles.css?v=5">
+  <script type="module" src="./app.js?v=4"></script>
 </head>
 <body>
   <header class="top-bar" id="topBar">
@@ -34,9 +34,9 @@
       </div>
 
       <div class="top-bar__actions">
-        <span class="sync-pill" id="syncBadge" title="每周一 04:00 自动爬取更新">
+        <span class="sync-pill" id="syncBadge" title="每日 04:00 自动爬取更新">
           <span class="sync-pill__dot" aria-hidden="true"></span>
-          <span id="syncText">每周自动同步</span>
+          <span id="syncText">每日自动同步</span>
         </span>
 
         <button class="theme-toggle" id="themeToggle" type="button" aria-label="切换浅色或深色外观" title="切换外观（可收回至跟随系统）">
@@ -63,9 +63,6 @@
     <main class="page-shell">
       <section class="hero" aria-labelledby="heroTitle">
         <h1 class="hero__title" id="heroTitle">精选国内外 AI 工具聚合</h1>
-        <p class="hero__subtitle" id="heroSubtitle">
-          每周一 04:00 自动抓取聚合国内外主流 AI 导航站与新品速递，按多源交叉收录与热度优先排序。
-        </p>
 
         <div class="controls-dock">
           <div class="search-box" role="search">
@@ -149,7 +146,7 @@
       <div class="footer-head">
         <div>
           <h2 class="footer-head__title" id="linksHeading">友情链接与借鉴数据来源</h2>
-          <p class="footer-head__sub">向以下国内外优质 AI 导航站与开源社区致谢；每周自动化工作流定期汇总公开目录并直达原工具官网。</p>
+          <p class="footer-head__sub">向以下国内外优质 AI 导航站与开源社区致谢；每日自动化工作流定期汇总公开目录并直达原工具官网。</p>
         </div>
       </div>
 
@@ -157,20 +154,20 @@
         <div class="friend-group">
           <h3 class="friend-group__title">一、国内主流来源</h3>
           <ul class="friend-list" id="domesticFriends">
-            <li><a href="https://ai-bot.cn/" target="_blank" rel="noopener noreferrer">AI 工具集 <span class="friend-tag">每周聚合</span></a></li>
-            <li><a href="https://www.aibase.com/zh/tools" target="_blank" rel="noopener noreferrer">AIbase 基地 <span class="friend-tag">每周聚合</span></a></li>
-            <li><a href="https://ai.codefather.cn/" target="_blank" rel="noopener noreferrer">鱼皮 AI 导航 <span class="friend-tag">每周聚合</span></a></li>
-            <li><a href="https://ai-zhiku.com/" target="_blank" rel="noopener noreferrer">AI 智库 <span class="friend-tag">每周聚合</span></a></li>
-            <li><a href="https://www.waytoagi.com/zh" target="_blank" rel="noopener noreferrer">WaytoAGI <span class="friend-tag">每周聚合</span></a></li>
+            <li><a href="https://ai-bot.cn/" target="_blank" rel="noopener noreferrer">AI 工具集 <span class="friend-tag">每日聚合</span></a></li>
+            <li><a href="https://www.aibase.com/zh/tools" target="_blank" rel="noopener noreferrer">AIbase 基地 <span class="friend-tag">每日聚合</span></a></li>
+            <li><a href="https://ai.codefather.cn/" target="_blank" rel="noopener noreferrer">鱼皮 AI 导航 <span class="friend-tag">每日聚合</span></a></li>
+            <li><a href="https://ai-zhiku.com/" target="_blank" rel="noopener noreferrer">AI 智库 <span class="friend-tag">每日聚合</span></a></li>
+            <li><a href="https://www.waytoagi.com/zh" target="_blank" rel="noopener noreferrer">WaytoAGI <span class="friend-tag">每日聚合</span></a></li>
           </ul>
         </div>
 
         <div class="friend-group">
           <h3 class="friend-group__title">二、海外主流来源</h3>
           <ul class="friend-list" id="overseasFriends">
-            <li><a href="https://www.producthunt.com/" target="_blank" rel="noopener noreferrer">Product Hunt <span class="friend-tag">每周聚合</span></a></li>
-            <li><a href="https://www.futuretools.io/" target="_blank" rel="noopener noreferrer">FutureTools <span class="friend-tag">每周聚合</span></a></li>
-            <li><a href="https://www.futurepedia.io/" target="_blank" rel="noopener noreferrer">Futurepedia <span class="friend-tag">每周聚合</span></a></li>
+            <li><a href="https://www.producthunt.com/" target="_blank" rel="noopener noreferrer">Product Hunt <span class="friend-tag">每日聚合</span></a></li>
+            <li><a href="https://www.futuretools.io/" target="_blank" rel="noopener noreferrer">FutureTools <span class="friend-tag">每日聚合</span></a></li>
+            <li><a href="https://www.futurepedia.io/" target="_blank" rel="noopener noreferrer">Futurepedia <span class="friend-tag">每日聚合</span></a></li>
             <li><a href="https://theresanaiforthat.com/" target="_blank" rel="noopener noreferrer">There's An AI For That <span class="friend-tag friend-tag--ref">友链参考</span></a></li>
             <li><a href="https://www.toolify.ai/" target="_blank" rel="noopener noreferrer">Toolify.ai <span class="friend-tag friend-tag--ref">友链参考</span></a></li>
           </ul>

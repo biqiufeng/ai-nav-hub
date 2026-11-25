@@ -1,9 +1,9 @@
-name: Weekly Crawl & Cloudflare Workers Deploy
+name: Daily Crawl & Cloudflare Workers Deploy
 
 on:
   schedule:
-    # Runs at 04:00 CST (UTC+8) every Monday (20:00 UTC on Sunday)
-    - cron: "0 20 * * 0"
+    # Runs at 04:00 CST (UTC+8) every day (20:00 UTC previous day)
+    - cron: "0 20 * * *"
   workflow_dispatch:
 
 jobs:
@@ -18,7 +18,7 @@ jobs:
         with:
           python-version: "3.12"
 
-      - name: Run weekly AI navigation crawler
+      - name: Run daily AI navigation crawler
         run: python3 -u crawler/fetch_all.py --output web/data/catalog.json
 
       - name: Set up Node.js
@@ -38,4 +38,4 @@ jobs:
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           CF_CUSTOM_DOMAIN: ${{ vars.CF_CUSTOM_DOMAIN }}
           CF_WORKER_NAME: ${{ vars.CF_WORKER_NAME }}
-        run: npx cf deploy ./web --message "Weekly scheduled catalog sync"
+        run: npx cf deploy ./web --message "Daily scheduled catalog sync"

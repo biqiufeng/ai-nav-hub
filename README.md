@@ -1,12 +1,12 @@
 # AI 导航聚合站（AI Nav Hub）
 
-一个零外部依赖、每周自动聚合国内外主流 AI 工具导航站与新品动态的个人 AI 导航聚合项目。后端采用 Python 3 标准库实现多源抓取、占位图剔除与共识加权去重；前端采用零框架原生 HTML / CSS / ES Module，遵循现代 Web 最佳实践与克制、细腻的苹果级交互与状态动效。
+一个零外部依赖、每日自动聚合国内外主流 AI 工具导航站与新品动态的个人 AI 导航聚合项目。后端采用 Python 3 标准库实现多源抓取、占位图剔除与共识加权去重；前端采用零框架原生 HTML / CSS / ES Module，遵循现代 Web 最佳实践与克制、细腻的苹果级交互与状态动效。
 
 ## 核心特性
 
 - **多源聚合与自动去重**：整合国内外公开 AI 导航目录与 RSS 订阅，去除追踪参数并按规范化域名/路径合并，优先展示多源共同收录的头部工具。
 - **零灰色地球 / 三层图标回退**：自动识别并过滤源站懒加载默认占位图（如出现频次 `>= 4` 的默认图标），前端按「真实图标 → 高清 Favicon → 域名哈希质感首字母 Monogram」平滑降级。
-- **每周自动化工作流**：通过 `flock` 防并发锁 + `crontab` 每周一 `04:00` 定时爬取；抓取总数低于安全阈值时自动保留线上旧版 `catalog.json`，并通过拷贝备份 + 单次 `os.replace` 实现零停机原子更新。
+- **每日自动化工作流**：通过 `flock` 防并发锁 + `crontab` 每日 `04:00` 定时爬取；抓取总数低于安全阈值时自动保留线上旧版 `catalog.json`，并通过拷贝备份 + 单次 `os.replace` 实现零停机原子更新。
 - **桌面端快速侧栏 + 移动端手势抽屉**：
   - 桌面端（`>= 960px`）左侧固定快速选择栏：快速视图（全部精选 / 多源热门 / 国内主流 / 海外主流 / 我的收藏）、9 大分类 Scrollspy 联动、8 大源站直选；
   - 移动端（`< 960px`）采用水平 `scroll-snap` + 滚动驱动背景渐变的原生手势侧滑抽屉。
@@ -32,8 +32,8 @@
 
 | 区域 | 站点 | 接入方式 |
 |---|---|---|
-| 国内主流 | [AI 工具集](https://ai-bot.cn/) · [鱼皮 AI 导航](https://ai.codefather.cn/) · [AI 智库](https://ai-zhiku.com/) · [AIbase 基地](https://www.aibase.com/zh/tools) · [WaytoAGI](https://www.waytoagi.com/zh) | 每周自动聚合 |
-| 海外主流 | [Product Hunt](https://www.producthunt.com/)（官方 RSS）· [FutureTools](https://www.futuretools.io/) · [Futurepedia](https://www.futurepedia.io/) | 每周自动聚合 |
+| 国内主流 | [AI 工具集](https://ai-bot.cn/) · [鱼皮 AI 导航](https://ai.codefather.cn/) · [AI 智库](https://ai-zhiku.com/) · [AIbase 基地](https://www.aibase.com/zh/tools) · [WaytoAGI](https://www.waytoagi.com/zh) | 每日自动聚合 |
+| 海外主流 | [Product Hunt](https://www.producthunt.com/)（官方 RSS）· [FutureTools](https://www.futuretools.io/) · [Futurepedia](https://www.futurepedia.io/) | 每日自动聚合 |
 | 海外参考 | [There's An AI For That](https://theresanaiforthat.com/) · [Toolify.ai](https://www.toolify.ai/) | 返回 HTTP 403，仅保留底部友情链接参考 |
 
 ## 目录结构
@@ -41,14 +41,14 @@
 ```text
 ai-nav-hub/
 ├── Dockerfile                # Caddy + Python 3 轻量镜像
-├── docker-compose.yml        # Web 托管 + 每周自动爬取编排
+├── docker-compose.yml        # Web 托管 + 每日自动爬取编排
 ├── crawler/
 │   └── fetch_all.py          # Python 3 零依赖多源聚合爬虫
 ├── deploy/
 │   ├── install.sh            # 通用 ECS 一键安装/升级脚本（Caddy / Nginx + Crontab）
 │   ├── Caddyfile             # Caddy 静态服务配置（zstd/gzip 压缩、缓存与安全头）
 │   ├── nginx.conf.template   # Nginx 站点配置模板
-│   └── run_weekly_crawl.sh   # 带 flock 互斥锁与日志轮转的每周执行脚本
+│   └── run_weekly_crawl.sh   # 带 flock 互斥锁与 30 天日志轮转的定时执行脚本
 └── web/
     ├── index.html
     ├── styles.css
@@ -76,10 +76,10 @@ python3 -m http.server 8080 --directory web
 
 无论迁移到任何阿里云 / 腾讯云 ECS（Ubuntu / Debian / CentOS / Alibaba Cloud Linux），均支持以下两种零折腾部署方式（**记得在云厂商安全组/防火墙放行对应端口**）：
 
-### 方式一：宿主机一键脚本（自动配 Caddy/Nginx + 首次爬取 + 每周定时任务）
+### 方式一：宿主机一键脚本（自动配 Caddy/Nginx + 首次爬取 + 每日定时任务）
 
 ```bash
-# 默认：安装到 /opt/ai-nav-hub，监听 :80，每周一 04:00 自动爬取
+# 默认：安装到 /opt/ai-nav-hub，监听 :80，每日 04:00 自动爬取
 curl -fsSL https://raw.githubusercontent.com/biqiufeng/ai-nav-hub/main/deploy/install.sh | sudo bash
 ```
 
@@ -106,7 +106,7 @@ cd ai-nav-hub
 docker compose up -d --build
 ```
 
-容器启动后会自动运行首次爬取并每隔 7 天（`CRAWL_INTERVAL_SECONDS=604800`）后台自动刷新数据。
+容器启动后会自动运行首次爬取并每隔 24 小时（`CRAWL_INTERVAL_SECONDS=86400`）后台自动刷新数据。
 
 ## Cloudflare Workers 免费托管与绑定域名
 
@@ -122,9 +122,9 @@ npx cf auth login
 CF_CUSTOM_DOMAIN=ai.example.com npx cf deploy ./web
 ```
 
-### 每周自动同步到 Cloudflare（可选）
+### 每日自动同步到 Cloudflare（可选）
 
-仓库已内置 [weekly-cloudflare-deploy.yml](./.github/workflows/weekly-cloudflare-deploy.yml)，每周一 `04:00 (UTC+8)` 自动爬取并更新静态资源。如需启用，在 GitHub 仓库的 **Settings → Secrets and variables → Actions** 中添加：
+仓库已内置 [weekly-cloudflare-deploy.yml](./.github/workflows/weekly-cloudflare-deploy.yml)，每日 `04:00 (UTC+8)` 自动爬取并更新静态资源。如需启用，在 GitHub 仓库的 **Settings → Secrets and variables → Actions** 中添加：
 - **Secrets**：`CLOUDFLARE_API_TOKEN`、`CLOUDFLARE_ACCOUNT_ID`
 - **Variables（可选）**：`CF_CUSTOM_DOMAIN`（如 `ai.example.com`）、`CF_WORKER_NAME`（默认 `ai-nav-hub`）
 

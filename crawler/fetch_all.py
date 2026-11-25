@@ -589,7 +589,7 @@ def merge_and_build(raw_items, source_stats):
 
     return {
         "generated_at": datetime.datetime.now(datetime.timezone(datetime.timedelta(hours=8))).isoformat(timespec="seconds"),
-        "schedule": "每周一 04:00 自动爬取更新",
+        "schedule": "每日 04:00 自动爬取更新",
         "categories": CATEGORIES,
         "stats": {
             "total": len(items),

@@ -11,7 +11,7 @@ set -euo pipefail
 REPO_URL="${REPO_URL:-https://github.com/biqiufeng/ai-nav-hub.git}"
 APP_DIR="${APP_DIR:-/opt/ai-nav-hub}"
 SITE_ADDR="${SITE_ADDR:-:80}"
-CRON_SCHEDULE="${CRON_SCHEDULE:-0 4 * * 1}"
+CRON_SCHEDULE="${CRON_SCHEDULE:-0 4 * * *}"
 WEB_SERVER="${WEB_SERVER:-auto}" # auto | caddy | nginx | none
 
 log() { printf "\n[%s] %s\n" "$(date +%H:%M:%S)" "$*"; }

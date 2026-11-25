@@ -1121,7 +1121,7 @@ document.addEventListener("keydown", (e) => {
 /* ---------- Bootstrap & data fetch ---------- */
 function formatSyncDate(isoStr) {
   const dt = isoStr ? new Date(isoStr) : null;
-  if (!dt || Number.isNaN(dt.getTime())) return { short: "每周自动同步", full: isoStr || "未知" };
+  if (!dt || Number.isNaN(dt.getTime())) return { short: "每日自动同步", full: isoStr || "未知" };
   const short = new Intl.DateTimeFormat("zh-CN", {
     month: "2-digit",
     day: "2-digit",
@@ -1149,7 +1149,7 @@ function renderCrawlSummary(catalog) {
   box.textContent = "";
 
   const p = document.createElement("p");
-  p.textContent = `更新周期：${catalog.schedule || "每周一 04:00 自动爬取"} · 最近完成时间：${full} · 去重后共计 ${catalog.items.length} 款工具（国内覆盖 ${catalog.stats?.domestic ?? 0} / 海外覆盖 ${catalog.stats?.overseas ?? 0}）。`;
+  p.textContent = `更新周期：${catalog.schedule || "每日 04:00 自动爬取"} · 最近完成时间：${full} · 去重后共计 ${catalog.items.length} 款工具（国内覆盖 ${catalog.stats?.domestic ?? 0} / 海外覆盖 ${catalog.stats?.overseas ?? 0}）。`;
   box.appendChild(p);
 
   const grid = document.createElement("div");

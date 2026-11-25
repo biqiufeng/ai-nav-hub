@@ -17,16 +17,16 @@ fi
 
 {
   echo "=========================================="
-  echo "[$(date +%Y-%m-%dT%H:%M:%S%z)] Starting weekly AI navigation crawl (APP_DIR=${APP_DIR})"
+  echo "[$(date +%Y-%m-%dT%H:%M:%S%z)] Starting daily AI navigation crawl (APP_DIR=${APP_DIR})"
   python3 -u "${APP_DIR}/crawler/fetch_all.py" --output "${APP_DIR}/web/data/catalog.json"
   echo "[$(date +%Y-%m-%dT%H:%M:%S%z)] Crawl finished successfully"
 } >> "${LOG_FILE}" 2>&1
 
-# Keep only last 12 weekly log files safely under set -euo pipefail
+# Keep only last 30 daily log files safely under set -euo pipefail
 shopt -s nullglob
 logs=("${LOG_DIR}"/crawl-*.log)
-if (( ${#logs[@]} > 12 )); then
-  mapfile -t old_logs < <(ls -1t "${LOG_DIR}"/crawl-*.log | tail -n +13)
+if (( ${#logs[@]} > 30 )); then
+  mapfile -t old_logs < <(ls -1t "${LOG_DIR}"/crawl-*.log | tail -n +31)
   if (( ${#old_logs[@]} > 0 )); then
     rm -f "${old_logs[@]}"
   fi
