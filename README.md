@@ -129,15 +129,15 @@ npx cf auth login
 CF_CUSTOM_DOMAIN=ai.example.com npx cf deploy ./web
 ```
 
-### 自动定时爬取与同步到 Cloudflare（GitHub Actions）
+### 自动定时爬取与同步到 Cloudflare Pages（GitHub Actions）
 
 仓库已内置 [scheduled-cloudflare-deploy.yml](./.github/workflows/scheduled-cloudflare-deploy.yml)，零服务器依赖自动保持线上数据新鲜：
-- 每日 `04:00 (UTC+8)` 全量抓取 9 大来源工具索引 + 14 平台热榜并部署至 Cloudflare Workers；
-- 每小时第 `15` 分仅增量刷新 `hotlist.json` 并发布。
+- 每日 `04:00 (UTC+8)` 全量抓取 9 大来源工具索引 + 14 平台热榜并部署至 Cloudflare Pages；
+- 每 `2` 小时第 `15` 分增量刷新 `hotlist.json` 并发布（月度部署次数约 390 次，安全控制在 Pages 免费版 500 次/月上限内）。
 
 如需手动在自有仓库启用，在 GitHub 仓库的 **Settings → Secrets and variables → Actions** 中添加：
-- **Secrets**：`CLOUDFLARE_API_TOKEN`、`CLOUDFLARE_ACCOUNT_ID`
-- **Variables**：`CF_LIVE_URL`（线上域名根地址，供每小时热榜刷新复用已有 `catalog.json`）、以及可选 `CF_CUSTOM_DOMAIN` / `CF_WORKER_NAME`（默认 `ai-nav-hub`）
+- **Secrets**：`CLOUDFLARE_API_TOKEN`（含 `Pages:Edit` 权限）、`CLOUDFLARE_ACCOUNT_ID`
+- **Variables**：`CF_PAGES_PROJECT`（Pages 项目名）、`CF_LIVE_URL`（线上域名根地址，供热榜刷新复用已有 `catalog.json`）
 
 ## License
 

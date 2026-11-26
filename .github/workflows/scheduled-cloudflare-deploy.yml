@@ -1,11 +1,11 @@
-name: Scheduled Crawl & Cloudflare Workers Deploy
+name: Scheduled Crawl & Cloudflare Pages Deploy
 
 on:
   schedule:
     # 每日 04:00 CST (UTC+8) = UTC 20:00 全量抓取工具索引 + 热榜
     - cron: "0 20 * * *"
-    # 每小时第 15 分钟增量刷新全网摸鱼热榜
-    - cron: "15 * * * *"
+    # 每 2 小时第 15 分钟增量刷新全网摸鱼热榜（控制月部署次数 < 500 免费额度）
+    - cron: "15 */2 * * *"
   workflow_dispatch:
     inputs:
       mode:
@@ -39,7 +39,7 @@ jobs:
         run: |
           if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
             echo "run_mode=${{ inputs.mode }}" >> "$GITHUB_OUTPUT"
-          elif [ "${{ github.event_name }}" = "schedule" ] && [ "${{ github.event.schedule }}" = "15 * * * *" ]; then
+          elif [ "${{ github.event_name }}" = "schedule" ] && [ "${{ github.event.schedule }}" = "15 */2 * * *" ]; then
             echo "run_mode=hotlist" >> "$GITHUB_OUTPUT"
           else
             echo "run_mode=full" >> "$GITHUB_OUTPUT"
@@ -86,13 +86,15 @@ jobs:
         with:
           node-version: "22"
 
-      - name: Install Cloudflare CLI
-        run: npm install
-
-      - name: Deploy static assets to Cloudflare Workers
+      - name: Deploy static assets to Cloudflare Pages
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          CF_CUSTOM_DOMAIN: ${{ vars.CF_CUSTOM_DOMAIN }}
-          CF_WORKER_NAME: ${{ vars.CF_WORKER_NAME }}
-        run: npx cf deploy ./web --message "Scheduled (${{ steps.mode.outputs.run_mode }}) catalog sync"
+          CF_PAGES_PROJECT: ${{ vars.CF_PAGES_PROJECT }}
+        run: |
+          PROJECT="${CF_PAGES_PROJECT:-dlzbkj-ai}"
+          npx --yes wrangler@latest pages deploy ./web \
+            --project-name="$PROJECT" \
+            --branch=main \
+            --commit-dirty=true \
+            --commit-message="Scheduled (${{ steps.mode.outputs.run_mode }}) sync"
