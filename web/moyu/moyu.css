@@ -39,8 +39,7 @@
   border-radius: 10px;
 }
 
-.hot-groups,
-.leisure-cats {
+.hot-groups {
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
@@ -193,115 +192,4 @@
   font-size: 11.5px;
   color: var(--text-secondary);
   font-variant-numeric: tabular-nums;
-}
-
-.leisure-section {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  margin-top: 8px;
-}
-
-.leisure-head {
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: 10px;
-  flex-wrap: wrap;
-}
-
-.leisure-head__title {
-  margin: 0;
-  font-size: 18px;
-  font-weight: 650;
-}
-
-.leisure-head__count {
-  font-size: 12.5px;
-  color: var(--text-secondary);
-  font-variant-numeric: tabular-nums;
-}
-
-.leisure-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-  gap: 12px;
-}
-
-.leisure-card {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  padding: 14px;
-  border-radius: 14px;
-  background: var(--surface);
-  border: 1px solid var(--border);
-  box-shadow: var(--shadow-card);
-  text-decoration: none;
-  color: inherit;
-  transition: border-color var(--dur-fast) ease, box-shadow var(--dur-med) var(--ease-out-expo);
-
-  @media (prefers-reduced-motion: no-preference) {
-    transition: transform var(--dur-med) var(--ease-out-expo), border-color var(--dur-fast) ease, box-shadow var(--dur-med) var(--ease-out-expo);
-  }
-}
-
-.leisure-card:hover {
-  border-color: var(--accent);
-  box-shadow: var(--shadow-hover);
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .leisure-card:hover { transform: translateY(-2px); }
-  .leisure-card:active { transform: scale(0.988); }
-}
-
-.leisure-card__top {
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  gap: 10px;
-}
-
-.leisure-card__head {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  min-width: 0;
-  flex: 1;
-}
-
-.leisure-card__titles {
-  min-width: 0;
-  flex: 1;
-}
-
-.leisure-card__name {
-  margin: 0;
-  font-size: 14.5px;
-  font-weight: 600;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-.leisure-card__desc {
-  margin: 0;
-  font-size: 12.5px;
-  color: var(--text-secondary);
-  line-height: 1.5;
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-}
-
-.leisure-card__domain {
-  display: block;
-  margin-top: 2px;
-  font-size: 11.5px;
-  color: var(--text-secondary);
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
 }

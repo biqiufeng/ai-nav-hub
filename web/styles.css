@@ -897,6 +897,7 @@ body {
   background: var(--surface-subtle);
   max-width: 100%;
   overflow-x: auto;
+  scroll-snap-type: inline proximity;
   scrollbar-width: none;
 }
 
@@ -929,6 +930,8 @@ body {
 .segmented__btn {
   position: relative;
   z-index: 1;
+  flex: none;
+  scroll-snap-align: start;
   display: inline-flex;
   align-items: center;
   gap: 6px;
@@ -950,7 +953,16 @@ body {
 }
 
 .segmented__btn:hover { color: var(--text-primary); }
-.segmented__btn.is-active { color: var(--text-primary); font-weight: 600; }
+.segmented__btn:is(.is-active, [aria-selected="true"]) { color: var(--text-primary); }
+
+@media (forced-colors: active) {
+  .segmented__btn[aria-selected="true"]::after {
+    content: "";
+    position: absolute;
+    inset: auto 8px 2px;
+    border-block-end: 2px solid Highlight;
+  }
+}
 
 .segmented__count {
   font-variant-numeric: tabular-nums;

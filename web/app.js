@@ -31,10 +31,29 @@ const QUICK_VIEWS = [
   { id: "domestic", label: "国内主流" },
   { id: "overseas", label: "海外主流" },
   { id: "dev", label: "开发效率" },
+  { id: "leisure", label: "划水摸鱼" },
   { id: "favorites", label: "我的收藏" },
 ];
 
 const DEV_CATEGORIES = new Set(["编程开发", "办公效率", "图像设计", "Agent与自动化"]);
+const LEISURE_CATS = ["全部", "影视动漫", "音乐音效", "在线游戏", "磁力与工具", "趣味摸鱼"];
+
+function classifyLeisure(it) {
+  const text = `${it.name || ""} ${it.description || ""} ${it.domain || ""}`.toLowerCase();
+  if (/(音乐|音频|音效|配乐|歌曲|mp3|k歌|钢琴|猫耳fm|freesound|freepd|soundstripe|music|audio|bgm|声带|耳聆|淘声)/.test(text)) {
+    return "音乐音效";
+  }
+  if (/(磁力|\bbt\b|bt之家|bt联盟|种子|dht|网盘|解析下载|视频下载|av\/bv|语音转文字|提取音频|convertio|datatool|下载熊猫|vip视频解析)/.test(text)) {
+    return "磁力与工具";
+  }
+  if (/(游戏|game|贪吃蛇|红色警戒|红色井界|minecraft|我的世界|闯关|冒险|手柄|脑力|benchmark|play cs|poki|台球|弹力球|暗室|放风筝|在线驾驶)/.test(text)) {
+    return "在线游戏";
+  }
+  if (/(电影|影视|剧|动漫|综艺|片库|资源站|资源网|资源采集|预告片|netflix|奈飞|video|追剧|搜番|喵物|potplayer)/.test(text)) {
+    return "影视动漫";
+  }
+  return "趣味摸鱼";
+}
 
 const FAVORITES_KEY = "ai_nav_hub_favorites_v1";
 const REGION_KEY = "ai_nav_hub_region_v1";
@@ -257,7 +276,7 @@ function saveFavorites() {
 
 function loadRegion() {
   const val = safeGetStorage(REGION_KEY);
-  return ["all", "hot", "domestic", "overseas", "dev", "favorites"].includes(val) ? val : "all";
+  return ["all", "hot", "domestic", "overseas", "dev", "leisure", "favorites"].includes(val) ? val : "all";
 }
 
 /* ---------- Segmented control thumb ---------- */
@@ -280,6 +299,7 @@ function matchesRegion(item, region) {
   if (region === "favorites") return state.favorites.has(item.id);
   if (region === "hot") return (item.sources?.length || 0) >= 2;
   if (region === "dev") return DEV_CATEGORIES.has(item.category);
+  if (region === "leisure") return item.category === "划水摸鱼";
   if (region === "domestic") {
     return Array.isArray(item.regions) ? item.regions.includes("domestic") : item.region === "domestic";
   }
@@ -312,6 +332,7 @@ function setRegion(nextRegion) {
   activeSeg?.scrollIntoView({
     inline: "nearest",
     block: "nearest",
+    container: "nearest",
     behavior: prefersReducedMotion() ? "auto" : "smooth",
   });
   positionThumb(false);
@@ -324,13 +345,16 @@ function renderSidebarInto(hostEl, isMobile = false) {
   const domCount = state.items.filter((i) => matchesRegion(i, "domestic")).length;
   const ovsCount = state.items.filter((i) => matchesRegion(i, "overseas")).length;
   const devCount = state.items.filter((i) => matchesRegion(i, "dev")).length;
+  const leisureCount = state.items.filter((i) => matchesRegion(i, "leisure")).length;
   const favCount = state.items.filter((i) => state.favorites.has(i.id)).length;
-  const regionCounts = { all: allCount, hot: hotCount, domestic: domCount, overseas: ovsCount, dev: devCount, favorites: favCount };
+  const regionCounts = { all: allCount, hot: hotCount, domestic: domCount, overseas: ovsCount, dev: devCount, leisure: leisureCount, favorites: favCount };
 
   const baseItems = getBaseItems();
+  const isLeisureView = state.region === "leisure";
   const catCounts = new Map();
   for (const it of baseItems) {
-    catCounts.set(it.category, (catCounts.get(it.category) || 0) + 1);
+    const key = isLeisureView ? it._leisureSub : it.category;
+    catCounts.set(key, (catCounts.get(key) || 0) + 1);
   }
 
   const frag = document.createDocumentFragment();
@@ -366,10 +390,11 @@ function renderSidebarInto(hostEl, isMobile = false) {
   navCats.setAttribute("aria-label", "分类快速导航");
 
   const sectionMode = isSectionMode();
-  for (const cat of state.catalog?.categories || []) {
+  const navCategories = isLeisureView ? LEISURE_CATS.slice(1) : (state.catalog?.categories || []);
+  for (const cat of navCategories) {
     const cnt = catCounts.get(cat) || 0;
     if (cnt === 0) continue;
-    const iconSvg = CAT_ICONS[cat] || CAT_ICONS["其他工具"];
+    const iconSvg = CAT_ICONS[isLeisureView ? "划水摸鱼" : cat] || CAT_ICONS["其他工具"];
     const el = document.createElement(sectionMode ? "a" : "button");
     if (sectionMode) {
       el.href = `#${catSlug(cat)}`;
@@ -381,9 +406,13 @@ function renderSidebarInto(hostEl, isMobile = false) {
     el.innerHTML = `<span class="sidebar-item__left"><span class="sidebar-item__icon" aria-hidden="true">${iconSvg}</span><span class="sidebar-item__label">${cat}</span></span><span class="sidebar-item__count">${cnt}</span>`;
     el.addEventListener("click", () => {
       if (!sectionMode) {
-        state.category = state.category === cat ? "全部" : cat;
-        state.visibleLimit = PAGE_BATCH;
-        applyFilters(true);
+        if (!isLeisureView && cat === "划水摸鱼") {
+          setRegion("leisure");
+        } else {
+          state.category = state.category === cat ? "全部" : cat;
+          state.visibleLimit = PAGE_BATCH;
+          applyFilters(true);
+        }
       }
       if (isMobile) closeDrawer();
     });
@@ -449,6 +478,7 @@ function updateCounts() {
     domestic: state.items.filter((i) => matchesRegion(i, "domestic")).length,
     overseas: state.items.filter((i) => matchesRegion(i, "overseas")).length,
     dev: state.items.filter((i) => matchesRegion(i, "dev")).length,
+    leisure: state.items.filter((i) => matchesRegion(i, "leisure")).length,
     favorites: state.items.filter((i) => state.favorites.has(i.id)).length,
   };
   for (const [k, v] of Object.entries(map)) {
@@ -463,12 +493,16 @@ function updateCounts() {
 }
 
 function renderCategories(baseItems) {
+  const isLeisureView = state.region === "leisure";
   const counts = new Map();
   for (const it of baseItems) {
-    counts.set(it.category, (counts.get(it.category) || 0) + 1);
+    const key = isLeisureView ? it._leisureSub : it.category;
+    counts.set(key, (counts.get(key) || 0) + 1);
   }
 
-  const orderedCats = ["全部", ...(state.catalog?.categories || [])];
+  const orderedCats = isLeisureView
+    ? LEISURE_CATS
+    : ["全部", ...(state.catalog?.categories || [])];
   if (state.category !== "全部" && !counts.get(state.category)) {
     state.category = "全部";
   }
@@ -491,6 +525,10 @@ function renderCategories(baseItems) {
     btn.appendChild(span);
 
     btn.addEventListener("click", () => {
+      if (!isLeisureView && cat === "划水摸鱼") {
+        setRegion("leisure");
+        return;
+      }
       state.category = state.category === cat && cat !== "全部" ? "全部" : cat;
       state.visibleLimit = PAGE_BATCH;
       applyFilters(true);
@@ -591,7 +629,7 @@ function createCardElement(item, index, animateEnter, deferIndex = 16) {
 
   const catTag = document.createElement("span");
   catTag.className = "tag-chip";
-  catTag.textContent = item.category;
+  catTag.textContent = item._leisureSub || item.category;
 
   const regs = item.regions || [item.region];
   const regHint = document.createElement("span");
@@ -642,16 +680,21 @@ function renderSectionedView(items, animateEnter) {
 
     const titleWrap = document.createElement("div");
     titleWrap.className = "cat-section__title-wrap";
-    titleWrap.innerHTML = `<span class="cat-section__icon" aria-hidden="true">${CAT_ICONS[cat] || CAT_ICONS["其他工具"]}</span><h2 class="cat-section__title">${cat}</h2><span class="cat-section__count">${list.length} 款</span>`;
+    const sectionTitle = cat === "划水摸鱼" ? "划水摸鱼 & 影音游戏精选" : cat;
+    titleWrap.innerHTML = `<span class="cat-section__icon" aria-hidden="true">${CAT_ICONS[cat] || CAT_ICONS["其他工具"]}</span><h2 class="cat-section__title">${sectionTitle}</h2><span class="cat-section__count">${list.length} 款</span>`;
 
     const moreBtn = document.createElement("button");
     moreBtn.type = "button";
     moreBtn.className = "cat-section__more";
     moreBtn.textContent = list.length > SECTION_PREVIEW ? `查看全部 ${list.length} 款 →` : "只看本类 →";
     moreBtn.addEventListener("click", () => {
-      state.category = cat;
-      state.visibleLimit = PAGE_BATCH;
-      applyFilters(true);
+      if (cat === "划水摸鱼") {
+        setRegion("leisure");
+      } else {
+        state.category = cat;
+        state.visibleLimit = PAGE_BATCH;
+        applyFilters(true);
+      }
       window.scrollTo({ top: 0, behavior: prefersReducedMotion() ? "auto" : "smooth" });
     });
 
@@ -681,11 +724,15 @@ function applyFilters(animateEnter = false) {
   renderSidebarInto(els.desktopSidebar, false);
   renderSidebarInto(els.mobileSidebarHost, true);
 
+  const isLeisureView = state.region === "leisure";
   const q = state.query.trim().toLowerCase();
   state.filtered = baseItems.filter((it) => {
-    if (state.category !== "全部" && it.category !== state.category) return false;
+    if (state.category !== "全部") {
+      const catKey = isLeisureView ? it._leisureSub : it.category;
+      if (catKey !== state.category) return false;
+    }
     if (!q) return true;
-    const hay = `${it.name} ${it.description} ${it.domain} ${it.category}`.toLowerCase();
+    const hay = `${it.name} ${it.description} ${it.domain} ${it.category} ${it._leisureSub || ""}`.toLowerCase();
     return hay.includes(q);
   });
 
@@ -785,7 +832,9 @@ function openDialog(item) {
   } else {
     els.dialogRegionBadge.textContent = regs[0] === "domestic" ? "国内主流" : "海外主流";
   }
-  els.dialogCategoryBadge.textContent = item.category;
+  els.dialogCategoryBadge.textContent = item._leisureSub
+    ? `${item.category} · ${item._leisureSub}`
+    : item.category;
 
   const safeHref = safeHttpUrl(item.url);
   if (safeHref) {
@@ -908,7 +957,9 @@ async function init() {
     const catalog = await res.json();
     state.loadFailed = false;
     state.catalog = catalog;
-    state.items = Array.isArray(catalog.items) ? catalog.items : [];
+    state.items = (Array.isArray(catalog.items) ? catalog.items : []).map((it) =>
+      it.category === "划水摸鱼" ? { ...it, _leisureSub: classifyLeisure(it) } : it
+    );
     applyFilters(true);
   } catch {
     state.loadFailed = true;
