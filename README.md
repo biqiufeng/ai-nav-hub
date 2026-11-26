@@ -36,7 +36,7 @@
 | 国内主流 | [AI 工具集](https://ai-bot.cn/) · [鱼皮 AI 导航](https://ai.codefather.cn/) · [AI 智库](https://ai-zhiku.com/) · [AIbase 基地](https://www.aibase.com/zh/tools) · [WaytoAGI](https://www.waytoagi.com/zh) · [程序员宝盒](https://www.baoboxs.com/) | 每日全量 + 每小时热榜 |
 | 海外主流 | [Product Hunt](https://www.producthunt.com/)（官方 RSS）· [FutureTools](https://www.futuretools.io/) · [Futurepedia](https://www.futurepedia.io/) | 每日自动聚合 |
 
-> **前后台分离**：公开首页 `/` 仅面向访客展示工具检索与导航，不包含后台统计与友链明细；站点运维明细与来源归属统一收口至独立 `/admin/` 页面（默认设置 `X-Robots-Tag: noindex, nofollow` 且不在首页留入口）。
+> **前后台分离**：公开首页 `/` 仅面向访客展示工具检索与导航，不包含后台统计与友链明细；独立运维后台源码存放于 `admin-src/`，部署时按 GitHub Secret `ADMIN_PATH` 挂载至私有路径并注入 `X-Robots-Tag: noindex, nofollow` 与 `Cache-Control: no-store`。
 
 ## 目录结构
 
@@ -52,7 +52,7 @@ ai-nav-hub/
 │   ├── nginx.conf.template   # Nginx 站点配置模板
 │   ├── refresh_hotlist.sh    # 每小时更新全网热榜（hotlist.json）
 │   └── run_weekly_crawl.sh   # 带 flock 互斥锁与 30 天日志轮转的定时执行脚本
-└── web/
+├── web/                    # 静态前端站点（Cloudflare Pages 部署目录）
     ├── index.html            # 公开浏览首页
     ├── nav.js                # 响应式自适应顶栏与外观同步
     ├── styles.css
@@ -61,8 +61,8 @@ ai-nav-hub/
     ├── apple-touch-icon.png
     ├── logo.jpg
     ├── news/                 # 前沿 AI 资讯与正文速览（/news/）
-    ├── moyu/                 # 全网实时热榜（/moyu/，菜单名称「热榜」）
-    └── admin/                # 独立数据后台（/admin/，noindex）
+    └── moyu/                 # 全网实时热榜（/moyu/，菜单名称「热榜」）
+└── admin-src/                # 独立数据后台源码（部署时按 ADMIN_PATH 私有路径挂载，noindex）
 ```
 
 ## 本地快速运行
@@ -136,7 +136,7 @@ CF_CUSTOM_DOMAIN=ai.example.com npx cf deploy ./web
 - 每 `2` 小时第 `15` 分增量刷新 `hotlist.json` 与 `news.json` 并发布（月度部署次数约 390 次，安全控制在 Pages 免费版 500 次/月上限内）。
 
 如需手动在自有仓库启用，在 GitHub 仓库的 **Settings → Secrets and variables → Actions** 中添加：
-- **Secrets**：`CLOUDFLARE_API_TOKEN`（含 `Pages:Edit` 权限）、`CLOUDFLARE_ACCOUNT_ID`
+- **Secrets**：`CLOUDFLARE_API_TOKEN`（含 `Pages:Edit` 权限）、`CLOUDFLARE_ACCOUNT_ID`、`ADMIN_PATH`（可选，独立运维后台挂载路径名）
 - **Variables**：`CF_PAGES_PROJECT`（Pages 项目名）、`CF_LIVE_URL`（线上域名根地址，供热榜刷新复用已有 `catalog.json`）
 
 ## License

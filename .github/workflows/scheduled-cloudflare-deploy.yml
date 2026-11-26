@@ -99,6 +99,24 @@ jobs:
         with:
           node-version: "22"
 
+      - name: Stage private ops dashboard (if configured)
+        env:
+          ADMIN_PATH: ${{ secrets.ADMIN_PATH }}
+        shell: bash
+        run: |
+          if [ -n "$ADMIN_PATH" ] && [ -d admin-src ]; then
+            if [[ ! "$ADMIN_PATH" =~ ^[a-zA-Z0-9_-]{8,64}$ ]]; then
+              echo "::error::Invalid ADMIN_PATH format"
+              exit 1
+            fi
+            rm -rf "web/$ADMIN_PATH"
+            cp -R admin-src "web/$ADMIN_PATH"
+            printf '\n/%s\n  X-Robots-Tag: noindex, nofollow\n  Cache-Control: no-store\n\n/%s/*\n  X-Robots-Tag: noindex, nofollow\n  Cache-Control: no-store\n' "$ADMIN_PATH" "$ADMIN_PATH" >> web/_headers
+            echo "Private ops dashboard staged for deployment."
+          else
+            echo "ADMIN_PATH secret not configured; skipping private ops dashboard."
+          fi
+
       - name: Deploy static assets to Cloudflare Pages
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
