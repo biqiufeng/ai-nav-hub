@@ -14,7 +14,8 @@ const GROUP_MAP = {
   media: new Set(["bilibili", "douyin", "doubannew", "tieba"]),
 };
 
-const HOT_LIMIT = 15;
+const HOT_DEFAULT_LIMIT = 8;
+const expandedPlatforms = new Set();
 
 const els = {
   topBar: document.getElementById("topBar"),
@@ -163,16 +164,46 @@ function renderHotGrid() {
     timeEl.textContent = plat.updated_at ? plat.updated_at.slice(5, 16) : "";
     head.append(brand, timeEl);
 
-    const visible = matchedItems.slice(0, HOT_LIMIT);
+    const primary = matchedItems.slice(0, HOT_DEFAULT_LIMIT);
+    const extra = matchedItems.slice(HOT_DEFAULT_LIMIT);
+
     const ul = document.createElement("ul");
     ul.className = "hot-card__list";
 
-    visible.forEach((item, idx) => {
+    primary.forEach((item, idx) => {
       const li = createHotItemLi(item, idx);
       if (li) ul.appendChild(li);
     });
 
     card.append(head, ul);
+
+    if (extra.length > 0) {
+      const details = document.createElement("details");
+      details.className = "hot-card__more";
+      details.open = expandedPlatforms.has(plat.id);
+      details.addEventListener("toggle", () => {
+        if (details.open) {
+          expandedPlatforms.add(plat.id);
+        } else {
+          expandedPlatforms.delete(plat.id);
+        }
+      });
+
+      const summary = document.createElement("summary");
+      summary.className = "hot-card__toggle";
+      summary.innerHTML = `<span class="hot-card__toggle-open">展开其余 ${extra.length} 条</span><span class="hot-card__toggle-close">收起其余 ${extra.length} 条</span><svg class="hot-card__chevron" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>`;
+
+      const extraUl = document.createElement("ul");
+      extraUl.className = "hot-card__list hot-card__list--extra";
+      extra.forEach((item, idx) => {
+        const li = createHotItemLi(item, HOT_DEFAULT_LIMIT + idx);
+        if (li) extraUl.appendChild(li);
+      });
+
+      details.append(summary, extraUl);
+      card.appendChild(details);
+    }
+
     frag.appendChild(card);
   }
 
