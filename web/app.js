@@ -10,7 +10,8 @@ import {
   canTransitionDisplay,
   safeHttpUrl,
   renderToolAvatar,
-} from "./nav.js?v=3";
+  initSubmitToolDialog,
+} from "./nav.js?v=4";
 
 const CAT_ICONS = {
   "对话写作": `<svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>`,
@@ -945,8 +946,15 @@ if (!CSS.supports("container-type", "scroll-state") && els.heroDock) {
 /* ---------- Bootstrap & data fetch ---------- */
 async function init() {
   initSiteNav();
+  initSubmitToolDialog(showToast);
   initTopBarScrollHide(els.topBar, { enabled: false });
   initThemeToggle(els.themeToggle, els.themeToggleLabel, showToast);
+  const initialQ = new URLSearchParams(location.search).get("q");
+  if (initialQ && els.searchInput) {
+    els.searchInput.value = initialQ;
+    state.query = initialQ;
+    searchController.sync();
+  }
   syncStickyMetrics();
   els.regionSegmented.querySelectorAll(".segmented__btn").forEach((b) => {
     const active = b.dataset.region === state.region;

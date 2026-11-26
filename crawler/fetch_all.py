@@ -41,10 +41,31 @@ CATEGORIES = [
 ]
 
 TRACKING_PARAMS = {
-    "utm_source", "utm_medium", "utm_campaign", "utm_term", "utm_content",
-    "ref", "from", "spm", "source", "via", "share", "invite", "code",
-    "sourcepage", "ch", "invitecode",
+    "utm", "utm_source", "utm_medium", "utm_campaign", "utm_term", "utm_content",
+    "utm_id", "utm_from", "utm_type", "utm_page", "utm_plan", "utm_unit", "utm_keyword",
+    "ref", "referrer", "referrer_s", "from", "fromid", "regfrom", "spm", "sqm",
+    "source", "via", "share", "invite", "invite_code", "invitecode",
+    "invitationcode", "invitationtype", "inviterid", "huiwainvitecode", "usercode",
+    "code", "sourcepage", "ch", "channel", "channelcode", "_channel_track_key",
+    "hmmd", "hmsr", "hmpl", "hmkw", "hmci", "track_id", "adtag", "fpr",
+    "_bhlid", "_f", "cgv", "rmd", "bd_vid", "gclid", "fbclid", "msclkid",
+    "aff", "aff_id", "promo",
 }
+
+PROMO_VALUE_PREFIXES = (
+    "aibot", "aigjj", "botrm", "dlz_aibot", "futuretools", "futurepedia",
+    "xftj932", "g5dp", "lksadjknxzc812ad",
+)
+
+
+def is_tracking_param(key, val):
+    kl = (key or "").strip().lower()
+    vl = (val or "").strip().lower()
+    if kl in TRACKING_PARAMS or kl.startswith(("utm_", "hmsr", "hmmd")):
+        return True
+    if kl in ("s", "f", "id", "pic", "c") and any(vl.startswith(p) for p in PROMO_VALUE_PREFIXES):
+        return True
+    return False
 
 SKIP_DOMAINS = {
     "ai-bot.cn", "www.ai-bot.cn",
@@ -139,7 +160,7 @@ def normalize_url(raw_url):
     query_pairs = [
         (k, v)
         for k, v in urllib.parse.parse_qsl(p.query, keep_blank_values=False)
-        if k.lower() not in TRACKING_PARAMS
+        if not is_tracking_param(k, v)
     ]
     path = p.path.rstrip("/")
     if path == "/":
@@ -1366,6 +1387,25 @@ def merge_and_build(raw_items, source_stats):
     }
 
 
+def refresh_sitemap_lastmod(data_or_out_path):
+    if not data_or_out_path:
+        return
+    web_dir = os.path.dirname(os.path.dirname(os.path.abspath(data_or_out_path)))
+    sitemap_path = os.path.join(web_dir, "sitemap.xml")
+    if not os.path.isfile(sitemap_path):
+        return
+    today = datetime.datetime.now(datetime.timezone(datetime.timedelta(hours=8))).strftime("%Y-%m-%d")
+    try:
+        with open(sitemap_path, "r", encoding="utf-8") as f:
+            raw = f.read()
+        updated = re.sub(r"<lastmod>\d{4}-\d{2}-\d{2}</lastmod>", f"<lastmod>{today}</lastmod>", raw)
+        if updated != raw:
+            with open(sitemap_path, "w", encoding="utf-8") as f:
+                f.write(updated)
+    except Exception:
+        pass
+
+
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--output", help="Output catalog.json path")
@@ -1388,6 +1428,7 @@ def main():
             if not news_path:
                 parser.error("--news-output or --output is required with --news-only")
             fetch_and_write_news(news_path)
+        refresh_sitemap_lastmod(args.hotlist_output or args.news_output or args.output)
         return
 
     if not args.output:
@@ -1469,6 +1510,8 @@ def main():
         fetch_and_write_news(news_path)
     except Exception as e:
         print(f"[WARN] news refresh failed: {e}")
+
+    refresh_sitemap_lastmod(args.output)
 
 
 if __name__ == "__main__":

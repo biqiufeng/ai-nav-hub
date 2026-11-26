@@ -410,3 +410,280 @@ export function renderToolAvatar(container, item) {
   img.src = firstTry;
   container.appendChild(img);
 }
+
+/* ---------- Invoker Commands & Declarative Copy / Submit Dialog ---------- */
+let invokersBootstrapped = false;
+let lastCopyLiveMsg = "";
+const declarativeCopyTimers = new WeakMap();
+
+function legacySyncCopy(text) {
+  const previousFocus = document.activeElement;
+  const field = Object.assign(document.createElement("textarea"), { value: text });
+  field.setAttribute("readonly", "");
+  field.style.cssText = "position:fixed;inset-block-start:0;opacity:0;pointer-events:none;";
+  (document.querySelector("dialog[open]") || document.body).append(field);
+  field.select();
+  try {
+    return document.execCommand("copy");
+  } finally {
+    field.remove();
+    previousFocus?.focus?.({ preventScroll: true });
+  }
+}
+
+function reportDeclarativeCopy(button, ok) {
+  const tip = button.nextElementSibling;
+  clearTimeout(declarativeCopyTimers.get(button));
+  button.removeAttribute("data-copied");
+  button.removeAttribute("data-failed");
+  let message = ok ? "已复制 ✓" : "复制失败";
+  if (message === lastCopyLiveMsg) message += "\u00A0";
+  lastCopyLiveMsg = message;
+  if (tip) tip.textContent = "";
+  void button.offsetWidth;
+  button.setAttribute(ok ? "data-copied" : "data-failed", "");
+  if (tip) {
+    requestAnimationFrame(() => {
+      tip.textContent = message;
+    });
+  }
+  declarativeCopyTimers.set(
+    button,
+    setTimeout(() => {
+      button.removeAttribute("data-copied");
+      button.removeAttribute("data-failed");
+      if (tip) tip.textContent = "";
+    }, 2000)
+  );
+}
+
+async function runDeclarativeCopy(button, target) {
+  if (!button || !target) return;
+  const text = target.matches("input, textarea")
+    ? target.value.trim()
+    : (target.innerText || target.textContent || "").trim();
+  if (!text) return;
+  try {
+    await navigator.clipboard.writeText(text);
+    reportDeclarativeCopy(button, true);
+  } catch {
+    if (legacySyncCopy(text)) {
+      reportDeclarativeCopy(button, true);
+    } else {
+      reportDeclarativeCopy(button, false);
+    }
+  }
+}
+
+function closeAnimatedDialog(dialogEl) {
+  if (!dialogEl?.open) return;
+  const supportsExit = Boolean(window.CSS?.supports?.("overlay", "auto") && canTransitionDisplay());
+  if (!supportsExit) {
+    dialogEl.setAttribute("data-closing", "");
+    const animations = dialogEl.getAnimations({ subtree: true });
+    Promise.race([
+      Promise.allSettled(animations.map((a) => a.finished)),
+      new Promise((r) => setTimeout(r, 320)),
+    ]).then(() => {
+      if (!dialogEl.hasAttribute("data-closing")) return;
+      dialogEl.removeAttribute("data-closing");
+      dialogEl.close();
+    });
+    return;
+  }
+  dialogEl.close();
+}
+
+function ensureInvokerSupport() {
+  if (invokersBootstrapped) return;
+  invokersBootstrapped = true;
+
+  if (!("commandForElement" in HTMLButtonElement.prototype)) {
+    import("https://esm.run/invokers-polyfill").catch(() => {});
+  }
+
+  document.addEventListener(
+    "command",
+    (event) => {
+      if (typeof event.command === "string" && event.command.startsWith("--copy")) {
+        runDeclarativeCopy(event.source, event.target);
+      }
+    },
+    true
+  );
+
+  if (!("CommandEvent" in window)) {
+    document.addEventListener("click", (event) => {
+      if (event.defaultPrevented || "commandForElement" in HTMLButtonElement.prototype) return;
+      const btn = event.target instanceof Element ? event.target.closest("button[command][commandfor]") : null;
+      if (!btn) return;
+      const cmd = btn.getAttribute("command") || "";
+      const targetId = btn.getAttribute("commandfor") || "";
+      const target = targetId ? document.getElementById(targetId) : null;
+      if (!target) return;
+
+      if (cmd.startsWith("--copy")) {
+        runDeclarativeCopy(btn, target);
+      } else if (cmd === "show-modal" && target instanceof HTMLDialogElement) {
+        target.removeAttribute("data-closing");
+        if (!target.open) target.showModal();
+      } else if (cmd === "close" && target instanceof HTMLDialogElement) {
+        closeAnimatedDialog(target);
+      }
+    });
+  }
+}
+
+export function initSubmitToolDialog(onToast) {
+  ensureInvokerSupport();
+  const dialog = document.getElementById("submitToolDialog");
+  const form = document.getElementById("submitToolForm");
+  if (!(dialog instanceof HTMLDialogElement) || !(form instanceof HTMLFormElement)) return;
+  if (dialog.dataset.wired === "true") return;
+  dialog.dataset.wired = "true";
+
+  const nameInput = document.getElementById("subToolName");
+  const urlInput = document.getElementById("subToolUrl");
+  const catSelect = document.getElementById("subToolCat");
+  const descInput = document.getElementById("subToolDesc");
+  const errEl = document.getElementById("subFormError");
+  const snippetEl = document.getElementById("subMarkdownSnippet");
+  const mailBtn = document.getElementById("subMailBtn");
+  const closeBtn = document.getElementById("submitDialogCloseBtn");
+
+  const buildPayload = () => {
+    const name = (nameInput?.value || "").trim() || "（待填写工具名称）";
+    const url = (urlInput?.value || "").trim() || "https://";
+    const cat = (catSelect?.value || "对话写作").trim();
+    const desc = (descInput?.value || "").trim() || "（待填写核心功能与免费额度说明）";
+    const markdown = [
+      `### AI 工具收录申请`,
+      `- **工具名称**：${name}`,
+      `- **官网链接**：${url}`,
+      `- **推荐分类**：${cat}`,
+      `- **核心亮点**：${desc}`,
+      `- **来源站点**：https://dlzbkj-ai.pages.dev/`,
+    ].join("\n");
+    return { name, url, cat, desc, markdown };
+  };
+
+  const syncSnippet = () => {
+    if (snippetEl) snippetEl.textContent = buildPayload().markdown;
+  };
+  syncSnippet();
+
+  const validateField = (field) => {
+    if (!field) return "";
+    const val = field.value.trim();
+    if (field === nameInput) {
+      if (!val) return "请填写 AI 工具名称。";
+    } else if (field === urlInput) {
+      if (!val) return "请填写工具官网完整链接（以 https:// 开头）。";
+      const safe = safeHttpUrl(val);
+      if (!safe) return "官网链接格式不正确，请输入以 https:// 或 http:// 开头的有效网址。";
+    } else if (field === descInput) {
+      if (!val) return "请用一两句话简述工具的核心功能亮点。";
+    }
+    return "";
+  };
+
+  const fields = [nameInput, urlInput, descInput].filter(Boolean);
+  const touched = new WeakSet();
+
+  fields.forEach((field) => {
+    field.addEventListener("input", () => {
+      touched.add(field);
+      syncSnippet();
+      if (field.getAttribute("aria-invalid") === "true" && !validateField(field)) {
+        field.removeAttribute("aria-invalid");
+        if (errEl) errEl.textContent = "";
+      }
+    });
+    field.addEventListener("blur", () => {
+      if (!touched.has(field) && !field.value.trim()) return;
+      const msg = validateField(field);
+      if (msg) {
+        field.setAttribute("aria-invalid", "true");
+        if (errEl) errEl.textContent = msg;
+      } else {
+        field.removeAttribute("aria-invalid");
+      }
+    });
+  });
+
+  catSelect?.addEventListener("change", syncSnippet);
+
+  const checkAllValid = () => {
+    for (const field of fields) {
+      const msg = validateField(field);
+      if (msg) {
+        field.setAttribute("aria-invalid", "true");
+        if (errEl) errEl.textContent = msg;
+        field.focus();
+        return false;
+      }
+      field.removeAttribute("aria-invalid");
+    }
+    if (errEl) errEl.textContent = "";
+    return true;
+  };
+
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
+    if (!checkAllValid()) return;
+    const { name, cat, markdown } = buildPayload();
+    const issueUrl = new URL("https://github.com/biqiufeng/ai-nav-hub/issues/new");
+    issueUrl.searchParams.set("title", `[收录推荐] ${name}（${cat}）`);
+    issueUrl.searchParams.set("body", markdown);
+    window.open(issueUrl.toString(), "_blank", "noopener,noreferrer");
+    closeAnimatedDialog(dialog);
+    onToast?.("已打开 GitHub 提交页，感谢推荐！", { force: true });
+  });
+
+  mailBtn?.addEventListener("click", async () => {
+    if (!checkAllValid()) return;
+    const { name, cat, markdown } = buildPayload();
+    try {
+      await navigator.clipboard?.writeText(markdown);
+    } catch {
+      legacySyncCopy(markdown);
+    }
+    const subject = encodeURIComponent(`[AI导航收录推荐] ${name}（${cat}）`);
+    const body = encodeURIComponent(markdown);
+    window.location.href = `mailto:biqiufeng@gmail.com?subject=${subject}&body=${body}`;
+    onToast?.("已唤起邮件并同步复制收录信息至剪贴板", { force: true });
+  });
+
+  const supportsExit = Boolean(window.CSS?.supports?.("overlay", "auto") && canTransitionDisplay());
+  if (!supportsExit && closeBtn) {
+    closeBtn.removeAttribute("command");
+    closeBtn.removeAttribute("commandfor");
+    closeBtn.addEventListener("click", () => closeAnimatedDialog(dialog));
+  }
+
+  dialog.addEventListener("cancel", (e) => {
+    e.preventDefault();
+    closeAnimatedDialog(dialog);
+  });
+
+  dialog.addEventListener("close", () => {
+    dialog.returnValue = "";
+  });
+
+  const outside = (e) => {
+    const r = dialog.getBoundingClientRect();
+    return e.clientX < r.left || e.clientX > r.right || e.clientY < r.top || e.clientY > r.bottom;
+  };
+  let pressedOutside = false;
+  dialog.addEventListener("pointerdown", (e) => {
+    pressedOutside = e.target === dialog && outside(e);
+  });
+  dialog.addEventListener("pointerup", (e) => {
+    if (!pressedOutside) return;
+    const shouldClose = e.target === dialog && outside(e);
+    pressedOutside = false;
+    if (shouldClose && (!("closedBy" in HTMLDialogElement.prototype) || !(window.CSS?.supports?.("overlay", "auto") && canTransitionDisplay()))) {
+      closeAnimatedDialog(dialog);
+    }
+  });
+}

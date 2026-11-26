@@ -11,12 +11,42 @@
       document.querySelector('meta[name="color-scheme"]').content = validScheme;
     } catch (e) {}
   </script>
-  <title>AI 导航聚合站 · 国内外主流 AI 工具每日同步</title>
-  <meta name="description" content="每日自动更新的国内外主流 AI 工具导航站，提供极速检索、左侧分类导航与本地收藏。">
+  <title>AI 导航聚合站 · 9000+ 国内外主流 AI 工具每日同步</title>
+  <meta name="description" content="零广告、免登录、国内直连秒开的 AI 工具与资讯热榜聚合站：收录 9000+ 款国内外主流 AI 工具，支持 / 键极速检索、每日 AI 资讯速递与 14 平台实时热榜。">
+  <link rel="canonical" href="https://dlzbkj-ai.pages.dev/">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="AI 导航聚合站">
+  <meta property="og:locale" content="zh_CN">
+  <meta property="og:title" content="AI 导航聚合站 · 9000+ 国内外主流 AI 工具每日同步">
+  <meta property="og:description" content="零广告、免登录、国内直连秒开的 AI 工具与资讯热榜聚合站：收录 9000+ 款国内外主流 AI 工具，支持 / 键极速检索、每日 AI 资讯速递与 14 平台实时热榜。">
+  <meta property="og:url" content="https://dlzbkj-ai.pages.dev/">
+  <meta property="og:image" content="https://dlzbkj-ai.pages.dev/og-cover.png?v=2">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="AI 导航聚合站 — 9000+ 国内外主流 AI 工具、每日 AI 资讯与实时热榜">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="AI 导航聚合站 · 9000+ 国内外主流 AI 工具每日同步">
+  <meta name="twitter:description" content="零广告、免登录、国内直连秒开的 AI 工具与资讯热榜聚合站：收录 9000+ 款国内外主流 AI 工具，支持 / 键极速检索、每日 AI 资讯速递与 14 平台实时热榜。">
+  <meta name="twitter:image" content="https://dlzbkj-ai.pages.dev/og-cover.png?v=2">
   <link rel="icon" type="image/png" sizes="64x64" href="./favicon.png?v=5">
   <link rel="apple-touch-icon" sizes="180x180" href="./apple-touch-icon.png?v=5">
-  <link rel="stylesheet" href="./styles.css?v=14">
-  <script type="module" src="./app.js?v=15"></script>
+  <link rel="stylesheet" href="./styles.css?v=15">
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "AI 导航聚合站",
+      "url": "https://dlzbkj-ai.pages.dev/",
+      "description": "零广告、免登录、国内直连秒开的国内外主流 AI 工具、前沿资讯与实时热榜聚合站。",
+      "inLanguage": "zh-CN",
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": "https://dlzbkj-ai.pages.dev/?q={search_term_string}",
+        "query-input": "required name=search_term_string"
+      }
+    }
+  </script>
+  <script type="module" src="./app.js?v=16"></script>
 </head>
 <body>
   <header class="top-bar site-header" id="topBar">
@@ -54,6 +84,13 @@
           </ul>
         </nav>
 
+        <button class="submit-trigger" type="button" command="show-modal" commandfor="submitToolDialog">
+          <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true">
+            <path d="M12 5v14M5 12h14"/>
+          </svg>
+          <span><span class="submit-trigger__prefix">提交</span>收录</span>
+        </button>
+
         <button class="theme-toggle" id="themeToggle" type="button" aria-label="切换浅色或深色外观" title="切换外观（可收回至跟随系统）">
           <span class="theme-toggle__icon theme-toggle__icon--sun" aria-hidden="true">
             <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
@@ -80,7 +117,7 @@
         <h1 class="sr-only" id="heroTitle">AI 导航聚合站</h1>
 
         <div class="controls-dock">
-          <div class="search-box" role="search">
+          <search class="search-box">
             <svg class="search-box__icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
               <circle cx="11" cy="11" r="8"/>
               <path d="m21 21-4.3-4.3"/>
@@ -101,7 +138,7 @@
                 <path d="M18 6 6 18M6 6l12 12"/>
               </svg>
             </button>
-          </div>
+          </search>
 
           <div class="controls-row">
             <div class="segmented" id="regionSegmented" role="tablist" aria-label="区域与收藏筛选">
@@ -158,6 +195,19 @@
     </main>
   </div>
 
+  <footer class="site-footer">
+    <div class="site-footer__inner site-footer__bar">
+      <p class="site-footer__copy">AI 导航聚合站 · 每日自动同步国内外主流 AI 工具、快讯与热榜 · 零广告免登录</p>
+      <nav class="site-footer__links" aria-label="站点底部导航">
+        <button class="footer-link-btn" type="button" command="show-modal" commandfor="submitToolDialog">免费提交工具收录</button>
+        <a href="./news/">AI 资讯</a>
+        <a href="./moyu/">全网热榜</a>
+        <a href="./sitemap.xml">Sitemap</a>
+        <a href="https://github.com/biqiufeng/ai-nav-hub" target="_blank" rel="noopener noreferrer">GitHub</a>
+      </nav>
+    </div>
+  </footer>
+
   <!-- Mobile swipe-to-dismiss navigation drawer (modern-web-guidance: navigation-drawer) -->
   <dialog class="Drawer" id="mobileDrawer" aria-label="快速选择与分类目录">
     <div class="Drawer-scroller">
@@ -213,6 +263,73 @@
           <span id="dialogFavText">收藏</span>
         </button>
       </div>
+    </div>
+  </dialog>
+
+  <dialog class="tool-dialog submit-dialog" id="submitToolDialog" closedby="any" aria-labelledby="submitDialogTitle">
+    <div class="tool-dialog__surface submit-dialog__surface">
+      <div class="tool-dialog__header">
+        <div class="tool-dialog__titles">
+          <h1 class="tool-dialog__title" id="submitDialogTitle">免费提交 AI 工具收录</h1>
+          <p class="tool-dialog__domain">零广告纯净收录 · 欢迎自荐或推荐优质 AI 产品与开源项目</p>
+        </div>
+        <button class="icon-btn" id="submitDialogCloseBtn" type="button" command="close" commandfor="submitToolDialog" aria-label="关闭提交弹窗">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+            <path d="M18 6 6 18M6 6l12 12"/>
+          </svg>
+        </button>
+      </div>
+
+      <form class="submit-form" id="submitToolForm" aria-labelledby="submitDialogTitle" novalidate>
+        <div class="form-field">
+          <label for="subToolName">工具名称 <span class="req-mark" aria-hidden="true">*</span></label>
+          <input id="subToolName" name="name" type="text" maxlength="60" enterkeyhint="next" required autofocus placeholder="例如：DeepSeek / 秘塔 AI 搜索">
+        </div>
+
+        <div class="form-field">
+          <label for="subToolUrl">官网链接 <span class="req-mark" aria-hidden="true">*</span></label>
+          <input id="subToolUrl" name="url" type="url" inputmode="url" autocorrect="off" autocapitalize="none" spellcheck="false" enterkeyhint="next" required placeholder="https://example.com">
+        </div>
+
+        <div class="form-field">
+          <label for="subToolCat">推荐分类</label>
+          <select id="subToolCat" name="category">
+            <option value="对话写作">对话写作</option>
+            <option value="编程开发">编程开发</option>
+            <option value="图像设计">图像设计</option>
+            <option value="视频音频">视频音频</option>
+            <option value="办公效率">办公效率</option>
+            <option value="Agent与自动化">Agent与自动化</option>
+            <option value="学习知识库">学习知识库</option>
+            <option value="影音娱乐">影音娱乐</option>
+            <option value="新品速递">新品速递</option>
+            <option value="其他工具">其他工具</option>
+          </select>
+        </div>
+
+        <div class="form-field">
+          <label for="subToolDesc">核心亮点简介 <span class="req-mark" aria-hidden="true">*</span></label>
+          <textarea id="subToolDesc" name="description" rows="3" maxlength="240" required placeholder="简述核心功能、适用人群与免费额度（200 字以内）"></textarea>
+        </div>
+
+        <p class="submit-form__error" id="subFormError" role="status" aria-live="polite"></p>
+
+        <pre class="sr-only"><code id="subMarkdownSnippet"></code></pre>
+
+        <div class="tool-dialog__actions submit-form__actions">
+          <button class="btn-primary" type="submit">
+            通过 GitHub Issue 提交收录
+            <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M7 17 17 7M7 7h10v10"/>
+            </svg>
+          </button>
+          <span class="copy-wrap">
+            <button class="btn-secondary copy-button" id="subCopyBtn" type="button" command="--copy" commandfor="subMarkdownSnippet">复制收录信息</button>
+            <span class="copy-tip" id="subCopyTip" role="status"></span>
+          </span>
+          <button class="btn-secondary" id="subMailBtn" type="button">邮件直投站长</button>
+        </div>
+      </form>
     </div>
   </dialog>
 
