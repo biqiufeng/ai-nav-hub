@@ -11,3 +11,6 @@
 
 /data/hotlist.json
   Cache-Control: public, max-age=300, must-revalidate
+
+/data/news.json
+  Cache-Control: public, max-age=300, must-revalidate

@@ -1027,6 +1027,208 @@ def fetch_and_write_hotlist(hotlist_path):
     return len(platforms)
 
 
+NEWS_TOPICS = [
+    "大模型",
+    "开发与Agent",
+    "多模态",
+    "芯片与算力",
+    "行业动态",
+    "前沿速递",
+]
+
+
+def classify_news_topic(title, summary=""):
+    text = f"{title or ''} {summary or ''}".lower()
+    if re.search(
+        r"openai|anthropic|claude|gpt|gemini|deepseek|qwen|千问|llama|grok|豆包|kimi|"
+        r"大模型|推理模型|基础模型|预训练|停训|开源模型|模型发布|百川|智谱|glm|minimax|mistral",
+        text,
+    ):
+        return "大模型"
+    if re.search(
+        r"\bagent\b|智能体|\bmcp\b|cursor|claude code|codex|openclaw|编程|代码|github|"
+        r"\bide\b|vs code|开发框架|benchmark|工作流|自动化|skill|cline|windsurf",
+        text,
+    ):
+        return "开发与Agent"
+    if re.search(
+        r"视频|图像|绘画|音频|语音|sora|kling|可灵|veo|midjourney|短剧|漫剧|3d|"
+        r"视觉|生图|多模态|音乐|播客|数字人|配音|render|runway",
+        text,
+    ):
+        return "多模态"
+    if re.search(
+        r"英伟达|nvidia|\bgpu\b|芯片|算力|数据中心|\btpu\b|\bamd\b|昇腾|机器人|具身|"
+        r"硬件|服务器|半导体|intel|amd|huawei|华为",
+        text,
+    ):
+        return "芯片与算力"
+    if re.search(
+        r"融资|财报|营收|收购|监管|政策|版权|微信|微软|谷歌|google|苹果|apple|小米|"
+        r"字节|阿里|腾讯|亚马逊|amazon|meta|裁员|估值|投入|收入|合规|起诉",
+        text,
+    ):
+        return "行业动态"
+    return "前沿速递"
+
+
+def _parse_news_content(raw_html):
+    html_str = raw_html or ""
+    cover = ""
+    img_m = re.search(r'<img[^>]+src=["\']([^"\']+)["\']', html_str, re.I)
+    if img_m:
+        cover = safe_icon_url(img_m.group(1))
+
+    cleaned = re.sub(r'<div[^>]*border-left[^>]*>[\s\S]*?</div>', "", html_str, flags=re.I)
+    cleaned = re.sub(r'<div[^>]*>[^<]*原文链接[\s\S]*?</div>', "", cleaned, flags=re.I)
+    cleaned = re.sub(r"<img\b[^>]*>", "", cleaned, flags=re.I)
+    cleaned = re.sub(r"<br\s*/?>", " ", cleaned, flags=re.I)
+
+    paragraphs = []
+    total_chars = 0
+    for m in re.finditer(r"<(h[1-6]|p|li)\b[^>]*>([\s\S]*?)</\1>", cleaned, re.I):
+        tag = m.group(1).lower()
+        inner = m.group(2)
+        text = strip_tags(inner)
+        if not text or text.startswith("原文链接"):
+            continue
+        is_heading = tag.startswith("h")
+        if not is_heading and len(text) <= 48:
+            if re.fullmatch(r"\s*<(strong|b)\b[^>]*>[\s\S]*?</\1>\s*", inner, re.I):
+                is_heading = True
+        paragraphs.append({"type": "heading" if is_heading else "text", "text": text})
+        total_chars += len(text)
+        if len(paragraphs) >= 20 or total_chars >= 3600:
+            break
+
+    return cover, paragraphs
+
+
+def fetch_and_write_news(news_path, max_pages=4):
+    tz8 = datetime.timezone(datetime.timedelta(hours=8))
+    raw_records = []
+    for page in range(1, max_pages + 1):
+        api_url = (
+            "https://api.codefather.cn/api/ai_post/list/page/vo"
+            f"?current={page}&pageSize=50&category=news"
+        )
+        try:
+            raw_json = fetch_text(
+                api_url,
+                timeout=15,
+                retries=2,
+                extra_headers={
+                    "Referer": "https://ai.codefather.cn/news",
+                    "Accept": "application/json,text/plain,*/*",
+                },
+            )
+            payload = json.loads(raw_json)
+            if payload.get("code") != 0:
+                raise RuntimeError(f"API code={payload.get('code')} {payload.get('message', '')}")
+            recs = (payload.get("data") or {}).get("records") or []
+            if not recs:
+                break
+            raw_records.extend(recs)
+        except Exception as e:
+            if page == 1 and not raw_records:
+                raise
+            print(f"[WARN] yupi-news page {page} skipped: {e}")
+            break
+
+    seen_ids = set()
+    seen_titles = set()
+    items = []
+    for rec in raw_records:
+        pid = str(rec.get("id") or "").strip()
+        title = strip_tags(rec.get("title") or "")
+        if not pid or not title:
+            continue
+        norm_t = re.sub(r"\s+", "", title.lower())
+        if pid in seen_ids or norm_t in seen_titles:
+            continue
+        seen_ids.add(pid)
+        seen_titles.add(norm_t)
+
+        content_cover, paragraphs = _parse_news_content(rec.get("content") or "")
+        cover = safe_icon_url(rec.get("cover") or "") or content_cover
+        summary = strip_tags(rec.get("plainTextDescription") or "")
+        if not summary:
+            summary = next((p["text"] for p in paragraphs if p["type"] == "text"), "")
+        if not summary:
+            summary = title
+        summary = summary[:220]
+        if not paragraphs and summary:
+            paragraphs = [{"type": "text", "text": summary}]
+
+        detail_url = f"https://ai.codefather.cn/news/{pid}"
+        ext_url = normalize_url(rec.get("externalLink") or "")
+        if ext_url == detail_url:
+            ext_url = ""
+
+        try:
+            ts_ms = int(rec.get("createTime") or 0)
+        except (TypeError, ValueError):
+            ts_ms = 0
+        if ts_ms > 0:
+            dt = datetime.datetime.fromtimestamp(ts_ms / 1000, tz8)
+            published_at = dt.strftime("%Y-%m-%d %H:%M")
+            date_str = dt.strftime("%Y-%m-%d")
+        else:
+            published_at = ""
+            date_str = ""
+
+        try:
+            views = max(0, int(rec.get("viewNum") or 0))
+        except (TypeError, ValueError):
+            views = 0
+
+        items.append({
+            "id": pid,
+            "title": title,
+            "summary": summary,
+            "cover": cover,
+            "url": detail_url,
+            "source_url": ext_url,
+            "topic": classify_news_topic(title, summary),
+            "published_ts": ts_ms,
+            "published_at": published_at,
+            "date": date_str,
+            "views": views,
+            "paragraphs": paragraphs,
+        })
+
+    items.sort(key=lambda x: (-x["published_ts"], x["id"]))
+    if len(items) < 10:
+        raise RuntimeError(f"news returned too few valid items: {len(items)}")
+
+    data = {
+        "generated_at": datetime.datetime.now(tz8).isoformat(timespec="seconds"),
+        "total": len(items),
+        "topics": NEWS_TOPICS,
+        "items": items,
+    }
+    out_dir = os.path.dirname(os.path.abspath(news_path))
+    os.makedirs(out_dir, exist_ok=True)
+    tmp_path = news_path + ".tmp"
+    with open(tmp_path, "w", encoding="utf-8") as f:
+        json.dump(data, f, ensure_ascii=False, separators=(",", ":"))
+    os.chmod(tmp_path, 0o644)
+
+    if os.path.exists(news_path):
+        prev_tmp = os.path.join(out_dir, "news.prev.json.tmp")
+        prev_path = os.path.join(out_dir, "news.prev.json")
+        try:
+            shutil.copy2(news_path, prev_tmp)
+            os.chmod(prev_tmp, 0o644)
+            os.replace(prev_tmp, prev_path)
+        except Exception:
+            pass
+
+    os.replace(tmp_path, news_path)
+    print(f"[OK] ai-news      -> {len(items)} articles atomically written to {news_path}")
+    return len(items)
+
+
 SOURCES = [
     ("ai-bot", "AI 工具集", "domestic", parse_aibot),
     ("aibase", "AIbase 基地", "domestic", parse_aibase),
@@ -1169,22 +1371,31 @@ def main():
     parser.add_argument("--output", help="Output catalog.json path")
     parser.add_argument("--hotlist-output", help="Output hotlist.json path (defaults beside --output)")
     parser.add_argument("--hotlist-only", action="store_true", help="Refresh only hotlist.json and exit")
+    parser.add_argument("--news-output", help="Output news.json path (defaults beside --output)")
+    parser.add_argument("--news-only", action="store_true", help="Refresh only news.json and exit")
     parser.add_argument("--min-items", type=int, default=500, help="Safety threshold before overwriting")
     args = parser.parse_args()
 
-    if args.hotlist_only:
-        hl_path = args.hotlist_output
-        if not hl_path and args.output:
-            hl_path = os.path.join(os.path.dirname(os.path.abspath(args.output)), "hotlist.json")
-        if not hl_path:
-            parser.error("--hotlist-output or --output is required with --hotlist-only")
-        fetch_and_write_hotlist(hl_path)
+    if args.hotlist_only or args.news_only:
+        base_dir = os.path.dirname(os.path.abspath(args.output)) if args.output else ""
+        if args.hotlist_only:
+            hl_path = args.hotlist_output or (os.path.join(base_dir, "hotlist.json") if base_dir else "")
+            if not hl_path:
+                parser.error("--hotlist-output or --output is required with --hotlist-only")
+            fetch_and_write_hotlist(hl_path)
+        if args.news_only:
+            news_path = args.news_output or (os.path.join(base_dir, "news.json") if base_dir else "")
+            if not news_path:
+                parser.error("--news-output or --output is required with --news-only")
+            fetch_and_write_news(news_path)
         return
 
     if not args.output:
-        parser.error("--output is required unless --hotlist-only is specified")
+        parser.error("--output is required unless --hotlist-only or --news-only is specified")
 
-    hl_path = args.hotlist_output or os.path.join(os.path.dirname(os.path.abspath(args.output)), "hotlist.json")
+    out_dir = os.path.dirname(os.path.abspath(args.output))
+    hl_path = args.hotlist_output or os.path.join(out_dir, "hotlist.json")
+    news_path = args.news_output or os.path.join(out_dir, "news.json")
 
     raw_items = []
     source_stats = []
@@ -1253,6 +1464,11 @@ def main():
         fetch_and_write_hotlist(hl_path)
     except Exception as e:
         print(f"[WARN] hotlist refresh failed: {e}")
+
+    try:
+        fetch_and_write_news(news_path)
+    except Exception as e:
+        print(f"[WARN] news refresh failed: {e}")
 
 
 if __name__ == "__main__":

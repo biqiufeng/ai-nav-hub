@@ -15,8 +15,9 @@ if ! flock -n 9; then
 fi
 
 {
-  echo "[$(date +%Y-%m-%dT%H:%M:%S%z)] Refreshing hotlist"
+  echo "[$(date +%Y-%m-%dT%H:%M:%S%z)] Refreshing hotlist & AI news"
   python3 -u "${APP_DIR}/crawler/fetch_all.py" --hotlist-only --hotlist-output "${APP_DIR}/web/data/hotlist.json"
+  python3 -u "${APP_DIR}/crawler/fetch_all.py" --news-only --news-output "${APP_DIR}/web/data/news.json" || true
 } >> "${LOG_FILE}" 2>&1
 
 shopt -s nullglob

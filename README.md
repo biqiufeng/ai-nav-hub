@@ -4,7 +4,7 @@
 
 ## 核心特性
 
-- **四大实用频道**：基于响应式自适应顶栏（`首页` 全库聚合导航、`AI` 大模型聚合工作台、`工具` 12 款本地开发者实用工具箱 + 导航、`摸鱼` 14 大平台每小时热榜 + 休闲导航）。
+- **三大实用频道**：基于响应式自适应顶栏（`首页` 全库 AI 工具聚合导航与开发效率视图、`AI资讯` 前沿 AI 行业动态与正文速览、`摸鱼` 14 大平台每 2 小时热榜 + 休闲导航）。
 - **全量多源聚合与两阶段去重**：全量遍历国内外 9 大公开 AI/开发导航目录与 RSS 订阅，统一去除追踪参数与多语言路径前缀并按规范化域名/路径合并，再将聚合页包装条目归并至官方主域名。
 - **零灰色地球 / 三层图标回退**：自动识别并过滤源站懒加载默认占位图（如出现频次 `>= 4` 的默认图标），前端按「真实图标 → 高清 Favicon → 域名哈希质感首字母 Monogram」平滑降级。
 - **每日全量 + 每小时热榜工作流**：通过 `flock` 防并发锁 + `crontab` 每日 `04:00` 定时爬取全库、`每小时 15 分` 刷新热榜；抓取总数低于安全阈值时自动保留线上旧版 `catalog.json`，并通过拷贝备份 + 单次 `os.replace` 实现零停机原子更新。
@@ -60,7 +60,7 @@ ai-nav-hub/
     ├── favicon.png
     ├── apple-touch-icon.png
     ├── logo.jpg
-    ├── tools/                # 在线开发者工具箱与导航（/tools/）
+    ├── news/                 # 前沿 AI 资讯与正文速览（/news/）
     ├── moyu/                 # 全网实时热榜与摸鱼导航（/moyu/）
     └── admin/                # 独立数据后台（/admin/，noindex）
 ```
@@ -132,8 +132,8 @@ CF_CUSTOM_DOMAIN=ai.example.com npx cf deploy ./web
 ### 自动定时爬取与同步到 Cloudflare Pages（GitHub Actions）
 
 仓库已内置 [scheduled-cloudflare-deploy.yml](./.github/workflows/scheduled-cloudflare-deploy.yml)，零服务器依赖自动保持线上数据新鲜：
-- 每日 `04:00 (UTC+8)` 全量抓取 9 大来源工具索引 + 14 平台热榜并部署至 Cloudflare Pages；
-- 每 `2` 小时第 `15` 分增量刷新 `hotlist.json` 并发布（月度部署次数约 390 次，安全控制在 Pages 免费版 500 次/月上限内）。
+- 每日 `04:00 (UTC+8)` 全量抓取 9 大来源工具索引、14 平台热榜与最新 AI 资讯并部署至 Cloudflare Pages；
+- 每 `2` 小时第 `15` 分增量刷新 `hotlist.json` 与 `news.json` 并发布（月度部署次数约 390 次，安全控制在 Pages 免费版 500 次/月上限内）。
 
 如需手动在自有仓库启用，在 GitHub 仓库的 **Settings → Secrets and variables → Actions** 中添加：
 - **Secrets**：`CLOUDFLARE_API_TOKEN`（含 `Pages:Edit` 权限）、`CLOUDFLARE_ACCOUNT_ID`

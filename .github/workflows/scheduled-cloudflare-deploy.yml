@@ -2,9 +2,9 @@ name: Scheduled Crawl & Cloudflare Pages Deploy
 
 on:
   schedule:
-    # 每日 04:00 CST (UTC+8) = UTC 20:00 全量抓取工具索引 + 热榜
+    # 每日 04:00 CST (UTC+8) = UTC 20:00 全量抓取工具索引 + 热榜 + AI资讯
     - cron: "0 20 * * *"
-    # 每 2 小时第 15 分钟增量刷新全网摸鱼热榜（控制月部署次数 < 500 免费额度）
+    # 每 2 小时第 15 分钟增量刷新全网摸鱼热榜与 AI资讯（控制月部署次数 < 500 免费额度）
     - cron: "15 */2 * * *"
   workflow_dispatch:
     inputs:
@@ -55,15 +55,24 @@ jobs:
           if [ "$MODE" = "hotlist" ] && [ -n "$CF_LIVE_URL" ]; then
             echo "Hotlist mode: fetching existing catalog.json from $CF_LIVE_URL ..."
             if curl -fsSL -m 20 "$CF_LIVE_URL/data/catalog.json" -o web/data/catalog.json && python3 -c "import json; d=json.load(open('web/data/catalog.json')); assert len(d.get('items', [])) >= 500"; then
-              echo "Existing catalog.json validated; running hotlist-only refresh..."
+              echo "Existing catalog.json validated; running hotlist + news refresh..."
               python3 -u crawler/fetch_all.py --hotlist-only --hotlist-output web/data/hotlist.json
+              if ! python3 -u crawler/fetch_all.py --news-only --news-output web/data/news.json; then
+                echo "::warning::Live news crawl failed; attempting to reuse existing news.json from $CF_LIVE_URL ..."
+                curl -fsSL -m 20 "$CF_LIVE_URL/data/news.json" -o web/data/news.json
+              fi
             else
               echo "::warning::Failed to reuse live catalog.json; falling back to full crawl."
-              python3 -u crawler/fetch_all.py --output web/data/catalog.json --hotlist-output web/data/hotlist.json
+              python3 -u crawler/fetch_all.py --output web/data/catalog.json --hotlist-output web/data/hotlist.json --news-output web/data/news.json
             fi
           else
             echo "Full mode: running complete multi-source crawl..."
-            python3 -u crawler/fetch_all.py --output web/data/catalog.json --hotlist-output web/data/hotlist.json
+            python3 -u crawler/fetch_all.py --output web/data/catalog.json --hotlist-output web/data/hotlist.json --news-output web/data/news.json
+          fi
+
+          if [ ! -f web/data/news.json ] && [ -n "$CF_LIVE_URL" ]; then
+            echo "::warning::web/data/news.json missing after crawl; reusing from $CF_LIVE_URL ..."
+            curl -fsSL -m 20 "$CF_LIVE_URL/data/news.json" -o web/data/news.json
           fi
 
       - name: Validate generated data files
@@ -74,11 +83,15 @@ jobs:
               cat = json.load(f)
           with open("web/data/hotlist.json", "r", encoding="utf-8") as f:
               hot = json.load(f)
+          with open("web/data/news.json", "r", encoding="utf-8") as f:
+              news = json.load(f)
           items = len(cat.get("items", []))
           plats = len(hot.get("platforms", []))
-          print(f"Validated catalog.json ({items} items) & hotlist.json ({plats} platforms)")
+          news_items = len(news.get("items", []))
+          print(f"Validated catalog.json ({items} items), hotlist.json ({plats} platforms) & news.json ({news_items} items)")
           assert items >= 500, f"Too few catalog items: {items}"
           assert plats >= 5, f"Too few hotlist platforms: {plats}"
+          assert news_items >= 10, f"Too few news items: {news_items}"
           PY
 
       - name: Set up Node.js
