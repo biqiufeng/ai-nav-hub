@@ -46,20 +46,8 @@
   border-radius: 8px;
 }
 
-.model-filter {
-  width: 100%;
-  padding: 8px 11px;
-  border-radius: 10px;
-  border: 1px solid var(--border);
-  background: var(--bg);
-  color: var(--text-primary);
-  font: inherit;
-  font-size: 13px;
-}
-
-.model-filter:focus {
-  outline: 2px solid color-mix(in srgb, var(--accent) 45%, transparent);
-  border-color: var(--accent);
+.dock-reset-btn[hidden] {
+  display: none;
 }
 
 .model-list {
@@ -72,6 +60,25 @@
   overflow-y: auto;
 }
 
+.model-empty {
+  padding: 20px 10px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.model-empty[hidden] {
+  display: none;
+}
+
+.model-empty__text {
+  margin: 0;
+  font-size: 12.5px;
+  color: var(--text-secondary);
+}
+
 .model-row {
   display: flex;
   align-items: center;
@@ -79,6 +86,20 @@
   padding: 4px;
   border-radius: 11px;
   transition: background-color var(--dur-fast) ease;
+
+  @media (prefers-reduced-motion: no-preference) {
+    transition: background-color var(--dur-fast) ease, transform var(--dur-fast) var(--ease-out-expo);
+  }
+}
+
+.model-row:hover {
+  background: var(--surface-subtle);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .model-row:active {
+    transform: scale(0.99);
+  }
 }
 
 .model-row.is-active {
@@ -156,6 +177,12 @@
 .mini-op-btn:hover {
   background: var(--surface-subtle);
   color: var(--text-primary);
+}
+
+.mini-op-btn:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+  pointer-events: none;
 }
 
 .stage-panel {
@@ -250,7 +277,54 @@
   height: 100%;
   min-height: 540px;
   border: 0;
-  background: #ffffff;
+  background: var(--bg);
+  opacity: 0;
+  transition: opacity var(--dur-med) var(--ease-out-expo);
+}
+
+.stage-frame.is-loaded {
+  opacity: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .stage-frame {
+    opacity: 1;
+  }
+}
+
+.stage-loading {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 20px;
+  background: var(--bg);
+}
+
+.stage-loading[hidden] {
+  display: none;
+}
+
+.stage-spinner {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  border: 2.5px solid var(--border-strong);
+  border-top-color: var(--accent);
+
+  @media (prefers-reduced-motion: no-preference) {
+    animation: spinLoop 0.8s linear infinite;
+  }
+}
+
+.stage-loading__text {
+  margin: 0;
+  font-size: 13px;
+  color: var(--text-secondary);
 }
 
 .stage-launch {
@@ -336,6 +410,10 @@
   }
 
   .model-row__ops {
+    display: none;
+  }
+
+  .dock-reset-btn {
     display: none;
   }
 }

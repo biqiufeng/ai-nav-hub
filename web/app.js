@@ -1,4 +1,14 @@
-import { initSiteNav } from "./nav.js?v=1";
+import {
+  initSiteNav,
+  initThemeToggle,
+  initTopBarScrollHide,
+  createToast,
+  bindSearchBox,
+  bindTwoStepConfirm,
+  copyWithFeedback,
+  prefersReducedMotion,
+  canTransitionDisplay,
+} from "./nav.js?v=2";
 
 const CAT_ICONS = {
   "对话写作": `<svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>`,
@@ -53,10 +63,8 @@ const state = {
   activeTool: null,
   pendingFavoritesRefresh: false,
   loadFailed: false,
-  clearConfirmTimer: null,
-  copyResetTimer: null,
-  toastTimer: null,
   scrollspyObserver: null,
+  scrollendHandler: null,
 };
 
 const els = {
@@ -113,74 +121,14 @@ function safeHttpUrl(raw) {
   }
 }
 
-/* ---------- Theme management (dark-mode-toggle) ---------- */
-function getMetaScheme() {
-  return document.querySelector('meta[name="color-scheme"]');
-}
-
-function getEffectiveScheme() {
-  const metaVal = getMetaScheme()?.content;
-  if (metaVal === "light" || metaVal === "dark") return metaVal;
-  const stored = safeGetStorage("color-scheme");
-  if (stored === "light" || stored === "dark") return stored;
-  return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
-}
-
-function syncThemeAria() {
-  const eff = getEffectiveScheme();
-  const nextLabel = eff === "dark" ? "切换到浅色外观" : "切换到深色外观";
-  els.themeToggle.setAttribute("aria-label", nextLabel);
-  els.themeToggleLabel.textContent = nextLabel;
-}
-
-function toggleTheme() {
-  const sysScheme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
-  const currentRendered = getEffectiveScheme();
-  const target = currentRendered === "dark" ? "light" : "dark";
-
-  if (target === sysScheme) {
-    safeRemoveStorage("color-scheme");
-    getMetaScheme().content = "light dark";
-    showToast("已恢复跟随系统外观");
-  } else {
-    safeSetStorage("color-scheme", target);
-    getMetaScheme().content = target;
-    showToast(target === "dark" ? "已切换为深色外观" : "已切换为浅色外观");
-  }
-  syncThemeAria();
-}
+const showToast = createToast(els.toast);
 
 window.addEventListener("storage", (e) => {
-  if (e.key === "color-scheme") {
-    const valid = e.newValue === "light" || e.newValue === "dark" ? e.newValue : "light dark";
-    getMetaScheme().content = valid;
-    syncThemeAria();
-  }
   if (e.key === FAVORITES_KEY) {
     state.favorites = loadFavorites();
     applyFilters(false);
   }
 });
-
-window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", () => syncThemeAria());
-
-/* ---------- Scroll-state fallback for top bar ---------- */
-if (!CSS.supports("container-type", "scroll-state")) {
-  let lastY = window.scrollY;
-  let barHeight = els.topBar.offsetHeight || 56;
-  window.addEventListener("resize", () => { barHeight = els.topBar.offsetHeight || 56; });
-  window.addEventListener(
-    "scroll",
-    () => {
-      const maxY = Math.max(0, document.documentElement.scrollHeight - window.innerHeight);
-      const y = Math.max(0, Math.min(window.scrollY, maxY));
-      if (Math.abs(y - lastY) < 6 && y > 0) return;
-      els.topBar.classList.toggle("is-hidden", y > lastY && y > barHeight);
-      lastY = y;
-    },
-    { passive: true }
-  );
-}
 
 /* ---------- Mobile navigation drawer (modern-web-guidance: navigation-drawer) ---------- */
 const drawerScroller = els.mobileDrawer.querySelector(".Drawer-scroller");
@@ -238,23 +186,6 @@ els.mobileDrawer.addEventListener("cancel", (e) => {
 });
 
 /* ---------- Tool details dialog ---------- */
-let supportsDisplayTransition;
-function canTransitionDisplay() {
-  if (supportsDisplayTransition !== undefined) return supportsDisplayTransition;
-  if (!window.CSS?.supports?.("transition-behavior", "allow-discrete") || !document.body) {
-    supportsDisplayTransition = false;
-    return false;
-  }
-  const probe = document.createElement("div");
-  probe.style.cssText = "transition: display 1s allow-discrete !important; display: block;";
-  document.body.appendChild(probe);
-  getComputedStyle(probe).display;
-  probe.style.display = "none";
-  supportsDisplayTransition = getComputedStyle(probe).display === "block";
-  probe.remove();
-  return supportsDisplayTransition;
-}
-
 function supportsTopLayerExit() {
   return Boolean(window.CSS?.supports?.("overlay", "auto") && canTransitionDisplay());
 }
@@ -348,14 +279,7 @@ function loadRegion() {
   return ["all", "hot", "domestic", "overseas", "favorites"].includes(val) ? val : "all";
 }
 
-/* ---------- UI feedback & three-layer icon fallback ---------- */
-function showToast(msg) {
-  clearTimeout(state.toastTimer);
-  els.toast.textContent = msg;
-  els.toast.hidden = false;
-  state.toastTimer = setTimeout(() => { els.toast.hidden = true; }, 2000);
-}
-
+/* ---------- Three-layer icon fallback ---------- */
 function hashColor(str) {
   let h = 0;
   for (let i = 0; i < str.length; i++) {
@@ -448,7 +372,11 @@ function setRegion(nextRegion) {
     b.setAttribute("aria-selected", String(active));
   });
   const activeSeg = els.regionSegmented.querySelector(".segmented__btn.is-active");
-  activeSeg?.scrollIntoView({ inline: "nearest", block: "nearest", behavior: "smooth" });
+  activeSeg?.scrollIntoView({
+    inline: "nearest",
+    block: "nearest",
+    behavior: prefersReducedMotion() ? "auto" : "smooth",
+  });
   positionThumb(false);
   applyFilters(true);
 }
@@ -534,6 +462,10 @@ function setupScrollspy() {
     state.scrollspyObserver.disconnect();
     state.scrollspyObserver = null;
   }
+  if (state.scrollendHandler) {
+    document.removeEventListener("scrollend", state.scrollendHandler);
+    state.scrollendHandler = null;
+  }
   if (!isSectionMode()) return;
 
   const navLinks = [...document.querySelectorAll(".sidebar-cat-link")];
@@ -547,8 +479,9 @@ function setupScrollspy() {
         link.setAttribute("aria-current", link === current ? "true" : "false");
       });
     };
+    state.scrollendHandler = syncAriaCurrent;
     syncAriaCurrent();
-    document.addEventListener("scrollend", syncAriaCurrent, { passive: true });
+    document.addEventListener("scrollend", state.scrollendHandler, { passive: true });
     return;
   }
 
@@ -585,7 +518,7 @@ function updateCounts() {
   }
 
   els.clearFavBtn.hidden = !(state.region === "favorites" && map.favorites > 0);
-  if (els.clearFavBtn.hidden) resetClearFavConfirm();
+  if (els.clearFavBtn.hidden) clearFavConfirm.reset();
 
   positionThumb(false);
 }
@@ -780,7 +713,7 @@ function renderSectionedView(items, animateEnter) {
       state.category = cat;
       state.visibleLimit = PAGE_BATCH;
       applyFilters(true);
-      window.scrollTo({ top: 0, behavior: "smooth" });
+      window.scrollTo({ top: 0, behavior: prefersReducedMotion() ? "auto" : "smooth" });
     });
 
     head.append(titleWrap, moreBtn);
@@ -863,10 +796,10 @@ function toggleFavorite(item, btnEl = null) {
   const nowFaved = !wasFaved;
   if (wasFaved) {
     state.favorites.delete(item.id);
-    showToast(`已取消收藏 ${item.name}`);
+    if (!els.toolDialog.open) showToast(`已取消收藏 ${item.name}`);
   } else {
     state.favorites.add(item.id);
-    showToast(`已收藏 ${item.name}`);
+    if (!els.toolDialog.open) showToast(`已收藏 ${item.name}`);
   }
   saveFavorites();
 
@@ -889,25 +822,15 @@ function toggleFavorite(item, btnEl = null) {
   }
 }
 
-function resetClearFavConfirm() {
-  clearTimeout(state.clearConfirmTimer);
-  state.clearConfirmTimer = null;
-  els.clearFavBtn.classList.remove("is-confirm");
-  els.clearFavBtn.textContent = "清空收藏";
-}
-
-els.clearFavBtn.addEventListener("click", () => {
-  if (!els.clearFavBtn.classList.contains("is-confirm")) {
-    els.clearFavBtn.classList.add("is-confirm");
-    els.clearFavBtn.textContent = "再次点击确认清空";
-    state.clearConfirmTimer = setTimeout(resetClearFavConfirm, 4000);
-    return;
-  }
-  state.favorites.clear();
-  saveFavorites();
-  resetClearFavConfirm();
-  showToast("已清空全部收藏");
-  applyFilters(false);
+const clearFavConfirm = bindTwoStepConfirm(els.clearFavBtn, {
+  idleText: "清空收藏",
+  confirmText: "再次点击确认清空",
+  onConfirm: () => {
+    state.favorites.clear();
+    saveFavorites();
+    showToast("已清空全部收藏");
+    applyFilters(false);
+  },
 });
 
 /* ---------- Dialog details ---------- */
@@ -934,7 +857,7 @@ function openDialog(item) {
     els.dialogVisitBtn.hidden = true;
   }
 
-  clearTimeout(state.copyResetTimer);
+  els.dialogCopyBtn.classList.remove("is-copied");
   els.dialogCopyText.textContent = "复制链接";
   els.dialogFavText.textContent = state.favorites.has(item.id) ? "已收藏 ★" : "收藏";
 
@@ -942,34 +865,9 @@ function openDialog(item) {
   els.toolDialog.showModal();
 }
 
-async function copyTextSafe(text) {
-  if (navigator.clipboard?.writeText) {
-    await navigator.clipboard.writeText(text);
-    return;
-  }
-  const ta = document.createElement("textarea");
-  ta.value = text;
-  ta.setAttribute("readonly", "");
-  ta.style.cssText = "position:fixed;opacity:0;pointer-events:none;";
-  els.toolDialog.appendChild(ta);
-  ta.select();
-  const ok = document.execCommand("copy");
-  ta.remove();
-  if (!ok) throw new Error("copy failed");
-}
-
-els.dialogCopyBtn.addEventListener("click", async () => {
+els.dialogCopyBtn.addEventListener("click", () => {
   if (!state.activeTool) return;
-  try {
-    await copyTextSafe(state.activeTool.url);
-    clearTimeout(state.copyResetTimer);
-    els.dialogCopyText.textContent = "已复制 ✓";
-    state.copyResetTimer = setTimeout(() => {
-      if (els.toolDialog.open) els.dialogCopyText.textContent = "复制链接";
-    }, 1800);
-  } catch {
-    showToast("复制失败，请手动复制链接");
-  }
+  copyWithFeedback(state.activeTool.url, els.dialogCopyBtn, showToast, els.dialogCopyText);
 });
 
 els.dialogFavBtn.addEventListener("click", () => {
@@ -977,32 +875,20 @@ els.dialogFavBtn.addEventListener("click", () => {
 });
 
 /* ---------- Events & keyboard shortcuts ---------- */
-els.themeToggle.addEventListener("click", toggleTheme);
-
 els.regionSegmented.querySelectorAll(".segmented__btn").forEach((btn) => {
   btn.addEventListener("click", () => setRegion(btn.dataset.region));
 });
 
-function syncSearchUI() {
-  const hasVal = els.searchInput.value.length > 0;
-  els.searchBox.classList.toggle("has-value", hasVal);
-  els.searchClear.hidden = !hasVal;
-}
-
-els.searchInput.addEventListener("input", () => {
-  state.query = els.searchInput.value;
-  state.visibleLimit = PAGE_BATCH;
-  syncSearchUI();
-  applyFilters(false);
-});
-
-els.searchClear.addEventListener("click", () => {
-  els.searchInput.value = "";
-  state.query = "";
-  state.visibleLimit = PAGE_BATCH;
-  syncSearchUI();
-  els.searchInput.focus();
-  applyFilters(true);
+const searchController = bindSearchBox({
+  input: els.searchInput,
+  clearBtn: els.searchClear,
+  boxEl: els.searchBox,
+  onChange: (val) => {
+    state.query = val;
+    state.visibleLimit = PAGE_BATCH;
+    applyFilters(false);
+  },
+  enableGlobalShortcut: true,
 });
 
 els.emptyResetBtn.addEventListener("click", () => {
@@ -1014,7 +900,7 @@ els.emptyResetBtn.addEventListener("click", () => {
   state.query = "";
   state.category = "全部";
   state.visibleLimit = PAGE_BATCH;
-  syncSearchUI();
+  searchController.sync();
   if (state.region === "favorites") {
     setRegion("all");
   } else {
@@ -1027,25 +913,31 @@ els.loadMoreBtn.addEventListener("click", () => {
   applyFilters(false);
 });
 
-document.addEventListener("keydown", (e) => {
-  if (e.target.matches("input, textarea") || els.toolDialog.open || els.mobileDrawer.open) return;
-  if (e.key === "/" || ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === "k")) {
-    e.preventDefault();
-    els.searchInput.focus();
-    els.searchInput.select();
+function renderCatalogSkeletons() {
+  const grid = document.createElement("div");
+  grid.className = "cards-grid";
+  grid.setAttribute("aria-hidden", "true");
+  for (let i = 0; i < 6; i++) {
+    const card = document.createElement("div");
+    card.className = "skeleton-card";
+    card.innerHTML = `<div class="skeleton-line skeleton-line--title"></div><div class="skeleton-line"></div><div class="skeleton-line skeleton-line--short"></div>`;
+    grid.appendChild(card);
   }
-});
+  els.catalogContainer.replaceChildren(grid);
+}
 
 /* ---------- Bootstrap & data fetch ---------- */
 async function init() {
   initSiteNav();
-  syncThemeAria();
+  initTopBarScrollHide(els.topBar);
+  initThemeToggle(els.themeToggle, els.themeToggleLabel, showToast);
   els.regionSegmented.querySelectorAll(".segmented__btn").forEach((b) => {
     const active = b.dataset.region === state.region;
     b.classList.toggle("is-active", active);
     b.setAttribute("aria-selected", String(active));
   });
   positionThumb(true);
+  renderCatalogSkeletons();
 
   try {
     const res = await fetch("./data/catalog.json", { cache: "no-cache" });
@@ -1057,6 +949,7 @@ async function init() {
     applyFilters(true);
   } catch {
     state.loadFailed = true;
+    els.catalogContainer.replaceChildren();
     els.resultCounter.textContent = "数据加载失败";
     els.emptyState.hidden = false;
     els.emptyTitle.textContent = "暂时无法读取工具索引";

@@ -1,3 +1,10 @@
+import {
+  initThemeToggle,
+  initTopBarScrollHide,
+  createToast,
+  setRefreshBusy,
+} from "../nav.js?v=2";
+
 const SOURCE_URLS = {
   "ai-bot": "https://ai-bot.cn/",
   "aibase": "https://www.aibase.com/zh/tools",
@@ -11,6 +18,7 @@ const SOURCE_URLS = {
 };
 
 const els = {
+  topBar: document.getElementById("topBar"),
   themeToggle: document.getElementById("themeToggle"),
   themeToggleLabel: document.getElementById("themeToggleLabel"),
   refreshBtn: document.getElementById("refreshBtn"),
@@ -24,70 +32,12 @@ const els = {
   kpiSync: document.getElementById("kpiSync"),
   kpiSchedule: document.getElementById("kpiSchedule"),
   sourcesTableBody: document.getElementById("sourcesTableBody"),
+  catStatsHeading: document.getElementById("catStatsHeading"),
   categoryStats: document.getElementById("categoryStats"),
   toast: document.getElementById("toast"),
 };
 
-let toastTimer = null;
-
-function showToast(msg) {
-  els.toast.textContent = msg;
-  els.toast.hidden = false;
-  clearTimeout(toastTimer);
-  toastTimer = setTimeout(() => {
-    els.toast.hidden = true;
-  }, 2200);
-}
-
-function getMetaScheme() {
-  return document.querySelector('meta[name="color-scheme"]');
-}
-
-function getEffectiveScheme() {
-  const metaVal = getMetaScheme()?.content;
-  if (metaVal === "light" || metaVal === "dark") return metaVal;
-  try {
-    const stored = localStorage.getItem("color-scheme");
-    if (stored === "light" || stored === "dark") return stored;
-  } catch {}
-  return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
-}
-
-function syncThemeAria() {
-  const eff = getEffectiveScheme();
-  const nextLabel = eff === "dark" ? "切换到浅色外观" : "切换到深色外观";
-  els.themeToggle.setAttribute("aria-label", nextLabel);
-  els.themeToggleLabel.textContent = nextLabel;
-}
-
-function toggleTheme() {
-  const sysScheme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
-  const currentRendered = getEffectiveScheme();
-  const target = currentRendered === "dark" ? "light" : "dark";
-  try {
-    if (target === sysScheme) {
-      localStorage.removeItem("color-scheme");
-      getMetaScheme().content = "light dark";
-      showToast("已恢复跟随系统外观");
-    } else {
-      localStorage.setItem("color-scheme", target);
-      getMetaScheme().content = target;
-      showToast(target === "dark" ? "已切换为深色外观" : "已切换为浅色外观");
-    }
-  } catch {}
-  syncThemeAria();
-}
-
-window.addEventListener("storage", (e) => {
-  if (e.key === "color-scheme") {
-    const valid = e.newValue === "light" || e.newValue === "dark" ? e.newValue : "light dark";
-    getMetaScheme().content = valid;
-    syncThemeAria();
-  }
-});
-
-window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", () => syncThemeAria());
-els.themeToggle.addEventListener("click", toggleTheme);
+const showToast = createToast(els.toast);
 
 function formatDateTime(isoStr) {
   const dt = isoStr ? new Date(isoStr) : null;
@@ -155,8 +105,28 @@ function renderSourcesTable(sources) {
   els.sourcesTableBody.replaceChildren(frag);
 }
 
+function renderSourcesErrorRow() {
+  const tr = document.createElement("tr");
+  const th = document.createElement("th");
+  th.scope = "row";
+  th.textContent = "加载失败";
+  const td = document.createElement("td");
+  td.colSpan = 5;
+  td.textContent = "无法读取 catalog.json ";
+  const retryBtn = document.createElement("button");
+  retryBtn.type = "button";
+  retryBtn.className = "btn-secondary admin-nav-btn";
+  retryBtn.textContent = "重试";
+  retryBtn.style.marginLeft = "8px";
+  retryBtn.addEventListener("click", () => loadAdminData(true));
+  td.appendChild(retryBtn);
+  tr.append(th, td);
+  els.sourcesTableBody.replaceChildren(tr);
+}
+
 function renderCategoryStats(byCategory, total) {
   const entries = Object.entries(byCategory || {}).sort((a, b) => b[1] - a[1]);
+  els.catStatsHeading.textContent = `${entries.length} 大分类分布统计`;
   const frag = document.createDocumentFragment();
   const safeTotal = Math.max(total || 1, 1);
 
@@ -177,7 +147,7 @@ function renderCategoryStats(byCategory, total) {
     track.className = "cat-bar-row__track";
     const fill = document.createElement("div");
     fill.className = "cat-bar-row__fill";
-    fill.style.width = `${Math.max(2, (count / safeTotal) * 100)}%`;
+    fill.style.setProperty("--bar-ratio", String(Math.max(0.02, count / safeTotal)));
     track.appendChild(fill);
 
     row.append(top, track);
@@ -188,7 +158,7 @@ function renderCategoryStats(byCategory, total) {
 }
 
 async function loadAdminData(showFeedback = false) {
-  els.refreshBtn.disabled = true;
+  setRefreshBusy(els.refreshBtn, true, "刷新数据", "刷新中…");
   try {
     const res = await fetch(`../data/catalog.json?t=${Date.now()}`, { cache: "no-store" });
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
@@ -218,13 +188,15 @@ async function loadAdminData(showFeedback = false) {
     if (showFeedback) showToast("后台数据已刷新");
   } catch (err) {
     els.adminSubtitle.textContent = `数据加载失败（${err?.message || "未知错误"}）`;
+    renderSourcesErrorRow();
     if (showFeedback) showToast("数据刷新失败，请稍后重试");
   } finally {
-    els.refreshBtn.disabled = false;
+    setRefreshBusy(els.refreshBtn, false, "刷新数据", "刷新中…");
   }
 }
 
 els.refreshBtn.addEventListener("click", () => loadAdminData(true));
 
-syncThemeAria();
+initTopBarScrollHide(els.topBar);
+initThemeToggle(els.themeToggle, els.themeToggleLabel, showToast);
 loadAdminData(false);

@@ -1,43 +1,36 @@
-import { initSiteNav, initThemeToggle } from "../nav.js?v=1";
+import {
+  initSiteNav,
+  initThemeToggle,
+  initTopBarScrollHide,
+  createToast,
+  bindSearchBox,
+  bindTwoStepConfirm,
+  copyWithFeedback,
+  prefersReducedMotion,
+} from "../nav.js?v=2";
 
 const els = {
+  topBar: document.getElementById("topBar"),
   themeToggle: document.getElementById("themeToggle"),
   themeToggleLabel: document.getElementById("themeToggleLabel"),
   toolTabs: document.getElementById("toolTabs"),
   workbenchBody: document.getElementById("workbenchBody"),
   dirCount: document.getElementById("dirCount"),
+  dirSearchBox: document.getElementById("dirSearchBox"),
   dirSearch: document.getElementById("dirSearch"),
+  dirSearchClear: document.getElementById("dirSearchClear"),
   dirCats: document.getElementById("dirCats"),
   dirGrid: document.getElementById("dirGrid"),
+  dirEmpty: document.getElementById("dirEmpty"),
+  dirEmptyTitle: document.getElementById("dirEmptyTitle"),
+  dirEmptyDesc: document.getElementById("dirEmptyDesc"),
+  dirEmptyBtn: document.getElementById("dirEmptyBtn"),
+  dirLoadMoreWrap: document.getElementById("dirLoadMoreWrap"),
+  dirLoadMoreBtn: document.getElementById("dirLoadMoreBtn"),
   toast: document.getElementById("toast"),
 };
 
-let toastTimer = null;
-function showToast(msg) {
-  els.toast.textContent = msg;
-  els.toast.hidden = false;
-  clearTimeout(toastTimer);
-  toastTimer = setTimeout(() => { els.toast.hidden = true; }, 2200);
-}
-
-async function copyText(text) {
-  try {
-    if (navigator.clipboard?.writeText) {
-      await navigator.clipboard.writeText(text);
-    } else {
-      const ta = document.createElement("textarea");
-      ta.value = text;
-      ta.style.cssText = "position:fixed;opacity:0;";
-      document.body.appendChild(ta);
-      ta.select();
-      document.execCommand("copy");
-      ta.remove();
-    }
-    showToast("已复制到剪贴板");
-  } catch {
-    showToast("复制失败，请手动复制");
-  }
-}
+const showToast = createToast(els.toast);
 
 function el(tag, cls, text) {
   const node = document.createElement(tag);
@@ -49,19 +42,19 @@ function el(tag, cls, text) {
 function mkBtn(label, cls, onClick) {
   const b = el("button", cls, label);
   b.type = "button";
-  b.addEventListener("click", onClick);
+  if (onClick) b.addEventListener("click", onClick);
   return b;
 }
 
 function renderJsonTool(host) {
   const actions = el("div", "wb-actions");
-  const status = el("span", "wb-status", "粘贴 JSON 后点击格式化或压缩");
+  const status = el("span", "wb-status", "输入 JSON 后自动校验与转换");
   const grid = el("div", "wb-grid-2");
 
   const inWrap = el("div", "wb-field");
   inWrap.append(el("label", "wb-label", "输入 JSON"));
   const taIn = el("textarea", "wb-textarea");
-  taIn.placeholder = '{"name":"AI Nav Hub","tools":8361}';
+  taIn.placeholder = '{"name":"AI Nav Hub","tools":9000}';
   taIn.value = '{"name":"AI Nav Hub","schedule":"每日 04:00","categories":["对话写作","编程开发","划水摸鱼"]}';
   inWrap.appendChild(taIn);
 
@@ -71,23 +64,53 @@ function renderJsonTool(host) {
   taOut.readOnly = true;
   outWrap.appendChild(taOut);
 
-  const run = (indent) => {
+  let currentIndent = 2;
+  const run = (indent = currentIndent) => {
+    currentIndent = indent;
+    const raw = taIn.value.trim();
+    if (!raw) {
+      taOut.value = "";
+      status.className = "wb-status";
+      status.textContent = "等待输入 JSON…";
+      return;
+    }
     try {
-      const parsed = JSON.parse(taIn.value);
-      taOut.value = JSON.stringify(parsed, null, indent);
+      const parsed = JSON.parse(raw);
+      taOut.value = JSON.stringify(parsed, null, currentIndent);
       status.className = "wb-status wb-status--ok";
-      status.textContent = "JSON 校验通过 ✓";
+      status.textContent = currentIndent ? "JSON 校验通过（格式化 ✓）" : "JSON 校验通过（单行压缩 ✓）";
     } catch (e) {
       status.className = "wb-status wb-status--err";
       status.textContent = `语法错误：${e.message}`;
     }
   };
 
+  taIn.addEventListener("input", () => run(currentIndent));
+
+  const clearBtn = mkBtn("清空", "btn-secondary wb-btn");
+  const clearConfirm = bindTwoStepConfirm(clearBtn, {
+    idleText: "清空",
+    confirmText: "确认清空",
+    onConfirm: () => {
+      taIn.value = "";
+      taOut.value = "";
+      status.className = "wb-status";
+      status.textContent = "已清空输入";
+      taIn.focus();
+    },
+  });
+
+  const copyBtn = mkBtn("复制结果", "btn-secondary wb-btn", () => {
+    copyWithFeedback(taOut.value || taIn.value, copyBtn, showToast);
+  });
+
+  taIn.addEventListener("input", () => clearConfirm.reset());
+
   actions.append(
     mkBtn("格式化 (2空格)", "btn-primary wb-btn", () => run(2)),
     mkBtn("压缩单行", "btn-secondary wb-btn", () => run(0)),
-    mkBtn("复制结果", "btn-secondary wb-btn", () => copyText(taOut.value || taIn.value)),
-    mkBtn("清空", "btn-secondary wb-btn", () => { taIn.value = ""; taOut.value = ""; status.textContent = ""; }),
+    copyBtn,
+    clearBtn,
     status
   );
   grid.append(inWrap, outWrap);
@@ -98,24 +121,28 @@ function renderJsonTool(host) {
 function renderTimeTool(host) {
   const nowSec = () => Math.floor(Date.now() / 1000);
   const actions = el("div", "wb-actions");
-  const live = el("span", "wb-status wb-status--ok", `当前 Unix 秒：${nowSec()}`);
+  const live = el("span", "wb-status wb-status--ok", `当前 Unix 秒：${nowSec()} · 毫秒：${Date.now()}`);
   const timer = setInterval(() => {
     if (!document.body.contains(live)) return clearInterval(timer);
+    if (host.hidden) return;
     live.textContent = `当前 Unix 秒：${nowSec()} · 毫秒：${Date.now()}`;
   }, 1000);
 
   const grid = el("div", "wb-grid-2");
 
   const tsWrap = el("div", "wb-field");
-  tsWrap.append(el("label", "wb-label", "时间戳（秒或 13 位毫秒）"));
+  tsWrap.append(el("label", "wb-label", "时间戳（秒或 13 位毫秒，输入即转换）"));
   const tsInput = el("input", "wb-input");
   tsInput.value = String(nowSec());
   const tsOut = el("input", "wb-input");
   tsOut.readOnly = true;
-  tsWrap.append(tsInput, tsOut);
+  const copyDateBtn = mkBtn("复制日期结果", "btn-secondary wb-btn", () => {
+    copyWithFeedback(tsOut.value, copyDateBtn, showToast);
+  });
+  tsWrap.append(tsInput, tsOut, copyDateBtn);
 
   const dtWrap = el("div", "wb-field");
-  dtWrap.append(el("label", "wb-label", "日期时间（YYYY-MM-DD HH:mm:ss）"));
+  dtWrap.append(el("label", "wb-label", "日期时间（YYYY-MM-DD HH:mm:ss，输入即转换）"));
   const dtInput = el("input", "wb-input");
   const fmt = (d) => new Intl.DateTimeFormat("sv-SE", {
     timeZone: "Asia/Shanghai", year: "numeric", month: "2-digit", day: "2-digit",
@@ -124,10 +151,14 @@ function renderTimeTool(host) {
   dtInput.value = fmt(new Date());
   const dtOut = el("input", "wb-input");
   dtOut.readOnly = true;
-  dtWrap.append(dtInput, dtOut);
+  const copyTsBtn = mkBtn("复制时间戳结果", "btn-secondary wb-btn", () => {
+    copyWithFeedback(dtOut.value, copyTsBtn, showToast);
+  });
+  dtWrap.append(dtInput, dtOut, copyTsBtn);
 
   const convertTs = () => {
     const raw = tsInput.value.trim();
+    if (!raw) { tsOut.value = ""; return; }
     const num = Number(raw);
     if (!Number.isFinite(num)) { tsOut.value = "无效时间戳"; return; }
     const ms = raw.length >= 13 ? num : num * 1000;
@@ -136,14 +167,16 @@ function renderTimeTool(host) {
   };
   const convertDt = () => {
     const raw = dtInput.value.trim().replace(" ", "T");
+    if (!raw) { dtOut.value = ""; return; }
     const d = new Date(raw.includes("Z") || raw.includes("+") ? raw : `${raw}+08:00`);
     dtOut.value = Number.isNaN(d.getTime()) ? "无效日期格式" : `秒：${Math.floor(d.getTime() / 1000)} | 毫秒：${d.getTime()}`;
   };
 
+  tsInput.addEventListener("input", convertTs);
+  dtInput.addEventListener("input", convertDt);
+
   actions.append(
-    mkBtn("时间戳 → 日期", "btn-primary wb-btn", convertTs),
-    mkBtn("日期 → 时间戳", "btn-secondary wb-btn", convertDt),
-    mkBtn("填入当前时间", "btn-secondary wb-btn", () => {
+    mkBtn("填入当前时间", "btn-primary wb-btn", () => {
       const d = new Date();
       tsInput.value = String(Math.floor(d.getTime() / 1000));
       dtInput.value = fmt(d);
@@ -160,7 +193,7 @@ function renderTimeTool(host) {
 
 function renderBase64Tool(host) {
   const actions = el("div", "wb-actions");
-  const status = el("span", "wb-status", "支持 UTF-8 中文双向编解码");
+  const status = el("span", "wb-status", "支持 UTF-8 中文实时编解码");
   const grid = el("div", "wb-grid-2");
 
   const inWrap = el("div", "wb-field");
@@ -175,36 +208,51 @@ function renderBase64Tool(host) {
   taOut.readOnly = true;
   outWrap.appendChild(taOut);
 
+  let mode = "encode";
   const encode = () => {
+    mode = "encode";
     try {
       const bytes = new TextEncoder().encode(taIn.value);
       let bin = "";
       bytes.forEach((b) => { bin += String.fromCharCode(b); });
       taOut.value = btoa(bin);
       status.className = "wb-status wb-status--ok";
-      status.textContent = "编码成功 ✓";
+      status.textContent = "已实时编码为 Base64 ✓";
     } catch (e) {
       status.className = "wb-status wb-status--err";
       status.textContent = e.message;
     }
   };
   const decode = () => {
+    mode = "decode";
     try {
       const bin = atob(taIn.value.trim());
       const bytes = Uint8Array.from(bin, (c) => c.charCodeAt(0));
       taOut.value = new TextDecoder().decode(bytes);
       status.className = "wb-status wb-status--ok";
-      status.textContent = "解码成功 ✓";
+      status.textContent = "已实时解码为文本 ✓";
     } catch {
       status.className = "wb-status wb-status--err";
       status.textContent = "Base64 格式无效";
     }
   };
+  const runActive = () => (mode === "encode" ? encode() : decode());
+  taIn.addEventListener("input", runActive);
+
+  const copyBtn = mkBtn("复制结果", "btn-secondary wb-btn", () => {
+    copyWithFeedback(taOut.value, copyBtn, showToast);
+  });
 
   actions.append(
     mkBtn("Base64 编码", "btn-primary wb-btn", encode),
     mkBtn("Base64 解码", "btn-secondary wb-btn", decode),
-    mkBtn("复制结果", "btn-secondary wb-btn", () => copyText(taOut.value)),
+    mkBtn("交换输入/输出", "btn-secondary wb-btn", () => {
+      if (!taOut.value) return;
+      taIn.value = taOut.value;
+      if (mode === "encode") decode();
+      else encode();
+    }),
+    copyBtn,
     status
   );
   grid.append(inWrap, outWrap);
@@ -214,6 +262,7 @@ function renderBase64Tool(host) {
 
 function renderUrlTool(host) {
   const actions = el("div", "wb-actions");
+  const status = el("span", "wb-status", "输入 URL 后自动解码并拆解 Query 参数");
   const grid = el("div", "wb-grid-2");
   const inWrap = el("div", "wb-field");
   inWrap.append(el("label", "wb-label", "输入 URL 或编码文本"));
@@ -227,7 +276,9 @@ function renderUrlTool(host) {
   taOut.readOnly = true;
   outWrap.appendChild(taOut);
 
+  let mode = "decode";
   const decode = () => {
+    mode = "decode";
     const raw = taIn.value.trim();
     let res = "";
     try { res = decodeURIComponent(raw); } catch { res = raw; }
@@ -237,15 +288,25 @@ function renderUrlTool(host) {
       if (params) res += `\n\n--- Query 参数 ---\n${params}`;
     } catch {}
     taOut.value = res;
+    status.textContent = "当前模式：解码与拆参";
   };
   const encode = () => {
+    mode = "encode";
     taOut.value = encodeURIComponent(taIn.value);
+    status.textContent = "当前模式：URL 编码";
   };
+
+  taIn.addEventListener("input", () => (mode === "decode" ? decode() : encode()));
+
+  const copyBtn = mkBtn("复制结果", "btn-secondary wb-btn", () => {
+    copyWithFeedback(taOut.value, copyBtn, showToast);
+  });
 
   actions.append(
     mkBtn("URL 解码与拆参", "btn-primary wb-btn", decode),
     mkBtn("encodeURIComponent 编码", "btn-secondary wb-btn", encode),
-    mkBtn("复制结果", "btn-secondary wb-btn", () => copyText(taOut.value))
+    copyBtn,
+    status
   );
   grid.append(inWrap, outWrap);
   host.replaceChildren(actions, grid);
@@ -275,7 +336,8 @@ function renderJwtTool(host) {
   pWrap.appendChild(pOut);
 
   const decodePart = (b64u) => {
-    const b64 = b64u.replace(/-/g, "+").replace(/_/g, "/") + "=".repeat((-b64u.length) % 4);
+    const pad = (4 - (b64u.length % 4)) % 4;
+    const b64 = b64u.replace(/-/g, "+").replace(/_/g, "/") + "=".repeat(pad);
     const bin = atob(b64);
     const bytes = Uint8Array.from(bin, (c) => c.charCodeAt(0));
     return JSON.parse(new TextDecoder().decode(bytes));
@@ -283,7 +345,13 @@ function renderJwtTool(host) {
 
   const parse = () => {
     const val = taIn.value.trim();
-    if (!val) { hOut.value = ""; pOut.value = ""; return; }
+    if (!val) {
+      hOut.value = "";
+      pOut.value = "";
+      status.className = "wb-status";
+      status.textContent = "输入 JWT Token（仅本地解析，不校验签名密钥）";
+      return;
+    }
     const parts = val.split(".");
     if (parts.length < 2) {
       status.className = "wb-status wb-status--err";
@@ -306,12 +374,21 @@ function renderJwtTool(host) {
   };
   taIn.addEventListener("input", parse);
 
+  const copyHdrBtn = mkBtn("复制 Header", "btn-secondary wb-btn", () => {
+    copyWithFeedback(hOut.value, copyHdrBtn, showToast);
+  });
+  const copyPldBtn = mkBtn("复制 Payload", "btn-secondary wb-btn", () => {
+    copyWithFeedback(pOut.value, copyPldBtn, showToast);
+  });
+
   const actions = el("div", "wb-actions");
   actions.append(
     mkBtn("填入示例", "btn-secondary wb-btn", () => {
       taIn.value = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhaS1uYXYtaHViIiwibmFtZSI6IkRldiBVc2VyIiwiaWF0IjoxNzAwMDAwMDAwfQ.signature";
       parse();
     }),
+    copyHdrBtn,
+    copyPldBtn,
     status
   );
   grid.append(hWrap, pWrap);
@@ -330,17 +407,27 @@ function renderUuidTool(host) {
   const taOut = el("textarea", "wb-textarea");
   taOut.readOnly = true;
 
-  const gen = (noDash = false, upper = false) => {
+  const opts = { noDash: false, upper: false };
+  const gen = (noDash = opts.noDash, upper = opts.upper) => {
+    opts.noDash = noDash;
+    opts.upper = upper;
     const n = Math.min(100, Math.max(1, Number(countIn.value) || 10));
     const list = [];
     for (let i = 0; i < n; i++) {
       let id = crypto.randomUUID();
-      if (noDash) id = id.replace(/-/g, "");
-      if (upper) id = id.toUpperCase();
+      if (opts.noDash) id = id.replace(/-/g, "");
+      if (opts.upper) id = id.toUpperCase();
       list.push(id);
     }
     taOut.value = list.join("\n");
   };
+
+  countIn.addEventListener("input", () => gen());
+  countIn.addEventListener("change", () => gen());
+
+  const copyBtn = mkBtn("复制全部", "btn-secondary wb-btn", () => {
+    copyWithFeedback(taOut.value, copyBtn, showToast);
+  });
 
   actions.append(
     el("span", "wb-label", "数量"),
@@ -348,7 +435,7 @@ function renderUuidTool(host) {
     mkBtn("生成标准 UUID", "btn-primary wb-btn", () => gen(false, false)),
     mkBtn("无连字符", "btn-secondary wb-btn", () => gen(true, false)),
     mkBtn("大写", "btn-secondary wb-btn", () => gen(false, true)),
-    mkBtn("复制全部", "btn-secondary wb-btn", () => copyText(taOut.value))
+    copyBtn
   );
   host.replaceChildren(actions, taOut);
   gen(false, false);
@@ -387,12 +474,20 @@ function renderPwdTool(host) {
     taOut.value = lines.join("\n");
   };
 
+  lenIn.addEventListener("input", gen);
+  lenIn.addEventListener("change", gen);
+  chkSym.addEventListener("change", gen);
+
+  const copyBtn = mkBtn("复制全部", "btn-secondary wb-btn", () => {
+    copyWithFeedback(taOut.value, copyBtn, showToast);
+  });
+
   actions.append(
     el("span", "wb-label", "长度"),
     lenIn,
     symLabel,
     mkBtn("生成 5 组强密码", "btn-primary wb-btn", gen),
-    mkBtn("复制全部", "btn-secondary wb-btn", () => copyText(taOut.value))
+    copyBtn
   );
   host.replaceChildren(actions, taOut);
   gen();
@@ -424,7 +519,10 @@ function renderRegexTool(host) {
   const resLabel = el("label", "wb-label", "匹配结果");
   const taRes = el("textarea", "wb-textarea");
   taRes.readOnly = true;
-  resWrap.append(resLabel, taRes);
+  const copyBtn = mkBtn("复制匹配结果", "btn-secondary wb-btn", () => {
+    copyWithFeedback(taRes.value, copyBtn, showToast);
+  });
+  resWrap.append(resLabel, taRes, copyBtn);
   grid.append(textWrap, resWrap);
 
   const run = () => {
@@ -458,6 +556,10 @@ function renderTextTool(host) {
   };
   ta.addEventListener("input", updateStats);
 
+  const copyBtn = mkBtn("复制", "btn-secondary wb-btn", () => {
+    copyWithFeedback(ta.value, copyBtn, showToast);
+  });
+
   actions.append(
     mkBtn("按行去重", "btn-primary wb-btn", () => {
       const seen = new Set();
@@ -474,7 +576,7 @@ function renderTextTool(host) {
     }),
     mkBtn("转大写", "btn-secondary wb-btn", () => { ta.value = ta.value.toUpperCase(); updateStats(); }),
     mkBtn("转小写", "btn-secondary wb-btn", () => { ta.value = ta.value.toLowerCase(); updateStats(); }),
-    mkBtn("复制", "btn-secondary wb-btn", () => copyText(ta.value)),
+    copyBtn,
     stats
   );
   host.replaceChildren(actions, ta);
@@ -484,27 +586,45 @@ function renderTextTool(host) {
 function renderColorTool(host) {
   const wrap = el("div", "wb-grid-2");
   const left = el("div", "wb-field");
-  left.append(el("label", "wb-label", "选择或输入 HEX 颜色"));
+  left.append(el("label", "wb-label", "选择或输入 3/6 位 HEX 颜色"));
   const picker = el("input", "wb-input");
   picker.type = "color";
   picker.value = "#0071e3";
   picker.style.height = "46px";
   const hexIn = el("input", "wb-input");
   hexIn.value = "#0071e3";
-  left.append(picker, hexIn);
+  const status = el("span", "wb-status", "支持 #rgb 与 #rrggbb");
+  left.append(picker, hexIn, status);
 
   const right = el("div", "wb-field");
   const swatch = el("div", "color-preview");
   const out = el("textarea", "wb-textarea");
   out.style.minHeight = "120px";
   out.readOnly = true;
-  right.append(swatch, out);
+  const copyBtn = mkBtn("复制颜色值", "btn-secondary wb-btn", () => {
+    copyWithFeedback(out.value, copyBtn, showToast);
+  });
+  right.append(swatch, out, copyBtn);
 
-  const sync = (hex) => {
-    const m = /^#?([0-9a-f]{6})$/i.exec(hex.trim());
-    if (!m) return;
-    const h = `#${m[1].toLowerCase()}`;
-    const n = parseInt(m[1], 16);
+  const normalizeHex = (raw) => {
+    const clean = raw.trim().replace(/^#/, "");
+    if (/^[0-9a-f]{6}$/i.test(clean)) return `#${clean.toLowerCase()}`;
+    if (/^[0-9a-f]{3}$/i.test(clean)) {
+      return `#${clean.split("").map((c) => c + c).join("").toLowerCase()}`;
+    }
+    return null;
+  };
+
+  const sync = (rawHex, fromPicker = false) => {
+    const h = normalizeHex(rawHex);
+    if (!h) {
+      status.className = "wb-status wb-status--err";
+      status.textContent = "请输入有效 HEX（如 #07e 或 #0071e3）";
+      return;
+    }
+    status.className = "wb-status wb-status--ok";
+    status.textContent = `当前色值 ${h} ✓`;
+    const n = parseInt(h.slice(1), 16);
     const r = (n >> 16) & 255, g = (n >> 8) & 255, b = n & 255;
     const rn = r / 255, gn = g / 255, bn = b / 255;
     const max = Math.max(rn, gn, bn), min = Math.min(rn, gn, bn), d = max - min;
@@ -518,15 +638,15 @@ function renderColorTool(host) {
       hue *= 60;
     }
     picker.value = h;
-    hexIn.value = h;
+    if (fromPicker) hexIn.value = h;
     swatch.style.backgroundColor = h;
     out.value = `HEX: ${h}\nRGB: rgb(${r}, ${g}, ${b})\nHSL: hsl(${Math.round(hue)}, ${Math.round(sat * 100)}%, ${Math.round(l * 100)}%)`;
   };
-  picker.addEventListener("input", () => sync(picker.value));
-  hexIn.addEventListener("input", () => sync(hexIn.value));
+  picker.addEventListener("input", () => sync(picker.value, true));
+  hexIn.addEventListener("input", () => sync(hexIn.value, false));
   wrap.append(left, right);
   host.replaceChildren(wrap);
-  sync("#0071e3");
+  sync("#0071e3", true);
 }
 
 function renderCronTool(host) {
@@ -551,7 +671,10 @@ function renderCronTool(host) {
     td1.appendChild(el("code", "", expr));
     const td2 = el("td", "", desc);
     const td3 = document.createElement("td");
-    td3.appendChild(mkBtn("复制", "btn-secondary wb-btn", () => copyText(expr)));
+    const copyBtn = mkBtn("复制", "btn-secondary wb-btn", () => {
+      copyWithFeedback(expr, copyBtn, showToast);
+    });
+    td3.appendChild(copyBtn);
     tr.append(td1, td2, td3);
     tbody.appendChild(tr);
   }
@@ -578,9 +701,14 @@ function renderHashTool(host) {
     taOut.value = `SHA-256:\n${s256}\n\nSHA-512:\n${s512}\n\nSHA-1:\n${s1}`;
   };
   taIn.addEventListener("input", calc);
+
+  const copyBtn = mkBtn("复制结果", "btn-secondary wb-btn", () => {
+    copyWithFeedback(taOut.value, copyBtn, showToast);
+  });
+
   actions.append(
     mkBtn("计算哈希", "btn-primary wb-btn", calc),
-    mkBtn("复制结果", "btn-secondary wb-btn", () => copyText(taOut.value))
+    copyBtn
   );
   host.replaceChildren(actions, taIn, taOut);
   calc();
@@ -602,21 +730,52 @@ const RENDERERS = {
 };
 
 const tabs = [...els.toolTabs.querySelectorAll(".tab-btn")];
-function activateTab(toolId) {
+const panelCache = new Map();
+
+function activateTab(toolId, updateHash = true) {
+  const safeId = RENDERERS[toolId] ? toolId : "json";
   for (const t of tabs) {
-    const sel = t.dataset.tool === toolId;
+    const sel = t.dataset.tool === safeId;
     t.setAttribute("aria-selected", String(sel));
     if (sel) {
       els.workbenchBody.setAttribute("aria-labelledby", t.id);
-      t.scrollIntoView({ block: "nearest", inline: "nearest" });
+      t.scrollIntoView({
+        block: "nearest",
+        inline: "nearest",
+        behavior: prefersReducedMotion() ? "auto" : "smooth",
+      });
     }
   }
-  const fn = RENDERERS[toolId] || renderJsonTool;
-  fn(els.workbenchBody);
+
+  for (const [k, panel] of panelCache.entries()) {
+    panel.hidden = k !== safeId;
+    panel.classList.remove("panel-enter");
+  }
+
+  let panel = panelCache.get(safeId);
+  if (!panel) {
+    panel = el("div", "wb-panel");
+    panel.dataset.tool = safeId;
+    RENDERERS[safeId](panel);
+    panelCache.set(safeId, panel);
+    els.workbenchBody.appendChild(panel);
+  }
+  panel.hidden = false;
+
+  if (!prefersReducedMotion()) {
+    void panel.offsetWidth;
+    panel.classList.add("panel-enter");
+  }
+
+  if (updateHash) {
+    try {
+      history.replaceState(null, "", `#${safeId}`);
+    } catch {}
+  }
 }
 
 tabs.forEach((tab, idx) => {
-  tab.addEventListener("click", () => activateTab(tab.dataset.tool));
+  tab.addEventListener("click", () => activateTab(tab.dataset.tool, true));
   tab.addEventListener("keydown", (e) => {
     let next = -1;
     if (e.key === "ArrowRight") next = (idx + 1) % tabs.length;
@@ -626,15 +785,18 @@ tabs.forEach((tab, idx) => {
     if (next !== -1) {
       e.preventDefault();
       tabs[next].focus();
-      activateTab(tabs[next].dataset.tool);
+      activateTab(tabs[next].dataset.tool, true);
     }
   });
 });
 
 /* ---------- Curated Tools Directory ---------- */
 const TOOL_CATS = ["全部", "编程开发", "办公效率", "图像设计", "Agent与自动化"];
+const DIR_BATCH = 60;
 let dirItems = [];
 let dirCat = "全部";
+let dirLimit = DIR_BATCH;
+let dirLoadFailed = false;
 
 function safeUrl(raw) {
   try {
@@ -645,12 +807,30 @@ function safeUrl(raw) {
   }
 }
 
+function renderDirSkeletons() {
+  const frag = document.createDocumentFragment();
+  for (let i = 0; i < 6; i++) {
+    const card = document.createElement("div");
+    card.className = "skeleton-card";
+    card.style.minHeight = "112px";
+    card.innerHTML = `<div class="skeleton-line skeleton-line--title"></div><div class="skeleton-line"></div><div class="skeleton-line skeleton-line--short"></div>`;
+    frag.appendChild(card);
+  }
+  els.dirGrid.replaceChildren(frag);
+}
+
 function renderDir() {
   const catsFrag = document.createDocumentFragment();
   for (const c of TOOL_CATS) {
-    const b = el("button", "cat-pill" + (dirCat === c ? " is-active" : ""), c);
+    const active = dirCat === c;
+    const b = el("button", "cat-pill" + (active ? " is-active" : ""), c);
     b.type = "button";
-    b.addEventListener("click", () => { dirCat = c; renderDir(); });
+    b.setAttribute("aria-pressed", String(active));
+    b.addEventListener("click", () => {
+      dirCat = dirCat === c && c !== "全部" ? "全部" : c;
+      dirLimit = DIR_BATCH;
+      renderDir();
+    });
     catsFrag.appendChild(b);
   }
   els.dirCats.replaceChildren(catsFrag);
@@ -666,9 +846,22 @@ function renderDir() {
     return `${it.name} ${it.description} ${it.domain} ${it.category}`.toLowerCase().includes(q);
   });
 
-  els.dirCount.textContent = `共筛选 ${list.length} 款在线工具（默认展示前 60 款）`;
+  els.dirCount.textContent = `共筛选 ${list.length} 款在线工具`;
+
+  if (list.length === 0) {
+    els.dirGrid.replaceChildren();
+    els.dirLoadMoreWrap.hidden = true;
+    els.dirEmpty.hidden = false;
+    els.dirEmptyTitle.textContent = "没有找到匹配的工具";
+    els.dirEmptyDesc.textContent = "试试调整关键词，或切换回全部分类查看。";
+    els.dirEmptyBtn.textContent = "重置筛选";
+    return;
+  }
+
+  els.dirEmpty.hidden = true;
+  const shown = list.slice(0, dirLimit);
   const frag = document.createDocumentFragment();
-  for (const it of list.slice(0, 60)) {
+  for (const it of shown) {
     const href = safeUrl(it.url);
     if (!href) continue;
     const card = el("a", "dir-card");
@@ -685,11 +878,47 @@ function renderDir() {
     frag.appendChild(card);
   }
   els.dirGrid.replaceChildren(frag);
+
+  const remaining = list.length - shown.length;
+  els.dirLoadMoreWrap.hidden = remaining <= 0;
+  if (remaining > 0) {
+    els.dirLoadMoreBtn.textContent = `展开更多（还有 ${remaining} 款）`;
+  }
 }
 
-els.dirSearch.addEventListener("input", renderDir);
+const dirSearchController = bindSearchBox({
+  input: els.dirSearch,
+  clearBtn: els.dirSearchClear,
+  boxEl: els.dirSearchBox,
+  onChange: () => {
+    dirLimit = DIR_BATCH;
+    renderDir();
+  },
+  enableGlobalShortcut: true,
+});
+
+els.dirLoadMoreBtn.addEventListener("click", () => {
+  dirLimit += DIR_BATCH;
+  renderDir();
+});
+
+els.dirEmptyBtn.addEventListener("click", () => {
+  if (dirLoadFailed) {
+    loadDir();
+    return;
+  }
+  els.dirSearch.value = "";
+  dirCat = "全部";
+  dirLimit = DIR_BATCH;
+  dirSearchController.sync();
+  renderDir();
+});
 
 async function loadDir() {
+  dirLoadFailed = false;
+  els.dirEmpty.hidden = true;
+  els.dirCount.textContent = "正在加载目录…";
+  renderDirSkeletons();
   try {
     const res = await fetch("../data/catalog.json", { cache: "no-cache" });
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
@@ -697,11 +926,20 @@ async function loadDir() {
     dirItems = Array.isArray(data.items) ? data.items : [];
     renderDir();
   } catch {
-    els.dirCount.textContent = "目录加载失败，请稍后刷新重试";
+    dirLoadFailed = true;
+    els.dirGrid.replaceChildren();
+    els.dirLoadMoreWrap.hidden = true;
+    els.dirCount.textContent = "目录加载失败";
+    els.dirEmpty.hidden = false;
+    els.dirEmptyTitle.textContent = "在线工具目录加载失败";
+    els.dirEmptyDesc.textContent = "请检查网络连接后重试。";
+    els.dirEmptyBtn.textContent = "重新加载";
   }
 }
 
 initSiteNav();
+initTopBarScrollHide(els.topBar);
 initThemeToggle(els.themeToggle, els.themeToggleLabel, showToast);
-activateTab("json");
+const initialTab = location.hash ? location.hash.slice(1) : "json";
+activateTab(RENDERERS[initialTab] ? initialTab : "json", false);
 loadDir();

@@ -1,4 +1,13 @@
-import { initSiteNav, initThemeToggle } from "../nav.js?v=1";
+import {
+  initSiteNav,
+  initThemeToggle,
+  initTopBarScrollHide,
+  createToast,
+  bindSearchBox,
+  bindTwoStepConfirm,
+  setRefreshBusy,
+  prefersReducedMotion,
+} from "../nav.js?v=2";
 
 const DEFAULT_MODELS = [
   { id: "deepseek", name: "DeepSeek", short: "DS", color: "#4d6bfe", url: "https://chat.deepseek.com", desc: "深度求索 · 开源推理与编程旗舰大模型", embeddable: false },
@@ -21,19 +30,27 @@ const ORDER_KEY = "ai_nav_hub_ai_order_v1";
 const ACTIVE_KEY = "ai_nav_hub_ai_active_v1";
 
 const els = {
+  topBar: document.getElementById("topBar"),
   themeToggle: document.getElementById("themeToggle"),
   themeToggleLabel: document.getElementById("themeToggleLabel"),
   resetOrderBtn: document.getElementById("resetOrderBtn"),
+  modelFilterBox: document.getElementById("modelFilterBox"),
   modelFilter: document.getElementById("modelFilter"),
+  modelFilterClear: document.getElementById("modelFilterClear"),
   modelList: document.getElementById("modelList"),
+  modelEmpty: document.getElementById("modelEmpty"),
+  modelEmptyClearBtn: document.getElementById("modelEmptyClearBtn"),
   stageAvatar: document.getElementById("stageAvatar"),
   stageTitle: document.getElementById("stageTitle"),
   stageDesc: document.getElementById("stageDesc"),
   reloadFrameBtn: document.getElementById("reloadFrameBtn"),
   openNewTabBtn: document.getElementById("openNewTabBtn"),
   stageNotice: document.getElementById("stageNotice"),
+  stageLoading: document.getElementById("stageLoading"),
+  stageSlowOpenBtn: document.getElementById("stageSlowOpenBtn"),
   modelFrame: document.getElementById("modelFrame"),
   stageLaunch: document.getElementById("stageLaunch"),
+  stageLaunchCard: document.getElementById("stageLaunchCard"),
   launchAvatar: document.getElementById("launchAvatar"),
   launchTitle: document.getElementById("launchTitle"),
   launchDesc: document.getElementById("launchDesc"),
@@ -41,13 +58,7 @@ const els = {
   toast: document.getElementById("toast"),
 };
 
-let toastTimer = null;
-function showToast(msg) {
-  els.toast.textContent = msg;
-  els.toast.hidden = false;
-  clearTimeout(toastTimer);
-  toastTimer = setTimeout(() => { els.toast.hidden = true; }, 2200);
-}
+const showToast = createToast(els.toast);
 
 function loadOrder() {
   try {
@@ -69,9 +80,9 @@ function loadOrder() {
   }
 }
 
-function saveOrder(models) {
+function saveOrder(list) {
   try {
-    localStorage.setItem(ORDER_KEY, JSON.stringify(models.map((m) => m.id)));
+    localStorage.setItem(ORDER_KEY, JSON.stringify(list.map((m) => m.id)));
   } catch {}
 }
 
@@ -84,19 +95,97 @@ let activeId = (() => {
   return models[0].id;
 })();
 
-function moveModel(idx, delta) {
+function isDefaultOrder() {
+  return models.length === DEFAULT_MODELS.length && models.every((m, i) => m.id === DEFAULT_MODELS[i].id);
+}
+
+const resetConfirm = bindTwoStepConfirm(els.resetOrderBtn, {
+  idleText: "重置",
+  confirmText: "确认重置",
+  onConfirm: () => {
+    models = [...DEFAULT_MODELS];
+    try { localStorage.removeItem(ORDER_KEY); } catch {}
+    syncResetBtn();
+    renderModelList();
+    showToast("已恢复默认模型顺序");
+  },
+});
+
+function syncResetBtn() {
+  const def = isDefaultOrder();
+  els.resetOrderBtn.hidden = def;
+  if (def) resetConfirm.reset();
+}
+
+function moveModel(idx, delta, dirBtnType) {
   const next = idx + delta;
   if (next < 0 || next >= models.length) return;
+  const movedId = models[idx].id;
+
+  const oldTops = new Map();
+  if (!prefersReducedMotion()) {
+    els.modelList.querySelectorAll("[data-model-id]").forEach((row) => {
+      oldTops.set(row.dataset.modelId, row.getBoundingClientRect().top);
+    });
+  }
+
   const copy = [...models];
   const [item] = copy.splice(idx, 1);
   copy.splice(next, 0, item);
   models = copy;
   saveOrder(models);
+  syncResetBtn();
   renderModelList();
+
+  const movedRow = els.modelList.querySelector(`[data-model-id="${CSS.escape(movedId)}"]`);
+  if (movedRow) {
+    const targetBtn =
+      movedRow.querySelector(`[data-op="${dirBtnType}"]:not(:disabled)`) ||
+      movedRow.querySelector(`[data-op]:not(:disabled)`);
+    targetBtn?.focus();
+  }
+
+  if (!prefersReducedMotion() && oldTops.size > 0) {
+    els.modelList.querySelectorAll("[data-model-id]").forEach((row) => {
+      const prevTop = oldTops.get(row.dataset.modelId);
+      if (prevTop === undefined) return;
+      const dy = prevTop - row.getBoundingClientRect().top;
+      if (Math.abs(dy) > 0.5) {
+        row.animate(
+          [{ transform: `translateY(${dy}px)` }, { transform: "translateY(0)" }],
+          { duration: 220, easing: "cubic-bezier(0.22, 1, 0.36, 1)" }
+        );
+      }
+    });
+  }
 }
+
+let slowTimer = null;
+let reloadFailsafe = null;
+
+function clearLoadingTimers() {
+  clearTimeout(slowTimer);
+  clearTimeout(reloadFailsafe);
+  slowTimer = null;
+  reloadFailsafe = null;
+}
+
+function finishFrameLoad() {
+  clearLoadingTimers();
+  els.stageLoading.hidden = true;
+  els.stageSlowOpenBtn.hidden = true;
+  els.modelFrame.classList.add("is-loaded");
+  setRefreshBusy(els.reloadFrameBtn, false, "刷新", "刷新中…");
+}
+
+els.modelFrame.addEventListener("load", () => {
+  if (els.modelFrame.hidden || els.modelFrame.src === "about:blank") return;
+  finishFrameLoad();
+});
 
 function selectModel(id, forceReload = false) {
   const model = models.find((m) => m.id === id) || models[0];
+  const changed = activeId !== model.id;
   activeId = model.id;
   try { localStorage.setItem(ACTIVE_KEY, model.id); } catch {}
 
@@ -105,26 +194,58 @@ function selectModel(id, forceReload = false) {
   els.stageTitle.textContent = model.name;
   els.stageDesc.textContent = model.desc;
   els.openNewTabBtn.href = model.url;
+  els.stageSlowOpenBtn.href = model.url;
 
   if (model.embeddable) {
     els.stageNotice.hidden = false;
     els.stageLaunch.hidden = true;
     els.modelFrame.hidden = false;
     els.reloadFrameBtn.hidden = false;
+
     if (forceReload || els.modelFrame.src !== model.url) {
-      els.modelFrame.src = model.url;
+      clearLoadingTimers();
+      els.modelFrame.classList.remove("is-loaded");
+      els.stageLoading.hidden = false;
+      els.stageSlowOpenBtn.hidden = true;
+      setRefreshBusy(els.reloadFrameBtn, true, "刷新", "刷新中…");
+
+      slowTimer = setTimeout(() => {
+        if (!els.stageLoading.hidden) els.stageSlowOpenBtn.hidden = false;
+      }, 6000);
+      reloadFailsafe = setTimeout(finishFrameLoad, 10000);
+
+      if (forceReload && els.modelFrame.src === model.url) {
+        els.modelFrame.src = "about:blank";
+        requestAnimationFrame(() => {
+          els.modelFrame.src = model.url;
+        });
+      } else {
+        els.modelFrame.src = model.url;
+      }
     }
   } else {
+    clearLoadingTimers();
+    setRefreshBusy(els.reloadFrameBtn, false, "刷新", "刷新中…");
+    els.stageLoading.hidden = true;
+    els.stageSlowOpenBtn.hidden = true;
     els.stageNotice.hidden = true;
     els.modelFrame.hidden = true;
+    els.modelFrame.classList.remove("is-loaded");
     els.modelFrame.src = "about:blank";
     els.reloadFrameBtn.hidden = true;
+
     els.stageLaunch.hidden = false;
     els.launchAvatar.textContent = model.short;
     els.launchAvatar.style.backgroundColor = model.color;
     els.launchTitle.textContent = model.name;
     els.launchDesc.textContent = model.desc;
     els.launchPrimaryBtn.href = model.url;
+
+    if (changed && !prefersReducedMotion()) {
+      els.stageLaunchCard.classList.remove("panel-enter");
+      void els.stageLaunchCard.offsetWidth;
+      els.stageLaunchCard.classList.add("panel-enter");
+    }
   }
 
   renderModelList();
@@ -133,11 +254,15 @@ function selectModel(id, forceReload = false) {
 function renderModelList() {
   const q = els.modelFilter.value.trim().toLowerCase();
   const frag = document.createDocumentFragment();
+  let rendered = 0;
+
   models.forEach((m, idx) => {
     if (q && !`${m.name} ${m.desc} ${m.id}`.toLowerCase().includes(q)) return;
+    rendered++;
 
     const li = document.createElement("li");
     li.className = "model-row" + (m.id === activeId ? " is-active" : "");
+    li.dataset.modelId = m.id;
 
     const pick = document.createElement("button");
     pick.type = "button";
@@ -163,20 +288,22 @@ function renderModelList() {
       const upBtn = document.createElement("button");
       upBtn.type = "button";
       upBtn.className = "mini-op-btn";
+      upBtn.dataset.op = "up";
       upBtn.title = "上移";
       upBtn.setAttribute("aria-label", `上移 ${m.name}`);
       upBtn.textContent = "↑";
       upBtn.disabled = idx === 0;
-      upBtn.addEventListener("click", () => moveModel(idx, -1));
+      upBtn.addEventListener("click", () => moveModel(idx, -1, "up"));
 
       const downBtn = document.createElement("button");
       downBtn.type = "button";
       downBtn.className = "mini-op-btn";
+      downBtn.dataset.op = "down";
       downBtn.title = "下移";
       downBtn.setAttribute("aria-label", `下移 ${m.name}`);
       downBtn.textContent = "↓";
       downBtn.disabled = idx === models.length - 1;
-      downBtn.addEventListener("click", () => moveModel(idx, 1));
+      downBtn.addEventListener("click", () => moveModel(idx, 1, "down"));
 
       ops.append(upBtn, downBtn);
     }
@@ -194,18 +321,30 @@ function renderModelList() {
     li.append(pick, ops);
     frag.appendChild(li);
   });
+
   els.modelList.replaceChildren(frag);
+  els.modelEmpty.hidden = rendered > 0;
 }
 
-els.modelFilter.addEventListener("input", renderModelList);
-els.reloadFrameBtn.addEventListener("click", () => selectModel(activeId, true));
-els.resetOrderBtn.addEventListener("click", () => {
-  models = [...DEFAULT_MODELS];
-  try { localStorage.removeItem(ORDER_KEY); } catch {}
-  renderModelList();
-  showToast("已恢复默认模型顺序");
+const filterController = bindSearchBox({
+  input: els.modelFilter,
+  clearBtn: els.modelFilterClear,
+  boxEl: els.modelFilterBox,
+  onChange: renderModelList,
+  enableGlobalShortcut: true,
 });
 
+els.modelEmptyClearBtn.addEventListener("click", () => {
+  els.modelFilter.value = "";
+  filterController.sync();
+  renderModelList();
+  els.modelFilter.focus();
+});
+
+els.reloadFrameBtn.addEventListener("click", () => selectModel(activeId, true));
+
 initSiteNav();
+initTopBarScrollHide(els.topBar, { enabled: false });
 initThemeToggle(els.themeToggle, els.themeToggleLabel, showToast);
+syncResetBtn();
 selectModel(activeId);

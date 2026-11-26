@@ -15,9 +15,9 @@
   <meta name="description" content="聚合全网 B 站、微博、知乎、抖音、百度、36氪、少数派、掘金、CSDN 等 14 大平台实时热榜及休闲摸鱼导航。">
   <link rel="icon" type="image/png" sizes="64x64" href="../favicon.png?v=4">
   <link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png?v=4">
-  <link rel="stylesheet" href="../styles.css?v=9">
-  <link rel="stylesheet" href="./moyu.css?v=1">
-  <script type="module" src="./moyu.js?v=1"></script>
+  <link rel="stylesheet" href="../styles.css?v=10">
+  <link rel="stylesheet" href="./moyu.css?v=2">
+  <script type="module" src="./moyu.js?v=2"></script>
 </head>
 <body>
   <header class="top-bar site-header" id="topBar">
@@ -76,19 +76,44 @@
         <p class="moyu-hero__sub" id="hotlistMeta">每小时自动更新 · 正在加载全网榜单…</p>
       </div>
       <div class="moyu-hero__controls">
-        <input id="hotSearch" class="moyu-search" type="search" placeholder="跨平台搜索热榜标题…" aria-label="跨平台搜索热榜">
-        <button id="refreshHotBtn" class="btn-secondary moyu-refresh-btn" type="button">刷新热榜</button>
+        <div class="search-box search-box--compact moyu-search-wrap" id="hotSearchBox" role="search">
+          <svg class="search-box__icon" viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="11" cy="11" r="8"/>
+            <path d="m21 21-4.3-4.3"/>
+          </svg>
+          <input id="hotSearch" class="search-box__input" type="search" autocomplete="off" spellcheck="false" placeholder="跨平台搜索热榜标题…" aria-label="跨平台搜索热榜">
+          <kbd class="search-box__kbd" aria-hidden="true">/</kbd>
+          <button class="search-box__clear" id="hotSearchClear" type="button" aria-label="清空热榜搜索" hidden>
+            <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+              <path d="M18 6 6 18M6 6l12 12"/>
+            </svg>
+          </button>
+        </div>
+        <button id="refreshHotBtn" class="btn-secondary moyu-refresh-btn" type="button">
+          <svg class="btn-refresh-icon" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M21 12a9 9 0 1 1-2.64-6.36"/>
+            <path d="M21 3v6h-6"/>
+          </svg>
+          <span class="btn-label">刷新热榜</span>
+        </button>
       </div>
     </section>
 
-    <div class="hot-groups" id="hotGroups" role="tablist" aria-label="热榜平台分组">
-      <button type="button" class="cat-pill is-active" data-group="all">全部平台</button>
-      <button type="button" class="cat-pill" data-group="tech">科技开发</button>
-      <button type="button" class="cat-pill" data-group="social">综合热搜</button>
-      <button type="button" class="cat-pill" data-group="media">影音社区</button>
+    <div class="hot-groups" id="hotGroups" role="group" aria-label="热榜平台分组">
+      <button type="button" class="cat-pill is-active" aria-pressed="true" data-group="all">全部平台</button>
+      <button type="button" class="cat-pill" aria-pressed="false" data-group="tech">科技开发</button>
+      <button type="button" class="cat-pill" aria-pressed="false" data-group="social">综合热搜</button>
+      <button type="button" class="cat-pill" aria-pressed="false" data-group="media">影音社区</button>
     </div>
 
     <section class="hot-grid" id="hotGrid" aria-label="热榜卡片"></section>
+
+    <div class="empty-state" id="hotEmpty" hidden>
+      <div class="empty-state__icon" aria-hidden="true">✦</div>
+      <h2 class="empty-state__title" id="hotEmptyTitle">没有找到相关热榜</h2>
+      <p class="empty-state__desc" id="hotEmptyDesc">试试换个关键词，或恢复查看全部平台。</p>
+      <button class="btn-secondary" id="hotEmptyBtn" type="button">清空搜索</button>
+    </div>
 
     <section class="leisure-section" aria-labelledby="leisureHeading">
       <div class="leisure-head">

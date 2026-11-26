@@ -15,9 +15,9 @@
   <title>数据后台 · AI 导航聚合站</title>
   <link rel="icon" type="image/png" sizes="64x64" href="../favicon.png?v=4">
   <link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png?v=4">
-  <link rel="stylesheet" href="../styles.css?v=9">
-  <link rel="stylesheet" href="./admin.css?v=1">
-  <script type="module" src="./admin.js?v=3"></script>
+  <link rel="stylesheet" href="../styles.css?v=10">
+  <link rel="stylesheet" href="./admin.css?v=2">
+  <script type="module" src="./admin.js?v=4"></script>
 </head>
 <body>
   <header class="top-bar" id="topBar">
@@ -31,7 +31,13 @@
 
       <div class="top-bar__actions">
         <a class="btn-secondary admin-nav-btn" href="../">返回公开站</a>
-        <button class="btn-secondary admin-nav-btn" id="refreshBtn" type="button">刷新数据</button>
+        <button class="btn-secondary admin-nav-btn" id="refreshBtn" type="button">
+          <svg class="btn-refresh-icon" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M21 12a9 9 0 1 1-2.64-6.36"/>
+            <path d="M21 3v6h-6"/>
+          </svg>
+          <span class="btn-label">刷新数据</span>
+        </button>
 
         <button class="theme-toggle" id="themeToggle" type="button" aria-label="切换浅色或深色外观" title="切换外观（可收回至跟随系统）">
           <span class="theme-toggle__icon theme-toggle__icon--sun" aria-hidden="true">
@@ -117,7 +123,7 @@
 
     <section class="admin-two-col">
       <section class="admin-panel" aria-labelledby="catStatsHeading">
-        <h2 class="admin-panel__title" id="catStatsHeading">9 大分类分布统计</h2>
+        <h2 class="admin-panel__title" id="catStatsHeading">分类分布统计</h2>
         <p class="admin-panel__desc">优先匹配源站分类标签与英文 slug，未命中再通过名称及简介关键词回退。</p>
         <div class="cat-bars" id="categoryStats"></div>
       </section>

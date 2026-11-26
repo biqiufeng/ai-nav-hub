@@ -15,9 +15,9 @@
   <meta name="description" content="一键切换 DeepSeek、ChatGPT、Claude、Gemini、Kimi、豆包、通义千问、腾讯元宝、智谱清言等主流大模型对话入口。">
   <link rel="icon" type="image/png" sizes="64x64" href="../favicon.png?v=4">
   <link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png?v=4">
-  <link rel="stylesheet" href="../styles.css?v=9">
-  <link rel="stylesheet" href="./ai.css?v=1">
-  <script type="module" src="./ai.js?v=1"></script>
+  <link rel="stylesheet" href="../styles.css?v=10">
+  <link rel="stylesheet" href="./ai.css?v=2">
+  <script type="module" src="./ai.js?v=2"></script>
 </head>
 <body>
   <header class="top-bar site-header" id="topBar">
@@ -76,18 +76,36 @@
           <h1 class="model-dock__title">AI 工作台</h1>
           <p class="model-dock__sub">快速切换与自定义排序</p>
         </div>
-        <button class="btn-secondary dock-reset-btn" id="resetOrderBtn" type="button" title="恢复默认顺序">重置</button>
+        <button class="btn-secondary dock-reset-btn" id="resetOrderBtn" type="button" title="恢复默认顺序" hidden>重置</button>
       </div>
 
-      <input
-        id="modelFilter"
-        class="model-filter"
-        type="search"
-        placeholder="筛选模型（如 DeepSeek、Kimi）"
-        aria-label="筛选大模型"
-      >
+      <div class="search-box search-box--compact" id="modelFilterBox" role="search">
+        <svg class="search-box__icon" viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="11" cy="11" r="8"/>
+          <path d="m21 21-4.3-4.3"/>
+        </svg>
+        <input
+          id="modelFilter"
+          class="search-box__input"
+          type="search"
+          autocomplete="off"
+          spellcheck="false"
+          placeholder="筛选模型（如 DeepSeek）"
+          aria-label="筛选大模型"
+        >
+        <kbd class="search-box__kbd" aria-hidden="true">/</kbd>
+        <button class="search-box__clear" id="modelFilterClear" type="button" aria-label="清空模型筛选" hidden>
+          <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+            <path d="M18 6 6 18M6 6l12 12"/>
+          </svg>
+        </button>
+      </div>
 
       <ul class="model-list" id="modelList"></ul>
+      <div class="model-empty" id="modelEmpty" hidden>
+        <p class="model-empty__text">没有匹配的模型</p>
+        <button class="btn-secondary dock-reset-btn" id="modelEmptyClearBtn" type="button">清空筛选</button>
+      </div>
     </aside>
 
     <section class="stage-panel" aria-label="对话工作区">
@@ -100,7 +118,13 @@
           </div>
         </div>
         <div class="stage-toolbar__actions">
-          <button class="btn-secondary stage-btn" id="reloadFrameBtn" type="button">刷新</button>
+          <button class="btn-secondary stage-btn" id="reloadFrameBtn" type="button">
+            <svg class="btn-refresh-icon" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M21 12a9 9 0 1 1-2.64-6.36"/>
+              <path d="M21 3v6h-6"/>
+            </svg>
+            <span class="btn-label">刷新</span>
+          </button>
           <a class="btn-primary stage-btn" id="openNewTabBtn" href="https://chat.deepseek.com" target="_blank" rel="noopener noreferrer">
             新标签页打开
             <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -111,10 +135,18 @@
       </div>
 
       <div class="stage-notice" id="stageNotice" hidden>
-        提示：若目标官网开启了浏览器安全策略（X-Frame-Options / CSP）限制内嵌，请点击右上角「新标签页打开」。
+        若内嵌页面加载缓慢或被官网安全策略拦截，请直接点击右上角「新标签页打开」。
       </div>
 
       <div class="stage-frame-wrap" id="stageFrameWrap">
+        <div class="stage-loading" id="stageLoading" hidden aria-live="polite">
+          <div class="stage-spinner" aria-hidden="true"></div>
+          <p class="stage-loading__text">正在连接对话工作区…</p>
+          <a class="btn-secondary stage-btn" id="stageSlowOpenBtn" href="#" target="_blank" rel="noopener noreferrer" hidden>
+            直接在新标签页打开
+          </a>
+        </div>
+
         <iframe
           id="modelFrame"
           class="stage-frame"
@@ -125,11 +157,11 @@
         ></iframe>
 
         <div class="stage-launch" id="stageLaunch" hidden>
-          <div class="stage-launch__card">
+          <div class="stage-launch__card" id="stageLaunchCard">
             <div class="stage-launch__badge" id="launchAvatar" aria-hidden="true"></div>
             <h3 class="stage-launch__title" id="launchTitle"></h3>
             <p class="stage-launch__desc" id="launchDesc"></p>
-            <p class="stage-launch__hint">该官网出于安全与登录态保护禁止网页内嵌（`X-Frame-Options` / CSP），请在新标签页打开以获得完整体验。</p>
+            <p class="stage-launch__hint">出于账号登录态与隐私安全保护，该平台仅支持在官方新标签页中使用。</p>
             <a class="btn-primary" id="launchPrimaryBtn" href="#" target="_blank" rel="noopener noreferrer">
               前往官方对话窗口
               <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">

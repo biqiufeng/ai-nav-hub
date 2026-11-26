@@ -15,9 +15,9 @@
   <meta name="description" content="内置 JSON 格式化、时间戳、Base64、URL、JWT 解析、UUID、强密码、正则测试、颜色转换、哈希计算等开箱即用开发者工具箱，并聚合全网精选开发效率导航。">
   <link rel="icon" type="image/png" sizes="64x64" href="../favicon.png?v=4">
   <link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png?v=4">
-  <link rel="stylesheet" href="../styles.css?v=9">
-  <link rel="stylesheet" href="./tools.css?v=1">
-  <script type="module" src="./tools.js?v=1"></script>
+  <link rel="stylesheet" href="../styles.css?v=10">
+  <link rel="stylesheet" href="./tools.css?v=2">
+  <script type="module" src="./tools.js?v=2"></script>
 </head>
 <body>
   <header class="top-bar site-header" id="topBar">
@@ -101,11 +101,32 @@
           <p class="dir-head__sub" id="dirCount">正在加载目录…</p>
         </div>
         <div class="dir-controls">
-          <input id="dirSearch" class="dir-search" type="search" placeholder="筛选开发/效率/设计工具…" aria-label="筛选开发与效率工具">
+          <div class="search-box search-box--compact" id="dirSearchBox" role="search">
+            <svg class="search-box__icon" viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <circle cx="11" cy="11" r="8"/>
+              <path d="m21 21-4.3-4.3"/>
+            </svg>
+            <input id="dirSearch" class="search-box__input" type="search" autocomplete="off" spellcheck="false" placeholder="筛选开发/效率/设计工具…" aria-label="筛选开发与效率工具">
+            <kbd class="search-box__kbd" aria-hidden="true">/</kbd>
+            <button class="search-box__clear" id="dirSearchClear" type="button" aria-label="清空搜索" hidden>
+              <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+                <path d="M18 6 6 18M6 6l12 12"/>
+              </svg>
+            </button>
+          </div>
         </div>
       </div>
       <div class="dir-cats" id="dirCats"></div>
       <div class="dir-grid" id="dirGrid"></div>
+      <div class="empty-state" id="dirEmpty" hidden>
+        <div class="empty-state__icon" aria-hidden="true">✦</div>
+        <h3 class="empty-state__title" id="dirEmptyTitle">没有找到匹配的工具</h3>
+        <p class="empty-state__desc" id="dirEmptyDesc">试试调整关键词，或恢复查看全部分类。</p>
+        <button class="btn-secondary" id="dirEmptyBtn" type="button">重置筛选</button>
+      </div>
+      <div class="load-more-wrap" id="dirLoadMoreWrap" hidden>
+        <button class="btn-secondary" id="dirLoadMoreBtn" type="button">展开更多</button>
+      </div>
     </section>
   </main>
 
