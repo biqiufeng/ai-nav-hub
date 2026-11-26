@@ -11,7 +11,8 @@ import {
   safeHttpUrl,
   renderToolAvatar,
   initSubmitToolDialog,
-} from "./nav.js?v=4";
+  yieldToMain,
+} from "./nav.js?v=5";
 
 const CAT_ICONS = {
   "对话写作": `<svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>`,
@@ -67,6 +68,9 @@ const SECTION_PREVIEW = 12;
 
 const state = {
   catalog: null,
+  globalCounts: null,
+  isPartialCatalog: false,
+  fullFetchPromise: null,
   items: [],
   filtered: [],
   visibleLimit: PAGE_BATCH,
@@ -98,6 +102,8 @@ const els = {
   segmentedThumb: document.getElementById("segmentedThumb"),
   categoryBar: document.getElementById("categoryBar"),
   resultCounter: document.getElementById("resultCounter"),
+  shareFavBtn: document.getElementById("shareFavBtn"),
+  exportFavBtn: document.getElementById("exportFavBtn"),
   clearFavBtn: document.getElementById("clearFavBtn"),
   catalogContainer: document.getElementById("catalogContainer"),
   emptyState: document.getElementById("emptyState"),
@@ -324,6 +330,7 @@ function isSectionMode() {
 
 function setRegion(nextRegion) {
   if (nextRegion === state.region && state.category === "全部") return;
+  if (state.isPartialCatalog) hydrateFullCatalog();
   state.region = nextRegion;
   state.category = "全部";
   state.visibleLimit = PAGE_BATCH;
@@ -344,22 +351,47 @@ function setRegion(nextRegion) {
   applyFilters(true);
 }
 
+function computeRegionCounts() {
+  const favCount = state.isPartialCatalog
+    ? state.favorites.size
+    : state.items.filter((i) => state.favorites.has(i.id)).length;
+  if (state.isPartialCatalog && state.globalCounts) {
+    return {
+      all: state.globalCounts.all ?? state.items.length,
+      hot: state.globalCounts.hot ?? state.items.filter((i) => matchesRegion(i, "hot")).length,
+      domestic: state.globalCounts.domestic ?? state.items.filter((i) => matchesRegion(i, "domestic")).length,
+      overseas: state.globalCounts.overseas ?? state.items.filter((i) => matchesRegion(i, "overseas")).length,
+      dev: state.globalCounts.dev ?? state.items.filter((i) => matchesRegion(i, "dev")).length,
+      leisure: state.globalCounts.leisure ?? state.items.filter((i) => matchesRegion(i, "leisure")).length,
+      favorites: favCount,
+    };
+  }
+  return {
+    all: state.items.length,
+    hot: state.items.filter((i) => matchesRegion(i, "hot")).length,
+    domestic: state.items.filter((i) => matchesRegion(i, "domestic")).length,
+    overseas: state.items.filter((i) => matchesRegion(i, "overseas")).length,
+    dev: state.items.filter((i) => matchesRegion(i, "dev")).length,
+    leisure: state.items.filter((i) => matchesRegion(i, "leisure")).length,
+    favorites: favCount,
+  };
+}
+
 function renderSidebarInto(hostEl, isMobile = false) {
-  const allCount = state.items.length;
-  const hotCount = state.items.filter((i) => matchesRegion(i, "hot")).length;
-  const domCount = state.items.filter((i) => matchesRegion(i, "domestic")).length;
-  const ovsCount = state.items.filter((i) => matchesRegion(i, "overseas")).length;
-  const devCount = state.items.filter((i) => matchesRegion(i, "dev")).length;
-  const leisureCount = state.items.filter((i) => matchesRegion(i, "leisure")).length;
-  const favCount = state.items.filter((i) => state.favorites.has(i.id)).length;
-  const regionCounts = { all: allCount, hot: hotCount, domestic: domCount, overseas: ovsCount, dev: devCount, leisure: leisureCount, favorites: favCount };
+  const regionCounts = computeRegionCounts();
 
   const baseItems = getBaseItems();
   const isLeisureView = state.region === "leisure";
   const catCounts = new Map();
-  for (const it of baseItems) {
-    const key = isLeisureView ? it._leisureSub : it.category;
-    catCounts.set(key, (catCounts.get(key) || 0) + 1);
+  if (state.isPartialCatalog && state.region === "all" && state.globalCounts?.by_category) {
+    for (const [k, v] of Object.entries(state.globalCounts.by_category)) {
+      catCounts.set(k, v);
+    }
+  } else {
+    for (const it of baseItems) {
+      const key = isLeisureView ? it._leisureSub : it.category;
+      catCounts.set(key, (catCounts.get(key) || 0) + 1);
+    }
   }
 
   const frag = document.createDocumentFragment();
@@ -477,21 +509,16 @@ function setupScrollspy() {
 }
 
 function updateCounts() {
-  const map = {
-    all: state.items.length,
-    hot: state.items.filter((i) => matchesRegion(i, "hot")).length,
-    domestic: state.items.filter((i) => matchesRegion(i, "domestic")).length,
-    overseas: state.items.filter((i) => matchesRegion(i, "overseas")).length,
-    dev: state.items.filter((i) => matchesRegion(i, "dev")).length,
-    leisure: state.items.filter((i) => matchesRegion(i, "leisure")).length,
-    favorites: state.items.filter((i) => state.favorites.has(i.id)).length,
-  };
+  const map = computeRegionCounts();
   for (const [k, v] of Object.entries(map)) {
     const el = els.regionSegmented.querySelector(`[data-count="${k}"]`);
     if (el) el.textContent = String(v);
   }
 
-  els.clearFavBtn.hidden = !(state.region === "favorites" && map.favorites > 0);
+  const showFavActions = state.region === "favorites" && map.favorites > 0;
+  els.clearFavBtn.hidden = !showFavActions;
+  if (els.shareFavBtn) els.shareFavBtn.hidden = !showFavActions;
+  if (els.exportFavBtn) els.exportFavBtn.hidden = !showFavActions;
   if (els.clearFavBtn.hidden) clearFavConfirm.reset();
 
   positionThumb(false);
@@ -500,9 +527,15 @@ function updateCounts() {
 function renderCategories(baseItems) {
   const isLeisureView = state.region === "leisure";
   const counts = new Map();
-  for (const it of baseItems) {
-    const key = isLeisureView ? it._leisureSub : it.category;
-    counts.set(key, (counts.get(key) || 0) + 1);
+  if (state.isPartialCatalog && state.region === "all" && state.globalCounts?.by_category) {
+    for (const [k, v] of Object.entries(state.globalCounts.by_category)) {
+      counts.set(k, v);
+    }
+  } else {
+    for (const it of baseItems) {
+      const key = isLeisureView ? it._leisureSub : it.category;
+      counts.set(key, (counts.get(key) || 0) + 1);
+    }
   }
 
   const orderedCats = isLeisureView
@@ -512,9 +545,14 @@ function renderCategories(baseItems) {
     state.category = "全部";
   }
 
+  const totalBaseLen =
+    state.isPartialCatalog && state.region === "all" && state.globalCounts?.all
+      ? state.globalCounts.all
+      : baseItems.length;
+
   const frag = document.createDocumentFragment();
   for (const cat of orderedCats) {
-    const num = cat === "全部" ? baseItems.length : counts.get(cat) || 0;
+    const num = cat === "全部" ? totalBaseLen : counts.get(cat) || 0;
     if (cat !== "全部" && num === 0) continue;
 
     const btn = document.createElement("button");
@@ -741,7 +779,11 @@ function applyFilters(animateEnter = false) {
     return hay.includes(q);
   });
 
-  els.resultCounter.textContent = `共 ${state.filtered.length} 款工具`;
+  const totalDisplayed =
+    state.isPartialCatalog && isSectionMode() && state.globalCounts?.all
+      ? state.globalCounts.all
+      : state.filtered.length;
+  els.resultCounter.textContent = `共 ${totalDisplayed} 款工具`;
 
   if (state.filtered.length === 0) {
     els.catalogContainer.replaceChildren();
@@ -824,6 +866,57 @@ const clearFavConfirm = bindTwoStepConfirm(els.clearFavBtn, {
   },
 });
 
+els.shareFavBtn?.addEventListener("click", async () => {
+  const ids = [...state.favorites].slice(0, 120);
+  if (ids.length === 0) return;
+  const shareUrl = `${location.origin}${location.pathname}?favs=${encodeURIComponent(ids.join(","))}`;
+  const ok = await copyWithFeedback(shareUrl, els.shareFavBtn, showToast);
+  if (ok) showToast(`已复制 ${ids.length} 款收藏工具分享链接`);
+});
+
+els.exportFavBtn?.addEventListener("click", async () => {
+  if (state.isPartialCatalog) {
+    await hydrateFullCatalog();
+  }
+  const favItems = state.items.filter((i) => state.favorites.has(i.id));
+  if (favItems.length === 0) return;
+  const escHtml = (s) =>
+    String(s || "")
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;");
+  const nowTs = Math.floor(Date.now() / 1000);
+  const dtLines = favItems
+    .map(
+      (it) =>
+        `    <DT><A HREF="${escHtml(it.url)}" ADD_DATE="${nowTs}">${escHtml(it.name)} — ${escHtml(displayCategoryName(it.category))}</A>`
+    )
+    .join("\n");
+  const bookmarkHtml = `<!DOCTYPE NETSCAPE-Bookmark-file-1>
+<!-- This is an automatically generated file. -->
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=UTF-8">
+<TITLE>AI 导航聚合站精选收藏</TITLE>
+<H1>AI 导航聚合站精选收藏</H1>
+<DL><p>
+  <DT><H3 ADD_DATE="${nowTs}">AI 导航精选工具 (${favItems.length})</H3>
+  <DL><p>
+${dtLines}
+  </DL><p>
+</DL><p>
+`;
+  const blob = new Blob([bookmarkHtml], { type: "text/html;charset=utf-8" });
+  const blobUrl = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = blobUrl;
+  a.download = `AI导航精选收藏-${new Date().toISOString().slice(0, 10)}.html`;
+  document.body.appendChild(a);
+  a.click();
+  a.remove();
+  setTimeout(() => URL.revokeObjectURL(blobUrl), 1500);
+  showToast(`已导出 ${favItems.length} 款浏览器书签文件`);
+});
+
 /* ---------- Dialog details ---------- */
 function openDialog(item) {
   state.activeTool = item;
@@ -880,6 +973,9 @@ const searchController = bindSearchBox({
   onChange: (val) => {
     state.query = val;
     state.visibleLimit = PAGE_BATCH;
+    if (state.isPartialCatalog && val.trim()) {
+      hydrateFullCatalog();
+    }
     applyFilters(false);
   },
   enableGlobalShortcut: true,
@@ -903,6 +999,7 @@ els.emptyResetBtn.addEventListener("click", () => {
 });
 
 els.loadMoreBtn.addEventListener("click", () => {
+  if (state.isPartialCatalog) hydrateFullCatalog();
   state.visibleLimit += PAGE_BATCH;
   applyFilters(false);
 });
@@ -943,6 +1040,58 @@ if (!CSS.supports("container-type", "scroll-state") && els.heroDock) {
   );
 }
 
+/* ---------- Two-stage hot shard & chunked idle full hydration ---------- */
+async function normalizeCatalogItemsChunked(rawItems) {
+  const out = new Array(rawItems.length);
+  for (let i = 0; i < rawItems.length; i++) {
+    const it = rawItems[i];
+    out[i] =
+      it.category === "划水摸鱼" || it.category === "影音娱乐"
+        ? { ...it, _leisureSub: classifyLeisure(it) }
+        : it;
+    if (i > 0 && i % 1500 === 0) {
+      await yieldToMain();
+    }
+  }
+  return out;
+}
+
+function hydrateFullCatalog() {
+  if (!state.isPartialCatalog) return Promise.resolve();
+  if (state.fullFetchPromise) return state.fullFetchPromise;
+
+  state.fullFetchPromise = (async () => {
+    try {
+      const res = await fetch("./data/catalog.json", { cache: "no-cache" });
+      if (!res.ok) return;
+      const fullCatalog = await res.json();
+      await yieldToMain();
+      const fullItems = await normalizeCatalogItemsChunked(
+        Array.isArray(fullCatalog.items) ? fullCatalog.items : []
+      );
+      state.catalog = fullCatalog;
+      state.items = fullItems;
+      state.isPartialCatalog = false;
+
+      if (!isSectionMode()) {
+        applyFilters(false);
+      } else {
+        updateCounts();
+        renderCategories(getBaseItems());
+        renderSidebarInto(els.desktopSidebar, false);
+        renderSidebarInto(els.mobileSidebarHost, true);
+        els.resultCounter.textContent = `共 ${state.items.length} 款工具`;
+      }
+    } catch {
+      // Keep working seamlessly on hot shard if full fetch fails on flaky connection
+    } finally {
+      state.fullFetchPromise = null;
+    }
+  })();
+
+  return state.fullFetchPromise;
+}
+
 /* ---------- Bootstrap & data fetch ---------- */
 async function init() {
   initSiteNav();
@@ -952,6 +1101,26 @@ async function init() {
   const params = new URLSearchParams(location.search);
   const initialQ = params.get("q");
   const initialCat = params.get("cat");
+  const sharedFavs = params.get("favs");
+
+  let importedFavCount = 0;
+  if (sharedFavs) {
+    const ids = sharedFavs
+      .split(",")
+      .map((s) => s.trim())
+      .filter((s) => /^[a-f0-9]{6,20}$/i.test(s))
+      .slice(0, 200);
+    if (ids.length > 0) {
+      ids.forEach((id) => state.favorites.add(id));
+      saveFavorites();
+      state.region = "favorites";
+      importedFavCount = ids.length;
+      const cleanUrl = new URL(location.href);
+      cleanUrl.searchParams.delete("favs");
+      history.replaceState(null, "", cleanUrl.pathname + cleanUrl.search + cleanUrl.hash);
+    }
+  }
+
   if (initialQ && els.searchInput) {
     els.searchInput.value = initialQ;
     state.query = initialQ;
@@ -972,22 +1141,52 @@ async function init() {
     b.setAttribute("aria-selected", String(active));
   });
   positionThumb(true);
-  if (els.catalogContainer.childElementCount === 0) {
+  const hadPrerender = els.catalogContainer.childElementCount > 0;
+  if (!hadPrerender) {
     renderCatalogSkeletons();
   }
 
+  const needsFullImmediately = Boolean(
+    initialQ || initialCat || sharedFavs || state.region !== "all"
+  );
+
   try {
-    const res = await fetch("./data/catalog.json", { cache: "no-cache" });
-    if (!res.ok) throw new Error(`HTTP ${res.status}`);
-    const catalog = await res.json();
-    state.loadFailed = false;
-    state.catalog = catalog;
-    state.items = (Array.isArray(catalog.items) ? catalog.items : []).map((it) =>
-      it.category === "划水摸鱼" || it.category === "影音娱乐"
-        ? { ...it, _leisureSub: classifyLeisure(it) }
-        : it
-    );
-    applyFilters(true);
+    let loadedHot = false;
+    if (!needsFullImmediately) {
+      try {
+        const hotRes = await fetch("./data/catalog-hot.json", { cache: "no-cache" });
+        if (hotRes.ok) {
+          const hotData = await hotRes.json();
+          state.loadFailed = false;
+          state.catalog = hotData;
+          state.globalCounts = hotData.global_counts || null;
+          state.isPartialCatalog = Boolean(hotData.is_partial);
+          state.items = await normalizeCatalogItemsChunked(
+            Array.isArray(hotData.items) ? hotData.items : []
+          );
+          applyFilters(!hadPrerender);
+          loadedHot = true;
+          const scheduleIdle = window.requestIdleCallback || ((cb) => setTimeout(cb, 180));
+          scheduleIdle(() => hydrateFullCatalog());
+        }
+      } catch {}
+    }
+
+    if (!loadedHot) {
+      const res = await fetch("./data/catalog.json", { cache: "no-cache" });
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      const catalog = await res.json();
+      state.loadFailed = false;
+      state.catalog = catalog;
+      state.isPartialCatalog = false;
+      state.items = await normalizeCatalogItemsChunked(
+        Array.isArray(catalog.items) ? catalog.items : []
+      );
+      applyFilters(!hadPrerender);
+      if (importedFavCount > 0) {
+        showToast(`已导入分享的 ${importedFavCount} 款精选 AI 工具`);
+      }
+    }
   } catch {
     state.loadFailed = true;
     els.catalogContainer.replaceChildren();

@@ -4,6 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="color-scheme" content="light dark">
+  <meta name="theme-color" content="#0071e3">
   <script>
     try {
       var savedScheme = localStorage.getItem("color-scheme");
@@ -15,6 +16,8 @@
   <meta name="description" content="2026-11-13 每日 AI 行业早报归档，汇总大模型发布、AI Agent 开发、多模态与算力动态共 12 条核心速递。">
   <meta name="keywords" content="AI早报,2026-11-13 AI新闻,大模型动态,人工智能快讯">
   <link rel="canonical" href="https://dlzbkj-ai.pages.dev/daily/2026-11-13/">
+  <link rel="manifest" href="../../manifest.webmanifest">
+  <link rel="search" type="application/opensearchdescription+xml" title="AI 导航聚合站" href="../../opensearch.xml">
   <link rel="alternate" type="application/rss+xml" title="AI 导航聚合站 · 每日 AI 资讯 RSS" href="https://dlzbkj-ai.pages.dev/feed.xml">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="AI 导航聚合站">
@@ -32,10 +35,10 @@
   <meta name="twitter:image" content="https://dlzbkj-ai.pages.dev/og-cover.png?v=2">
   <link rel="icon" type="image/png" sizes="64x64" href="../../favicon.png?v=5">
   <link rel="apple-touch-icon" sizes="180x180" href="../../apple-touch-icon.png?v=5">
-  <link rel="stylesheet" href="../../styles.css?v=16">
-  <link rel="stylesheet" href="../../seo-geo.css?v=1">
+  <link rel="stylesheet" href="../../styles.css?v=17">
+  <link rel="stylesheet" href="../../seo-geo.css?v=2">
   <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"首页","item":"https://dlzbkj-ai.pages.dev/"},{"@type":"ListItem","position":2,"name":"每日AI早报","item":"https://dlzbkj-ai.pages.dev/daily/"},{"@type":"ListItem","position":3,"name":"2026-11-13 AI 早报","item":"https://dlzbkj-ai.pages.dev/daily/2026-11-13/"}]},{"@type":"CollectionPage","name":"2026-11-13 AI 早报：OpenAI机器人业务转向\"模型内整合\"，具身智能纳入通用基础模 等 12 条大模型与行业快讯 · AI 导航聚合站","url":"https://dlzbkj-ai.pages.dev/daily/2026-11-13/","datePublished":"2026-11-13","inLanguage":"zh-CN","mainEntity":{"@type":"ItemList","numberOfItems":12,"itemListElement":[{"@type":"ListItem","position":1,"name":"OpenAI机器人业务转向\"模型内整合\"，具身智能纳入通用基础模型框架","url":"https://news.aibase.com/zh/news/32313"},{"@type":"ListItem","position":2,"name":"徐峥刷到自己的 AI 换脸视频愣了：有的真人演员还不如它","url":"https://news.aibase.com/zh/news/32312"},{"@type":"ListItem","position":3,"name":"OpenAI 上市前夜再融 150 亿,估值推到 1.25 万亿美元","url":"https://news.aibase.com/zh/news/32311"},{"@type":"ListItem","position":4,"name":"语飞国际中文教育垂直大模型发布：深度融合专业教学场景，为全球师生与机构提供智能化服务","url":"https://news.aibase.com/zh/news/32322"},{"@type":"ListItem","position":5,"name":"Edge0 重磅开源 145B 端侧模型，内存狂省 60% 还能满血写代码","url":"https://news.aibase.com/zh/news/32310"},{"@type":"ListItem","position":6,"name":"英伟达员工发起挽留黄仁勋行动，内部投票超97%支持其留任","url":"https://news.aibase.com/zh/news/32321"},{"@type":"ListItem","position":7,"name":"腾讯混元甩出实时语音模型 Hy Realtime，会聊天、能唱歌、还会自己联网搜","url":"https://news.aibase.com/zh/news/32320"},{"@type":"ListItem","position":8,"name":"\"Happy系列\"再添一员，阿里以端到端整曲生成切入AI音乐赛道","url":"https://news.aibase.com/zh/news/32309"},{"@type":"ListItem","position":9,"name":"谷歌首批 Gemini 智能眼镜震撼开启预售：395 美元起售，开创性引入“双向隐私”条款","url":"https://news.aibase.com/zh/news/32308"},{"@type":"ListItem","position":10,"name":"比高端型号还猛却更便宜，Google 用\"Gemini 4 Hydrogen\"上演反向内卷","url":"https://news.aibase.com/zh/news/32318"},{"@type":"ListItem","position":11,"name":"Claude 辅助完成 19 万行代码，成功对三元哥德巴赫猜想进行形式化证明","url":"https://news.aibase.com/zh/news/32317"},{"@type":"ListItem","position":12,"name":"Looki 自研模型 Loom Model 发布 ：让生活成为 AI 能理解的上下文","url":"https://mp.weixin.qq.com/s/iN_FRw3_eE4051F3-frTiw"}]}}]}</script>
-  <script type="module" src="../../subpage.js?v=1"></script>
+  <script type="module" src="../../subpage.js?v=2"></script>
 </head>
 <body>
   <header class="top-bar site-header" id="topBar">
@@ -279,8 +282,10 @@
     <div class="site-footer__inner site-footer__bar">
       <p class="site-footer__copy">AI 导航聚合站 · 每日自动同步国内外主流 AI 工具、早报与热榜 · 零广告免登录</p>
       <nav class="site-footer__links" aria-label="站点底部导航">
+        <button class="footer-link-btn" id="installAppBtn" type="button" hidden>安装桌面应用</button>
         <button class="footer-link-btn" type="button" command="show-modal" commandfor="submitToolDialog">免费提交工具收录</button>
         <a href="../../category/">分类专题</a>
+        <a href="../../tool/">热门工具库</a>
         <a href="../../daily/">每日AI早报</a>
         <a href="../../llms.txt">llms.txt</a>
         <a href="../../feed.xml">RSS订阅</a>

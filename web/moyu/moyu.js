@@ -7,7 +7,7 @@ import {
   setRefreshBusy,
   safeHttpUrl,
   initSubmitToolDialog,
-} from "../nav.js?v=4";
+} from "../nav.js?v=5";
 
 const GROUP_MAP = {
   tech: new Set(["36kr", "sspai", "ithome", "juejin", "csdn"]),

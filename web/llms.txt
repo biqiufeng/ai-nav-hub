@@ -1,11 +1,12 @@
 # AI 导航聚合站 (AI Nav Hub)
 
-> 零广告、免登录、国内直连秒开的国内外主流 AI 工具、每日 AI 行业早报与 14 平台实时科技热榜聚合站。每日自动去重更新，当前共收录 9,085 款 AI 工具（更新日期：2026-11-26）。
+> 零广告、免登录、国内直连秒开的国内外主流 AI 工具、每日 AI 行业早报与 14 平台实时科技热榜聚合站。每日自动去重更新，当前共收录 9,085 款 AI 工具，并为 439 款多源高共识工具提供独立详情与国内平替对比页（更新日期：2026-11-26）。
 
 ## 核心频道入口
 
 - [首页 · 全库 9,085 款 AI 工具检索](https://dlzbkj-ai.pages.dev/): 支持关键词秒搜、国内外筛选与 10 大分类浏览
 - [分类专题大全](https://dlzbkj-ai.pages.dev/category/): 10 大 AI 垂直赛道多源共识对比排行榜
+- [热门工具详情与平替库](https://dlzbkj-ai.pages.dev/tool/): 439 款高共识 AI 工具官网直达与国内替代推荐
 - [实时 AI 资讯速递](https://dlzbkj-ai.pages.dev/news/): 每 2 小时更新大模型、Agent、多模态与算力动态
 - [每日 AI 早报历史归档](https://dlzbkj-ai.pages.dev/daily/): 按日沉淀 AI 行业核心进展摘要
 - [全网实时热榜](https://dlzbkj-ai.pages.dev/moyu/): 聚合 GitHub、掘金、少数派、36氪、知乎、B站等 14 平台热榜
@@ -27,83 +28,83 @@
 ## 各赛道多源共识代表工具速查（Top 8 / 分类）
 
 ### 对话写作 (https://dlzbkj-ai.pages.dev/category/chat-writing/)
-- [CopyLeaks](https://copyleaks.com) (国内 · 海外双收录): Copyleaks是一款基于AI的内容检测平台，为全球数百万用户所使用。其主要功能包括验证内容是否由人类或AI创作、检测抄袭和改写内容、提供写作辅助等。这款产品
-- [知乎直答](https://zhida.zhihu.com) (国内直连): 知乎直答是知乎运用AI大模型等先进技术打造的产品。它以知乎社区的优质内容为核心数据，还借助多种数据源进行辅助。其重要性在于，为用户提供了全新、可靠的信息获取途径
-- [秘塔AI搜索](https://metaso.cn) (国内直连): 秘塔AI搜索是一款具有高效搜索能力的工具。其重要性在于为用户节省时间，能够避免广告的干扰，直接呈现搜索结果。主要优点是没有广告，能够快速直达结果，使用户可以迅速
-- [Consensus](https://consensus.app) (国内 · 海外双收录): Consensus是一款利用人工智能技术的搜索引擎，其核心功能是在大量科学研究资料中快速准确地找到用户所需的答案。它的重要性在于极大地提高了科研工作者、学生等人
-- [文涌Effidit](https://effidit.qq.com) (国内直连): Effidit是腾讯AI Lab开发的研究性原型系统，旨在利用AI技术提升写作效率和创作体验。该产品定位为专业的智能写作辅助工具，支持通用版和学术版。其核心技术
-- [AI Content Detector](https://writer.com/ai-content-detector) (国内直连): WRITER的AI内容检测器是一款免费工具，可检查内容中人为撰写的比例。其重要性在于帮助用户识别内容是否为AI生成，以便在发布前进行调整。主要优点包括免费使用、
-- [Winston AI](https://gowinston.ai) (国内直连): Winston AI是行业领先的AI内容检测器和抄袭检查软件。其重要性在于帮助用户快速准确识别使用各种AI生成的内容，防止抄袭，确保内容原创性。主要优点是可检测
-- [天工AI](https://www.tiangong.cn) (国内直连): 天工Skywork是一款全新的AI Office智能体，具备超强的DeepResearch能力。它融合了先进的多模态理解与深度检索分析技术，通过3个专家agen
+- [CopyLeaks](https://copyleaks.com) (国内 · 海外双收录 | [平替对比](https://dlzbkj-ai.pages.dev/tool/copyleaks/)): Copyleaks是一款基于AI的内容检测平台，为全球数百万用户所使用。其主要功能包括验证内容是否由人类或AI创作、检测抄袭和改写内容、提供写作辅助等。这款产品的重要性在
+- [知乎直答](https://zhida.zhihu.com) (国内直连 | [平替对比](https://dlzbkj-ai.pages.dev/tool/zhida-zhihu/)): 知乎直答是知乎运用AI大模型等先进技术打造的产品。它以知乎社区的优质内容为核心数据，还借助多种数据源进行辅助。其重要性在于，为用户提供了全新、可靠的信息获取途径。该产品具
+- [秘塔AI搜索](https://metaso.cn) (国内直连 | [平替对比](https://dlzbkj-ai.pages.dev/tool/metaso/)): 秘塔AI搜索是一款具有高效搜索能力的工具。其重要性在于为用户节省时间，能够避免广告的干扰，直接呈现搜索结果。主要优点是没有广告，能够快速直达结果，使用户可以迅速获取所需信
+- [Consensus](https://consensus.app) (国内 · 海外双收录 | [平替对比](https://dlzbkj-ai.pages.dev/tool/consensus/)): Consensus是一款利用人工智能技术的搜索引擎，其核心功能是在大量科学研究资料中快速准确地找到用户所需的答案。它的重要性在于极大地提高了科研工作者、学生等人群获取信息
+- [文涌Effidit](https://effidit.qq.com) (国内直连 | [平替对比](https://dlzbkj-ai.pages.dev/tool/effidit-qq/)): Effidit是腾讯AI Lab开发的研究性原型系统，旨在利用AI技术提升写作效率和创作体验。该产品定位为专业的智能写作辅助工具，支持通用版和学术版。其核心技术基于自然语
+- [AI Content Detector](https://writer.com/ai-content-detector) (国内直连 | [平替对比](https://dlzbkj-ai.pages.dev/tool/writer/)): WRITER的AI内容检测器是一款免费工具，可检查内容中人为撰写的比例。其重要性在于帮助用户识别内容是否为AI生成，以便在发布前进行调整。主要优点包括免费使用、支持输入文
+- [Winston AI](https://gowinston.ai) (国内直连 | [平替对比](https://dlzbkj-ai.pages.dev/tool/gowinston/)): Winston AI是行业领先的AI内容检测器和抄袭检查软件。其重要性在于帮助用户快速准确识别使用各种AI生成的内容，防止抄袭，确保内容原创性。主要优点是可检测多种主流A
+- [天工AI](https://www.tiangong.cn) (国内直连 | [平替对比](https://dlzbkj-ai.pages.dev/tool/tiangong/)): 天工Skywork是一款全新的AI Office智能体，具备超强的DeepResearch能力。它融合了先进的多模态理解与深度检索分析技术，通过3个专家agent和1个通
 
 ### 编程开发 (https://dlzbkj-ai.pages.dev/category/coding/)
-- [HuggingFace](https://huggingface.co) (国内直连): Hugging Face是一个人工智能社区平台，致力于通过开源和开放科学的方式推进和普及人工智能。它为机器学习社区提供了一个协作平台，用户可以在上面创建、发现和
-- [PromptHero](https://prompthero.com) (国内 · 海外双收录): PromptHero是一个专注于人工智能和提示工程的网站，被称为提示工程领域的第一网站。它的主要功能是提供搜索功能，让用户可以查找适用于各种AI模型（如Stab
-- [亚马逊 CodeWhisperer](https://aws.amazon.com/codewhisperer) (国内直连): Amazon Q Developer是由亚马逊云服务（AWS）推出的一款强大的生成式AI驱动的软件开发助手。它在构建、运营和转型软件方面具备出色能力，尤其在数据
-- [文心快码](https://comate.baidu.com) (国内直连): 文心快码（Baidu Comate）是百度依托文心大模型所研发出的编程辅助工具。其主要重要性在于能极大提升开发者的编码效率，把开发者从繁琐重复的编码工作中解放出
-- [GitHub Copilot](https://github.com/features/copilot) (国内直连): GitHub Copilot是GitHub推出的人工智能编程助手，与主流代码编辑器集成，借助AI技术理解代码上下文并给出合理代码建议。它能提升编程效率、减少错误
-- [CodeFuse](https://codefuse.alipay.com) (国内直连): 从页面内容来看，该产品可能是与编程相关的样式框架或组件库，常用于构建表单等页面元素。重要性在于提供统一的样式规范，能提高开发效率，减少重复劳动。主要优点是样式丰
-- [JetBrains AI](https://www.jetbrains.com/ai) (国内直连): JetBrains AI是JetBrains公司推出的一系列集成AI工具和服务，专为软件开发场景打造。其核心功能是提供智能编码辅助，借助先进的AI技术，分析代码
-- [v0.dev &#8211; AI生成前端UI组件](https://v0.dev) (国内直连): v0 by Vercel是Vercel推出的一款用于构建全栈应用的工具。它允许用户通过简单的操作快速搭建应用，提供了丰富的模板和社区资源，方便用户参考和复用。用
+- [HuggingFace](https://huggingface.co) (国内直连 | [平替对比](https://dlzbkj-ai.pages.dev/tool/huggingface/)): Hugging Face是一个人工智能社区平台，致力于通过开源和开放科学的方式推进和普及人工智能。它为机器学习社区提供了一个协作平台，用户可以在上面创建、发现和协作完成各
+- [PromptHero](https://prompthero.com) (国内 · 海外双收录 | [平替对比](https://dlzbkj-ai.pages.dev/tool/prompthero/)): PromptHero是一个专注于人工智能和提示工程的网站，被称为提示工程领域的第一网站。它的主要功能是提供搜索功能，让用户可以查找适用于各种AI模型（如Stable Di
+- [亚马逊 CodeWhisperer](https://aws.amazon.com/codewhisperer) (国内直连 | [平替对比](https://dlzbkj-ai.pages.dev/tool/aws-amazon-codewhisperer/)): Amazon Q Developer是由亚马逊云服务（AWS）推出的一款强大的生成式AI驱动的软件开发助手。它在构建、运营和转型软件方面具备出色能力，尤其在数据管理和AI
+- [文心快码](https://comate.baidu.com) (国内直连 | [平替对比](https://dlzbkj-ai.pages.dev/tool/comate-baidu/)): 文心快码（Baidu Comate）是百度依托文心大模型所研发出的编程辅助工具。其主要重要性在于能极大提升开发者的编码效率，把开发者从繁琐重复的编码工作中解放出来。该产品
+- [GitHub Copilot](https://github.com/features/copilot) (国内直连 | [平替对比](https://dlzbkj-ai.pages.dev/tool/features-copilot/)): GitHub Copilot是GitHub推出的人工智能编程助手，与主流代码编辑器集成，借助AI技术理解代码上下文并给出合理代码建议。它能提升编程效率、减少错误，让开发者
+- [CodeFuse](https://codefuse.alipay.com) (国内直连 | [平替对比](https://dlzbkj-ai.pages.dev/tool/codefuse-alipay/)): CodeFuse 是蚂蚁集团自研的全生命周期研发大模型与智能编码助手，提供代码补全、单元测试生成、代码解释与 DevOps 智能体支持，兼容 VS Code 与 JetB
+- [JetBrains AI](https://www.jetbrains.com/ai) (国内直连 | [平替对比](https://dlzbkj-ai.pages.dev/tool/jetbrains/)): JetBrains AI是JetBrains公司推出的一系列集成AI工具和服务，专为软件开发场景打造。其核心功能是提供智能编码辅助，借助先进的AI技术，分析代码上下文，为
+- [v0.dev &#8211; AI生成前端UI组件](https://v0.dev) (国内直连 | [平替对比](https://dlzbkj-ai.pages.dev/tool/v0/)): v0 by Vercel是Vercel推出的一款用于构建全栈应用的工具。它允许用户通过简单的操作快速搭建应用，提供了丰富的模板和社区资源，方便用户参考和复用。用户可以在平
 
 ### 图像设计 (https://dlzbkj-ai.pages.dev/category/image-design/)
-- [Recraft AI](https://www.recraft.ai) (国内直连): Recraft是一款面向设计师的高级图像生成与编辑工具。它的重要性体现在为设计师提供了一站式的图像创作与设计解决方案。主要优点包括拥有自定义V3模型，能提供可预
-- [可灵AI](https://app.klingai.com/cn) (国内直连): 可灵AI是一款新一代的AI创意生产力平台，它运用先进的生成式AI技术，为内容创作者提供了强大的工具。其核心技术是可灵2.1模型，运动质量更高，视频表现更美更灵动
-- [Midjourney](https://www.midjourney.com/home) (国内直连): Midjourney是一个独立研究实验室，致力于探索新的思维媒介并拓展人类的想象力。其核心技术可能围绕人工智能展开，通过AI算法帮助用户将想象转化为图像。该产品
-- [文心一格](https://yige.baidu.com) (国内直连): 百度开发，每日签到送电量（约5张图/天），国风场景效果极佳，支持商用（需注明来源）
-- [堆友AI](https://d.design) (国内直连): 堆友是Alibaba Design打造的设计师全成长周期服务平台，围绕品质、效率、技能、成就、收入五大用户价值布局平台能力，全力服务设计师，旨在成为设计师的好朋
-- [阿贝智能](https://abeiai.com?r=133) (国内直连): 一站式 AI 绘本创作平台，专为儿童教育设计
-- [AI改图神器](https://img.logosc.cn) (国内直连): AI万能图片在线编辑器
-- [Krea AI](https://www.krea.ai) (国内直连): 实时AI图像、视频生成和编辑平台
+- [Recraft AI](https://www.recraft.ai) (国内直连 | [平替对比](https://dlzbkj-ai.pages.dev/tool/recraft/)): Recraft是一款面向设计师的高级图像生成与编辑工具。它的重要性体现在为设计师提供了一站式的图像创作与设计解决方案。主要优点包括拥有自定义V3模型，能提供可预测的结果；
+- [可灵AI](https://app.klingai.com/cn) (国内直连 | [平替对比](https://dlzbkj-ai.pages.dev/tool/app-klingai/)): 可灵AI是一款新一代的AI创意生产力平台，它运用先进的生成式AI技术，为内容创作者提供了强大的工具。其核心技术是可灵2.1模型，运动质量更高，视频表现更美更灵动，指令响应
+- [Midjourney](https://www.midjourney.com/home) (国内直连 | [平替对比](https://dlzbkj-ai.pages.dev/tool/midjourney/)): Midjourney是一个独立研究实验室，致力于探索新的思维媒介并拓展人类的想象力。其核心技术可能围绕人工智能展开，通过AI算法帮助用户将想象转化为图像。该产品的主要优点
+- [文心一格](https://yige.baidu.com) (国内直连 | [平替对比](https://dlzbkj-ai.pages.dev/tool/yige-baidu/)): 百度开发，每日签到送电量（约5张图/天），国风场景效果极佳，支持商用（需注明来源）
+- [堆友AI](https://d.design) (国内直连 | [平替对比](https://dlzbkj-ai.pages.dev/tool/tool-56aa5e91f7a6/)): 堆友是Alibaba Design打造的设计师全成长周期服务平台，围绕品质、效率、技能、成就、收入五大用户价值布局平台能力，全力服务设计师，旨在成为设计师的好朋友。堆友历
+- [阿贝智能](https://abeiai.com?r=133) (国内直连 | [平替对比](https://dlzbkj-ai.pages.dev/tool/abeiai/)): 一站式 AI 绘本创作平台，专为儿童教育设计
+- [AI改图神器](https://img.logosc.cn) (国内直连 | [平替对比](https://dlzbkj-ai.pages.dev/tool/img-logosc/)): AI万能图片在线编辑器
+- [Krea AI](https://www.krea.ai) (国内直连 | [平替对比](https://dlzbkj-ai.pages.dev/tool/krea/)): 实时AI图像、视频生成和编辑平台
 
 ### 视频音频 (https://dlzbkj-ai.pages.dev/category/video-audio/)
-- [Adobe Podcast](https://podcast.adobe.com) (国内 · 海外双收录): Adobe Podcast是Adobe推出的新一代基于网页的AI音频录制与编辑工具。其重要性在于它为用户提供了一站式的音频处理解决方案，无需复杂安装，打开网页即
-- [魔音工坊](https://www.moyin.com) (国内直连): 500+真人音色，支持多音字/停顿/情感调节，免费版限每日生成额度 。
-- [Suno](https://www.suno.ai) (国内直连): Suno是一款前沿的AI音乐生成平台，借助先进的AI技术，让用户能够在短时间内生成原创音乐。该平台的重要性在于打破了音乐创作的门槛，使得普通人也能轻松创作出高质
-- [Mubert](https://mubert.com) (国内直连): 提供无限量免版税背景音乐，适合视频/游戏配乐，免费版输出音频带水印
-- [NaturalReader](https://www.naturalreaders.com) (国内直连): NaturalReader是NaturalSoft Limited推出的文本转语音工具。它运用深度学习、神经网络及大语言模型等技术，生成高度逼真的AI语音。优点
-- [Pika](https://pika.art) (国内 · 海外双收录): Futurepedia 收录的海外 AI 工具（video-enhancer）
-- [海绵音乐](https://www.haimian.com) (国内直连): 一款 AI 音乐创作产品，输入一句话灵感或者歌词，即可快速生成音乐，最大限度拉近每个人同音乐创作的距离。同时，海绵音乐提供了丰富的自定义功能，让每个人都可以一键
-- [网易天音](https://tianyin.163.com) (国内直连): 网易天音是网易推出的一站式AI音乐创作工具，其重要性在于降低了音乐创作门槛，让更多人能够参与到音乐创作中来。产品主要优点包括智能编曲极速生成、海量风格一键渲染，
+- [Adobe Podcast](https://podcast.adobe.com) (国内 · 海外双收录 | [平替对比](https://dlzbkj-ai.pages.dev/tool/podcast-adobe/)): Adobe Podcast是Adobe推出的新一代基于网页的AI音频录制与编辑工具。其重要性在于它为用户提供了一站式的音频处理解决方案，无需复杂安装，打开网页即可使用。主
+- [魔音工坊](https://www.moyin.com) (国内直连 | [平替对比](https://dlzbkj-ai.pages.dev/tool/moyin/)): 500+真人音色，支持多音字/停顿/情感调节，免费版限每日生成额度 。
+- [Suno](https://www.suno.ai) (国内直连 | [平替对比](https://dlzbkj-ai.pages.dev/tool/suno/)): Suno是一款前沿的AI音乐生成平台，借助先进的AI技术，让用户能够在短时间内生成原创音乐。该平台的重要性在于打破了音乐创作的门槛，使得普通人也能轻松创作出高质量的音乐作
+- [Mubert](https://mubert.com) (国内直连 | [平替对比](https://dlzbkj-ai.pages.dev/tool/mubert/)): 提供无限量免版税背景音乐，适合视频/游戏配乐，免费版输出音频带水印
+- [NaturalReader](https://www.naturalreaders.com) (国内直连 | [平替对比](https://dlzbkj-ai.pages.dev/tool/naturalreaders/)): NaturalReader是NaturalSoft Limited推出的文本转语音工具。它运用深度学习、神经网络及大语言模型等技术，生成高度逼真的AI语音。优点众多，提供
+- [Pika](https://pika.art) (国内 · 海外双收录 | [平替对比](https://dlzbkj-ai.pages.dev/tool/pika/)): Pika（pika.art）是一款专注于视频画质修复、超分放大与帧率增强的海外主流 AI 工具，适用于老片修复、清晰度提升与画质降噪等场景。
+- [海绵音乐](https://www.haimian.com) (国内直连 | [平替对比](https://dlzbkj-ai.pages.dev/tool/haimian/)): 一款 AI 音乐创作产品，输入一句话灵感或者歌词，即可快速生成音乐，最大限度拉近每个人同音乐创作的距离。同时，海绵音乐提供了丰富的自定义功能，让每个人都可以一键创作属于自
+- [网易天音](https://tianyin.163.com) (国内直连 | [平替对比](https://dlzbkj-ai.pages.dev/tool/tianyin-163/)): 网易天音是网易推出的一站式AI音乐创作工具，其重要性在于降低了音乐创作门槛，让更多人能够参与到音乐创作中来。产品主要优点包括智能编曲极速生成、海量风格一键渲染，用户即使零
 
 ### 办公效率 (https://dlzbkj-ai.pages.dev/category/office-productivity/)
-- [AiPPT &#8211; 全智能 AI 一键生成 PPT](https://www.aippt.cn) (国内直连): AiPPT是一款结合最新AI技术的PPT生成工具，主要功能为帮助用户一键生成高质量PPT。它的重要性在于极大地简化了PPT设计流程，解决了传统PPT制作耗时长、
-- [Napkin](https://www.napkin.ai) (国内直连): 将用户输入的文本自动转换为可视化图表（如信息图、思维导图、流程图、数据图表等），帮助用户快速创建专业的商业演示内容，支持多格式导出与团队协作。​
-- [ProcessOn](https://www.processon.com?full_name=Peace) (国内直连): 在线AI流程图和思维导图制作工具
-- [TinyWow在线工具箱](https://tinywow.com) (国内直连): 免费提供PDF、图片、视频、AI写作等140+种实用工具，无需注册即可一键在线处理文件。
-- [简单听记](https://pan.baidu.com/embed/listennote) (国内直连): 简单听记是百度推出的一款音视频转文字处理工具。基于AI大模型，它能实现全流程自动化的音频分析和整理。其重要性在于极大提高了工作和学习效率，节省人工听记的时间和精
-- [通义听悟](https://tingwu.aliyun.com) (国内直连): 通义听悟是阿里云推出的聚焦音视频内容的工作学习AI助手，依托大模型技术，为用户提供便捷的音视频处理和分析方案。其重要性在于大大提高了用户处理音视频信息的效率，节
-- [腾讯元宝](https://yuanbao.tencent.com) (国内直连): 腾讯元宝是基于腾讯混元大模型开发的AI应用，具有高度的智能和多功能性。其重要性在于它集合了写作、绘画、搜索等多种能力，能够极大提高用户的工作效率和创作灵感。主要
-- [百度文库AI助手](https://wenku.baidu.com/ndlaunch/browse/chat?fr=dist_wk_aiasis&dist_source=kfpt-WD&keyword=PPT&searchFr=1&third_id=wkds_98a21f011a37f111f0855b83_400000159) (国内直连): 智能PPT、智能创作、智能编辑、智能总结四大AI能力，全面提升文档生产力
+- [AiPPT &#8211; 全智能 AI 一键生成 PPT](https://www.aippt.cn) (国内直连 | [平替对比](https://dlzbkj-ai.pages.dev/tool/aippt/)): AiPPT是一款结合最新AI技术的PPT生成工具，主要功能为帮助用户一键生成高质量PPT。它的重要性在于极大地简化了PPT设计流程，解决了传统PPT制作耗时长、难度大等问
+- [Napkin](https://www.napkin.ai) (国内直连 | [平替对比](https://dlzbkj-ai.pages.dev/tool/napkin/)): 将用户输入的文本自动转换为可视化图表（如信息图、思维导图、流程图、数据图表等），帮助用户快速创建专业的商业演示内容，支持多格式导出与团队协作。​
+- [ProcessOn](https://www.processon.com?full_name=Peace) (国内直连 | [平替对比](https://dlzbkj-ai.pages.dev/tool/processon/)): 在线AI流程图和思维导图制作工具
+- [TinyWow在线工具箱](https://tinywow.com) (国内直连 | [平替对比](https://dlzbkj-ai.pages.dev/tool/tinywow/)): 免费提供PDF、图片、视频、AI写作等140+种实用工具，无需注册即可一键在线处理文件。
+- [简单听记](https://pan.baidu.com/embed/listennote) (国内直连 | [平替对比](https://dlzbkj-ai.pages.dev/tool/pan-baidu/)): 简单听记是百度推出的一款音视频转文字处理工具。基于AI大模型，它能实现全流程自动化的音频分析和整理。其重要性在于极大提高了工作和学习效率，节省人工听记的时间和精力。主要优
+- [通义听悟](https://tingwu.aliyun.com) (国内直连 | [平替对比](https://dlzbkj-ai.pages.dev/tool/tingwu-aliyun/)): 通义听悟是阿里云推出的聚焦音视频内容的工作学习AI助手，依托大模型技术，为用户提供便捷的音视频处理和分析方案。其重要性在于大大提高了用户处理音视频信息的效率，节省时间和精
+- [腾讯元宝](https://yuanbao.tencent.com) (国内直连 | [平替对比](https://dlzbkj-ai.pages.dev/tool/yuanbao-tencent/)): 腾讯元宝是基于腾讯混元大模型开发的AI应用，具有高度的智能和多功能性。其重要性在于它集合了写作、绘画、搜索等多种能力，能够极大提高用户的工作效率和创作灵感。主要优点包括功
+- [百度文库AI助手](https://wenku.baidu.com/ndlaunch/browse/chat?fr=dist_wk_aiasis&dist_source=kfpt-WD&keyword=PPT&searchFr=1&third_id=wkds_98a21f011a37f111f0855b83_400000159) (国内直连 | [平替对比](https://dlzbkj-ai.pages.dev/tool/wenku-baidu/)): 智能PPT、智能创作、智能编辑、智能总结四大AI能力，全面提升文档生产力
 
 ### Agent与自动化 (https://dlzbkj-ai.pages.dev/category/agents-automation/)
-- [Lovart - LiblibAI推出的全球首个设计智能体](https://www.lovart.ai) (国内直连): Lovart是LiblibAI为设计师打造的世界首个专业设计Agent。它能模拟专业设计师思考与执行设计任务，基于自然语言实现交互。其重要性在于引领设计工具智能
-- [Manus - 蝴蝶效应公司推出的首款自主通用AI Agent](https://manus.im) (国内直连): Manus 是蝴蝶效应公司推出的全球首个自主通用 AI Agent，支持通过自主行动完成任务和交付成果。Manus 运行在一个拥有互联网访问权限、持久文件系统和
-- [AI Short](https://www.aishort.top) (国内直连): AiShort是一个高效的AI智能体与提示词平台，旨在革新用户的工作与学习方式。该产品的主要优点包括支持多语言环境，方便不同语言背景的用户使用；用户不仅能发现海
-- [Fellou - Fellou AI 推出的首个Agentic浏览器](https://fellou.ai) (国内直连): Fellou是AI初创公司Fellou AI推出的全球首个Agentic浏览器。它结合了Browser（浏览器）、Agent（智能体）和Workflow Aut
-- [724Claw永动虾](https://www.724claw.cn) (国内直连): 724Claw永动虾是什么 724Claw永动虾是基于 OpenClaw 封装的 Windows 桌面端 AI 助手应用，主打”开箱即用”的无门槛体验。用户无需
-- [ColaOS](https://colaos.ai) (国内直连): ColaOS是什么 ColaOS 是 ListenHub 团队推出的首个有灵魂的 AI Agent 操作系统。ColaOS超越传统工具型AI，通过”思绪、觉知、
-- [EvoMap](https://evomap.ai) (国内直连): EvoMap是什么 EvoMap 是全球首个面向 AI 智能体的进化协作平台，由 OpenClaw 插件 Evolver 的原团队开发，通过 GEP（Genom
-- [Genspark](https://www.genspark.ai) (国内直连): 专注于提供值得信赖的 AI 答案和公正、全面的搜索结果
+- [Lovart - LiblibAI推出的全球首个设计智能体](https://www.lovart.ai) (国内直连 | [平替对比](https://dlzbkj-ai.pages.dev/tool/lovart/)): Lovart是LiblibAI为设计师打造的世界首个专业设计Agent。它能模拟专业设计师思考与执行设计任务，基于自然语言实现交互。其重要性在于引领设计工具智能化，支持从
+- [Manus - 蝴蝶效应公司推出的首款自主通用AI Agent](https://manus.im) (国内直连 | [平替对比](https://dlzbkj-ai.pages.dev/tool/manus-im/)): Manus 是蝴蝶效应公司推出的全球首个自主通用 AI Agent，支持通过自主行动完成任务和交付成果。Manus 运行在一个拥有互联网访问权限、持久文件系统和软件安装能
+- [AI Short](https://www.aishort.top) (国内直连 | [平替对比](https://dlzbkj-ai.pages.dev/tool/aishort/)): AiShort是一个高效的AI智能体与提示词平台，旨在革新用户的工作与学习方式。该产品的主要优点包括支持多语言环境，方便不同语言背景的用户使用；用户不仅能发现海量高质量的
+- [Fellou - Fellou AI 推出的首个Agentic浏览器](https://fellou.ai) (国内直连 | [平替对比](https://dlzbkj-ai.pages.dev/tool/fellou/)): Fellou是AI初创公司Fellou AI推出的全球首个Agentic浏览器。它结合了Browser（浏览器）、Agent（智能体）和Workflow Automati
+- [724Claw永动虾](https://www.724claw.cn) (国内直连 | [平替对比](https://dlzbkj-ai.pages.dev/tool/724claw/)): 724Claw永动虾是什么 724Claw永动虾是基于 OpenClaw 封装的 Windows 桌面端 AI 助手应用，主打”开箱即用”的无门槛体验。用户无需配置复杂环
+- [ColaOS](https://colaos.ai) (国内直连 | [平替对比](https://dlzbkj-ai.pages.dev/tool/colaos/)): ColaOS是什么 ColaOS 是 ListenHub 团队推出的首个有灵魂的 AI Agent 操作系统。ColaOS超越传统工具型AI，通过”思绪、觉知、牵挂”三个
+- [EvoMap](https://evomap.ai) (国内直连 | [平替对比](https://dlzbkj-ai.pages.dev/tool/evomap/)): EvoMap是什么 EvoMap 是全球首个面向 AI 智能体的进化协作平台，由 OpenClaw 插件 Evolver 的原团队开发，通过 GEP（Genome Evo
+- [Genspark](https://www.genspark.ai) (国内直连 | [平替对比](https://dlzbkj-ai.pages.dev/tool/genspark/)): 专注于提供值得信赖的 AI 答案和公正、全面的搜索结果
 
 ### 学习知识库 (https://dlzbkj-ai.pages.dev/category/learning-knowledge/)
-- [ChatBA](https://www.chatba.com) (国内直连): Text-to-PPT即时创建幻灯片
-- [Decktopus AI](https://www.decktopus.com) (国内直连): AI驱动的的在线演示文稿生成器
-- [DeepLearning.AI](https://www.deeplearning.ai) (国内直连): DeepLearning.AI是一个专注于人工智能教育的平台，由Andrew Ng创办。平台为用户提供丰富的在线课程和专业认证，帮助学员学习和掌握机器学习、人工
-- [Elements of AI](https://www.elementsofai.com) (国内直连): Elements of AI是由MinnaLearn和赫尔辛基大学联合推出的一系列免费在线课程。其重要性在于降低了AI学习的门槛，让更多人能接触和了解AI。主要
-- [fast.ai](https://www.fast.ai) (国内 · 海外双收录): Futurepedia 收录的海外 AI 工具（code-assistant）
-- [Kaggle竞赛平台](https://www.kaggle.com) (国内直连): Kaggle是全球最大的数据科学社区，为用户提供了强大的工具和丰富的资源。其重要性在于为机器学习和数据科学领域的学习者、开发者和研究者搭建了一个交流和学习的平台
-- [ML for Beginners](https://microsoft.github.io/ML-For-Beginners) (国内直连): 该产品是一个面向初学者的机器学习课程，由微软云倡导者提供。课程主要使用Scikit - learn库讲解经典机器学习，避免涉及深度学习内容。其重要性在于为初学者
-- [Reading Coach](https://coach.microsoft.com) (国内直连): Reading Coach是一款助力提升读写能力的练习工具。产品背景依托微软的技术支持，结合ReadWorks的分级文章库和强大的AI故事生成能力。它的主要优点
+- [ChatBA](https://www.chatba.com) (国内直连 | [平替对比](https://dlzbkj-ai.pages.dev/tool/chatba/)): Text-to-PPT即时创建幻灯片
+- [Decktopus AI](https://www.decktopus.com) (国内直连 | [平替对比](https://dlzbkj-ai.pages.dev/tool/decktopus/)): AI驱动的的在线演示文稿生成器
+- [DeepLearning.AI](https://www.deeplearning.ai) (国内直连 | [平替对比](https://dlzbkj-ai.pages.dev/tool/deeplearning/)): DeepLearning.AI是一个专注于人工智能教育的平台，由Andrew Ng创办。平台为用户提供丰富的在线课程和专业认证，帮助学员学习和掌握机器学习、人工智能等领域
+- [Elements of AI](https://www.elementsofai.com) (国内直连 | [平替对比](https://dlzbkj-ai.pages.dev/tool/elementsofai/)): Elements of AI是由MinnaLearn和赫尔辛基大学联合推出的一系列免费在线课程。其重要性在于降低了AI学习的门槛，让更多人能接触和了解AI。主要优点是免费
+- [fast.ai](https://www.fast.ai) (国内 · 海外双收录 | [平替对比](https://dlzbkj-ai.pages.dev/tool/fast/)): fast.ai（fast.ai）是一款专注于AI 智能代码补全、重构审查与结对编程的海外主流 AI 工具，适用于多语言代码生成、Bug 定位修复与单元测试编写等场景。
+- [Kaggle竞赛平台](https://www.kaggle.com) (国内直连 | [平替对比](https://dlzbkj-ai.pages.dev/tool/kaggle/)): Kaggle是全球最大的数据科学社区，为用户提供了强大的工具和丰富的资源。其重要性在于为机器学习和数据科学领域的学习者、开发者和研究者搭建了一个交流和学习的平台。主要优点
+- [ML for Beginners](https://microsoft.github.io/ML-For-Beginners) (国内直连 | [平替对比](https://dlzbkj-ai.pages.dev/tool/microsoft-github/)): 该产品是一个面向初学者的机器学习课程，由微软云倡导者提供。课程主要使用Scikit - learn库讲解经典机器学习，避免涉及深度学习内容。其重要性在于为初学者提供了系统
+- [Reading Coach](https://coach.microsoft.com) (国内直连 | [平替对比](https://dlzbkj-ai.pages.dev/tool/coach-microsoft/)): Reading Coach是一款助力提升读写能力的练习工具。产品背景依托微软的技术支持，结合ReadWorks的分级文章库和强大的AI故事生成能力。它的主要优点在于，能够
 
 ### 影音娱乐 (https://dlzbkj-ai.pages.dev/category/media-leisure/)
-- [MAKE](https://make.mk) (国内 · 海外双收录): Futurepedia 收录的海外 AI 工具（workflows）
+- [MAKE](https://make.mk) (国内 · 海外双收录): MAKE（make.mk）是一款专注于跨应用 AI 自动化工作流编排与数据同步的海外主流 AI 工具，适用于触发器联动、非结构化数据处理与免代码集成等场景。
 - [2020游戏](https://2020game.io) (国内直连): 重点推荐，闯关类游戏！
 - [360资源站](https://360zy5.com) (国内直连): 全网最全片库，一家顶三家！资源永久免费！
 - [51音乐下载](https://www.at38.cn) (国内直连): 支持多平台音乐解析、搜索
 - [818影视](https://www.qwqw818.sbs) (国内直连): 提供最新电影、电视剧、动漫、综艺在线观看，海量正版高清视频免费观看，支持手机电脑同步观看，更新快，画质好，打造极致追剧体验。
 - [996忍者](http://996.ninja) (国内直连): 一个专注摸鱼的网站
-- [AirConsole](https://www.airconsole.com) (国内直连): 由瑞士公司 ​​N-Dream​​ 于2015年推出的 ​​云端多人游戏平台​​，主打“​​手机即手柄​​”的创新设计，将电脑、平板、智能电视（Android 
+- [AirConsole](https://www.airconsole.com) (国内直连): 由瑞士公司 ​​N-Dream​​ 于2015年推出的 ​​云端多人游戏平台​​，主打“​​手机即手柄​​”的创新设计，将电脑、平板、智能电视（Android TV/Am
 - [BT之家1LOU站](https://www.1lou.me) (国内直连): 提供全网最快 最新 最全 高清 电影、动漫、韩剧、日剧、美剧、无损音乐、小说等BT/网盘下载以及资讯！
 
 ### 新品速递 (https://dlzbkj-ai.pages.dev/category/new-releases/)

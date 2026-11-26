@@ -3,7 +3,9 @@ __pycache__/
 *.py[cod]
 logs/
 web/data/catalog.json
+web/data/catalog-hot.json
 web/data/catalog.prev.json
+web/tool/
 web/data/hotlist.json
 web/data/hotlist.prev.json
 web/data/news.json

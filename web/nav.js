@@ -2,6 +2,13 @@ export function prefersReducedMotion() {
   return window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 }
 
+export async function yieldToMain() {
+  if ("scheduler" in window && typeof window.scheduler?.yield === "function") {
+    return window.scheduler.yield();
+  }
+  return new Promise((resolve) => setTimeout(resolve, 0));
+}
+
 let supportsDisplayTransition;
 export function canTransitionDisplay() {
   if (supportsDisplayTransition !== undefined) return supportsDisplayTransition;
@@ -536,6 +543,7 @@ function ensureInvokerSupport() {
 
 export function initSubmitToolDialog(onToast) {
   ensureInvokerSupport();
+  initWebAppInstall(onToast);
   const dialog = document.getElementById("submitToolDialog");
   const form = document.getElementById("submitToolForm");
   if (!(dialog instanceof HTMLDialogElement) || !(form instanceof HTMLFormElement)) return;
@@ -684,6 +692,66 @@ export function initSubmitToolDialog(onToast) {
     pressedOutside = false;
     if (shouldClose && (!("closedBy" in HTMLDialogElement.prototype) || !(window.CSS?.supports?.("overlay", "auto") && canTransitionDisplay()))) {
       closeAnimatedDialog(dialog);
+    }
+  });
+}
+
+/* ---------- PWA Service Worker & Web Install API (modern-web-guidance: install-web-app) ---------- */
+let pwaBootstrapped = false;
+let deferredInstallPrompt = undefined;
+
+export function initWebAppInstall(onToast) {
+  if (pwaBootstrapped) return;
+  pwaBootstrapped = true;
+
+  if ("serviceWorker" in navigator && (location.protocol === "https:" || location.hostname === "localhost" || location.hostname === "127.0.0.1")) {
+    window.addEventListener("load", () => {
+      navigator.serviceWorker.register("/sw.js").catch(() => {});
+    }, { once: true });
+  }
+
+  const installButton = document.getElementById("installAppBtn");
+  if (!installButton) return;
+
+  const supportsWebInstall = typeof Navigator !== "undefined" && typeof Navigator.prototype?.install === "function";
+  if (supportsWebInstall) {
+    installButton.hidden = false;
+  }
+
+  window.addEventListener("beforeinstallprompt", (event) => {
+    event.preventDefault();
+    deferredInstallPrompt = event;
+    if (!supportsWebInstall) {
+      installButton.hidden = false;
+    }
+  });
+
+  installButton.addEventListener("click", async () => {
+    if (installButton.getAttribute("aria-disabled") === "true") return;
+    installButton.setAttribute("aria-disabled", "true");
+    try {
+      if (supportsWebInstall) {
+        await navigator.install();
+        onToast?.("已安装或打开桌面应用", { force: true });
+        installButton.hidden = true;
+      } else if (deferredInstallPrompt) {
+        const promptEvent = deferredInstallPrompt;
+        deferredInstallPrompt = undefined;
+        await promptEvent.prompt();
+        const { outcome } = await promptEvent.userChoice;
+        if (outcome === "accepted") {
+          onToast?.("已添加至桌面应用", { force: true });
+        }
+        if (!deferredInstallPrompt) {
+          installButton.hidden = true;
+        }
+      }
+    } catch (error) {
+      if (error?.name !== "AbortError") {
+        onToast?.("当前浏览器暂无法直接安装，可使用浏览器菜单添加至桌面", { force: true });
+      }
+    } finally {
+      installButton.removeAttribute("aria-disabled");
     }
   });
 }

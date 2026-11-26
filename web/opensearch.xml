@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<OpenSearchDescription xmlns="http://a9.com/-/spec/opensearch/1.1/">
+  <ShortName>AI 导航聚合站</ShortName>
+  <Description>按关键词秒搜 9000+ 国内外主流 AI 工具、大模型与开源项目</Description>
+  <InputEncoding>UTF-8</InputEncoding>
+  <Image width="64" height="64" type="image/png">https://dlzbkj-ai.pages.dev/favicon.png?v=5</Image>
+  <Url type="text/html" method="get" template="https://dlzbkj-ai.pages.dev/?q={searchTerms}"/>
+</OpenSearchDescription>

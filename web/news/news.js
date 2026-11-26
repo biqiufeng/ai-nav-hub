@@ -8,7 +8,7 @@ import {
   safeHttpUrl,
   canTransitionDisplay,
   initSubmitToolDialog,
-} from "../nav.js?v=4";
+} from "../nav.js?v=5";
 
 const PAGE_BATCH = 24;
 const SUPPORTS_HAS = typeof CSS !== "undefined" && CSS.supports?.("selector(:has(*))");

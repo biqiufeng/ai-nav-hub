@@ -1263,6 +1263,94 @@ SOURCES = [
 ]
 
 
+GARBAGE_DESC_RE = re.compile(
+    r"(由于Cloudflare安全防护|无法访问\s*lmarena|403\s*Forbidden|Just a moment|"
+    r"Attention Required|Access Denied|从页面内容来看，该产品可能是|当前页面主要展示了由于)",
+    re.I,
+)
+
+FUTUREPEDIA_PLACEHOLDER_RE = re.compile(r"^Futurepedia\s*收录的海外\s*AI\s*工具（([^）]+)）$")
+
+CURATED_DESCRIPTIONS = {
+    "chat.lmsys.org": "LMSYS Chatbot Arena（原 StableVicuna 评测竞技场）是由加州大学伯克利分校等机构联合打造的开源大模型盲测对比与对话评测平台，支持多模型同屏盲测投票与权威 Leaderboard 榜单查询。",
+    "lmarena.ai": "Chatbot Arena（LMArena）是由 LMSYS 团队运营的全球权威大模型众包盲测对战与排行榜平台，支持主流闭源与开源模型同台实时对比评测。",
+    "codefuse.alipay.com": "CodeFuse 是蚂蚁集团自研的全生命周期研发大模型与智能编码助手，提供代码补全、单元测试生成、代码解释与 DevOps 智能体支持，兼容 VS Code 与 JetBrains 系列 IDE。",
+}
+
+FUTUREPEDIA_TAG_ZH = {
+    "business": ("商业决策与企业运营自动化", "商业分析、流程优化与智能增长"),
+    "video-enhancer": ("视频画质修复、超分放大与帧率增强", "老片修复、清晰度提升与画质降噪"),
+    "personal-assistant": ("全天候个人智能助理与日程管理", "任务规划、信息摘要与跨平台协作"),
+    "spreadsheet-assistant": ("电子表格公式生成与智能数据分析", "Excel/Google Sheets 公式编写、数据透视与图表解读"),
+    "translators": ("多语种神经网络机器翻译与本地化", "文档实时互译、语境润色与跨语言沟通"),
+    "presentations": ("AI 演示文稿与幻灯片一键生成", "大纲自动排版、商务路演 PPT 设计与视觉美化"),
+    "health": ("数字健康管理与身心状态辅助分析", "健康习惯追踪、运动营养建议与科普问答"),
+    "prompt-generators": ("大模型提示词（Prompt）工程优化与生成", "结构化提示词调优、模板复用与多模型效果提升"),
+    "design-generators": ("智能平面视觉设计与品牌素材生成", "海报排版、UI 灵感探索与多尺寸营销图制作"),
+    "portrait-generators": ("AI 人像写真与职业形象照生成", "商务头像定制、风格化艺术人像与灯光重塑"),
+    "gaming": ("游戏资产生成、NPC 智能交互与关卡辅助开发", "游戏美术创意、剧情对话生成与玩家体验增强"),
+    "cartoon-generators": ("动漫卡通风格转换与二次元角色生成", "插画转绘、漫画分镜创作与卡通形象设计"),
+    "paraphrasing": ("文本智能改写、降重润色与语气转换", "多风格句式重构、学术与商务表达精炼"),
+    "website-builders": ("AI 一键建站与响应式落地页生成", "零代码生成独立站、组件排版与文案自动填充"),
+    "research-assistant": ("学术文献深度检索与研究综述辅助", "论文语义搜索、核心观点提炼与引文溯源"),
+    "video-generators": ("AI 视频内容生成与多模态动态创作", "脚本转视频、镜头合成与短视频批量制作"),
+    "sql-assistant": ("自然语言转 SQL 查询与数据库优化辅助", "复杂 SQL 编写、表结构解析与慢查询调优"),
+    "logo-generator": ("品牌 Logo 标志设计与视觉识别生成", "矢量图标创意、字体搭配与品牌 VI 快速打样"),
+    "ai-agents": ("自主任务规划与多工具调用智能体（AI Agent）", "复杂目标拆解、网页自动化与业务流自主执行"),
+    "project-management": ("智能项目管理、任务排期与团队进度协同", "里程碑拆解、风险预警与会议待办自动跟进"),
+    "text-to-image": ("高精度文生图（Text-to-Image）艺术创作", "创意插画生成、写实摄影合成与风格控制"),
+    "social-media": ("社交媒体爆款内容策划与多平台排期分发", "图文脚本生成、互动增长分析与账号矩阵运营"),
+    "finance": ("智能财务分析、报表解读与投研数据洞察", "财报摘要提取、收支预测与量化信息梳理"),
+    "ai-detection": ("AIGC 生成内容检测与文本原创性校验", "AI 写作痕迹识别、学术合规审查与真实度评估"),
+    "storyteller": ("互动故事创作、小说世界观构思与剧本续写", "角色设定延展、情节分支推演与创意写作"),
+    "writing-generators": ("长文智能起草、多体裁写作与内容扩写", "博客文章撰写、结构大纲生成与语言润色"),
+    "text-to-video": ("文本提示词直接生成高清动态视频（Text-to-Video）", "分镜画面生成、动态特效合成与创意短片制作"),
+    "video-editing": ("智能视频剪辑、自动高光切片与字幕包装", "口播冗余片段剔除、多机位混剪与横竖屏自适应"),
+    "audio-editing": ("AI 音频降噪、人声伴奏分离与母带级音质增强", "播客后期精修、杂音消除与音频剪辑自动化"),
+    "code-assistant": ("AI 智能代码补全、重构审查与结对编程", "多语言代码生成、Bug 定位修复与单元测试编写"),
+    "music-generator": ("AI 原创音乐作曲、编曲配乐与免版税旋律生成", "视频背景音乐定制、多曲风伴奏生成与人声合成"),
+    "copywriting-assistant": ("高转化营销文案、广告语与商品详情页撰写", "A/B 测试标题生成、品牌故事打磨与邮件营销写作"),
+    "chatbots": ("智能对话机器人与企业级在线客服构建", "知识库接入问答、7×24 小时客户响应与线索转化"),
+    "text-to-speech": ("超拟真语音合成（TTS）、多情感配音与声音克隆", "有声书朗读、短视频多语种配音与数字人播报"),
+    "productivity": ("日常办公自动化与个人生产力全面提效", "重复性文书处理、跨软件协同与专注力管理"),
+    "marketing": ("全渠道数字营销策划、投放洞察与获客增长", "受众画像分析、SEO 内容布局与转化率优化"),
+    "avatar-generator": ("3D/2D 虚拟数字人形象定制与个性化头像生成", "社交专属头像创作、虚拟主播建模与表情驱动"),
+    "workflows": ("跨应用 AI 自动化工作流编排与数据同步", "触发器联动、非结构化数据处理与免代码集成"),
+    "transcriber": ("高精度语音转文字（ASR）、录音转写与双语字幕生成", "会议录音实时纪要、访谈整理与多说话人区分"),
+    "image-editing": ("AI 智能修图、背景擦除替换与局部重绘", "电商商品图精修、光影融合与无痕消除杂物"),
+    "art": ("数字艺术风格探索、概念原画与创意视觉实验", "多画风融合创作、纹理生成与艺术灵感延展"),
+    "image-generators": ("多风格 AI 图像生成与视觉创意快速打样", "插画素材制作、写实场景渲染与批量出图"),
+    "no-code": ("无代码/低代码 AI 原生应用可视化搭建", "拖拽式组件拼装、大模型接口封装与快速上线验证"),
+    "text-generators": ("智能文本生成、摘要提炼与结构化内容输出", "日常文案辅助、信息归纳整理与多场景写作"),
+}
+
+
+def is_low_quality_desc(desc):
+    d = (desc or "").strip()
+    if not d:
+        return True
+    if GARBAGE_DESC_RE.search(d):
+        return True
+    if FUTUREPEDIA_PLACEHOLDER_RE.match(d):
+        return True
+    return False
+
+
+def clean_and_enrich_description(name, domain, category, desc):
+    dom = (domain or "").strip().lower()
+    if dom in CURATED_DESCRIPTIONS:
+        return CURATED_DESCRIPTIONS[dom]
+    d = (desc or "").strip()
+    m = FUTUREPEDIA_PLACEHOLDER_RE.match(d)
+    if m:
+        tag = m.group(1).strip().lower()
+        cap, scene = FUTUREPEDIA_TAG_ZH.get(tag, (f"{category}智能化处理", "日常创作与办公提效"))
+        return f"{name}（{dom}）是一款专注于{cap}的海外主流 AI 工具，适用于{scene}等场景。"
+    if GARBAGE_DESC_RE.search(d):
+        return f"{name}（{dom}）是一款面向「{category}」场景的 AI 工具平台，提供便捷的在线智能化功能体验。"
+    return d
+
+
 def _norm_tool_name(name):
     return re.sub(r"[^a-z0-9\u4e00-\u9fff]+", "", (name or "").lower())
 
@@ -1278,11 +1366,16 @@ def _merge_item_into(cur, inc, cat):
     if inc_rank < cur["min_rank"]:
         cur["min_rank"] = inc_rank
 
-    inc_desc = (inc.get("description") or "")[:160]
-    cur_has_zh = any("\u4e00" <= c <= "\u9fff" for c in cur["description"])
-    inc_has_zh = any("\u4e00" <= c <= "\u9fff" for c in inc_desc)
-    if (inc_has_zh and not cur_has_zh) or (inc_has_zh == cur_has_zh and len(inc_desc) > len(cur["description"])):
+    inc_desc = (inc.get("description") or "")[:180]
+    cur_bad = is_low_quality_desc(cur["description"])
+    inc_bad = is_low_quality_desc(inc_desc)
+    if cur_bad and not inc_bad:
         cur["description"] = inc_desc
+    elif not inc_bad:
+        cur_has_zh = any("\u4e00" <= c <= "\u9fff" for c in cur["description"])
+        inc_has_zh = any("\u4e00" <= c <= "\u9fff" for c in inc_desc)
+        if (inc_has_zh and not cur_has_zh) or (inc_has_zh == cur_has_zh and len(inc_desc) > len(cur["description"])):
+            cur["description"] = inc_desc
 
     if not cur["icon"] and inc.get("icon"):
         cur["icon"] = inc["icon"]
@@ -1353,6 +1446,9 @@ def merge_and_build(raw_items, source_stats):
             item["icon"] = ""
 
     for item in items:
+        item["description"] = clean_and_enrich_description(
+            item["name"], item["domain"], item["category"], item["description"]
+        )[:180]
         min_rank = item.pop("min_rank", 999)
         editorial_boost = max(0, 60 - min_rank)
         has_zh = any("\u4e00" <= c <= "\u9fff" for c in item["description"])
