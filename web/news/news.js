@@ -7,7 +7,8 @@ import {
   copyWithFeedback,
   safeHttpUrl,
   canTransitionDisplay,
-} from "../nav.js?v=3";
+  initSubmitToolDialog,
+} from "../nav.js?v=4";
 
 const PAGE_BATCH = 24;
 const SUPPORTS_HAS = typeof CSS !== "undefined" && CSS.supports?.("selector(:has(*))");
@@ -397,6 +398,26 @@ function renderNews() {
   }
 }
 
+async function fetchNewsPayload(forceRefresh) {
+  try {
+    const apiUrl = forceRefresh ? `/api/news?refresh=1&t=${Date.now()}` : "/api/news";
+    const res = await fetch(apiUrl, { cache: forceRefresh ? "no-store" : "default" });
+    if (res.ok) {
+      const data = await res.json();
+      if (Array.isArray(data?.items) && data.items.length > 0) {
+        return { data, fromLive: true };
+      }
+    }
+  } catch {
+    // Fall back to static news.json
+  }
+
+  const fallbackRes = await fetch(`../data/news.json?t=${Date.now()}`, { cache: "no-store" });
+  if (!fallbackRes.ok) throw new Error(`HTTP ${fallbackRes.status}`);
+  const fallbackData = await fallbackRes.json();
+  return { data: fallbackData, fromLive: false };
+}
+
 async function loadNews(showFeedback = false) {
   if (isLoading) return;
   isLoading = true;
@@ -405,14 +426,14 @@ async function loadNews(showFeedback = false) {
   if (items.length === 0) renderSkeletons();
 
   try {
-    const res = await fetch(`../data/news.json?t=${Date.now()}`, { cache: "no-store" });
-    if (!res.ok) throw new Error(`HTTP ${res.status}`);
-    const data = await res.json();
+    const { data, fromLive } = await fetchNewsPayload(showFeedback);
     items = Array.isArray(data.items) ? data.items : [];
     topics = Array.isArray(data.topics) ? data.topics : [];
     generatedAt = String(data.generated_at || "");
     renderNews();
-    if (showFeedback) showToast("AI 资讯已刷新");
+    if (showFeedback) {
+      showToast(fromLive ? "AI 资讯已同步最新数据" : "实时接口暂不可用，已加载缓存资讯");
+    }
   } catch {
     loadFailed = true;
     if (items.length === 0) {
@@ -474,6 +495,7 @@ currentNewsNavLink?.addEventListener("click", (event) => {
 });
 
 initSiteNav();
+initSubmitToolDialog(showToast);
 initTopBarScrollHide(els.topBar);
 initThemeToggle(els.themeToggle, els.themeToggleLabel, showToast);
 loadNews(false);

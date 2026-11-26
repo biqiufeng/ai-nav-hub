@@ -6,7 +6,8 @@ import {
   bindSearchBox,
   setRefreshBusy,
   safeHttpUrl,
-} from "../nav.js?v=3";
+  initSubmitToolDialog,
+} from "../nav.js?v=4";
 
 const GROUP_MAP = {
   tech: new Set(["36kr", "sspai", "ithome", "juejin", "csdn"]),
@@ -218,6 +219,26 @@ function renderHotGrid() {
   }
 }
 
+async function fetchHotlistPayload(forceRefresh) {
+  try {
+    const apiUrl = forceRefresh ? `/api/hotlist?refresh=1&t=${Date.now()}` : "/api/hotlist";
+    const res = await fetch(apiUrl, { cache: forceRefresh ? "no-store" : "default" });
+    if (res.ok) {
+      const data = await res.json();
+      if (Array.isArray(data?.platforms) && data.platforms.length > 0) {
+        return { data, fromLive: true };
+      }
+    }
+  } catch {
+    // Fall back to static hotlist.json (e.g. local dev server without Pages Functions)
+  }
+
+  const fallbackRes = await fetch(`../data/hotlist.json?t=${Date.now()}`, { cache: "no-store" });
+  if (!fallbackRes.ok) throw new Error(`HTTP ${fallbackRes.status}`);
+  const fallbackData = await fallbackRes.json();
+  return { data: fallbackData, fromLive: false };
+}
+
 async function loadHotlist(showFeedback = false) {
   hotLoadFailed = false;
   els.hotEmpty.hidden = true;
@@ -225,12 +246,12 @@ async function loadHotlist(showFeedback = false) {
   if (platforms.length === 0) renderHotSkeletons();
 
   try {
-    const res = await fetch(`../data/hotlist.json?t=${Date.now()}`, { cache: "no-store" });
-    if (!res.ok) throw new Error(`HTTP ${res.status}`);
-    const data = await res.json();
+    const { data, fromLive } = await fetchHotlistPayload(showFeedback);
     platforms = Array.isArray(data.platforms) ? data.platforms : [];
     renderHotGrid();
-    if (showFeedback) showToast("热榜已刷新");
+    if (showFeedback) {
+      showToast(fromLive ? "热榜已同步最新数据" : "实时接口暂不可用，已加载缓存热榜");
+    }
   } catch {
     hotLoadFailed = true;
     if (platforms.length === 0) {
@@ -278,6 +299,7 @@ els.hotEmptyBtn.addEventListener("click", () => {
 els.refreshHotBtn.addEventListener("click", () => loadHotlist(true));
 
 initSiteNav();
+initSubmitToolDialog(showToast);
 initTopBarScrollHide(els.topBar);
 initThemeToggle(els.themeToggle, els.themeToggleLabel, showToast);
 loadHotlist(false);
