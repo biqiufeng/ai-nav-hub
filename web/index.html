@@ -30,23 +30,11 @@
   <meta name="twitter:image" content="https://dlzbkj-ai.pages.dev/og-cover.png?v=2">
   <link rel="icon" type="image/png" sizes="64x64" href="./favicon.png?v=5">
   <link rel="apple-touch-icon" sizes="180x180" href="./apple-touch-icon.png?v=5">
-  <link rel="stylesheet" href="./styles.css?v=15">
-  <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "WebSite",
-      "name": "AI 导航聚合站",
-      "url": "https://dlzbkj-ai.pages.dev/",
-      "description": "零广告、免登录、国内直连秒开的国内外主流 AI 工具、前沿资讯与实时热榜聚合站。",
-      "inLanguage": "zh-CN",
-      "potentialAction": {
-        "@type": "SearchAction",
-        "target": "https://dlzbkj-ai.pages.dev/?q={search_term_string}",
-        "query-input": "required name=search_term_string"
-      }
-    }
-  </script>
-  <script type="module" src="./app.js?v=16"></script>
+  <link rel="stylesheet" href="./styles.css?v=16">
+  <link rel="stylesheet" href="./seo-geo.css?v=1">
+  <link rel="alternate" type="application/rss+xml" title="AI 导航聚合站 · 每日 AI 资讯 RSS" href="https://dlzbkj-ai.pages.dev/feed.xml">
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","name":"AI 导航聚合站","url":"https://dlzbkj-ai.pages.dev/","description":"零广告、免登录、国内直连秒开的 AI 工具、每日早报与实时热榜聚合站（收录 9085 款工具）。","inLanguage":"zh-CN","potentialAction":{"@type":"SearchAction","target":"https://dlzbkj-ai.pages.dev/?q={search_term_string}","query-input":"required name=search_term_string"}},{"@type":"ItemList","name":"AI 工具 10 大核心分类专题","itemListElement":[{"@type":"ListItem","position":1,"name":"AI 对话写作工具大全","url":"https://dlzbkj-ai.pages.dev/category/chat-writing/"},{"@type":"ListItem","position":2,"name":"AI 编程开发工具大全","url":"https://dlzbkj-ai.pages.dev/category/coding/"},{"@type":"ListItem","position":3,"name":"AI 图像设计工具大全","url":"https://dlzbkj-ai.pages.dev/category/image-design/"},{"@type":"ListItem","position":4,"name":"AI 视频音频工具大全","url":"https://dlzbkj-ai.pages.dev/category/video-audio/"},{"@type":"ListItem","position":5,"name":"AI 办公效率工具大全","url":"https://dlzbkj-ai.pages.dev/category/office-productivity/"},{"@type":"ListItem","position":6,"name":"AI Agent与自动化工具大全","url":"https://dlzbkj-ai.pages.dev/category/agents-automation/"},{"@type":"ListItem","position":7,"name":"AI 学习知识库工具大全","url":"https://dlzbkj-ai.pages.dev/category/learning-knowledge/"},{"@type":"ListItem","position":8,"name":"AI 影音娱乐工具大全","url":"https://dlzbkj-ai.pages.dev/category/media-leisure/"},{"@type":"ListItem","position":9,"name":"AI 新品速递工具大全","url":"https://dlzbkj-ai.pages.dev/category/new-releases/"},{"@type":"ListItem","position":10,"name":"AI 其他工具工具大全","url":"https://dlzbkj-ai.pages.dev/category/other-tools/"}]},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"AI 导航聚合站收录了哪些 AI 工具？是否收费或有广告？","acceptedAnswer":{"@type":"Answer","text":"本站每日自动聚合国内外 9 大主流公开目录并去重校验，当前共收录 9,085 款 AI 工具（含国内可直连工具 4,147 款、海外主流工具 4,991 款），覆盖对话写作、AI 编程开发、图像设计、视频音频、PPT 办公与 Agent 智能体等 10 大赛道，全站纯静态零广告、免注册登录。"}},{"@type":"Question","name":"如何快速查找国内免翻墙可直连的免费 AI 工具？","acceptedAnswer":{"@type":"Answer","text":"在首页顶部切换「国内主流」标签，或按键盘「/」键输入需求关键词（如“PPT”、“配音”、“编程”、“论文”），即可毫秒级筛选出国内直接秒开的 AI 工具并一键直达官网。"}},{"@type":"Question","name":"除 AI 工具导航外，网站还提供哪些每日更新内容？","acceptedAnswer":{"@type":"Answer","text":"顶部频道内置「AI资讯（/news/）」、「每日AI早报归档（/daily/）」与「14 平台实时科技热榜（/moyu/）」，每 2 小时自动同步最新大模型发布、开源权重与开发者社区热榜，非常适合设为浏览器默认起始页。"}}]}]}</script>
+  <script type="module" src="./app.js?v=17"></script>
 </head>
 <body>
   <header class="top-bar site-header" id="topBar">
@@ -79,7 +67,9 @@
           </button>
           <ul id="site-menu" class="site-menu" popover="auto">
             <li><a href="./" aria-current="page">首页</a></li>
+            <li><a href="./category/">分类专题</a></li>
             <li><a href="./news/">AI资讯</a></li>
+            <li><a href="./daily/">AI早报</a></li>
             <li><a href="./moyu/">热榜</a></li>
           </ul>
         </nav>
@@ -179,7 +169,1380 @@
       </section>
 
       <section class="catalog-section" aria-label="工具列表">
-        <div id="catalogContainer"></div>
+        <div id="catalogContainer">
+          <!-- SEO_PRERENDER_START -->
+          <section class="cat-section" id="cat-_E5_AF_B9_E8_AF_9D_E5_86_99_E4_BD_9C" tabindex="-1">
+            <div class="cat-section__head">
+              <div class="cat-section__title-wrap">
+                <h2 class="cat-section__title">对话写作</h2>
+                <span class="cat-section__count">967 款</span>
+              </div>
+              <a class="cat-section__more" href="./category/chat-writing/">查看全部 967 款 →</a>
+            </div>
+            <div class="cards-grid">
+        <article class="tool-card seo-tool-card">
+          <div class="tool-card__top">
+            <div class="tool-card__head">
+              <div class="tool-avatar" style="--avatar-bg:#34C759" aria-hidden="true"><span>C</span></div>
+              <div class="tool-card__titles">
+                <h3 class="tool-card__name"><a class="seo-tool-card__title-link" href="https://copyleaks.com" target="_blank" rel="noopener noreferrer">CopyLeaks</a></h3>
+                <p class="tool-card__domain">copyleaks.com</p>
+              </div>
+            </div>
+            <div class="tool-card__quick">
+              <a class="icon-btn" href="https://copyleaks.com" target="_blank" rel="noopener noreferrer" aria-label="直接访问 CopyLeaks">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M7 7h10v10"/></svg>
+              </a>
+            </div>
+          </div>
+          <p class="tool-card__desc">Copyleaks是一款基于AI的内容检测平台，为全球数百万用户所使用。其主要功能包括验证内容是否由人类或AI创作、检测抄袭和改写内容、提供写作辅助等。这款产品的重要性在于它能够确保文本的真实性，保护知识产权，促进学术诚信和合规性。其主要优点包括高精度的检测、全面的功能覆盖、多平台集成等。产品的背景是随着AI内容生成技</p>
+          <div class="tool-card__foot">
+            <span class="tag-chip">对话写作</span>
+            <span class="region-hint">国内 · 海外双收录</span>
+          </div>
+        </article>
+        <article class="tool-card seo-tool-card">
+          <div class="tool-card__top">
+            <div class="tool-card__head">
+              <div class="tool-avatar" style="--avatar-bg:#30B0C7" aria-hidden="true"><span>知</span></div>
+              <div class="tool-card__titles">
+                <h3 class="tool-card__name"><a class="seo-tool-card__title-link" href="https://zhida.zhihu.com" target="_blank" rel="noopener noreferrer">知乎直答</a></h3>
+                <p class="tool-card__domain">zhida.zhihu.com</p>
+              </div>
+            </div>
+            <div class="tool-card__quick">
+              <a class="icon-btn" href="https://zhida.zhihu.com" target="_blank" rel="noopener noreferrer" aria-label="直接访问 知乎直答">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M7 7h10v10"/></svg>
+              </a>
+            </div>
+          </div>
+          <p class="tool-card__desc">知乎直答是知乎运用AI大模型等先进技术打造的产品。它以知乎社区的优质内容为核心数据，还借助多种数据源进行辅助。其重要性在于，为用户提供了全新、可靠的信息获取途径。该产品具备多智能体系统，可满足用户多维度需求，同时会对生成结果进行溯源，能够保障内容的可信度，尊重知识产权和版权。产品定位是拉近创作者和用户之间的距离，为用户</p>
+          <div class="tool-card__foot">
+            <span class="tag-chip">对话写作</span>
+            <span class="region-hint">国内直连</span>
+          </div>
+        </article>
+        <article class="tool-card seo-tool-card">
+          <div class="tool-card__top">
+            <div class="tool-card__head">
+              <div class="tool-avatar" style="--avatar-bg:#0A84FF" aria-hidden="true"><span>秘</span></div>
+              <div class="tool-card__titles">
+                <h3 class="tool-card__name"><a class="seo-tool-card__title-link" href="https://metaso.cn" target="_blank" rel="noopener noreferrer">秘塔AI搜索</a></h3>
+                <p class="tool-card__domain">metaso.cn</p>
+              </div>
+            </div>
+            <div class="tool-card__quick">
+              <a class="icon-btn" href="https://metaso.cn" target="_blank" rel="noopener noreferrer" aria-label="直接访问 秘塔AI搜索">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M7 7h10v10"/></svg>
+              </a>
+            </div>
+          </div>
+          <p class="tool-card__desc">秘塔AI搜索是一款具有高效搜索能力的工具。其重要性在于为用户节省时间，能够避免广告的干扰，直接呈现搜索结果。主要优点是没有广告，能够快速直达结果，使用户可以迅速获取所需信息。产品背景方面，可能是为了满足用户对于纯净、高效搜索环境的需求而开发。价格方面，未明确提及，推测为免费使用，定位是为各类用户提供便捷、高效的搜索服务</p>
+          <div class="tool-card__foot">
+            <span class="tag-chip">对话写作</span>
+            <span class="region-hint">国内直连</span>
+          </div>
+        </article>
+        <article class="tool-card seo-tool-card">
+          <div class="tool-card__top">
+            <div class="tool-card__head">
+              <div class="tool-avatar" style="--avatar-bg:#34C759" aria-hidden="true"><span>C</span></div>
+              <div class="tool-card__titles">
+                <h3 class="tool-card__name"><a class="seo-tool-card__title-link" href="https://consensus.app" target="_blank" rel="noopener noreferrer">Consensus</a></h3>
+                <p class="tool-card__domain">consensus.app</p>
+              </div>
+            </div>
+            <div class="tool-card__quick">
+              <a class="icon-btn" href="https://consensus.app" target="_blank" rel="noopener noreferrer" aria-label="直接访问 Consensus">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M7 7h10v10"/></svg>
+              </a>
+            </div>
+          </div>
+          <p class="tool-card__desc">Consensus是一款利用人工智能技术的搜索引擎，其核心功能是在大量科学研究资料中快速准确地找到用户所需的答案。它的重要性在于极大地提高了科研工作者、学生等人群获取信息的效率。主要优点包括利用AI算法精准检索、涵盖多学科的科研内容、搜索过程免费等。该产品定位为面向科研和学习人群的高效信息检索工具，免费供用户使用。</p>
+          <div class="tool-card__foot">
+            <span class="tag-chip">对话写作</span>
+            <span class="region-hint">国内 · 海外双收录</span>
+          </div>
+        </article>
+        <article class="tool-card seo-tool-card">
+          <div class="tool-card__top">
+            <div class="tool-card__head">
+              <div class="tool-avatar" style="--avatar-bg:#BF5AF2" aria-hidden="true"><span>文</span></div>
+              <div class="tool-card__titles">
+                <h3 class="tool-card__name"><a class="seo-tool-card__title-link" href="https://effidit.qq.com" target="_blank" rel="noopener noreferrer">文涌Effidit</a></h3>
+                <p class="tool-card__domain">effidit.qq.com</p>
+              </div>
+            </div>
+            <div class="tool-card__quick">
+              <a class="icon-btn" href="https://effidit.qq.com" target="_blank" rel="noopener noreferrer" aria-label="直接访问 文涌Effidit">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M7 7h10v10"/></svg>
+              </a>
+            </div>
+          </div>
+          <p class="tool-card__desc">Effidit是腾讯AI Lab开发的研究性原型系统，旨在利用AI技术提升写作效率和创作体验。该产品定位为专业的智能写作辅助工具，支持通用版和学术版。其核心技术基于自然语言处理（NLP），能够对文本进行多方面的处理和优化。产品提供免费使用，用户无需支付费用即可享受其丰富的功能，适用于各类需要进行写作的人群。</p>
+          <div class="tool-card__foot">
+            <span class="tag-chip">对话写作</span>
+            <span class="region-hint">国内直连</span>
+          </div>
+        </article>
+        <article class="tool-card seo-tool-card">
+          <div class="tool-card__top">
+            <div class="tool-card__head">
+              <div class="tool-avatar" style="--avatar-bg:#BF5AF2" aria-hidden="true"><span>A</span></div>
+              <div class="tool-card__titles">
+                <h3 class="tool-card__name"><a class="seo-tool-card__title-link" href="https://writer.com/ai-content-detector" target="_blank" rel="noopener noreferrer">AI Content Detector</a></h3>
+                <p class="tool-card__domain">writer.com</p>
+              </div>
+            </div>
+            <div class="tool-card__quick">
+              <a class="icon-btn" href="https://writer.com/ai-content-detector" target="_blank" rel="noopener noreferrer" aria-label="直接访问 AI Content Detector">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M7 7h10v10"/></svg>
+              </a>
+            </div>
+          </div>
+          <p class="tool-card__desc">WRITER的AI内容检测器是一款免费工具，可检查内容中人为撰写的比例。其重要性在于帮助用户识别内容是否为AI生成，以便在发布前进行调整。主要优点包括免费使用、支持输入文本或URL、可检测长达5000字的内容。该产品背景是随着AI生成内容的普及，市场对检测工具的需求增加。价格方面，检测功能免费，AI内容检测仅在Writ</p>
+          <div class="tool-card__foot">
+            <span class="tag-chip">对话写作</span>
+            <span class="region-hint">国内直连</span>
+          </div>
+        </article>
+            </div>
+          </section>
+          <section class="cat-section" id="cat-_E7_BC_96_E7_A8_8B_E5_BC_80_E5_8F_91" tabindex="-1">
+            <div class="cat-section__head">
+              <div class="cat-section__title-wrap">
+                <h2 class="cat-section__title">编程开发</h2>
+                <span class="cat-section__count">855 款</span>
+              </div>
+              <a class="cat-section__more" href="./category/coding/">查看全部 855 款 →</a>
+            </div>
+            <div class="cards-grid">
+        <article class="tool-card seo-tool-card">
+          <div class="tool-card__top">
+            <div class="tool-card__head">
+              <div class="tool-avatar" style="--avatar-bg:#0A84FF" aria-hidden="true"><span>H</span></div>
+              <div class="tool-card__titles">
+                <h3 class="tool-card__name"><a class="seo-tool-card__title-link" href="https://huggingface.co" target="_blank" rel="noopener noreferrer">HuggingFace</a></h3>
+                <p class="tool-card__domain">huggingface.co</p>
+              </div>
+            </div>
+            <div class="tool-card__quick">
+              <a class="icon-btn" href="https://huggingface.co" target="_blank" rel="noopener noreferrer" aria-label="直接访问 HuggingFace">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M7 7h10v10"/></svg>
+              </a>
+            </div>
+          </div>
+          <p class="tool-card__desc">Hugging Face是一个人工智能社区平台，致力于通过开源和开放科学的方式推进和普及人工智能。它为机器学习社区提供了一个协作平台，用户可以在上面创建、发现和协作完成各类机器学习任务。其重要性在于打破了人工智能技术的壁垒，使得更多人能够参与到AI开发中来。平台提供了丰富的模型、数据集和应用，涵盖文本、图像、视频、音频</p>
+          <div class="tool-card__foot">
+            <span class="tag-chip">编程开发</span>
+            <span class="region-hint">国内直连</span>
+          </div>
+        </article>
+        <article class="tool-card seo-tool-card">
+          <div class="tool-card__top">
+            <div class="tool-card__head">
+              <div class="tool-avatar" style="--avatar-bg:#AF52DE" aria-hidden="true"><span>P</span></div>
+              <div class="tool-card__titles">
+                <h3 class="tool-card__name"><a class="seo-tool-card__title-link" href="https://prompthero.com" target="_blank" rel="noopener noreferrer">PromptHero</a></h3>
+                <p class="tool-card__domain">prompthero.com</p>
+              </div>
+            </div>
+            <div class="tool-card__quick">
+              <a class="icon-btn" href="https://prompthero.com" target="_blank" rel="noopener noreferrer" aria-label="直接访问 PromptHero">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M7 7h10v10"/></svg>
+              </a>
+            </div>
+          </div>
+          <p class="tool-card__desc">PromptHero是一个专注于人工智能和提示工程的网站，被称为提示工程领域的第一网站。它的主要功能是提供搜索功能，让用户可以查找适用于各种AI模型（如Stable Diffusion、ChatGPT、Midjourney等）的最佳提示词。其重要性在于降低了用户使用AI模型生成内容的难度，使用户能够更精准、高效地获得符</p>
+          <div class="tool-card__foot">
+            <span class="tag-chip">编程开发</span>
+            <span class="region-hint">国内 · 海外双收录</span>
+          </div>
+        </article>
+        <article class="tool-card seo-tool-card">
+          <div class="tool-card__top">
+            <div class="tool-card__head">
+              <div class="tool-avatar" style="--avatar-bg:#0A84FF" aria-hidden="true"><span>亚</span></div>
+              <div class="tool-card__titles">
+                <h3 class="tool-card__name"><a class="seo-tool-card__title-link" href="https://aws.amazon.com/codewhisperer" target="_blank" rel="noopener noreferrer">亚马逊 CodeWhisperer</a></h3>
+                <p class="tool-card__domain">aws.amazon.com</p>
+              </div>
+            </div>
+            <div class="tool-card__quick">
+              <a class="icon-btn" href="https://aws.amazon.com/codewhisperer" target="_blank" rel="noopener noreferrer" aria-label="直接访问 亚马逊 CodeWhisperer">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M7 7h10v10"/></svg>
+              </a>
+            </div>
+          </div>
+          <p class="tool-card__desc">Amazon Q Developer是由亚马逊云服务（AWS）推出的一款强大的生成式AI驱动的软件开发助手。它在构建、运营和转型软件方面具备出色能力，尤其在数据管理和AI/ML领域有先进的功能。其重要性在于能够极大提高软件开发的效率和质量，帮助开发者更轻松应对各种复杂任务。该产品的主要优点包括自动化提高效率、使用AI技</p>
+          <div class="tool-card__foot">
+            <span class="tag-chip">编程开发</span>
+            <span class="region-hint">国内直连</span>
+          </div>
+        </article>
+        <article class="tool-card seo-tool-card">
+          <div class="tool-card__top">
+            <div class="tool-card__head">
+              <div class="tool-avatar" style="--avatar-bg:#5E5CE6" aria-hidden="true"><span>文</span></div>
+              <div class="tool-card__titles">
+                <h3 class="tool-card__name"><a class="seo-tool-card__title-link" href="https://comate.baidu.com" target="_blank" rel="noopener noreferrer">文心快码</a></h3>
+                <p class="tool-card__domain">comate.baidu.com</p>
+              </div>
+            </div>
+            <div class="tool-card__quick">
+              <a class="icon-btn" href="https://comate.baidu.com" target="_blank" rel="noopener noreferrer" aria-label="直接访问 文心快码">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M7 7h10v10"/></svg>
+              </a>
+            </div>
+          </div>
+          <p class="tool-card__desc">文心快码（Baidu Comate）是百度依托文心大模型所研发出的编程辅助工具。其主要重要性在于能极大提升开发者的编码效率，把开发者从繁琐重复的编码工作中解放出来。该产品具备多种实用功能，支持上百种编程语言，定位为广大开发者提供高效便捷的编程辅助。目前未提及价格相关信息，推测可能免费提供给开发者使用。</p>
+          <div class="tool-card__foot">
+            <span class="tag-chip">编程开发</span>
+            <span class="region-hint">国内直连</span>
+          </div>
+        </article>
+        <article class="tool-card seo-tool-card">
+          <div class="tool-card__top">
+            <div class="tool-card__head">
+              <div class="tool-avatar" style="--avatar-bg:#34C759" aria-hidden="true"><span>G</span></div>
+              <div class="tool-card__titles">
+                <h3 class="tool-card__name"><a class="seo-tool-card__title-link" href="https://github.com/features/copilot" target="_blank" rel="noopener noreferrer">GitHub Copilot</a></h3>
+                <p class="tool-card__domain">github.com</p>
+              </div>
+            </div>
+            <div class="tool-card__quick">
+              <a class="icon-btn" href="https://github.com/features/copilot" target="_blank" rel="noopener noreferrer" aria-label="直接访问 GitHub Copilot">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M7 7h10v10"/></svg>
+              </a>
+            </div>
+          </div>
+          <p class="tool-card__desc">GitHub Copilot是GitHub推出的人工智能编程助手，与主流代码编辑器集成，借助AI技术理解代码上下文并给出合理代码建议。它能提升编程效率、减少错误，让开发者将精力集中于核心逻辑。产品有面向个人和企业的版本，具备企业级安全与AI功能，还有高级安全特性、24×7支持等。虽页面未明确价格，但从企业级功能推测有付</p>
+          <div class="tool-card__foot">
+            <span class="tag-chip">编程开发</span>
+            <span class="region-hint">国内直连</span>
+          </div>
+        </article>
+        <article class="tool-card seo-tool-card">
+          <div class="tool-card__top">
+            <div class="tool-card__head">
+              <div class="tool-avatar" style="--avatar-bg:#FF375F" aria-hidden="true"><span>C</span></div>
+              <div class="tool-card__titles">
+                <h3 class="tool-card__name"><a class="seo-tool-card__title-link" href="https://codefuse.alipay.com" target="_blank" rel="noopener noreferrer">CodeFuse</a></h3>
+                <p class="tool-card__domain">codefuse.alipay.com</p>
+              </div>
+            </div>
+            <div class="tool-card__quick">
+              <a class="icon-btn" href="https://codefuse.alipay.com" target="_blank" rel="noopener noreferrer" aria-label="直接访问 CodeFuse">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M7 7h10v10"/></svg>
+              </a>
+            </div>
+          </div>
+          <p class="tool-card__desc">从页面内容来看，该产品可能是与编程相关的样式框架或组件库，常用于构建表单等页面元素。重要性在于提供统一的样式规范，能提高开发效率，减少重复劳动。主要优点是样式丰富、有完善的表单组件和状态处理，还能确保不同设备上的显示一致性。背景信息不详，价格未知，定位为辅助编程开发的工具。</p>
+          <div class="tool-card__foot">
+            <span class="tag-chip">编程开发</span>
+            <span class="region-hint">国内直连</span>
+          </div>
+        </article>
+            </div>
+          </section>
+          <section class="cat-section" id="cat-_E5_9B_BE_E5_83_8F_E8_AE_BE_E8_AE_A1" tabindex="-1">
+            <div class="cat-section__head">
+              <div class="cat-section__title-wrap">
+                <h2 class="cat-section__title">图像设计</h2>
+                <span class="cat-section__count">1225 款</span>
+              </div>
+              <a class="cat-section__more" href="./category/image-design/">查看全部 1225 款 →</a>
+            </div>
+            <div class="cards-grid">
+        <article class="tool-card seo-tool-card">
+          <div class="tool-card__top">
+            <div class="tool-card__head">
+              <div class="tool-avatar" style="--avatar-bg:#AF52DE" aria-hidden="true"><span>R</span></div>
+              <div class="tool-card__titles">
+                <h3 class="tool-card__name"><a class="seo-tool-card__title-link" href="https://www.recraft.ai" target="_blank" rel="noopener noreferrer">Recraft AI</a></h3>
+                <p class="tool-card__domain">recraft.ai</p>
+              </div>
+            </div>
+            <div class="tool-card__quick">
+              <a class="icon-btn" href="https://www.recraft.ai" target="_blank" rel="noopener noreferrer" aria-label="直接访问 Recraft AI">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M7 7h10v10"/></svg>
+              </a>
+            </div>
+          </div>
+          <p class="tool-card__desc">Recraft是一款面向设计师的高级图像生成与编辑工具。它的重要性体现在为设计师提供了一站式的图像创作与设计解决方案。主要优点包括拥有自定义V3模型，能提供可预测的结果；具有直观的操作界面和丰富多样的风格选项，可让设计师快速探索和完善创意；支持全矢量、精确的文本生成等，确保设计质量。该产品定位为专业设计师及创意工作者提</p>
+          <div class="tool-card__foot">
+            <span class="tag-chip">图像设计</span>
+            <span class="region-hint">国内直连</span>
+          </div>
+        </article>
+        <article class="tool-card seo-tool-card">
+          <div class="tool-card__top">
+            <div class="tool-card__head">
+              <div class="tool-avatar" style="--avatar-bg:#AF52DE" aria-hidden="true"><span>可</span></div>
+              <div class="tool-card__titles">
+                <h3 class="tool-card__name"><a class="seo-tool-card__title-link" href="https://app.klingai.com/cn" target="_blank" rel="noopener noreferrer">可灵AI</a></h3>
+                <p class="tool-card__domain">app.klingai.com</p>
+              </div>
+            </div>
+            <div class="tool-card__quick">
+              <a class="icon-btn" href="https://app.klingai.com/cn" target="_blank" rel="noopener noreferrer" aria-label="直接访问 可灵AI">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M7 7h10v10"/></svg>
+              </a>
+            </div>
+          </div>
+          <p class="tool-card__desc">可灵AI是一款新一代的AI创意生产力平台，它运用先进的生成式AI技术，为内容创作者提供了强大的工具。其核心技术是可灵2.1模型，运动质量更高，视频表现更美更灵动，指令响应也更出色。平台支持视频生成、图像制作以及高级编辑等功能，能满足内容创作者的多样化需求。价格方面，会员低至1.99元，同时登录会员还可享受高品质生成模式</p>
+          <div class="tool-card__foot">
+            <span class="tag-chip">图像设计</span>
+            <span class="region-hint">国内直连</span>
+          </div>
+        </article>
+        <article class="tool-card seo-tool-card">
+          <div class="tool-card__top">
+            <div class="tool-card__head">
+              <div class="tool-avatar" style="--avatar-bg:#FF375F" aria-hidden="true"><span>M</span></div>
+              <div class="tool-card__titles">
+                <h3 class="tool-card__name"><a class="seo-tool-card__title-link" href="https://www.midjourney.com/home" target="_blank" rel="noopener noreferrer">Midjourney</a></h3>
+                <p class="tool-card__domain">midjourney.com</p>
+              </div>
+            </div>
+            <div class="tool-card__quick">
+              <a class="icon-btn" href="https://www.midjourney.com/home" target="_blank" rel="noopener noreferrer" aria-label="直接访问 Midjourney">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M7 7h10v10"/></svg>
+              </a>
+            </div>
+          </div>
+          <p class="tool-card__desc">Midjourney是一个独立研究实验室，致力于探索新的思维媒介并拓展人类的想象力。其核心技术可能围绕人工智能展开，通过AI算法帮助用户将想象转化为图像。该产品的主要优点在于能够激发用户的创造力，让用户轻松创造出各种风格的图像。团队规模较小且自筹资金，成员包括全职员工和专业顾问。关于价格暂未提及，产品定位是为用户提供一</p>
+          <div class="tool-card__foot">
+            <span class="tag-chip">图像设计</span>
+            <span class="region-hint">国内直连</span>
+          </div>
+        </article>
+        <article class="tool-card seo-tool-card">
+          <div class="tool-card__top">
+            <div class="tool-card__head">
+              <div class="tool-avatar" style="--avatar-bg:#BF5AF2" aria-hidden="true"><span>文</span></div>
+              <div class="tool-card__titles">
+                <h3 class="tool-card__name"><a class="seo-tool-card__title-link" href="https://yige.baidu.com" target="_blank" rel="noopener noreferrer">文心一格</a></h3>
+                <p class="tool-card__domain">yige.baidu.com</p>
+              </div>
+            </div>
+            <div class="tool-card__quick">
+              <a class="icon-btn" href="https://yige.baidu.com" target="_blank" rel="noopener noreferrer" aria-label="直接访问 文心一格">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M7 7h10v10"/></svg>
+              </a>
+            </div>
+          </div>
+          <p class="tool-card__desc">百度开发，每日签到送电量（约5张图/天），国风场景效果极佳，支持商用（需注明来源）</p>
+          <div class="tool-card__foot">
+            <span class="tag-chip">图像设计</span>
+            <span class="region-hint">国内直连</span>
+          </div>
+        </article>
+        <article class="tool-card seo-tool-card">
+          <div class="tool-card__top">
+            <div class="tool-card__head">
+              <div class="tool-avatar" style="--avatar-bg:#0A84FF" aria-hidden="true"><span>堆</span></div>
+              <div class="tool-card__titles">
+                <h3 class="tool-card__name"><a class="seo-tool-card__title-link" href="https://d.design" target="_blank" rel="noopener noreferrer">堆友AI</a></h3>
+                <p class="tool-card__domain">d.design</p>
+              </div>
+            </div>
+            <div class="tool-card__quick">
+              <a class="icon-btn" href="https://d.design" target="_blank" rel="noopener noreferrer" aria-label="直接访问 堆友AI">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M7 7h10v10"/></svg>
+              </a>
+            </div>
+          </div>
+          <p class="tool-card__desc">堆友是Alibaba Design打造的设计师全成长周期服务平台，围绕品质、效率、技能、成就、收入五大用户价值布局平台能力，全力服务设计师，旨在成为设计师的好朋友。堆友历经大厂设计师团队多轮打磨雕刻，集海量高品质3D素材、实时在线渲染、多元场景功能应用、轻便好学易上手等多重优势于一身的设计神器，更自带免费可商用属性，为</p>
+          <div class="tool-card__foot">
+            <span class="tag-chip">图像设计</span>
+            <span class="region-hint">国内直连</span>
+          </div>
+        </article>
+        <article class="tool-card seo-tool-card">
+          <div class="tool-card__top">
+            <div class="tool-card__head">
+              <div class="tool-avatar" style="--avatar-bg:#0A84FF" aria-hidden="true"><span>阿</span></div>
+              <div class="tool-card__titles">
+                <h3 class="tool-card__name"><a class="seo-tool-card__title-link" href="https://abeiai.com?r=133" target="_blank" rel="noopener noreferrer">阿贝智能</a></h3>
+                <p class="tool-card__domain">abeiai.com</p>
+              </div>
+            </div>
+            <div class="tool-card__quick">
+              <a class="icon-btn" href="https://abeiai.com?r=133" target="_blank" rel="noopener noreferrer" aria-label="直接访问 阿贝智能">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M7 7h10v10"/></svg>
+              </a>
+            </div>
+          </div>
+          <p class="tool-card__desc">一站式 AI 绘本创作平台，专为儿童教育设计</p>
+          <div class="tool-card__foot">
+            <span class="tag-chip">图像设计</span>
+            <span class="region-hint">国内直连</span>
+          </div>
+        </article>
+            </div>
+          </section>
+          <section class="cat-section" id="cat-_E8_A7_86_E9_A2_91_E9_9F_B3_E9_A2_91" tabindex="-1">
+            <div class="cat-section__head">
+              <div class="cat-section__title-wrap">
+                <h2 class="cat-section__title">视频音频</h2>
+                <span class="cat-section__count">1117 款</span>
+              </div>
+              <a class="cat-section__more" href="./category/video-audio/">查看全部 1117 款 →</a>
+            </div>
+            <div class="cards-grid">
+        <article class="tool-card seo-tool-card">
+          <div class="tool-card__top">
+            <div class="tool-card__head">
+              <div class="tool-avatar" style="--avatar-bg:#0A84FF" aria-hidden="true"><span>A</span></div>
+              <div class="tool-card__titles">
+                <h3 class="tool-card__name"><a class="seo-tool-card__title-link" href="https://podcast.adobe.com" target="_blank" rel="noopener noreferrer">Adobe Podcast</a></h3>
+                <p class="tool-card__domain">podcast.adobe.com</p>
+              </div>
+            </div>
+            <div class="tool-card__quick">
+              <a class="icon-btn" href="https://podcast.adobe.com" target="_blank" rel="noopener noreferrer" aria-label="直接访问 Adobe Podcast">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M7 7h10v10"/></svg>
+              </a>
+            </div>
+          </div>
+          <p class="tool-card__desc">Adobe Podcast是Adobe推出的新一代基于网页的AI音频录制与编辑工具。其重要性在于它为用户提供了一站式的音频处理解决方案，无需复杂安装，打开网页即可使用。主要优点包括操作便捷、音频质量高、自带AI转录等功能。产品背景依托于Adobe强大的技术实力和在创意软件领域的深厚积累。价格信息未提及，从描述推测可能会</p>
+          <div class="tool-card__foot">
+            <span class="tag-chip">视频音频</span>
+            <span class="region-hint">国内 · 海外双收录</span>
+          </div>
+        </article>
+        <article class="tool-card seo-tool-card">
+          <div class="tool-card__top">
+            <div class="tool-card__head">
+              <div class="tool-avatar" style="--avatar-bg:#5E5CE6" aria-hidden="true"><span>魔</span></div>
+              <div class="tool-card__titles">
+                <h3 class="tool-card__name"><a class="seo-tool-card__title-link" href="https://www.moyin.com" target="_blank" rel="noopener noreferrer">魔音工坊</a></h3>
+                <p class="tool-card__domain">moyin.com</p>
+              </div>
+            </div>
+            <div class="tool-card__quick">
+              <a class="icon-btn" href="https://www.moyin.com" target="_blank" rel="noopener noreferrer" aria-label="直接访问 魔音工坊">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M7 7h10v10"/></svg>
+              </a>
+            </div>
+          </div>
+          <p class="tool-card__desc">500+真人音色，支持多音字/停顿/情感调节，免费版限每日生成额度 。</p>
+          <div class="tool-card__foot">
+            <span class="tag-chip">视频音频</span>
+            <span class="region-hint">国内直连</span>
+          </div>
+        </article>
+        <article class="tool-card seo-tool-card">
+          <div class="tool-card__top">
+            <div class="tool-card__head">
+              <div class="tool-avatar" style="--avatar-bg:#30B0C7" aria-hidden="true"><span>S</span></div>
+              <div class="tool-card__titles">
+                <h3 class="tool-card__name"><a class="seo-tool-card__title-link" href="https://www.suno.ai" target="_blank" rel="noopener noreferrer">Suno</a></h3>
+                <p class="tool-card__domain">suno.ai</p>
+              </div>
+            </div>
+            <div class="tool-card__quick">
+              <a class="icon-btn" href="https://www.suno.ai" target="_blank" rel="noopener noreferrer" aria-label="直接访问 Suno">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M7 7h10v10"/></svg>
+              </a>
+            </div>
+          </div>
+          <p class="tool-card__desc">Suno是一款前沿的AI音乐生成平台，借助先进的AI技术，让用户能够在短时间内生成原创音乐。该平台的重要性在于打破了音乐创作的门槛，使得普通人也能轻松创作出高质量的音乐作品。其主要优点包括操作简便、创作速度快、音乐质量高，并且支持多种方式进行创作。平台提供了三种不同的收费计划：免费计划每月0美元，可使用v3.5模型，每</p>
+          <div class="tool-card__foot">
+            <span class="tag-chip">视频音频</span>
+            <span class="region-hint">国内直连</span>
+          </div>
+        </article>
+        <article class="tool-card seo-tool-card">
+          <div class="tool-card__top">
+            <div class="tool-card__head">
+              <div class="tool-avatar" style="--avatar-bg:#0A84FF" aria-hidden="true"><span>M</span></div>
+              <div class="tool-card__titles">
+                <h3 class="tool-card__name"><a class="seo-tool-card__title-link" href="https://mubert.com" target="_blank" rel="noopener noreferrer">Mubert</a></h3>
+                <p class="tool-card__domain">mubert.com</p>
+              </div>
+            </div>
+            <div class="tool-card__quick">
+              <a class="icon-btn" href="https://mubert.com" target="_blank" rel="noopener noreferrer" aria-label="直接访问 Mubert">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M7 7h10v10"/></svg>
+              </a>
+            </div>
+          </div>
+          <p class="tool-card__desc">提供无限量免版税背景音乐，适合视频/游戏配乐，免费版输出音频带水印</p>
+          <div class="tool-card__foot">
+            <span class="tag-chip">视频音频</span>
+            <span class="region-hint">国内直连</span>
+          </div>
+        </article>
+        <article class="tool-card seo-tool-card">
+          <div class="tool-card__top">
+            <div class="tool-card__head">
+              <div class="tool-avatar" style="--avatar-bg:#34C759" aria-hidden="true"><span>N</span></div>
+              <div class="tool-card__titles">
+                <h3 class="tool-card__name"><a class="seo-tool-card__title-link" href="https://www.naturalreaders.com" target="_blank" rel="noopener noreferrer">NaturalReader</a></h3>
+                <p class="tool-card__domain">naturalreaders.com</p>
+              </div>
+            </div>
+            <div class="tool-card__quick">
+              <a class="icon-btn" href="https://www.naturalreaders.com" target="_blank" rel="noopener noreferrer" aria-label="直接访问 NaturalReader">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M7 7h10v10"/></svg>
+              </a>
+            </div>
+          </div>
+          <p class="tool-card__desc">NaturalReader是NaturalSoft Limited推出的文本转语音工具。它运用深度学习、神经网络及大语言模型等技术，生成高度逼真的AI语音。优点众多，提供多种类型声音，支持多语言和格式，内容理解能力强，还有辅助功能提升可访问性。产品定位广泛，涵盖个人、商业和教育领域。价格方面，有免费版本，商业和教育使用</p>
+          <div class="tool-card__foot">
+            <span class="tag-chip">视频音频</span>
+            <span class="region-hint">国内直连</span>
+          </div>
+        </article>
+        <article class="tool-card seo-tool-card">
+          <div class="tool-card__top">
+            <div class="tool-card__head">
+              <div class="tool-avatar" style="--avatar-bg:#FF9F0A" aria-hidden="true"><span>P</span></div>
+              <div class="tool-card__titles">
+                <h3 class="tool-card__name"><a class="seo-tool-card__title-link" href="https://pika.art" target="_blank" rel="noopener noreferrer">Pika</a></h3>
+                <p class="tool-card__domain">pika.art</p>
+              </div>
+            </div>
+            <div class="tool-card__quick">
+              <a class="icon-btn" href="https://pika.art" target="_blank" rel="noopener noreferrer" aria-label="直接访问 Pika">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M7 7h10v10"/></svg>
+              </a>
+            </div>
+          </div>
+          <p class="tool-card__desc">Futurepedia 收录的海外 AI 工具（video-enhancer）</p>
+          <div class="tool-card__foot">
+            <span class="tag-chip">视频音频</span>
+            <span class="region-hint">国内 · 海外双收录</span>
+          </div>
+        </article>
+            </div>
+          </section>
+          <section class="cat-section" id="cat-_E5_8A_9E_E5_85_AC_E6_95_88_E7_8E_87" tabindex="-1">
+            <div class="cat-section__head">
+              <div class="cat-section__title-wrap">
+                <h2 class="cat-section__title">办公效率</h2>
+                <span class="cat-section__count">2351 款</span>
+              </div>
+              <a class="cat-section__more" href="./category/office-productivity/">查看全部 2351 款 →</a>
+            </div>
+            <div class="cards-grid">
+        <article class="tool-card seo-tool-card">
+          <div class="tool-card__top">
+            <div class="tool-card__head">
+              <div class="tool-avatar" style="--avatar-bg:#FF375F" aria-hidden="true"><span>A</span></div>
+              <div class="tool-card__titles">
+                <h3 class="tool-card__name"><a class="seo-tool-card__title-link" href="https://www.aippt.cn" target="_blank" rel="noopener noreferrer">AiPPT &amp;#8211; 全智能 AI 一键生成 PPT</a></h3>
+                <p class="tool-card__domain">aippt.cn</p>
+              </div>
+            </div>
+            <div class="tool-card__quick">
+              <a class="icon-btn" href="https://www.aippt.cn" target="_blank" rel="noopener noreferrer" aria-label="直接访问 AiPPT &amp;#8211; 全智能 AI 一键生成 PPT">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M7 7h10v10"/></svg>
+              </a>
+            </div>
+          </div>
+          <p class="tool-card__desc">AiPPT是一款结合最新AI技术的PPT生成工具，主要功能为帮助用户一键生成高质量PPT。它的重要性在于极大地简化了PPT设计流程，解决了传统PPT制作耗时长、难度大等问题。其主要优点有：快速生成符合需求的专业PPT，提升工作效率；提供海量精品模板，满足不同风格需求；能自动生成PPT大纲和文案，减轻用户文案构思负担。该</p>
+          <div class="tool-card__foot">
+            <span class="tag-chip">办公效率</span>
+            <span class="region-hint">国内直连</span>
+          </div>
+        </article>
+        <article class="tool-card seo-tool-card">
+          <div class="tool-card__top">
+            <div class="tool-card__head">
+              <div class="tool-avatar" style="--avatar-bg:#30B0C7" aria-hidden="true"><span>N</span></div>
+              <div class="tool-card__titles">
+                <h3 class="tool-card__name"><a class="seo-tool-card__title-link" href="https://www.napkin.ai" target="_blank" rel="noopener noreferrer">Napkin</a></h3>
+                <p class="tool-card__domain">napkin.ai</p>
+              </div>
+            </div>
+            <div class="tool-card__quick">
+              <a class="icon-btn" href="https://www.napkin.ai" target="_blank" rel="noopener noreferrer" aria-label="直接访问 Napkin">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M7 7h10v10"/></svg>
+              </a>
+            </div>
+          </div>
+          <p class="tool-card__desc">将用户输入的文本自动转换为可视化图表（如信息图、思维导图、流程图、数据图表等），帮助用户快速创建专业的商业演示内容，支持多格式导出与团队协作。​</p>
+          <div class="tool-card__foot">
+            <span class="tag-chip">办公效率</span>
+            <span class="region-hint">国内直连</span>
+          </div>
+        </article>
+        <article class="tool-card seo-tool-card">
+          <div class="tool-card__top">
+            <div class="tool-card__head">
+              <div class="tool-avatar" style="--avatar-bg:#5E5CE6" aria-hidden="true"><span>P</span></div>
+              <div class="tool-card__titles">
+                <h3 class="tool-card__name"><a class="seo-tool-card__title-link" href="https://www.processon.com?full_name=Peace" target="_blank" rel="noopener noreferrer">ProcessOn</a></h3>
+                <p class="tool-card__domain">processon.com</p>
+              </div>
+            </div>
+            <div class="tool-card__quick">
+              <a class="icon-btn" href="https://www.processon.com?full_name=Peace" target="_blank" rel="noopener noreferrer" aria-label="直接访问 ProcessOn">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M7 7h10v10"/></svg>
+              </a>
+            </div>
+          </div>
+          <p class="tool-card__desc">在线AI流程图和思维导图制作工具</p>
+          <div class="tool-card__foot">
+            <span class="tag-chip">办公效率</span>
+            <span class="region-hint">国内直连</span>
+          </div>
+        </article>
+        <article class="tool-card seo-tool-card">
+          <div class="tool-card__top">
+            <div class="tool-card__head">
+              <div class="tool-avatar" style="--avatar-bg:#34C759" aria-hidden="true"><span>T</span></div>
+              <div class="tool-card__titles">
+                <h3 class="tool-card__name"><a class="seo-tool-card__title-link" href="https://tinywow.com" target="_blank" rel="noopener noreferrer">TinyWow在线工具箱</a></h3>
+                <p class="tool-card__domain">tinywow.com</p>
+              </div>
+            </div>
+            <div class="tool-card__quick">
+              <a class="icon-btn" href="https://tinywow.com" target="_blank" rel="noopener noreferrer" aria-label="直接访问 TinyWow在线工具箱">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M7 7h10v10"/></svg>
+              </a>
+            </div>
+          </div>
+          <p class="tool-card__desc">免费提供PDF、图片、视频、AI写作等140+种实用工具，无需注册即可一键在线处理文件。</p>
+          <div class="tool-card__foot">
+            <span class="tag-chip">办公效率</span>
+            <span class="region-hint">国内直连</span>
+          </div>
+        </article>
+        <article class="tool-card seo-tool-card">
+          <div class="tool-card__top">
+            <div class="tool-card__head">
+              <div class="tool-avatar" style="--avatar-bg:#FF375F" aria-hidden="true"><span>简</span></div>
+              <div class="tool-card__titles">
+                <h3 class="tool-card__name"><a class="seo-tool-card__title-link" href="https://pan.baidu.com/embed/listennote" target="_blank" rel="noopener noreferrer">简单听记</a></h3>
+                <p class="tool-card__domain">pan.baidu.com</p>
+              </div>
+            </div>
+            <div class="tool-card__quick">
+              <a class="icon-btn" href="https://pan.baidu.com/embed/listennote" target="_blank" rel="noopener noreferrer" aria-label="直接访问 简单听记">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M7 7h10v10"/></svg>
+              </a>
+            </div>
+          </div>
+          <p class="tool-card__desc">简单听记是百度推出的一款音视频转文字处理工具。基于AI大模型，它能实现全流程自动化的音频分析和整理。其重要性在于极大提高了工作和学习效率，节省人工听记的时间和精力。主要优点包括高精度转写、支持多种导入方式、能一键生成多种类型纪要等。产品定位是成为工作和学习场景下的效率神器，目前暂未提及价格信息。</p>
+          <div class="tool-card__foot">
+            <span class="tag-chip">办公效率</span>
+            <span class="region-hint">国内直连</span>
+          </div>
+        </article>
+        <article class="tool-card seo-tool-card">
+          <div class="tool-card__top">
+            <div class="tool-card__head">
+              <div class="tool-avatar" style="--avatar-bg:#5E5CE6" aria-hidden="true"><span>通</span></div>
+              <div class="tool-card__titles">
+                <h3 class="tool-card__name"><a class="seo-tool-card__title-link" href="https://tingwu.aliyun.com" target="_blank" rel="noopener noreferrer">通义听悟</a></h3>
+                <p class="tool-card__domain">tingwu.aliyun.com</p>
+              </div>
+            </div>
+            <div class="tool-card__quick">
+              <a class="icon-btn" href="https://tingwu.aliyun.com" target="_blank" rel="noopener noreferrer" aria-label="直接访问 通义听悟">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M7 7h10v10"/></svg>
+              </a>
+            </div>
+          </div>
+          <p class="tool-card__desc">通义听悟是阿里云推出的聚焦音视频内容的工作学习AI助手，依托大模型技术，为用户提供便捷的音视频处理和分析方案。其重要性在于大大提高了用户处理音视频信息的效率，节省时间和精力。该产品的主要优点在于能够实时进行语音转文字、多语言同步翻译，快速进行音视频转写，智能区分发言人，并能自动总结会议纪要和待办事项等。产品定位为助力用</p>
+          <div class="tool-card__foot">
+            <span class="tag-chip">办公效率</span>
+            <span class="region-hint">国内直连</span>
+          </div>
+        </article>
+            </div>
+          </section>
+          <section class="cat-section" id="cat-Agent_E4_B8_8E_E8_87_AA_E5_8A_A8_E5_8C_96" tabindex="-1">
+            <div class="cat-section__head">
+              <div class="cat-section__title-wrap">
+                <h2 class="cat-section__title">Agent与自动化</h2>
+                <span class="cat-section__count">855 款</span>
+              </div>
+              <a class="cat-section__more" href="./category/agents-automation/">查看全部 855 款 →</a>
+            </div>
+            <div class="cards-grid">
+        <article class="tool-card seo-tool-card">
+          <div class="tool-card__top">
+            <div class="tool-card__head">
+              <div class="tool-avatar" style="--avatar-bg:#BF5AF2" aria-hidden="true"><span>L</span></div>
+              <div class="tool-card__titles">
+                <h3 class="tool-card__name"><a class="seo-tool-card__title-link" href="https://www.lovart.ai" target="_blank" rel="noopener noreferrer">Lovart - LiblibAI推出的全球首个设计智能体</a></h3>
+                <p class="tool-card__domain">lovart.ai</p>
+              </div>
+            </div>
+            <div class="tool-card__quick">
+              <a class="icon-btn" href="https://www.lovart.ai" target="_blank" rel="noopener noreferrer" aria-label="直接访问 Lovart - LiblibAI推出的全球首个设计智能体">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M7 7h10v10"/></svg>
+              </a>
+            </div>
+          </div>
+          <p class="tool-card__desc">Lovart是LiblibAI为设计师打造的世界首个专业设计Agent。它能模拟专业设计师思考与执行设计任务，基于自然语言实现交互。其重要性在于引领设计工具智能化，支持从创意拆解到专业交付全链路设计。主要优点包括快速生成设计、可自然语言交互、详细拆解需求、集成多工具、支持二次编辑和视频生成等。产品定位为助力设计师提升设</p>
+          <div class="tool-card__foot">
+            <span class="tag-chip">Agent与自动化</span>
+            <span class="region-hint">国内直连</span>
+          </div>
+        </article>
+        <article class="tool-card seo-tool-card">
+          <div class="tool-card__top">
+            <div class="tool-card__head">
+              <div class="tool-avatar" style="--avatar-bg:#BF5AF2" aria-hidden="true"><span>M</span></div>
+              <div class="tool-card__titles">
+                <h3 class="tool-card__name"><a class="seo-tool-card__title-link" href="https://manus.im" target="_blank" rel="noopener noreferrer">Manus - 蝴蝶效应公司推出的首款自主通用AI Agent</a></h3>
+                <p class="tool-card__domain">manus.im</p>
+              </div>
+            </div>
+            <div class="tool-card__quick">
+              <a class="icon-btn" href="https://manus.im" target="_blank" rel="noopener noreferrer" aria-label="直接访问 Manus - 蝴蝶效应公司推出的首款自主通用AI Agent">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M7 7h10v10"/></svg>
+              </a>
+            </div>
+          </div>
+          <p class="tool-card__desc">Manus 是蝴蝶效应公司推出的全球首个自主通用 AI Agent，支持通过自主行动完成任务和交付成果。Manus 运行在一个拥有互联网访问权限、持久文件系统和软件安装能力的沙盒环境中，能独立工作、记</p>
+          <div class="tool-card__foot">
+            <span class="tag-chip">Agent与自动化</span>
+            <span class="region-hint">国内直连</span>
+          </div>
+        </article>
+        <article class="tool-card seo-tool-card">
+          <div class="tool-card__top">
+            <div class="tool-card__head">
+              <div class="tool-avatar" style="--avatar-bg:#FF375F" aria-hidden="true"><span>A</span></div>
+              <div class="tool-card__titles">
+                <h3 class="tool-card__name"><a class="seo-tool-card__title-link" href="https://www.aishort.top" target="_blank" rel="noopener noreferrer">AI Short</a></h3>
+                <p class="tool-card__domain">aishort.top</p>
+              </div>
+            </div>
+            <div class="tool-card__quick">
+              <a class="icon-btn" href="https://www.aishort.top" target="_blank" rel="noopener noreferrer" aria-label="直接访问 AI Short">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M7 7h10v10"/></svg>
+              </a>
+            </div>
+          </div>
+          <p class="tool-card__desc">AiShort是一个高效的AI智能体与提示词平台，旨在革新用户的工作与学习方式。该产品的主要优点包括支持多语言环境，方便不同语言背景的用户使用；用户不仅能发现海量高质量的提示词，还能轻松构建、管理并一键运行强大的AI智能体，实现复杂任务的自动化。其背景是随着AI技术的发展，用户对高效利用AI工具的需求增加。目前未提及价</p>
+          <div class="tool-card__foot">
+            <span class="tag-chip">Agent与自动化</span>
+            <span class="region-hint">国内直连</span>
+          </div>
+        </article>
+        <article class="tool-card seo-tool-card">
+          <div class="tool-card__top">
+            <div class="tool-card__head">
+              <div class="tool-avatar" style="--avatar-bg:#5E5CE6" aria-hidden="true"><span>F</span></div>
+              <div class="tool-card__titles">
+                <h3 class="tool-card__name"><a class="seo-tool-card__title-link" href="https://fellou.ai" target="_blank" rel="noopener noreferrer">Fellou - Fellou AI 推出的首个Agentic浏览器</a></h3>
+                <p class="tool-card__domain">fellou.ai</p>
+              </div>
+            </div>
+            <div class="tool-card__quick">
+              <a class="icon-btn" href="https://fellou.ai" target="_blank" rel="noopener noreferrer" aria-label="直接访问 Fellou - Fellou AI 推出的首个Agentic浏览器">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M7 7h10v10"/></svg>
+              </a>
+            </div>
+          </div>
+          <p class="tool-card__desc">Fellou是AI初创公司Fellou AI推出的全球首个Agentic浏览器。它结合了Browser（浏览器）、Agent（智能体）和Workflow Automation（工作流自动化）三大产品和能力，实现“思考”、“操作”和“执行”的闭环。其主要优点包括能将繁琐的点击操作转化为简单指令，自动解析和拆解任务，跨网页</p>
+          <div class="tool-card__foot">
+            <span class="tag-chip">Agent与自动化</span>
+            <span class="region-hint">国内直连</span>
+          </div>
+        </article>
+        <article class="tool-card seo-tool-card">
+          <div class="tool-card__top">
+            <div class="tool-card__head">
+              <div class="tool-avatar" style="--avatar-bg:#AF52DE" aria-hidden="true"><span>7</span></div>
+              <div class="tool-card__titles">
+                <h3 class="tool-card__name"><a class="seo-tool-card__title-link" href="https://www.724claw.cn" target="_blank" rel="noopener noreferrer">724Claw永动虾</a></h3>
+                <p class="tool-card__domain">724claw.cn</p>
+              </div>
+            </div>
+            <div class="tool-card__quick">
+              <a class="icon-btn" href="https://www.724claw.cn" target="_blank" rel="noopener noreferrer" aria-label="直接访问 724Claw永动虾">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M7 7h10v10"/></svg>
+              </a>
+            </div>
+          </div>
+          <p class="tool-card__desc">724Claw永动虾是什么 724Claw永动虾是基于 OpenClaw 封装的 Windows 桌面端 AI 助手应用，主打”开箱即用”的无门槛体验。用户无需配置复杂环境，登录即可与 AI</p>
+          <div class="tool-card__foot">
+            <span class="tag-chip">Agent与自动化</span>
+            <span class="region-hint">国内直连</span>
+          </div>
+        </article>
+        <article class="tool-card seo-tool-card">
+          <div class="tool-card__top">
+            <div class="tool-card__head">
+              <div class="tool-avatar" style="--avatar-bg:#5E5CE6" aria-hidden="true"><span>C</span></div>
+              <div class="tool-card__titles">
+                <h3 class="tool-card__name"><a class="seo-tool-card__title-link" href="https://colaos.ai" target="_blank" rel="noopener noreferrer">ColaOS</a></h3>
+                <p class="tool-card__domain">colaos.ai</p>
+              </div>
+            </div>
+            <div class="tool-card__quick">
+              <a class="icon-btn" href="https://colaos.ai" target="_blank" rel="noopener noreferrer" aria-label="直接访问 ColaOS">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M7 7h10v10"/></svg>
+              </a>
+            </div>
+          </div>
+          <p class="tool-card__desc">ColaOS是什么 ColaOS 是 ListenHub 团队推出的首个有灵魂的 AI Agent 操作系统。ColaOS超越传统工具型AI，通过”思绪、觉知、牵挂”三个维度打造Soulfu</p>
+          <div class="tool-card__foot">
+            <span class="tag-chip">Agent与自动化</span>
+            <span class="region-hint">国内直连</span>
+          </div>
+        </article>
+            </div>
+          </section>
+          <section class="cat-section" id="cat-_E5_AD_A6_E4_B9_A0_E7_9F_A5_E8_AF_86_E5_BA_93" tabindex="-1">
+            <div class="cat-section__head">
+              <div class="cat-section__title-wrap">
+                <h2 class="cat-section__title">学习知识库</h2>
+                <span class="cat-section__count">1372 款</span>
+              </div>
+              <a class="cat-section__more" href="./category/learning-knowledge/">查看全部 1372 款 →</a>
+            </div>
+            <div class="cards-grid">
+        <article class="tool-card seo-tool-card">
+          <div class="tool-card__top">
+            <div class="tool-card__head">
+              <div class="tool-avatar" style="--avatar-bg:#34C759" aria-hidden="true"><span>C</span></div>
+              <div class="tool-card__titles">
+                <h3 class="tool-card__name"><a class="seo-tool-card__title-link" href="https://www.chatba.com" target="_blank" rel="noopener noreferrer">ChatBA</a></h3>
+                <p class="tool-card__domain">chatba.com</p>
+              </div>
+            </div>
+            <div class="tool-card__quick">
+              <a class="icon-btn" href="https://www.chatba.com" target="_blank" rel="noopener noreferrer" aria-label="直接访问 ChatBA">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M7 7h10v10"/></svg>
+              </a>
+            </div>
+          </div>
+          <p class="tool-card__desc">Text-to-PPT即时创建幻灯片</p>
+          <div class="tool-card__foot">
+            <span class="tag-chip">学习知识库</span>
+            <span class="region-hint">国内直连</span>
+          </div>
+        </article>
+        <article class="tool-card seo-tool-card">
+          <div class="tool-card__top">
+            <div class="tool-card__head">
+              <div class="tool-avatar" style="--avatar-bg:#30B0C7" aria-hidden="true"><span>D</span></div>
+              <div class="tool-card__titles">
+                <h3 class="tool-card__name"><a class="seo-tool-card__title-link" href="https://www.decktopus.com" target="_blank" rel="noopener noreferrer">Decktopus AI</a></h3>
+                <p class="tool-card__domain">decktopus.com</p>
+              </div>
+            </div>
+            <div class="tool-card__quick">
+              <a class="icon-btn" href="https://www.decktopus.com" target="_blank" rel="noopener noreferrer" aria-label="直接访问 Decktopus AI">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M7 7h10v10"/></svg>
+              </a>
+            </div>
+          </div>
+          <p class="tool-card__desc">AI驱动的的在线演示文稿生成器</p>
+          <div class="tool-card__foot">
+            <span class="tag-chip">学习知识库</span>
+            <span class="region-hint">国内直连</span>
+          </div>
+        </article>
+        <article class="tool-card seo-tool-card">
+          <div class="tool-card__top">
+            <div class="tool-card__head">
+              <div class="tool-avatar" style="--avatar-bg:#FF9F0A" aria-hidden="true"><span>D</span></div>
+              <div class="tool-card__titles">
+                <h3 class="tool-card__name"><a class="seo-tool-card__title-link" href="https://www.deeplearning.ai" target="_blank" rel="noopener noreferrer">DeepLearning.AI</a></h3>
+                <p class="tool-card__domain">deeplearning.ai</p>
+              </div>
+            </div>
+            <div class="tool-card__quick">
+              <a class="icon-btn" href="https://www.deeplearning.ai" target="_blank" rel="noopener noreferrer" aria-label="直接访问 DeepLearning.AI">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M7 7h10v10"/></svg>
+              </a>
+            </div>
+          </div>
+          <p class="tool-card__desc">DeepLearning.AI是一个专注于人工智能教育的平台，由Andrew Ng创办。平台为用户提供丰富的在线课程和专业认证，帮助学员学习和掌握机器学习、人工智能等领域的知识和技能。该平台的重要性在于为人们进入AI行业提供了系统的学习资源，有助于提升个人技能，满足市场对AI人才的需求。课程价格因具体课程而异，其中不乏</p>
+          <div class="tool-card__foot">
+            <span class="tag-chip">学习知识库</span>
+            <span class="region-hint">国内直连</span>
+          </div>
+        </article>
+        <article class="tool-card seo-tool-card">
+          <div class="tool-card__top">
+            <div class="tool-card__head">
+              <div class="tool-avatar" style="--avatar-bg:#AF52DE" aria-hidden="true"><span>E</span></div>
+              <div class="tool-card__titles">
+                <h3 class="tool-card__name"><a class="seo-tool-card__title-link" href="https://www.elementsofai.com" target="_blank" rel="noopener noreferrer">Elements of AI</a></h3>
+                <p class="tool-card__domain">elementsofai.com</p>
+              </div>
+            </div>
+            <div class="tool-card__quick">
+              <a class="icon-btn" href="https://www.elementsofai.com" target="_blank" rel="noopener noreferrer" aria-label="直接访问 Elements of AI">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M7 7h10v10"/></svg>
+              </a>
+            </div>
+          </div>
+          <p class="tool-card__desc">Elements of AI是由MinnaLearn和赫尔辛基大学联合推出的一系列免费在线课程。其重要性在于降低了AI学习的门槛，让更多人能接触和了解AI。主要优点是免费且适合不同背景的人群，课程结合理论与实践，可自主安排学习进度。产品背景是为了让更多人了解AI，消除大家对AI的神秘感。价格免费，定位是面向广大群体普及</p>
+          <div class="tool-card__foot">
+            <span class="tag-chip">学习知识库</span>
+            <span class="region-hint">国内直连</span>
+          </div>
+        </article>
+        <article class="tool-card seo-tool-card">
+          <div class="tool-card__top">
+            <div class="tool-card__head">
+              <div class="tool-avatar" style="--avatar-bg:#34C759" aria-hidden="true"><span>F</span></div>
+              <div class="tool-card__titles">
+                <h3 class="tool-card__name"><a class="seo-tool-card__title-link" href="https://www.fast.ai" target="_blank" rel="noopener noreferrer">fast.ai</a></h3>
+                <p class="tool-card__domain">fast.ai</p>
+              </div>
+            </div>
+            <div class="tool-card__quick">
+              <a class="icon-btn" href="https://www.fast.ai" target="_blank" rel="noopener noreferrer" aria-label="直接访问 fast.ai">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M7 7h10v10"/></svg>
+              </a>
+            </div>
+          </div>
+          <p class="tool-card__desc">Futurepedia 收录的海外 AI 工具（code-assistant）</p>
+          <div class="tool-card__foot">
+            <span class="tag-chip">学习知识库</span>
+            <span class="region-hint">国内 · 海外双收录</span>
+          </div>
+        </article>
+        <article class="tool-card seo-tool-card">
+          <div class="tool-card__top">
+            <div class="tool-card__head">
+              <div class="tool-avatar" style="--avatar-bg:#BF5AF2" aria-hidden="true"><span>K</span></div>
+              <div class="tool-card__titles">
+                <h3 class="tool-card__name"><a class="seo-tool-card__title-link" href="https://www.kaggle.com" target="_blank" rel="noopener noreferrer">Kaggle竞赛平台</a></h3>
+                <p class="tool-card__domain">kaggle.com</p>
+              </div>
+            </div>
+            <div class="tool-card__quick">
+              <a class="icon-btn" href="https://www.kaggle.com" target="_blank" rel="noopener noreferrer" aria-label="直接访问 Kaggle竞赛平台">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M7 7h10v10"/></svg>
+              </a>
+            </div>
+          </div>
+          <p class="tool-card__desc">Kaggle是全球最大的数据科学社区，为用户提供了强大的工具和丰富的资源。其重要性在于为机器学习和数据科学领域的学习者、开发者和研究者搭建了一个交流和学习的平台。主要优点包括拥有海量的公共数据集、预训练模型和笔记本，还提供免费的GPU和TPU资源。产品背景是满足日益增长的数据科学和机器学习需求。平台大部分功能免费使用，</p>
+          <div class="tool-card__foot">
+            <span class="tag-chip">学习知识库</span>
+            <span class="region-hint">国内直连</span>
+          </div>
+        </article>
+            </div>
+          </section>
+          <section class="cat-section" id="cat-_E5_88_92_E6_B0_B4_E6_91_B8_E9_B1_BC" tabindex="-1">
+            <div class="cat-section__head">
+              <div class="cat-section__title-wrap">
+                <h2 class="cat-section__title">影音娱乐精选</h2>
+                <span class="cat-section__count">108 款</span>
+              </div>
+              <a class="cat-section__more" href="./category/media-leisure/">查看全部 108 款 →</a>
+            </div>
+            <div class="cards-grid">
+        <article class="tool-card seo-tool-card">
+          <div class="tool-card__top">
+            <div class="tool-card__head">
+              <div class="tool-avatar" style="--avatar-bg:#34C759" aria-hidden="true"><span>M</span></div>
+              <div class="tool-card__titles">
+                <h3 class="tool-card__name"><a class="seo-tool-card__title-link" href="https://make.mk" target="_blank" rel="noopener noreferrer">MAKE</a></h3>
+                <p class="tool-card__domain">make.mk</p>
+              </div>
+            </div>
+            <div class="tool-card__quick">
+              <a class="icon-btn" href="https://make.mk" target="_blank" rel="noopener noreferrer" aria-label="直接访问 MAKE">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M7 7h10v10"/></svg>
+              </a>
+            </div>
+          </div>
+          <p class="tool-card__desc">Futurepedia 收录的海外 AI 工具（workflows）</p>
+          <div class="tool-card__foot">
+            <span class="tag-chip">影音娱乐</span>
+            <span class="region-hint">国内 · 海外双收录</span>
+          </div>
+        </article>
+        <article class="tool-card seo-tool-card">
+          <div class="tool-card__top">
+            <div class="tool-card__head">
+              <div class="tool-avatar" style="--avatar-bg:#34C759" aria-hidden="true"><span>2</span></div>
+              <div class="tool-card__titles">
+                <h3 class="tool-card__name"><a class="seo-tool-card__title-link" href="https://2020game.io" target="_blank" rel="noopener noreferrer">2020游戏</a></h3>
+                <p class="tool-card__domain">2020game.io</p>
+              </div>
+            </div>
+            <div class="tool-card__quick">
+              <a class="icon-btn" href="https://2020game.io" target="_blank" rel="noopener noreferrer" aria-label="直接访问 2020游戏">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M7 7h10v10"/></svg>
+              </a>
+            </div>
+          </div>
+          <p class="tool-card__desc">重点推荐，闯关类游戏！</p>
+          <div class="tool-card__foot">
+            <span class="tag-chip">影音娱乐</span>
+            <span class="region-hint">国内直连</span>
+          </div>
+        </article>
+        <article class="tool-card seo-tool-card">
+          <div class="tool-card__top">
+            <div class="tool-card__head">
+              <div class="tool-avatar" style="--avatar-bg:#FF9F0A" aria-hidden="true"><span>3</span></div>
+              <div class="tool-card__titles">
+                <h3 class="tool-card__name"><a class="seo-tool-card__title-link" href="https://360zy5.com" target="_blank" rel="noopener noreferrer">360资源站</a></h3>
+                <p class="tool-card__domain">360zy5.com</p>
+              </div>
+            </div>
+            <div class="tool-card__quick">
+              <a class="icon-btn" href="https://360zy5.com" target="_blank" rel="noopener noreferrer" aria-label="直接访问 360资源站">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M7 7h10v10"/></svg>
+              </a>
+            </div>
+          </div>
+          <p class="tool-card__desc">全网最全片库，一家顶三家！资源永久免费！</p>
+          <div class="tool-card__foot">
+            <span class="tag-chip">影音娱乐</span>
+            <span class="region-hint">国内直连</span>
+          </div>
+        </article>
+        <article class="tool-card seo-tool-card">
+          <div class="tool-card__top">
+            <div class="tool-card__head">
+              <div class="tool-avatar" style="--avatar-bg:#AF52DE" aria-hidden="true"><span>5</span></div>
+              <div class="tool-card__titles">
+                <h3 class="tool-card__name"><a class="seo-tool-card__title-link" href="https://www.at38.cn" target="_blank" rel="noopener noreferrer">51音乐下载</a></h3>
+                <p class="tool-card__domain">at38.cn</p>
+              </div>
+            </div>
+            <div class="tool-card__quick">
+              <a class="icon-btn" href="https://www.at38.cn" target="_blank" rel="noopener noreferrer" aria-label="直接访问 51音乐下载">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M7 7h10v10"/></svg>
+              </a>
+            </div>
+          </div>
+          <p class="tool-card__desc">支持多平台音乐解析、搜索</p>
+          <div class="tool-card__foot">
+            <span class="tag-chip">影音娱乐</span>
+            <span class="region-hint">国内直连</span>
+          </div>
+        </article>
+        <article class="tool-card seo-tool-card">
+          <div class="tool-card__top">
+            <div class="tool-card__head">
+              <div class="tool-avatar" style="--avatar-bg:#AF52DE" aria-hidden="true"><span>8</span></div>
+              <div class="tool-card__titles">
+                <h3 class="tool-card__name"><a class="seo-tool-card__title-link" href="https://www.qwqw818.sbs" target="_blank" rel="noopener noreferrer">818影视</a></h3>
+                <p class="tool-card__domain">qwqw818.sbs</p>
+              </div>
+            </div>
+            <div class="tool-card__quick">
+              <a class="icon-btn" href="https://www.qwqw818.sbs" target="_blank" rel="noopener noreferrer" aria-label="直接访问 818影视">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M7 7h10v10"/></svg>
+              </a>
+            </div>
+          </div>
+          <p class="tool-card__desc">提供最新电影、电视剧、动漫、综艺在线观看，海量正版高清视频免费观看，支持手机电脑同步观看，更新快，画质好，打造极致追剧体验。</p>
+          <div class="tool-card__foot">
+            <span class="tag-chip">影音娱乐</span>
+            <span class="region-hint">国内直连</span>
+          </div>
+        </article>
+        <article class="tool-card seo-tool-card">
+          <div class="tool-card__top">
+            <div class="tool-card__head">
+              <div class="tool-avatar" style="--avatar-bg:#34C759" aria-hidden="true"><span>9</span></div>
+              <div class="tool-card__titles">
+                <h3 class="tool-card__name"><a class="seo-tool-card__title-link" href="http://996.ninja" target="_blank" rel="noopener noreferrer">996忍者</a></h3>
+                <p class="tool-card__domain">996.ninja</p>
+              </div>
+            </div>
+            <div class="tool-card__quick">
+              <a class="icon-btn" href="http://996.ninja" target="_blank" rel="noopener noreferrer" aria-label="直接访问 996忍者">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M7 7h10v10"/></svg>
+              </a>
+            </div>
+          </div>
+          <p class="tool-card__desc">一个专注摸鱼的网站</p>
+          <div class="tool-card__foot">
+            <span class="tag-chip">影音娱乐</span>
+            <span class="region-hint">国内直连</span>
+          </div>
+        </article>
+            </div>
+          </section>
+          <section class="cat-section" id="cat-_E6_96_B0_E5_93_81_E9_80_9F_E9_80_92" tabindex="-1">
+            <div class="cat-section__head">
+              <div class="cat-section__title-wrap">
+                <h2 class="cat-section__title">新品速递</h2>
+                <span class="cat-section__count">67 款</span>
+              </div>
+              <a class="cat-section__more" href="./category/new-releases/">查看全部 67 款 →</a>
+            </div>
+            <div class="cards-grid">
+        <article class="tool-card seo-tool-card">
+          <div class="tool-card__top">
+            <div class="tool-card__head">
+              <div class="tool-avatar" style="--avatar-bg:#30B0C7" aria-hidden="true"><span>3</span></div>
+              <div class="tool-card__titles">
+                <h3 class="tool-card__name"><a class="seo-tool-card__title-link" href="https://www.producthunt.com/products/3way-social" target="_blank" rel="noopener noreferrer">3way.Social MCP</a></h3>
+                <p class="tool-card__domain">producthunt.com</p>
+              </div>
+            </div>
+            <div class="tool-card__quick">
+              <a class="icon-btn" href="https://www.producthunt.com/products/3way-social" target="_blank" rel="noopener noreferrer" aria-label="直接访问 3way.Social MCP">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M7 7h10v10"/></svg>
+              </a>
+            </div>
+          </div>
+          <p class="tool-card__desc">Ask your AI to find link partners. You approve the deals.</p>
+          <div class="tool-card__foot">
+            <span class="tag-chip">新品速递</span>
+            <span class="region-hint">海外主流</span>
+          </div>
+        </article>
+        <article class="tool-card seo-tool-card">
+          <div class="tool-card__top">
+            <div class="tool-card__head">
+              <div class="tool-avatar" style="--avatar-bg:#30B0C7" aria-hidden="true"><span>M</span></div>
+              <div class="tool-card__titles">
+                <h3 class="tool-card__name"><a class="seo-tool-card__title-link" href="https://www.producthunt.com/products/magi-1" target="_blank" rel="noopener noreferrer">MAGI-2</a></h3>
+                <p class="tool-card__domain">producthunt.com</p>
+              </div>
+            </div>
+            <div class="tool-card__quick">
+              <a class="icon-btn" href="https://www.producthunt.com/products/magi-1" target="_blank" rel="noopener noreferrer" aria-label="直接访问 MAGI-2">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M7 7h10v10"/></svg>
+              </a>
+            </div>
+          </div>
+          <p class="tool-card__desc">Sand AI&#x27;s 480B model for cinematic video generation</p>
+          <div class="tool-card__foot">
+            <span class="tag-chip">新品速递</span>
+            <span class="region-hint">海外主流</span>
+          </div>
+        </article>
+        <article class="tool-card seo-tool-card">
+          <div class="tool-card__top">
+            <div class="tool-card__head">
+              <div class="tool-avatar" style="--avatar-bg:#30B0C7" aria-hidden="true"><span>O</span></div>
+              <div class="tool-card__titles">
+                <h3 class="tool-card__name"><a class="seo-tool-card__title-link" href="https://www.producthunt.com/products/openeight" target="_blank" rel="noopener noreferrer">OpenEight</a></h3>
+                <p class="tool-card__domain">producthunt.com</p>
+              </div>
+            </div>
+            <div class="tool-card__quick">
+              <a class="icon-btn" href="https://www.producthunt.com/products/openeight" target="_blank" rel="noopener noreferrer" aria-label="直接访问 OpenEight">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M7 7h10v10"/></svg>
+              </a>
+            </div>
+          </div>
+          <p class="tool-card__desc">The deterministic control layer for AI agents</p>
+          <div class="tool-card__foot">
+            <span class="tag-chip">新品速递</span>
+            <span class="region-hint">海外主流</span>
+          </div>
+        </article>
+        <article class="tool-card seo-tool-card">
+          <div class="tool-card__top">
+            <div class="tool-card__head">
+              <div class="tool-avatar" style="--avatar-bg:#30B0C7" aria-hidden="true"><span>M</span></div>
+              <div class="tool-card__titles">
+                <h3 class="tool-card__name"><a class="seo-tool-card__title-link" href="https://www.producthunt.com/products/myclaw-3-0" target="_blank" rel="noopener noreferrer">MyClaw 3.0</a></h3>
+                <p class="tool-card__domain">producthunt.com</p>
+              </div>
+            </div>
+            <div class="tool-card__quick">
+              <a class="icon-btn" href="https://www.producthunt.com/products/myclaw-3-0" target="_blank" rel="noopener noreferrer" aria-label="直接访问 MyClaw 3.0">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M7 7h10v10"/></svg>
+              </a>
+            </div>
+          </div>
+          <p class="tool-card__desc">Build an always-on AI team with shared memory</p>
+          <div class="tool-card__foot">
+            <span class="tag-chip">新品速递</span>
+            <span class="region-hint">海外主流</span>
+          </div>
+        </article>
+        <article class="tool-card seo-tool-card">
+          <div class="tool-card__top">
+            <div class="tool-card__head">
+              <div class="tool-avatar" style="--avatar-bg:#30B0C7" aria-hidden="true"><span>M</span></div>
+              <div class="tool-card__titles">
+                <h3 class="tool-card__name"><a class="seo-tool-card__title-link" href="https://www.producthunt.com/products/memoryworks" target="_blank" rel="noopener noreferrer">MemoryWorks</a></h3>
+                <p class="tool-card__domain">producthunt.com</p>
+              </div>
+            </div>
+            <div class="tool-card__quick">
+              <a class="icon-btn" href="https://www.producthunt.com/products/memoryworks" target="_blank" rel="noopener noreferrer" aria-label="直接访问 MemoryWorks">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M7 7h10v10"/></svg>
+              </a>
+            </div>
+          </div>
+          <p class="tool-card__desc">Company memory for people and AI agents</p>
+          <div class="tool-card__foot">
+            <span class="tag-chip">新品速递</span>
+            <span class="region-hint">海外主流</span>
+          </div>
+        </article>
+        <article class="tool-card seo-tool-card">
+          <div class="tool-card__top">
+            <div class="tool-card__head">
+              <div class="tool-avatar" style="--avatar-bg:#30B0C7" aria-hidden="true"><span>K</span></div>
+              <div class="tool-card__titles">
+                <h3 class="tool-card__name"><a class="seo-tool-card__title-link" href="https://www.producthunt.com/products/koed" target="_blank" rel="noopener noreferrer">Koed</a></h3>
+                <p class="tool-card__domain">producthunt.com</p>
+              </div>
+            </div>
+            <div class="tool-card__quick">
+              <a class="icon-btn" href="https://www.producthunt.com/products/koed" target="_blank" rel="noopener noreferrer" aria-label="直接访问 Koed">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M7 7h10v10"/></svg>
+              </a>
+            </div>
+          </div>
+          <p class="tool-card__desc">Supercharged Agents!</p>
+          <div class="tool-card__foot">
+            <span class="tag-chip">新品速递</span>
+            <span class="region-hint">海外主流</span>
+          </div>
+        </article>
+            </div>
+          </section>
+          <section class="cat-section" id="cat-_E5_85_B6_E4_BB_96_E5_B7_A5_E5_85_B7" tabindex="-1">
+            <div class="cat-section__head">
+              <div class="cat-section__title-wrap">
+                <h2 class="cat-section__title">其他工具</h2>
+                <span class="cat-section__count">168 款</span>
+              </div>
+              <a class="cat-section__more" href="./category/other-tools/">查看全部 168 款 →</a>
+            </div>
+            <div class="cards-grid">
+        <article class="tool-card seo-tool-card">
+          <div class="tool-card__top">
+            <div class="tool-card__head">
+              <div class="tool-avatar" style="--avatar-bg:#FF9F0A" aria-hidden="true"><span>B</span></div>
+              <div class="tool-card__titles">
+                <h3 class="tool-card__name"><a class="seo-tool-card__title-link" href="https://bgeraser.com" target="_blank" rel="noopener noreferrer">Bg Eraser</a></h3>
+                <p class="tool-card__domain">bgeraser.com</p>
+              </div>
+            </div>
+            <div class="tool-card__quick">
+              <a class="icon-btn" href="https://bgeraser.com" target="_blank" rel="noopener noreferrer" aria-label="直接访问 Bg Eraser">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M7 7h10v10"/></svg>
+              </a>
+            </div>
+          </div>
+          <p class="tool-card__desc">图片物体抹除和清理</p>
+          <div class="tool-card__foot">
+            <span class="tag-chip">其他工具</span>
+            <span class="region-hint">国内直连</span>
+          </div>
+        </article>
+        <article class="tool-card seo-tool-card">
+          <div class="tool-card__top">
+            <div class="tool-card__head">
+              <div class="tool-avatar" style="--avatar-bg:#30B0C7" aria-hidden="true"><span>C</span></div>
+              <div class="tool-card__titles">
+                <h3 class="tool-card__name"><a class="seo-tool-card__title-link" href="https://chroniclehq.com" target="_blank" rel="noopener noreferrer">Chronicle</a></h3>
+                <p class="tool-card__domain">chroniclehq.com</p>
+              </div>
+            </div>
+            <div class="tool-card__quick">
+              <a class="icon-btn" href="https://chroniclehq.com" target="_blank" rel="noopener noreferrer" aria-label="直接访问 Chronicle">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M7 7h10v10"/></svg>
+              </a>
+            </div>
+          </div>
+          <p class="tool-card__desc">AI高颜值演示文稿创建</p>
+          <div class="tool-card__foot">
+            <span class="tag-chip">其他工具</span>
+            <span class="region-hint">国内直连</span>
+          </div>
+        </article>
+        <article class="tool-card seo-tool-card">
+          <div class="tool-card__top">
+            <div class="tool-card__head">
+              <div class="tool-avatar" style="--avatar-bg:#0A84FF" aria-hidden="true"><span>H</span></div>
+              <div class="tool-card__titles">
+                <h3 class="tool-card__name"><a class="seo-tool-card__title-link" href="https://www.hama.app/zh" target="_blank" rel="noopener noreferrer">Hama</a></h3>
+                <p class="tool-card__domain">hama.app</p>
+              </div>
+            </div>
+            <div class="tool-card__quick">
+              <a class="icon-btn" href="https://www.hama.app/zh" target="_blank" rel="noopener noreferrer" aria-label="直接访问 Hama">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M7 7h10v10"/></svg>
+              </a>
+            </div>
+          </div>
+          <p class="tool-card__desc">在线抹除图片中不想要的物体</p>
+          <div class="tool-card__foot">
+            <span class="tag-chip">其他工具</span>
+            <span class="region-hint">国内直连</span>
+          </div>
+        </article>
+        <article class="tool-card seo-tool-card">
+          <div class="tool-card__top">
+            <div class="tool-card__head">
+              <div class="tool-avatar" style="--avatar-bg:#34C759" aria-hidden="true"><span>S</span></div>
+              <div class="tool-card__titles">
+                <h3 class="tool-card__name"><a class="seo-tool-card__title-link" href="https://www.slidesai.io" target="_blank" rel="noopener noreferrer">SlidesAI</a></h3>
+                <p class="tool-card__domain">slidesai.io</p>
+              </div>
+            </div>
+            <div class="tool-card__quick">
+              <a class="icon-btn" href="https://www.slidesai.io" target="_blank" rel="noopener noreferrer" aria-label="直接访问 SlidesAI">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M7 7h10v10"/></svg>
+              </a>
+            </div>
+          </div>
+          <p class="tool-card__desc">AI快速创建演示幻灯片</p>
+          <div class="tool-card__foot">
+            <span class="tag-chip">其他工具</span>
+            <span class="region-hint">国内直连</span>
+          </div>
+        </article>
+        <article class="tool-card seo-tool-card">
+          <div class="tool-card__top">
+            <div class="tool-card__head">
+              <div class="tool-avatar" style="--avatar-bg:#FF375F" aria-hidden="true"><span>合</span></div>
+              <div class="tool-card__titles">
+                <h3 class="tool-card__name"><a class="seo-tool-card__title-link" href="https://contract.yoo-ai.com" target="_blank" rel="noopener noreferrer">合同嗖嗖</a></h3>
+                <p class="tool-card__domain">contract.yoo-ai.com</p>
+              </div>
+            </div>
+            <div class="tool-card__quick">
+              <a class="icon-btn" href="https://contract.yoo-ai.com" target="_blank" rel="noopener noreferrer" aria-label="直接访问 合同嗖嗖">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M7 7h10v10"/></svg>
+              </a>
+            </div>
+          </div>
+          <p class="tool-card__desc">专业的AI法律合同生成工具</p>
+          <div class="tool-card__foot">
+            <span class="tag-chip">其他工具</span>
+            <span class="region-hint">国内直连</span>
+          </div>
+        </article>
+        <article class="tool-card seo-tool-card">
+          <div class="tool-card__top">
+            <div class="tool-card__head">
+              <div class="tool-avatar" style="--avatar-bg:#FF9F0A" aria-hidden="true"><span>法</span></div>
+              <div class="tool-card__titles">
+                <h3 class="tool-card__name"><a class="seo-tool-card__title-link" href="https://www.fazhi.law" target="_blank" rel="noopener noreferrer">法智</a></h3>
+                <p class="tool-card__domain">fazhi.law</p>
+              </div>
+            </div>
+            <div class="tool-card__quick">
+              <a class="icon-btn" href="https://www.fazhi.law" target="_blank" rel="noopener noreferrer" aria-label="直接访问 法智">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M7 7h10v10"/></svg>
+              </a>
+            </div>
+          </div>
+          <p class="tool-card__desc">同花顺推出的AI法律助手</p>
+          <div class="tool-card__foot">
+            <span class="tag-chip">其他工具</span>
+            <span class="region-hint">国内直连</span>
+          </div>
+        </article>
+            </div>
+          </section>
+          <!-- SEO_PRERENDER_END -->
+        </div>
 
         <div class="empty-state" id="emptyState" hidden>
           <div class="empty-state__icon" aria-hidden="true">✦</div>
@@ -192,6 +1555,44 @@
           <button class="btn-secondary" id="loadMoreBtn" type="button">展开更多工具</button>
         </div>
       </section>
+      <!-- SEO_GEO_HUB_START -->
+      <section class="home-seo-hub" aria-labelledby="hubTopicHeading">
+        <div class="seo-section__head">
+          <h2 class="seo-section__title" id="hubTopicHeading">10 大 AI 垂直领域专题排行榜</h2>
+          <p class="seo-section__sub">近期早报归档：<a href="./daily/2026-11-25/">2026-11-25 AI早报</a> · <a href="./daily/2026-11-24/">2026-11-24 AI早报</a> · <a href="./daily/2026-11-23/">2026-11-23 AI早报</a> · <a href="./daily/2026-11-20/">2026-11-20 AI早报</a> · <a href="./daily/" style="color:var(--accent);">全部归档 →</a></p>
+        </div>
+        <div class="topic-links-grid">
+          <a class="topic-link-card" href="./category/chat-writing/"><span>AI 对话写作专题</span><span>967 款 →</span></a>
+          <a class="topic-link-card" href="./category/coding/"><span>AI 编程开发专题</span><span>855 款 →</span></a>
+          <a class="topic-link-card" href="./category/image-design/"><span>AI 图像设计专题</span><span>1225 款 →</span></a>
+          <a class="topic-link-card" href="./category/video-audio/"><span>AI 视频音频专题</span><span>1117 款 →</span></a>
+          <a class="topic-link-card" href="./category/office-productivity/"><span>AI 办公效率专题</span><span>2351 款 →</span></a>
+          <a class="topic-link-card" href="./category/agents-automation/"><span>AI Agent与自动化专题</span><span>855 款 →</span></a>
+          <a class="topic-link-card" href="./category/learning-knowledge/"><span>AI 学习知识库专题</span><span>1372 款 →</span></a>
+          <a class="topic-link-card" href="./category/media-leisure/"><span>AI 影音娱乐专题</span><span>108 款 →</span></a>
+          <a class="topic-link-card" href="./category/new-releases/"><span>AI 新品速递专题</span><span>67 款 →</span></a>
+          <a class="topic-link-card" href="./category/other-tools/"><span>AI 其他工具专题</span><span>168 款 →</span></a>
+        </div>
+
+        <div class="seo-section__head">
+          <h2 class="seo-section__title" id="hubFaqHeading">常见问题解答（FAQ）</h2>
+        </div>
+        <div class="faq-list">
+          <details class="faq-item" name="home-faq" open>
+            <summary>AI 导航聚合站收录了哪些 AI 工具？是否收费或有广告？</summary>
+            <p class="faq-item__body">本站每日自动聚合国内外 9 大主流公开目录并去重校验，当前共收录 9,085 款 AI 工具（含国内可直连工具 4,147 款、海外主流工具 4,991 款），覆盖对话写作、AI 编程开发、图像设计、视频音频、PPT 办公与 Agent 智能体等 10 大赛道，全站纯静态零广告、免注册登录。</p>
+          </details>
+          <details class="faq-item" name="home-faq">
+            <summary>如何快速查找国内免翻墙可直连的免费 AI 工具？</summary>
+            <p class="faq-item__body">在首页顶部切换「国内主流」标签，或按键盘「/」键输入需求关键词（如“PPT”、“配音”、“编程”、“论文”），即可毫秒级筛选出国内直接秒开的 AI 工具并一键直达官网。</p>
+          </details>
+          <details class="faq-item" name="home-faq">
+            <summary>除 AI 工具导航外，网站还提供哪些每日更新内容？</summary>
+            <p class="faq-item__body">顶部频道内置「AI资讯（/news/）」、「每日AI早报归档（/daily/）」与「14 平台实时科技热榜（/moyu/）」，每 2 小时自动同步最新大模型发布、开源权重与开发者社区热榜，非常适合设为浏览器默认起始页。</p>
+          </details>
+        </div>
+      </section>
+      <!-- SEO_GEO_HUB_END -->
     </main>
   </div>
 
@@ -200,8 +1601,10 @@
       <p class="site-footer__copy">AI 导航聚合站 · 每日自动同步国内外主流 AI 工具、快讯与热榜 · 零广告免登录</p>
       <nav class="site-footer__links" aria-label="站点底部导航">
         <button class="footer-link-btn" type="button" command="show-modal" commandfor="submitToolDialog">免费提交工具收录</button>
-        <a href="./news/">AI 资讯</a>
-        <a href="./moyu/">全网热榜</a>
+        <a href="./category/">分类专题</a>
+        <a href="./daily/">每日AI早报</a>
+        <a href="./llms.txt">llms.txt</a>
+        <a href="./feed.xml">RSS订阅</a>
         <a href="./sitemap.xml">Sitemap</a>
         <a href="https://github.com/biqiufeng/ai-nav-hub" target="_blank" rel="noopener noreferrer">GitHub</a>
       </nav>
@@ -329,6 +1732,18 @@
           </span>
           <button class="btn-secondary" id="subMailBtn" type="button">邮件直投站长</button>
         </div>
+
+        <details class="faq-item" style="margin-top:12px;">
+          <summary style="padding:10px 14px;font-size:13px;">获取「已收录徽章」官网嵌入代码（互换友链优先审核）</summary>
+          <div class="faq-item__body" style="padding:10px 14px;">
+            <p style="margin:0 0 8px;font-size:12.5px;">将以下徽章代码添加至贵站页脚或 README，提交时注明即可获得优先展示：</p>
+            <pre class="sr-only"><code id="subBadgeCode">&lt;a href="https://dlzbkj-ai.pages.dev/" target="_blank" rel="noopener"&gt;&lt;img src="https://dlzbkj-ai.pages.dev/badge.svg" alt="已收录于 AI 导航聚合站" width="212" height="36"&gt;&lt;/a&gt;</code></pre>
+            <span class="copy-wrap">
+              <button class="btn-secondary copy-button" type="button" command="--copy" commandfor="subBadgeCode" style="padding:6px 12px;font-size:12.5px;">一键复制 SVG 徽章代码</button>
+              <span class="copy-tip" role="status"></span>
+            </span>
+          </div>
+        </details>
       </form>
     </div>
   </dialog>

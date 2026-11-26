@@ -1,0 +1,575 @@
+/* SEO & GEO Static Pages Stylesheet
+   Follows modern-web-guidance: breadcrumbs, responsive-table, html (<details>) */
+
+.seo-shell {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 22px 20px 56px;
+}
+
+/* 1. Breadcrumbs (modern-web-guidance: breadcrumbs) */
+.breadcrumb {
+  margin-block-end: 16px;
+}
+
+.breadcrumb > ol {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+}
+
+.breadcrumb > ol > li {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* Decorative divider hidden from assistive tech via empty alt text after slash */
+.breadcrumb > ol > li + li::before {
+  content: "/" / "";
+  color: var(--text-secondary);
+  opacity: 0.65;
+}
+
+.breadcrumb > ol > li > a {
+  color: var(--text-secondary);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  border-radius: 6px;
+  padding: 2px 4px;
+  transition: color var(--dur-fast) ease, background-color var(--dur-fast) ease;
+}
+
+.breadcrumb > ol > li > a:hover {
+  color: var(--text-primary);
+  background: var(--surface-subtle);
+}
+
+.breadcrumb > ol > li > a:focus-visible {
+  position: relative;
+  z-index: 1;
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.breadcrumb > ol > li > a[aria-current="page"] {
+  color: var(--text-primary);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+@media (forced-colors: active) {
+  .breadcrumb > ol > li > a[aria-current="page"] {
+    text-decoration: underline;
+  }
+}
+
+/* 2. Hero card for Category & Daily Archive pages */
+.seo-hero {
+  padding: 24px 26px;
+  border-radius: 20px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-card);
+  margin-block-end: 22px;
+}
+
+.seo-hero__eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: var(--accent-soft);
+  color: var(--accent);
+  font-size: 12px;
+  font-weight: 600;
+  margin-block-end: 10px;
+}
+
+.seo-hero__title {
+  margin: 0 0 10px;
+  font-size: clamp(22px, 3vw, 30px);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.25;
+  text-wrap: balance;
+}
+
+.seo-hero__desc {
+  margin: 0 0 16px;
+  color: var(--text-secondary);
+  font-size: 15px;
+  line-height: 1.65;
+  max-width: 76ch;
+}
+
+.seo-hero__stats {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+}
+
+.stat-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  border-radius: 999px;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  font-size: 13px;
+  color: var(--text-secondary);
+  font-variant-numeric: tabular-nums;
+}
+
+.stat-pill strong {
+  color: var(--text-primary);
+  font-weight: 650;
+}
+
+.seo-cat-strip {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-block-end: 26px;
+}
+
+.seo-cat-strip a {
+  text-decoration: none;
+}
+
+/* 3. Section headings */
+.seo-section {
+  margin-block-start: 32px;
+}
+
+.seo-section__head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 10px;
+  margin-block-end: 14px;
+}
+
+.seo-section__title {
+  margin: 0;
+  font-size: 19px;
+  font-weight: 650;
+  letter-spacing: -0.015em;
+}
+
+.seo-section__sub {
+  margin: 0;
+  font-size: 13px;
+  color: var(--text-secondary);
+}
+
+/* 4. Responsive Comparison Data Table (modern-web-guidance: responsive-table) */
+.table-wrapper {
+  overflow: auto;
+  max-inline-size: 100%;
+  max-block-size: min(560px, 78vh);
+  container-type: inline-size;
+  border-radius: 16px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  box-shadow: var(--shadow-card);
+}
+
+.table-wrapper:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.compare-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  font-size: 13.5px;
+  text-align: left;
+}
+
+.compare-table caption {
+  padding: 12px 16px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  text-align: left;
+  background: var(--bg);
+  border-block-end: 1px solid var(--border);
+}
+
+.compare-table thead {
+  position: sticky;
+  inset-block-start: 0;
+  z-index: 2;
+}
+
+.compare-table thead th {
+  padding: 11px 14px;
+  background: var(--bg);
+  color: var(--text-secondary);
+  font-weight: 600;
+  font-size: 12.5px;
+  white-space: nowrap;
+  border-block-end: 1px solid var(--border);
+}
+
+.compare-table tbody th,
+.compare-table tbody td {
+  padding: 12px 14px;
+  border-block-end: 1px solid var(--border);
+  vertical-align: top;
+}
+
+.compare-table tbody tr:last-child th,
+.compare-table tbody tr:last-child td {
+  border-block-end: 0;
+}
+
+.compare-table tbody th {
+  position: sticky;
+  inset-inline-start: 0;
+  z-index: 1;
+  background: var(--surface);
+  font-weight: 600;
+  color: var(--text-primary);
+  white-space: nowrap;
+}
+
+.compare-table__desc {
+  min-width: 240px;
+  max-width: 460px;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+
+.compare-table__link {
+  color: var(--accent);
+  font-weight: 600;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.compare-table__link:hover {
+  text-decoration: underline;
+}
+
+@container (width < 620px) {
+  .compare-table,
+  .compare-table thead,
+  .compare-table tbody,
+  .compare-table tr,
+  .compare-table th,
+  .compare-table td {
+    display: block;
+  }
+
+  .compare-table thead {
+    display: none;
+  }
+
+  .compare-table tbody tr {
+    margin: 10px;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+  }
+
+  .compare-table tbody th {
+    position: sticky;
+    inset-block-start: 0;
+    inset-inline-start: auto;
+    z-index: 2;
+    background: var(--bg);
+    white-space: normal;
+  }
+
+  .compare-table tbody td {
+    padding: 9px 14px;
+  }
+
+  .compare-table__desc {
+    min-width: 0;
+    max-width: none;
+  }
+
+  .compare-table tbody td:nth-child(2)::before {
+    content: var(--label-2) "：";
+    font-weight: 600;
+    color: var(--text-primary);
+  }
+  .compare-table tbody td:nth-child(3)::before {
+    content: var(--label-3) "：";
+    font-weight: 600;
+    color: var(--text-primary);
+  }
+  .compare-table tbody td:nth-child(4)::before {
+    content: var(--label-4) "：";
+    font-weight: 600;
+    color: var(--text-primary);
+  }
+  .compare-table tbody td:nth-child(5)::before {
+    content: var(--label-5) "：";
+    font-weight: 600;
+    color: var(--text-primary);
+  }
+}
+
+/* 5. Static Tool Cards (no JS required) */
+.seo-tool-card {
+  cursor: default;
+}
+
+.seo-tool-card__title-link {
+  color: var(--text-primary);
+  text-decoration: none;
+}
+
+.seo-tool-card__title-link:hover {
+  color: var(--accent);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* 6. Native Disclosure FAQ Accordion (modern-web-guidance: html Section 5) */
+.faq-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.faq-item {
+  border-radius: 14px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  overflow: hidden;
+}
+
+.faq-item summary {
+  padding: 14px 18px;
+  font-size: 14.5px;
+  font-weight: 600;
+  color: var(--text-primary);
+  cursor: pointer;
+  line-height: 1.45;
+}
+
+.faq-item summary:hover {
+  background: var(--surface-subtle);
+}
+
+.faq-item[open] summary {
+  border-block-end: 1px solid var(--border);
+}
+
+.faq-item__body {
+  padding: 14px 18px;
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.7;
+  color: var(--text-secondary);
+}
+
+.faq-item__body a {
+  color: var(--accent);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* 7. Daily Brief Archive List & Article Cards */
+.daily-archive-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 14px;
+}
+
+.daily-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 18px;
+  border-radius: 16px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-card);
+  text-decoration: none;
+  color: var(--text-primary);
+  transition: border-color var(--dur-fast) ease, box-shadow var(--dur-med) var(--ease-out-expo);
+}
+
+.daily-card:hover {
+  border-color: var(--accent);
+  box-shadow: var(--shadow-hover);
+}
+
+.daily-card__date {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--accent);
+  font-variant-numeric: tabular-nums;
+}
+
+.daily-card__title {
+  margin: 0;
+  font-size: 15.5px;
+  font-weight: 650;
+  line-height: 1.45;
+}
+
+.daily-card__meta {
+  font-size: 12.5px;
+  color: var(--text-secondary);
+}
+
+.brief-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.brief-item {
+  padding: 18px 20px;
+  border-radius: 16px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-card);
+}
+
+.brief-item__head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  margin-block-end: 8px;
+}
+
+.brief-item__num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 24px;
+  height: 22px;
+  padding: 0 7px;
+  border-radius: 6px;
+  background: var(--accent-soft);
+  color: var(--accent);
+  font-size: 12px;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+.brief-item__title {
+  margin: 0 0 8px;
+  font-size: 16.5px;
+  font-weight: 650;
+  line-height: 1.4;
+}
+
+.brief-item__title a {
+  color: var(--text-primary);
+  text-decoration: none;
+}
+
+.brief-item__title a:hover {
+  color: var(--accent);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.brief-item__summary {
+  margin: 0 0 10px;
+  font-size: 14px;
+  line-height: 1.7;
+  color: var(--text-secondary);
+}
+
+.brief-item__foot {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+  font-size: 12.5px;
+  color: var(--text-secondary);
+}
+
+.brief-item__foot a {
+  color: var(--accent);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.brief-item__foot a:hover {
+  text-decoration: underline;
+}
+
+.daily-pager {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 12px;
+  margin-block-start: 26px;
+}
+
+/* 8. Homepage SEO/GEO Topic Hub & FAQ Block */
+.home-seo-hub {
+  margin-block-start: 44px;
+  padding-block-start: 30px;
+  border-block-start: 1px solid var(--border);
+}
+
+.topic-links-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+  gap: 10px;
+  margin-block-end: 28px;
+}
+
+.topic-link-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 11px 14px;
+  border-radius: 12px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  color: var(--text-primary);
+  text-decoration: none;
+  font-size: 13.5px;
+  font-weight: 600;
+  transition: border-color var(--dur-fast) ease, background-color var(--dur-fast) ease;
+}
+
+.topic-link-card:hover {
+  border-color: var(--accent);
+  background: var(--accent-soft);
+  color: var(--accent);
+}
+
+.topic-link-card span:last-child {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--text-secondary);
+  font-variant-numeric: tabular-nums;
+}
+
+@media (max-width: 640px) {
+  .seo-shell { padding: 16px 14px 44px; }
+  .seo-hero { padding: 18px 16px; }
+}

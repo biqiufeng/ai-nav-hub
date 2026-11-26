@@ -1,5 +1,10 @@
 # AI 导航聚合站（AI Nav Hub）
 
+[![在线访问 AI 导航聚合站](https://dlzbkj-ai.pages.dev/badge.svg)](https://dlzbkj-ai.pages.dev/)
+
+> **在线体验地址**：[https://dlzbkj-ai.pages.dev/](https://dlzbkj-ai.pages.dev/)（零广告 · 免登录 · 国内直连秒开）
+> **检索与订阅入口**：[10 大分类专题](https://dlzbkj-ai.pages.dev/category/) · [每日 AI 早报归档](https://dlzbkj-ai.pages.dev/daily/) · [llms.txt（GEO 大模型索引）](https://dlzbkj-ai.pages.dev/llms.txt) · [RSS 订阅源](https://dlzbkj-ai.pages.dev/feed.xml) · [Sitemap](https://dlzbkj-ai.pages.dev/sitemap.xml)
+
 一个零外部依赖、每日自动聚合国内外主流 AI 工具导航站与新品动态的个人 AI 导航聚合项目。后端采用 Python 3 标准库实现多源抓取、占位图剔除与共识加权去重；前端采用零框架原生 HTML / CSS / ES Module，遵循现代 Web 最佳实践与克制、细腻的苹果级交互与状态动效。
 
 ## 核心特性

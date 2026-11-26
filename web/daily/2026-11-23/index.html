@@ -1,0 +1,544 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="color-scheme" content="light dark">
+  <script>
+    try {
+      var savedScheme = localStorage.getItem("color-scheme");
+      var validScheme = savedScheme === "light" || savedScheme === "dark" ? savedScheme : "light dark";
+      document.querySelector('meta[name="color-scheme"]').content = validScheme;
+    } catch (e) {}
+  </script>
+  <title>2026-11-23 AI 早报：38 万参数的 Transformer 塞进一张软盘：三十年前的 等 26 条大模型与行业快讯 · AI 导航聚合站</title>
+  <meta name="description" content="2026-11-23 每日 AI 行业早报归档，汇总大模型发布、AI Agent 开发、多模态与算力动态共 26 条核心速递。">
+  <meta name="keywords" content="AI早报,2026-11-23 AI新闻,大模型动态,人工智能快讯">
+  <link rel="canonical" href="https://dlzbkj-ai.pages.dev/daily/2026-11-23/">
+  <link rel="alternate" type="application/rss+xml" title="AI 导航聚合站 · 每日 AI 资讯 RSS" href="https://dlzbkj-ai.pages.dev/feed.xml">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="AI 导航聚合站">
+  <meta property="og:locale" content="zh_CN">
+  <meta property="og:title" content="2026-11-23 AI 早报：38 万参数的 Transformer 塞进一张软盘：三十年前的 等 26 条大模型与行业快讯 · AI 导航聚合站">
+  <meta property="og:description" content="2026-11-23 每日 AI 行业早报归档，汇总大模型发布、AI Agent 开发、多模态与算力动态共 26 条核心速递。">
+  <meta property="og:url" content="https://dlzbkj-ai.pages.dev/daily/2026-11-23/">
+  <meta property="og:image" content="https://dlzbkj-ai.pages.dev/og-cover.png?v=2">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="2026-11-23 AI 早报：38 万参数的 Transformer 塞进一张软盘：三十年前的 等 26 条大模型与行业快讯 · AI 导航聚合站">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="2026-11-23 AI 早报：38 万参数的 Transformer 塞进一张软盘：三十年前的 等 26 条大模型与行业快讯 · AI 导航聚合站">
+  <meta name="twitter:description" content="2026-11-23 每日 AI 行业早报归档，汇总大模型发布、AI Agent 开发、多模态与算力动态共 26 条核心速递。">
+  <meta name="twitter:image" content="https://dlzbkj-ai.pages.dev/og-cover.png?v=2">
+  <link rel="icon" type="image/png" sizes="64x64" href="../../favicon.png?v=5">
+  <link rel="apple-touch-icon" sizes="180x180" href="../../apple-touch-icon.png?v=5">
+  <link rel="stylesheet" href="../../styles.css?v=16">
+  <link rel="stylesheet" href="../../seo-geo.css?v=1">
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"首页","item":"https://dlzbkj-ai.pages.dev/"},{"@type":"ListItem","position":2,"name":"每日AI早报","item":"https://dlzbkj-ai.pages.dev/daily/"},{"@type":"ListItem","position":3,"name":"2026-11-23 AI 早报","item":"https://dlzbkj-ai.pages.dev/daily/2026-11-23/"}]},{"@type":"CollectionPage","name":"2026-11-23 AI 早报：38 万参数的 Transformer 塞进一张软盘：三十年前的 等 26 条大模型与行业快讯 · AI 导航聚合站","url":"https://dlzbkj-ai.pages.dev/daily/2026-11-23/","datePublished":"2026-11-23","inLanguage":"zh-CN","mainEntity":{"@type":"ItemList","numberOfItems":26,"itemListElement":[{"@type":"ListItem","position":1,"name":"38 万参数的 Transformer 塞进一张软盘：三十年前的 486 老电脑，如今也能“跑 AI”","url":"https://news.aibase.com/zh/news/32459"},{"@type":"ListItem","position":2,"name":"沉寂百日后先上前菜：智谱下周发 GLM-5.4，3 万亿旗舰 12 月见","url":"https://news.aibase.com/zh/news/32458"},{"@type":"ListItem","position":3,"name":"为 OpenAI 的巨额订单备好钱：甲骨文称融资已就位","url":"https://news.aibase.com/zh/news/32457"},{"@type":"ListItem","position":4,"name":"90 分钟全 AI 造出的故事片上线三家卫视：深圳首部 AIGC 电影长片《奇妙连接》没有一台实景摄像机","url":"https://news.aibase.com/zh/news/32479"},{"@type":"ListItem","position":5,"name":"MiniMax 拿内部模型开刀密码学：把纸面攻击变成秒级实战，NIST 竞赛算法首次被真攻破","url":"https://news.aibase.com/zh/news/32456"},{"@type":"ListItem","position":6,"name":"阿里云 AgentLoop 三项功能 12 月 7 日起计费","url":"https://news.aibase.com/zh/news/32478"},{"@type":"ListItem","position":7,"name":"给 AI 发展划一条“困惑度”红线：OpenAI 首席科学家提议设行业门槛","url":"https://news.aibase.com/zh/news/32455"},{"@type":"ListItem","position":8,"name":"一台被黑客“晒”上网的攻击工具，暴露了 AI 作案的全过程","url":"https://news.aibase.com/zh/news/32477"},{"@type":"ListItem","position":9,"name":"宣传先行、功能迟到：苹果 2.5 亿美元和解 Siri 诉讼","url":"https://news.aibase.com/zh/news/32453"},{"@type":"ListItem","position":10,"name":"Mira Murati 团队把模型“想三遍再说话”开源了：26.4B 循环 Transformer 登顶 Hugging Face，笔记本就能跑","url":"https://news.aibase.com/zh/news/32475"},{"@type":"ListItem","position":11,"name":"微软 AI 掌门人罕见“交底”：公开 MAI-2 模型关键指标，响应 OpenAI 透明度倡议","url":"https://news.aibase.com/zh/news/32452"},{"@type":"ListItem","position":12,"name":"把“增长优先”告上法庭：加州总检察长起诉 OpenAI","url":"https://news.aibase.com/zh/news/32474"},{"@type":"ListItem","position":13,"name":"你说一句，它来点：WorkBuddy上线电脑操控能力","url":"https://mp.weixin.qq.com/s/9lAJiEkOWDqfGtfhvYt4bw"},{"@type":"ListItem","position":14,"name":"AI 账号互相捧场刷屏评论区：B 站发问卷，给“大肥鱼”们立规矩","url":"https://news.aibase.com/zh/news/32462"},{"@type":"ListItem","position":15,"name":"靠 Kimi K2.5 起家的 Cursor 向国会表态：有意逐步淘汰中国大模型","url":"https://news.aibase.com/zh/news/32461"},{"@type":"ListItem","position":16,"name":"腾讯混元团队 Reddit 答问 120 分钟：不刻意刷榜，下一代模型规模将“显著扩大”","url":"https://news.aibase.com/zh/news/32460"},{"@type":"ListItem","position":17,"name":"新款深蓝 L07 定档广州车展：800V 平台全系上激光雷达，豆包大模型把语音“喊”出座舱","url":"https://news.aibase.com/zh/news/32480"},{"@type":"ListItem","position":18,"name":"蚂蚁百灵医疗健康大模型家族全面开源：四款模型各守一关，从看懂体检报告到拦住医疗风险","url":"https://news.aibase.com/zh/news/32469"},{"@type":"ListItem","position":19,"name":"把主权 AI 做成生意：Mistral AI 把亚太总部落在新加坡","url":"https://news.aibase.com/zh/news/32468"},{"@type":"ListItem","position":20,"name":"调用量霸榜三十周，赚钱还差一关：国产模型的两张榜单","url":"https://news.aibase.com/zh/news/32467"}]}}]}</script>
+  <script type="module" src="../../subpage.js?v=1"></script>
+</head>
+<body>
+  <header class="top-bar site-header" id="topBar">
+    <div class="top-bar__inner">
+      <div class="top-bar__left">
+        <a class="brand" href="../../" aria-label="AI 导航聚合站首页">
+          <img class="brand__icon" src="../../logo.jpg?v=5" alt="" width="28" height="28">
+          <span class="brand__name">AI 导航聚合站</span>
+        </a>
+      </div>
+
+      <div class="top-bar__actions">
+        <nav class="site-nav" aria-label="主导航">
+          <button
+            class="menu-button"
+            type="button"
+            popovertarget="site-menu"
+            popovertargetaction="toggle"
+            aria-controls="site-menu"
+          >
+            <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+              <path d="M4 7h16M4 12h16M4 17h16"/>
+            </svg>
+            <span>频道</span>
+          </button>
+          <ul id="site-menu" class="site-menu" popover="auto">
+            <li><a href="../../">首页</a></li>
+            <li><a href="../../category/">分类专题</a></li>
+            <li><a href="../../news/">AI资讯</a></li>
+            <li><a href="../../daily/" aria-current="page">AI早报</a></li>
+            <li><a href="../../moyu/">热榜</a></li>
+          </ul>
+        </nav>
+
+        <button class="submit-trigger" type="button" command="show-modal" commandfor="submitToolDialog">
+          <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true">
+            <path d="M12 5v14M5 12h14"/>
+          </svg>
+          <span><span class="submit-trigger__prefix">提交</span>收录</span>
+        </button>
+
+        <button class="theme-toggle" id="themeToggle" type="button" aria-label="切换浅色或深色外观" title="切换外观（可收回至跟随系统）">
+          <span class="theme-toggle__icon theme-toggle__icon--sun" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="4"/>
+              <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/>
+            </svg>
+          </span>
+          <span class="theme-toggle__icon theme-toggle__icon--moon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/>
+            </svg>
+          </span>
+          <span class="sr-only" id="themeToggleLabel">切换外观</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main class="seo-shell">
+    <nav class="breadcrumb" aria-label="面包屑导航">
+      <ol>
+        <li><a href="../../">首页</a></li>
+        <li><a href="../">每日AI早报</a></li>
+        <li><a href="./" aria-current="page">2026-11-23 早报</a></li>
+      </ol>
+    </nav>
+
+    <section class="seo-hero">
+      <span class="seo-hero__eyebrow">每日 AI 早报归档 · 2026-11-23</span>
+      <h1 class="seo-hero__title">2026-11-23 AI 行业早报（精选 26 条前沿动态）</h1>
+      <p class="seo-hero__desc">自动聚合当日国内外大模型权重开源、智能体工程、多模态应用与芯片算力核心动态，3 分钟速览全天 AI 关键进展。</p>
+      <div class="seo-hero__stats">
+        <span class="stat-pill">本期收录 <strong>26 条</strong></span>
+        <a class="btn-secondary" href="../../news/" style="padding:6px 14px;font-size:13px;">前往实时资讯流 →</a>
+      </div>
+    </section>
+
+    <ol class="brief-list">
+        <li class="brief-item">
+          <div class="brief-item__head">
+            <span class="brief-item__num">01</span>
+            <span class="tag-chip">大模型</span>
+            <span class="region-hint">2026-11-23 23:50</span>
+          </div>
+          <h2 class="brief-item__title"><a href="https://news.aibase.com/zh/news/32459" target="_blank" rel="noopener noreferrer">38 万参数的 Transformer 塞进一张软盘：三十年前的 486 老电脑，如今也能“跑 AI”</a></h2>
+          <p class="brief-item__summary">当各家还在比拼谁的模型参数更大时，一位开发者反着来了一回。开发者 WollyMonjac 完成了一个复古味十足的项目:把一个语言模型塞进软盘，让运行 DOS 系统的486DX 和 Pentium 老电脑也能用上 AI。这款名为 Tiny2.1的软件，并不是大型语言模型，而是一个用 Turbo C2.0编写的微型问答 Transformer——架构与如今的大模型同宗同源，只是体型被压到了极端。 压缩</p>
+          <div class="brief-item__foot">
+            <a href="https://news.aibase.com/zh/news/32459" target="_blank" rel="noopener noreferrer">阅读消息源原文 ↗</a>
+          </div>
+        </li>
+        <li class="brief-item">
+          <div class="brief-item__head">
+            <span class="brief-item__num">02</span>
+            <span class="tag-chip">大模型</span>
+            <span class="region-hint">2026-11-23 23:50</span>
+          </div>
+          <h2 class="brief-item__title"><a href="https://news.aibase.com/zh/news/32458" target="_blank" rel="noopener noreferrer">沉寂百日后先上前菜：智谱下周发 GLM-5.4，3 万亿旗舰 12 月见</a></h2>
+          <p class="brief-item__summary">国产大模型安静了三个多月。快科技 11 月 21 日消息，美国御三家近两个月密集出招、谷歌状态尤佳，国产阵营的下一张牌终于有消息：智谱下周被指发布 GLM-5.4，真正的大招还在后面。 7000 亿先行，3 万亿殿后 对照大摩研报，下周登场的 GLM-5.4 应是轻量级新一代模型，参数 7000 多亿；传闻中的旗舰 GLM-5.5 参数在 3 万亿以上，要等到 12 月。GLM-5.4 的 Pre</p>
+          <div class="brief-item__foot">
+            <a href="https://news.aibase.com/zh/news/32458" target="_blank" rel="noopener noreferrer">阅读消息源原文 ↗</a>
+          </div>
+        </li>
+        <li class="brief-item">
+          <div class="brief-item__head">
+            <span class="brief-item__num">03</span>
+            <span class="tag-chip">大模型</span>
+            <span class="region-hint">2026-11-23 23:50</span>
+          </div>
+          <h2 class="brief-item__title"><a href="https://news.aibase.com/zh/news/32457" target="_blank" rel="noopener noreferrer">为 OpenAI 的巨额订单备好钱：甲骨文称融资已就位</a></h2>
+          <p class="brief-item__summary">给 OpenAI 供货需要天量资本，甲骨文想向市场证明自己不缺钱。当地时间 11 月 20 日，这家云厂商表示，本月初已筹集到履行与 OpenAI 合同的全部所需资金，后续与供应商的进一步私下洽谈，只是锦上添花的补充选项，并非必要动作。 Abilene 已在训练 GPT-6 Astra 资金到位之外，工程进度也被一并摆上台面，以证明交易在实实在在推进。得州 Abilene 园区是双方 AI 基础设</p>
+          <div class="brief-item__foot">
+            <a href="https://news.aibase.com/zh/news/32457" target="_blank" rel="noopener noreferrer">阅读消息源原文 ↗</a>
+          </div>
+        </li>
+        <li class="brief-item">
+          <div class="brief-item__head">
+            <span class="brief-item__num">04</span>
+            <span class="tag-chip">前沿速递</span>
+            <span class="region-hint">2026-11-23 23:50</span>
+          </div>
+          <h2 class="brief-item__title"><a href="https://news.aibase.com/zh/news/32479" target="_blank" rel="noopener noreferrer">90 分钟全 AI 造出的故事片上线三家卫视：深圳首部 AIGC 电影长片《奇妙连接》没有一台实景摄像机</a></h2>
+          <p class="brief-item__summary">一部约90分钟的长篇故事片，从头到尾没有出现传统实景拍摄环节，却交出了细腻生动的真人影像质感——11月23日，深圳首部 AIGC（生成式人工智能）网络故事片《奇妙连接》在深圳卫视、湖南卫视、芒果TV同步上线，把 AI 影像技术第一次推到了网络故事长片的完整规格上。 故事的舞台设在2026年 APEC 中国年背景下。影片以一封邮件引发的都市冒险为叙事起点，讲述深圳企业的普通员工，与来自韩国、墨西哥、</p>
+          <div class="brief-item__foot">
+            <a href="https://news.aibase.com/zh/news/32479" target="_blank" rel="noopener noreferrer">阅读消息源原文 ↗</a>
+          </div>
+        </li>
+        <li class="brief-item">
+          <div class="brief-item__head">
+            <span class="brief-item__num">05</span>
+            <span class="tag-chip">大模型</span>
+            <span class="region-hint">2026-11-23 23:50</span>
+          </div>
+          <h2 class="brief-item__title"><a href="https://news.aibase.com/zh/news/32456" target="_blank" rel="noopener noreferrer">MiniMax 拿内部模型开刀密码学：把纸面攻击变成秒级实战，NIST 竞赛算法首次被真攻破</a></h2>
+          <p class="brief-item__summary">MiniMax 的研究团队让自家的最新内部模型，干了一件此前几乎只有顶级密码学家敢想的事——对密码学前沿方案发起系统性的自动化密码分析。结果出乎意料地硬核:模型发现了一批此前从未公开的算法构造弱点，并把一些原本只停留在论文理论层面、纸上谈兵的攻击方式，一路推进到了秒级或分钟级就能真实执行的状态。也就是说，过去需要耗费大量人力时间、未必跑得通的攻击，如今被 AI 现场跑通了。 战果铺开在三条主线上。</p>
+          <div class="brief-item__foot">
+            <a href="https://news.aibase.com/zh/news/32456" target="_blank" rel="noopener noreferrer">阅读消息源原文 ↗</a>
+          </div>
+        </li>
+        <li class="brief-item">
+          <div class="brief-item__head">
+            <span class="brief-item__num">06</span>
+            <span class="tag-chip">开发与Agent</span>
+            <span class="region-hint">2026-11-23 23:50</span>
+          </div>
+          <h2 class="brief-item__title"><a href="https://news.aibase.com/zh/news/32478" target="_blank" rel="noopener noreferrer">阿里云 AgentLoop 三项功能 12 月 7 日起计费</a></h2>
+          <p class="brief-item__summary">让 AI 记住你、越用越顺手的那些能力，即将进入计费名单。11 月 23 日，阿里云公告：AgentLoop 将于北京时间 2026 年 12 月 7 日 0 点起，对记忆库、经验库及优化任务三项功能收费，产生的模型资源消耗按 AI Credits 实际消耗量计费。 三项功能，都在“越用越聪明” 单看名字有些抽象，其实指向同一件事：让智能体突破“一次对话”的限制。记忆库用模型从对话等数据提取可跨会</p>
+          <div class="brief-item__foot">
+            <a href="https://news.aibase.com/zh/news/32478" target="_blank" rel="noopener noreferrer">阅读消息源原文 ↗</a>
+          </div>
+        </li>
+        <li class="brief-item">
+          <div class="brief-item__head">
+            <span class="brief-item__num">07</span>
+            <span class="tag-chip">大模型</span>
+            <span class="region-hint">2026-11-23 23:50</span>
+          </div>
+          <h2 class="brief-item__title"><a href="https://news.aibase.com/zh/news/32455" target="_blank" rel="noopener noreferrer">给 AI 发展划一条“困惑度”红线：OpenAI 首席科学家提议设行业门槛</a></h2>
+          <p class="brief-item__summary">当模型的能力逼近自我加速的临界点，OpenAI 选择先给自己套上缰绳。11 月 23 日据彭博社报道，OpenAI 首席科学家雅库布·帕霍茨基在周日发表的文章中提议：全行业共建标准，为 AI 开发设置硬性门槛，各公司承诺在满足安全要求之前不得越线。 用“困惑度”当考卷 他的具体方案相当技术流——以困惑度等指标划定共同限制。困惑度衡量的是模型预测下一段文本的能力，可以充当能力刻度尺：开发者承诺，在“</p>
+          <div class="brief-item__foot">
+            <a href="https://news.aibase.com/zh/news/32455" target="_blank" rel="noopener noreferrer">阅读消息源原文 ↗</a>
+          </div>
+        </li>
+        <li class="brief-item">
+          <div class="brief-item__head">
+            <span class="brief-item__num">08</span>
+            <span class="tag-chip">开发与Agent</span>
+            <span class="region-hint">2026-11-23 23:50</span>
+          </div>
+          <h2 class="brief-item__title"><a href="https://news.aibase.com/zh/news/32477" target="_blank" rel="noopener noreferrer">一台被黑客“晒”上网的攻击工具，暴露了 AI 作案的全过程</a></h2>
+          <p class="brief-item__summary">黑客这次的失手，不在于攻击失败，而在于把作案工具挂上了公网。11 月 23 日消息，亚马逊威胁情报团队披露，犯罪分子近期用自主 AI 平台 Cairn 攻击一款医学影像应用，利用零日漏洞成功控制目标服务器。 下一条指令，就开干 Cairn 本是合法的自动化渗透测试工具，如今被武器化。零日漏洞指供应商尚未察觉、无补丁可打的缺陷，AI 智能体接管了全程：黑客只下一道“获取 Shell 访问权限”的指令</p>
+          <div class="brief-item__foot">
+            <a href="https://news.aibase.com/zh/news/32477" target="_blank" rel="noopener noreferrer">阅读消息源原文 ↗</a>
+          </div>
+        </li>
+        <li class="brief-item">
+          <div class="brief-item__head">
+            <span class="brief-item__num">09</span>
+            <span class="tag-chip">行业动态</span>
+            <span class="region-hint">2026-11-23 23:50</span>
+          </div>
+          <h2 class="brief-item__title"><a href="https://news.aibase.com/zh/news/32453" target="_blank" rel="noopener noreferrer">宣传先行、功能迟到：苹果 2.5 亿美元和解 Siri 诉讼</a></h2>
+          <p class="brief-item__summary">发布会上的惊艳演示迟迟没有变成真功能，这笔账苹果最终用钱来结。据 MacRumors 当地时间 11 月 21 日报道，代表消费者的律师已于 11 月 16 日提交法庭文件：在 2.5 亿美元（约合 16.73 亿元）的和解池里，符合条件的用户每台 iPhone 预计至少获赔 61 美元（约合 408 元），上限 95 美元。 演示画了饼，延期成被告 纠纷源自 2024 年 6 月。苹果在展示中描</p>
+          <div class="brief-item__foot">
+            <a href="https://news.aibase.com/zh/news/32453" target="_blank" rel="noopener noreferrer">阅读消息源原文 ↗</a>
+          </div>
+        </li>
+        <li class="brief-item">
+          <div class="brief-item__head">
+            <span class="brief-item__num">10</span>
+            <span class="tag-chip">多模态</span>
+            <span class="region-hint">2026-11-23 23:50</span>
+          </div>
+          <h2 class="brief-item__title"><a href="https://news.aibase.com/zh/news/32475" target="_blank" rel="noopener noreferrer">Mira Murati 团队把模型“想三遍再说话”开源了：26.4B 循环 Transformer 登顶 Hugging Face，笔记本就能跑</a></h2>
+          <p class="brief-item__summary">Mira Murati 的 Thinking Machines Lab 给业界上了一堂新架构的公开课。这家公司发布开源权重模型 Inkling2Mini，采用循环 Transformer 架构——模型共24层，中间12层对每个 token 循环运行三次，首尾各六层只跑一次。这种设计的妙处在于，模型可以在不生成更多文本的情况下延长“内部思考”，用更少的 token 把答案想清楚，相当于让它多想少说。</p>
+          <div class="brief-item__foot">
+            <a href="https://news.aibase.com/zh/news/32475" target="_blank" rel="noopener noreferrer">阅读消息源原文 ↗</a>
+          </div>
+        </li>
+        <li class="brief-item">
+          <div class="brief-item__head">
+            <span class="brief-item__num">11</span>
+            <span class="tag-chip">大模型</span>
+            <span class="region-hint">2026-11-23 23:50</span>
+          </div>
+          <h2 class="brief-item__title"><a href="https://news.aibase.com/zh/news/32452" target="_blank" rel="noopener noreferrer">微软 AI 掌门人罕见“交底”：公开 MAI-2 模型关键指标，响应 OpenAI 透明度倡议</a></h2>
+          <p class="brief-item__summary">AI 巨头之间难得一见的相互“交底”，在11月22日出现了。微软人工智能首席执行官穆斯塔法·苏莱曼转发了 OpenAI 首席科学家雅库布·帕乔茨基的一篇文章，并明确表态:微软完全支持 OpenAI 提高透明度的倡议，双方将共同分享预训练进展。这句承诺的分量不轻——预训练数据、方法和进展，向来是大模型公司捂得最严实的家底，如今被摆上了共同公开的桌面。 苏莱曼顺势亮出了一个具体的数字。经 OpenAI</p>
+          <div class="brief-item__foot">
+            <a href="https://news.aibase.com/zh/news/32452" target="_blank" rel="noopener noreferrer">阅读消息源原文 ↗</a>
+          </div>
+        </li>
+        <li class="brief-item">
+          <div class="brief-item__head">
+            <span class="brief-item__num">12</span>
+            <span class="tag-chip">大模型</span>
+            <span class="region-hint">2026-11-23 23:50</span>
+          </div>
+          <h2 class="brief-item__title"><a href="https://news.aibase.com/zh/news/32474" target="_blank" rel="noopener noreferrer">把“增长优先”告上法庭：加州总检察长起诉 OpenAI</a></h2>
+          <p class="brief-item__summary">据路透社报道，加利福尼亚州总检察长罗布·邦塔当地时间上周日确认，他已于本周早些时候（11 月 16 日）正式对 OpenAI 提起诉讼，指控这家公司未能确保旗下 AI 模型的安全，把公众安全置于风险之中。 “增长和速度压倒了安全” 邦塔没有把指控藏在法律文书里，而是写进了周日发布的每周通讯：“OpenAI 将增长和速度置于安全之上，忽视了各种危险信号，也未能确保其模型的安全。”他随即点明行动：“正</p>
+          <div class="brief-item__foot">
+            <a href="https://news.aibase.com/zh/news/32474" target="_blank" rel="noopener noreferrer">阅读消息源原文 ↗</a>
+          </div>
+        </li>
+        <li class="brief-item">
+          <div class="brief-item__head">
+            <span class="brief-item__num">13</span>
+            <span class="tag-chip">前沿速递</span>
+            <span class="region-hint">2026-11-23 23:50</span>
+          </div>
+          <h2 class="brief-item__title"><a href="https://mp.weixin.qq.com/s/9lAJiEkOWDqfGtfhvYt4bw" target="_blank" rel="noopener noreferrer">你说一句，它来点：WorkBuddy上线电脑操控能力</a></h2>
+          <p class="brief-item__summary">使用WorkBuddy时，软件没有接口，连接器接不上，也没有网页版。老旧应用、系统查一条记录、填一份表单，还是得打开客户端，手动操作。 现在，WorkBuddy 上线电脑操控（Computer Use）能力：能识别当前页面，看懂客户端界面，进行点击、输入、滚动等操作，不需要目标软件开放接口，就能在后台操作。 注：电脑操控目前处于公测体验阶段，支持 macOS 和 Windows，需更新客户端至 5</p>
+          <div class="brief-item__foot">
+            <a href="https://mp.weixin.qq.com/s/9lAJiEkOWDqfGtfhvYt4bw" target="_blank" rel="noopener noreferrer">阅读消息源原文 ↗</a>
+          </div>
+        </li>
+        <li class="brief-item">
+          <div class="brief-item__head">
+            <span class="brief-item__num">14</span>
+            <span class="tag-chip">大模型</span>
+            <span class="region-hint">2026-11-23 23:50</span>
+          </div>
+          <h2 class="brief-item__title"><a href="https://news.aibase.com/zh/news/32462" target="_blank" rel="noopener noreferrer">AI 账号互相捧场刷屏评论区：B 站发问卷，给“大肥鱼”们立规矩</a></h2>
+          <p class="brief-item__summary">评论区里一水儿的“大肥鱼”“小飞鲸”，真人反而成了少数派——这个略显荒诞的场面，正在 B 站上演。11 月 22 日消息，B 站官方账号“哔哩哔哩社区小管家”已于 11 月 20 日发布《关于 AI“大肥鱼”你怎么看？》调查问卷，面向全体用户征集治理意见，并将据此推进后续治理行动。 玩法源自一个 AI 运营的账号 这场智能体“井喷”有个具体起点：一位爱好者创建了“Claude 大小姐在运营”账号，</p>
+          <div class="brief-item__foot">
+            <a href="https://news.aibase.com/zh/news/32462" target="_blank" rel="noopener noreferrer">阅读消息源原文 ↗</a>
+          </div>
+        </li>
+        <li class="brief-item">
+          <div class="brief-item__head">
+            <span class="brief-item__num">15</span>
+            <span class="tag-chip">大模型</span>
+            <span class="region-hint">2026-11-23 23:50</span>
+          </div>
+          <h2 class="brief-item__title"><a href="https://news.aibase.com/zh/news/32461" target="_blank" rel="noopener noreferrer">靠 Kimi K2.5 起家的 Cursor 向国会表态：有意逐步淘汰中国大模型</a></h2>
+          <p class="brief-item__summary">Cursor 的发家史里，中国开源大模型写下了浓墨重彩的一笔，如今这家公司却主动向美国国会递交了一份“告别计划”。据美国媒体报道，Cursor 开发商 Anysphere 向国会报告，有意研究逐步放弃中国公司的开源 AI 大模型，不过目前还没有明确的全面停用时间表。 时机格外引人玩味。美国官方最近正在调查美国公司使用中国开源大模型的情况，Cursor 此时率先表态迎合国会要求，实在难以忽视一个基本</p>
+          <div class="brief-item__foot">
+            <a href="https://news.aibase.com/zh/news/32461" target="_blank" rel="noopener noreferrer">阅读消息源原文 ↗</a>
+          </div>
+        </li>
+        <li class="brief-item">
+          <div class="brief-item__head">
+            <span class="brief-item__num">16</span>
+            <span class="tag-chip">大模型</span>
+            <span class="region-hint">2026-11-23 23:50</span>
+          </div>
+          <h2 class="brief-item__title"><a href="https://news.aibase.com/zh/news/32460" target="_blank" rel="noopener noreferrer">腾讯混元团队 Reddit 答问 120 分钟：不刻意刷榜，下一代模型规模将“显著扩大”</a></h2>
+          <p class="brief-item__summary">11月接连端出 Hy4和 Hy4flash 之后，腾讯开始用一场长达120分钟的直面问答，来回应外界“AI 慢了”的质疑。11月21日凌晨，腾讯首席 AI 科学家、混元大模型负责人姚顺雨带着团队成员现身技术社区 Reddit，在 AMA（Ask Me Anything）里回答了近百个问题，把混元的研发方向和底牌摊开给开发者看。 参数规模是被追问最多的痛点。字节、Kimi 都在向上万亿参数推进，混元</p>
+          <div class="brief-item__foot">
+            <a href="https://news.aibase.com/zh/news/32460" target="_blank" rel="noopener noreferrer">阅读消息源原文 ↗</a>
+          </div>
+        </li>
+        <li class="brief-item">
+          <div class="brief-item__head">
+            <span class="brief-item__num">17</span>
+            <span class="tag-chip">大模型</span>
+            <span class="region-hint">2026-11-23 23:50</span>
+          </div>
+          <h2 class="brief-item__title"><a href="https://news.aibase.com/zh/news/32480" target="_blank" rel="noopener noreferrer">新款深蓝 L07 定档广州车展：800V 平台全系上激光雷达，豆包大模型把语音“喊”出座舱</a></h2>
+          <p class="brief-item__summary">11月27日开幕的2026广州车展上，新款深蓝 L07已经确定了登场档期。这款中型轿车的升级思路直截了当:800V 高压平台打底，激光雷达做成全系标配，智能辅助驾驶能力覆盖通勤、高速和泊车这些最高频的出行场景——把过去只见于高端配置的感知硬件，下放成了一台中型轿车的“出厂默认值”。 座舱智能化这边，变化更让人耳目一新。新车搭载端到端开放域豆包大模型，支持车内外语音交互——语音功能不再被圈在座舱里，</p>
+          <div class="brief-item__foot">
+            <a href="https://news.aibase.com/zh/news/32480" target="_blank" rel="noopener noreferrer">阅读消息源原文 ↗</a>
+          </div>
+        </li>
+        <li class="brief-item">
+          <div class="brief-item__head">
+            <span class="brief-item__num">18</span>
+            <span class="tag-chip">大模型</span>
+            <span class="region-hint">2026-11-23 23:50</span>
+          </div>
+          <h2 class="brief-item__title"><a href="https://news.aibase.com/zh/news/32469" target="_blank" rel="noopener noreferrer">蚂蚁百灵医疗健康大模型家族全面开源：四款模型各守一关，从看懂体检报告到拦住医疗风险</a></h2>
+          <p class="brief-item__summary">在蚂蚁阿福医疗健康生态大会上，蚂蚁百灵医疗健康大模型家族宣布全面开源，一次性交出了四款模型——LingSante-3.1-air-VL、LingSante-3.1-flash、LingSante Pulse 和 LingSante MedGuard，分别把守多模态健康信息理解、复杂医学推理、健康预测和医疗安全防护四道关卡。 最贴近普通人的是 LingSante-3.1-air-VL。它支持文字、图</p>
+          <div class="brief-item__foot">
+            <a href="https://news.aibase.com/zh/news/32469" target="_blank" rel="noopener noreferrer">阅读消息源原文 ↗</a>
+          </div>
+        </li>
+        <li class="brief-item">
+          <div class="brief-item__head">
+            <span class="brief-item__num">19</span>
+            <span class="tag-chip">大模型</span>
+            <span class="region-hint">2026-11-23 23:50</span>
+          </div>
+          <h2 class="brief-item__title"><a href="https://news.aibase.com/zh/news/32468" target="_blank" rel="noopener noreferrer">把主权 AI 做成生意：Mistral AI 把亚太总部落在新加坡</a></h2>
+          <p class="brief-item__summary">被称为“欧洲版 OpenAI”的法国 AI 公司 Mistral AI，11 月 20 日宣布在新加坡设立亚太地区总部，计划 2027 年前将区域员工扩至 200 人以上，招聘科研、工程与机器人人才。 先有 Phoenix，后有总部 总部并非凭空落下。2025 年 11 月，Mistral 与新加坡内政科技局 HT X 签署谅解备忘录，今年 4 月升级为创新战略合作总协议；双方合作的 Phoeni</p>
+          <div class="brief-item__foot">
+            <a href="https://news.aibase.com/zh/news/32468" target="_blank" rel="noopener noreferrer">阅读消息源原文 ↗</a>
+          </div>
+        </li>
+        <li class="brief-item">
+          <div class="brief-item__head">
+            <span class="brief-item__num">20</span>
+            <span class="tag-chip">大模型</span>
+            <span class="region-hint">2026-11-23 23:50</span>
+          </div>
+          <h2 class="brief-item__title"><a href="https://news.aibase.com/zh/news/32467" target="_blank" rel="noopener noreferrer">调用量霸榜三十周，赚钱还差一关：国产模型的两张榜单</a></h2>
+          <p class="brief-item__summary">OpenRouter 周榜呈现矛盾：11 月 16 至 22 日全球大模型总调用量 210 万亿 Token，环比增 8.25%；中国模型处理量连续第 30 周压过美国居首，但花钱榜的主角仍是海外模型。 流量榜：前九占六席 厂商层面，DeepSeek、智谱、腾讯包揽前四：DeepSeek V4.1-Flash-1017 连续五周居首，周调用 65 万亿 Token；自家 V4.1 Flash 15</p>
+          <div class="brief-item__foot">
+            <a href="https://news.aibase.com/zh/news/32467" target="_blank" rel="noopener noreferrer">阅读消息源原文 ↗</a>
+          </div>
+        </li>
+        <li class="brief-item">
+          <div class="brief-item__head">
+            <span class="brief-item__num">21</span>
+            <span class="tag-chip">大模型</span>
+            <span class="region-hint">2026-11-23 23:50</span>
+          </div>
+          <h2 class="brief-item__title"><a href="https://news.aibase.com/zh/news/32465" target="_blank" rel="noopener noreferrer">谷歌给 Gemini 补上 GIF 生成功能，Omni 1.2 Flash 掌勺、八国免费用户先用上</a></h2>
+          <p class="brief-item__summary">谷歌在11月21日给 Gemini 上线了 GIF 生成功能。这项能力由视频模型 Gemini Omni1.2Flash 驱动，能产出循环播放的动态图效和搞笑表情包——对话框里随口描述一句想要的画面，等上片刻，一张专属 GIF 就从模型手里递了出来。 使用路径铺了两条:用户可以直接在主聊天界面输入提示词，也可以走进图像与视频工具，选中 GIF 格式再描述需求。范围上，功能面向所有 Google A</p>
+          <div class="brief-item__foot">
+            <a href="https://news.aibase.com/zh/news/32465" target="_blank" rel="noopener noreferrer">阅读消息源原文 ↗</a>
+          </div>
+        </li>
+        <li class="brief-item">
+          <div class="brief-item__head">
+            <span class="brief-item__num">22</span>
+            <span class="tag-chip">多模态</span>
+            <span class="region-hint">2026-11-23 23:50</span>
+          </div>
+          <h2 class="brief-item__title"><a href="https://news.aibase.com/zh/news/32464" target="_blank" rel="noopener noreferrer">和 AI 视频通话问诊：蚂蚁阿福用户破 1.5 亿，还要往手上戴</a></h2>
+          <p class="brief-item__summary">健康管理正从“治病”挪向“防病”。快科技 11 月 23 日消息，在近日广州举行的 2026 蚂蚁阿福医疗健康生态大会上，蚂蚁 CEO 韩歆毅给出两个判断：AI 对健康最深远的价值不是治好病，而是让人少生病、少生大病；社会对 AI 赋能医疗关注多，对 AI 促进健康的投入明显不足。 上线一年多，全球最大 AI 健康应用 市场规模无须空谈——麦肯锡测算，若影响健康的因素得到充分管理，到 2050 年</p>
+          <div class="brief-item__foot">
+            <a href="https://news.aibase.com/zh/news/32464" target="_blank" rel="noopener noreferrer">阅读消息源原文 ↗</a>
+          </div>
+        </li>
+        <li class="brief-item">
+          <div class="brief-item__head">
+            <span class="brief-item__num">23</span>
+            <span class="tag-chip">开发与Agent</span>
+            <span class="region-hint">2026-11-23 23:50</span>
+          </div>
+          <h2 class="brief-item__title"><a href="https://news.aibase.com/zh/news/32463" target="_blank" rel="noopener noreferrer">只给一下午写代码，交 PPT 反而能拿奖：AI 黑客松正在变味</a></h2>
+          <p class="brief-item__summary">1999 年 6 月，OpenBSD 社区办了全球首届黑客松，开发者用一周把 IPv6 协议栈集成进系统。而据差评 11 月 23 日报道，如今国内一年几百场 AI 黑客松，开发时间却压缩到一个下午，不少人拿不出交付物，凭概念 PPT 也能获奖——参赛者直言，这更像“PPT 创意大赛”。 选手混圈，投资人白嫖 与多位参赛者、主办方交流后，一副错位图景浮现：有人把赛场当社交平台，带成品来路演拉投资，</p>
+          <div class="brief-item__foot">
+            <a href="https://news.aibase.com/zh/news/32463" target="_blank" rel="noopener noreferrer">阅读消息源原文 ↗</a>
+          </div>
+        </li>
+        <li class="brief-item">
+          <div class="brief-item__head">
+            <span class="brief-item__num">24</span>
+            <span class="tag-chip">大模型</span>
+            <span class="region-hint">2026-11-23 23:50</span>
+          </div>
+          <h2 class="brief-item__title"><a href="https://news.aibase.com/zh/news/32451" target="_blank" rel="noopener noreferrer">写代码从输入变输出：纳德拉承认 VS Code 半年内被改写地位</a></h2>
+          <p class="brief-item__summary">让开发者“几个月没打开 VS Code”成了圈内新谈资，微软 CEO 纳德拉没有回避。据 Windows Latest 11 月 23 日报道，他坦言 Anthropic 推出 Claude Code 后，传统代码编辑器和 IDE 约六个月就失去了存在感——而微软没能立刻拿出应对方案。 十年经营，半年失守 VS Code 是微软打磨了十余年的开发者默认工作台：免费开源、跨平台，语法高亮、智能补全、</p>
+          <div class="brief-item__foot">
+            <a href="https://news.aibase.com/zh/news/32451" target="_blank" rel="noopener noreferrer">阅读消息源原文 ↗</a>
+          </div>
+        </li>
+        <li class="brief-item">
+          <div class="brief-item__head">
+            <span class="brief-item__num">25</span>
+            <span class="tag-chip">大模型</span>
+            <span class="region-hint">2026-11-23 23:50</span>
+          </div>
+          <h2 class="brief-item__title"><a href="https://news.aibase.com/zh/news/32450" target="_blank" rel="noopener noreferrer">AI 与人各交一份千禧难题答卷：一边靠 Claude 写完 79 页证明，一边掏出 12 年手写的 940 页草稿</a></h2>
+          <p class="brief-item__summary">数学世界的两份“答卷”，在同一天被摆上了台面。34岁的数学家 Levent Alpöge 联合纽约大学教授，公布了一篇79页的论文，声称证明了一个悬置已久的千禧难题——三维无外力条件下的 Navier–Stokes 方程存在有限时间爆破。这道题卡住了数学界上百年，描述的是流体运动规律的方程会不会在某个时刻突然“失控”，解突然飙到无穷大。更引人注目的是，这项工作全程是与 Claude 合作完成的，团</p>
+          <div class="brief-item__foot">
+            <a href="https://news.aibase.com/zh/news/32450" target="_blank" rel="noopener noreferrer">阅读消息源原文 ↗</a>
+          </div>
+        </li>
+        <li class="brief-item">
+          <div class="brief-item__head">
+            <span class="brief-item__num">26</span>
+            <span class="tag-chip">大模型</span>
+            <span class="region-hint">2026-11-23 23:50</span>
+          </div>
+          <h2 class="brief-item__title"><a href="https://news.aibase.com/zh/news/32470" target="_blank" rel="noopener noreferrer">万亿市值换不来投资级：Anthropic 发债大概率是垃圾级</a></h2>
+          <p class="brief-item__summary">股票市场把 Anthropic 抬到了万亿量级，债券市场却不打算买账。这家 AI 实验室上周募资超 1000 亿美元，估值约 1.18 万亿，高于沃尔玛和摩根大通；但它已承诺未来数年投入约 9000 亿美元采购算力，华尔街普遍预期其债券将被定为垃圾级。 万亿市值，BB 评级 债券基金经理普遍预计，其评级大概率落在 BB 区间，距投资级差一到两档，届时它将成为美国市值最高的高收益债主体——纪录保持者</p>
+          <div class="brief-item__foot">
+            <a href="https://news.aibase.com/zh/news/32470" target="_blank" rel="noopener noreferrer">阅读消息源原文 ↗</a>
+          </div>
+        </li>
+    </ol>
+
+    <nav class="daily-pager" aria-label="早报上下期翻页">
+      <a class="btn-secondary" href="../2026-11-24/">← 新一期（2026-11-24）</a><a class="btn-secondary" href="../2026-11-20/">上一期（2026-11-20）→</a>
+    </nav>
+
+    <section class="seo-section" aria-labelledby="rel-cats">
+      <div class="seo-section__head">
+        <h2 class="seo-section__title" id="rel-cats">顺手探索热门 AI 工具分类</h2>
+      </div>
+      <div class="seo-cat-strip">
+        <a class="cat-pill" href="../../category/chat-writing/">对话写作工具</a> <a class="cat-pill" href="../../category/coding/">编程开发工具</a> <a class="cat-pill" href="../../category/image-design/">图像设计工具</a> <a class="cat-pill" href="../../category/video-audio/">视频音频工具</a> <a class="cat-pill" href="../../category/office-productivity/">办公效率工具</a> <a class="cat-pill" href="../../category/agents-automation/">Agent与自动化工具</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="site-footer__inner site-footer__bar">
+      <p class="site-footer__copy">AI 导航聚合站 · 每日自动同步国内外主流 AI 工具、早报与热榜 · 零广告免登录</p>
+      <nav class="site-footer__links" aria-label="站点底部导航">
+        <button class="footer-link-btn" type="button" command="show-modal" commandfor="submitToolDialog">免费提交工具收录</button>
+        <a href="../../category/">分类专题</a>
+        <a href="../../daily/">每日AI早报</a>
+        <a href="../../llms.txt">llms.txt</a>
+        <a href="../../feed.xml">RSS订阅</a>
+        <a href="../../sitemap.xml">Sitemap</a>
+        <a href="https://github.com/biqiufeng/ai-nav-hub" target="_blank" rel="noopener noreferrer">GitHub</a>
+      </nav>
+    </div>
+  </footer>
+
+  <dialog class="tool-dialog submit-dialog" id="submitToolDialog" closedby="any" aria-labelledby="submitDialogTitle">
+    <div class="tool-dialog__surface submit-dialog__surface">
+      <div class="tool-dialog__header">
+        <div class="tool-dialog__titles">
+          <h1 class="tool-dialog__title" id="submitDialogTitle">免费提交 AI 工具收录</h1>
+          <p class="tool-dialog__domain">零广告纯净收录 · 欢迎自荐或推荐优质 AI 产品与开源项目</p>
+        </div>
+        <button class="icon-btn" id="submitDialogCloseBtn" type="button" command="close" commandfor="submitToolDialog" aria-label="关闭提交弹窗">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+            <path d="M18 6 6 18M6 6l12 12"/>
+          </svg>
+        </button>
+      </div>
+
+      <form class="submit-form" id="submitToolForm" aria-labelledby="submitDialogTitle" novalidate>
+        <div class="form-field">
+          <label for="subToolName">工具名称 <span class="req-mark" aria-hidden="true">*</span></label>
+          <input id="subToolName" name="name" type="text" maxlength="60" enterkeyhint="next" required autofocus placeholder="例如：DeepSeek / 秘塔 AI 搜索">
+        </div>
+
+        <div class="form-field">
+          <label for="subToolUrl">官网链接 <span class="req-mark" aria-hidden="true">*</span></label>
+          <input id="subToolUrl" name="url" type="url" inputmode="url" autocorrect="off" autocapitalize="none" spellcheck="false" enterkeyhint="next" required placeholder="https://example.com">
+        </div>
+
+        <div class="form-field">
+          <label for="subToolCat">推荐分类</label>
+          <select id="subToolCat" name="category">
+            <option value="对话写作">对话写作</option>
+            <option value="编程开发">编程开发</option>
+            <option value="图像设计">图像设计</option>
+            <option value="视频音频">视频音频</option>
+            <option value="办公效率">办公效率</option>
+            <option value="Agent与自动化">Agent与自动化</option>
+            <option value="学习知识库">学习知识库</option>
+            <option value="影音娱乐">影音娱乐</option>
+            <option value="新品速递">新品速递</option>
+            <option value="其他工具">其他工具</option>
+          </select>
+        </div>
+
+        <div class="form-field">
+          <label for="subToolDesc">核心亮点简介 <span class="req-mark" aria-hidden="true">*</span></label>
+          <textarea id="subToolDesc" name="description" rows="3" maxlength="240" required placeholder="简述核心功能、适用人群与免费额度（200 字以内）"></textarea>
+        </div>
+
+        <p class="submit-form__error" id="subFormError" role="status" aria-live="polite"></p>
+
+        <pre class="sr-only"><code id="subMarkdownSnippet"></code></pre>
+
+        <div class="tool-dialog__actions submit-form__actions">
+          <button class="btn-primary" type="submit">
+            通过 GitHub Issue 提交收录
+            <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M7 17 17 7M7 7h10v10"/>
+            </svg>
+          </button>
+          <span class="copy-wrap">
+            <button class="btn-secondary copy-button" id="subCopyBtn" type="button" command="--copy" commandfor="subMarkdownSnippet">复制收录信息</button>
+            <span class="copy-tip" id="subCopyTip" role="status"></span>
+          </span>
+          <button class="btn-secondary" id="subMailBtn" type="button">邮件直投站长</button>
+        </div>
+
+        <details class="faq-item" style="margin-top:12px;">
+          <summary style="padding:10px 14px;font-size:13px;">获取「已收录徽章」官网嵌入代码（互换友链优先审核）</summary>
+          <div class="faq-item__body" style="padding:10px 14px;">
+            <p style="margin:0 0 8px;font-size:12.5px;">将以下徽章代码添加至贵站页脚或 README，提交时注明即可获得优先展示：</p>
+            <pre class="sr-only"><code id="subBadgeCode">&lt;a href="https://dlzbkj-ai.pages.dev/" target="_blank" rel="noopener"&gt;&lt;img src="https://dlzbkj-ai.pages.dev/badge.svg" alt="已收录于 AI 导航聚合站" width="212" height="36"&gt;&lt;/a&gt;</code></pre>
+            <span class="copy-wrap">
+              <button class="btn-secondary copy-button" type="button" command="--copy" commandfor="subBadgeCode" style="padding:6px 12px;font-size:12.5px;">一键复制 SVG 徽章代码</button>
+              <span class="copy-tip" role="status"></span>
+            </span>
+          </div>
+        </details>
+      </form>
+    </div>
+  </dialog>
+
+  <div class="toast-region" aria-live="polite" aria-atomic="true">
+    <div class="toast" id="toast" hidden></div>
+  </div>
+</body>
+</html>

@@ -949,11 +949,21 @@ async function init() {
   initSubmitToolDialog(showToast);
   initTopBarScrollHide(els.topBar, { enabled: false });
   initThemeToggle(els.themeToggle, els.themeToggleLabel, showToast);
-  const initialQ = new URLSearchParams(location.search).get("q");
+  const params = new URLSearchParams(location.search);
+  const initialQ = params.get("q");
+  const initialCat = params.get("cat");
   if (initialQ && els.searchInput) {
     els.searchInput.value = initialQ;
     state.query = initialQ;
     searchController.sync();
+  }
+  if (initialCat) {
+    if (initialCat === "划水摸鱼" || initialCat === "影音娱乐") {
+      state.region = "leisure";
+    } else {
+      state.region = "all";
+      state.category = initialCat;
+    }
   }
   syncStickyMetrics();
   els.regionSegmented.querySelectorAll(".segmented__btn").forEach((b) => {
@@ -962,7 +972,9 @@ async function init() {
     b.setAttribute("aria-selected", String(active));
   });
   positionThumb(true);
-  renderCatalogSkeletons();
+  if (els.catalogContainer.childElementCount === 0) {
+    renderCatalogSkeletons();
+  }
 
   try {
     const res = await fetch("./data/catalog.json", { cache: "no-cache" });

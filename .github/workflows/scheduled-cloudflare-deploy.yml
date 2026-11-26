@@ -94,6 +94,16 @@ jobs:
           assert news_items >= 10, f"Too few news items: {news_items}"
           PY
 
+      - name: Build static SEO & GEO pages (Categories, Daily Briefs, llms.txt, RSS, Sitemap)
+        env:
+          CF_LIVE_URL: ${{ vars.CF_LIVE_URL }}
+        shell: bash
+        run: |
+          LIVE_BASE="${CF_LIVE_URL:-https://dlzbkj-ai.pages.dev}"
+          mkdir -p web/daily
+          curl -fsSL -m 15 "$LIVE_BASE/daily/history.json" -o web/daily/history.json 2>/dev/null || true
+          python3 crawler/build_seo_geo.py --web-dir web --base-url "$LIVE_BASE"
+
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
@@ -129,3 +139,11 @@ jobs:
             --branch=main \
             --commit-dirty=true \
             --commit-message="Scheduled (${{ steps.mode.outputs.run_mode }}) sync"
+
+      - name: Push updated URLs to IndexNow (Bing & AI Search Engines)
+        env:
+          CF_LIVE_URL: ${{ vars.CF_LIVE_URL }}
+        shell: bash
+        run: |
+          LIVE_BASE="${CF_LIVE_URL:-https://dlzbkj-ai.pages.dev}"
+          python3 crawler/build_seo_geo.py --web-dir web --base-url "$LIVE_BASE" --push-indexnow || true

@@ -30,8 +30,10 @@
   <meta name="twitter:image" content="https://dlzbkj-ai.pages.dev/og-cover.png?v=2">
   <link rel="icon" type="image/png" sizes="64x64" href="../favicon.png?v=5">
   <link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png?v=5">
-  <link rel="stylesheet" href="../styles.css?v=15">
+  <link rel="stylesheet" href="../styles.css?v=16">
+  <link rel="stylesheet" href="../seo-geo.css?v=1">
   <link rel="stylesheet" href="./moyu.css?v=5">
+  <link rel="alternate" type="application/rss+xml" title="AI 导航聚合站 · 每日 AI 资讯 RSS" href="https://dlzbkj-ai.pages.dev/feed.xml">
   <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -75,7 +77,9 @@
           </button>
           <ul id="site-menu" class="site-menu" popover="auto">
             <li><a href="../">首页</a></li>
+            <li><a href="../category/">分类专题</a></li>
             <li><a href="../news/">AI资讯</a></li>
+            <li><a href="../daily/">AI早报</a></li>
             <li><a href="./" aria-current="page">热榜</a></li>
           </ul>
         </nav>
@@ -154,8 +158,10 @@
       <p class="site-footer__copy">AI 导航聚合站 · 每日自动同步国内外主流 AI 工具、快讯与热榜 · 零广告免登录</p>
       <nav class="site-footer__links" aria-label="站点底部导航">
         <button class="footer-link-btn" type="button" command="show-modal" commandfor="submitToolDialog">免费提交工具收录</button>
-        <a href="../">AI 工具库</a>
-        <a href="../news/">AI 资讯</a>
+        <a href="../category/">分类专题</a>
+        <a href="../daily/">每日AI早报</a>
+        <a href="../llms.txt">llms.txt</a>
+        <a href="../feed.xml">RSS订阅</a>
         <a href="../sitemap.xml">Sitemap</a>
         <a href="https://github.com/biqiufeng/ai-nav-hub" target="_blank" rel="noopener noreferrer">GitHub</a>
       </nav>
@@ -225,6 +231,18 @@
           </span>
           <button class="btn-secondary" id="subMailBtn" type="button">邮件直投站长</button>
         </div>
+
+        <details class="faq-item" style="margin-top:12px;">
+          <summary style="padding:10px 14px;font-size:13px;">获取「已收录徽章」官网嵌入代码（互换友链优先审核）</summary>
+          <div class="faq-item__body" style="padding:10px 14px;">
+            <p style="margin:0 0 8px;font-size:12.5px;">将以下徽章代码添加至贵站页脚或 README，提交时注明即可获得优先展示：</p>
+            <pre class="sr-only"><code id="subBadgeCode">&lt;a href="https://dlzbkj-ai.pages.dev/" target="_blank" rel="noopener"&gt;&lt;img src="https://dlzbkj-ai.pages.dev/badge.svg" alt="已收录于 AI 导航聚合站" width="212" height="36"&gt;&lt;/a&gt;</code></pre>
+            <span class="copy-wrap">
+              <button class="btn-secondary copy-button" type="button" command="--copy" commandfor="subBadgeCode" style="padding:6px 12px;font-size:12.5px;">一键复制 SVG 徽章代码</button>
+              <span class="copy-tip" role="status"></span>
+            </span>
+          </div>
+        </details>
       </form>
     </div>
   </dialog>
