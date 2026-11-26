@@ -35,6 +35,7 @@ CATEGORIES = [
     "办公效率",
     "Agent与自动化",
     "学习知识库",
+    "划水摸鱼",
     "新品速递",
     "其他工具",
 ]
@@ -50,6 +51,7 @@ SKIP_DOMAINS = {
     "aibase.com", "www.aibase.com", "app.aibase.com", "top.aibase.com",
     "news.aibase.com", "mcp.aibase.com", "model.aibase.com", "geo.aibase.com",
     "ai-zhiku.com", "www.ai-zhiku.com",
+    "baoboxs.com", "www.baoboxs.com",
     "waytoagi.com", "www.waytoagi.com", "assets.waytoagi.com",
     "beian.miit.gov.cn", "www.beian.gov.cn", "beian.mps.gov.cn",
     "googletagmanager.com", "www.googletagmanager.com",
@@ -75,12 +77,14 @@ class RateLimitError(RuntimeError):
     """Raised when an upstream source explicitly rate-limits requests (HTTP 429)."""
 
 
-def fetch_text(url, timeout=18, retries=2, max_bytes=10 * 1024 * 1024):
+def fetch_text(url, timeout=18, retries=2, max_bytes=10 * 1024 * 1024, extra_headers=None):
     headers = {
         "User-Agent": UA,
         "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
         "Accept-Language": "zh-CN,zh;q=0.9,en;q=0.8",
     }
+    if extra_headers:
+        headers.update(extra_headers)
     last_err = None
     for attempt in range(retries + 1):
         req = urllib.request.Request(url, headers=headers)
@@ -193,16 +197,22 @@ def has_word(text, words):
 
 def _match_category(text):
     if has_word(text, (
+        "划水摸鱼", "摸鱼", "在线游戏", "运动健康", "音乐 影视", "影音影视", "磁力搜索",
+    )):
+        return "划水摸鱼"
+    if has_word(text, (
         "agent", "agents", "智能体", "工作流", "workflow", "workflows",
         "automation", "automations", "自动化", "mcp", "openclaw", "dify", "coze", "扣子",
         "no code", "nocode", "personal assistant", "aggregators",
     )):
         return "Agent与自动化"
     if has_word(text, (
-        "编程", "代码", "开发", "框架", "模型", "code", "coding", "code assistant",
-        "generative code", "ide", "github", "cursor", "copilot", "sql", "sql assistant",
-        "api", "前端", "后端", "website builders", "ai coding", "ai frameworks", "ai models",
-        "developer", "programming",
+        "编程", "代码", "开发", "框架", "模型", "软件 cli", "skills", "模型社区",
+        "开放平台", "站长助手", "代码托管", "网络工具", "编辑工具", "云服务商", "云计算",
+        "插件", "idea插件", "vscode插件", "浏览器插件", "remote", "ssl",
+        "code", "coding", "code assistant", "generative code", "ide", "github", "cursor",
+        "copilot", "sql", "sql assistant", "api", "前端", "后端", "website builders",
+        "ai coding", "ai frameworks", "ai models", "developer", "programming",
     )):
         return "编程开发"
     if has_word(text, (
@@ -216,6 +226,7 @@ def _match_category(text):
         return "视频音频"
     if has_word(text, (
         "图像", "绘画", "画图", "设计", "修图", "海报", "抠图", "放大", "插画", "头像", "logo", "3d",
+        "图片资源", "在线作图", "图床", "截图", "录屏", "取色配色", "字库",
         "image", "images", "art", "generative art", "draw", "design", "design generators",
         "avatar", "avatar generator", "cartoon", "cartoon generators", "logo generator",
         "portrait", "portrait generators", "image editing", "image generators",
@@ -226,6 +237,8 @@ def _match_category(text):
     if has_word(text, (
         "办公", "ppt", "表格", "excel", "文档", "会议", "邮件", "简历", "思维导图",
         "效率", "生产力", "商业", "营销", "金融", "财务",
+        "协同工作", "专业邮箱", "临时邮箱", "网盘", "传输", "搜索 下载", "资源分享",
+        "软件下载", "nas", "政务门户", "信息安全", "常用推荐", "热门推荐",
         "productivity", "presentations", "slides", "spreadsheet", "spreadsheet assistant",
         "project management", "office", "document", "meeting", "mind mapping",
         "business", "marketing", "finance", "ai office", "ai ppt", "notion",
@@ -243,6 +256,7 @@ def _match_category(text):
     if has_word(text, (
         "教程", "学习", "知识库", "prompt", "prompts", "prompt generators",
         "prompt guides", "提示词", "百科", "论文", "课程", "学术", "研究",
+        "编程学习", "电子书籍", "练习专区", "技能提升", "学生教辅", "技术社区", "求职", "副业",
         "research", "research assistant", "study", "paper", "education",
         "tutorial", "ai tutorial", "for fun", "self improvement", "gaming", "health",
     )):
@@ -253,7 +267,8 @@ def _match_category(text):
 
 
 def map_category(raw_cat, name="", desc=""):
-    clean_cat = re.sub(r"[-_/]+", " ", (raw_cat or "")).lower().strip()
+    clean_cat = re.sub(r"[|｜\-_/]+", " ", (raw_cat or ""))
+    clean_cat = re.sub(r"\s+", " ", clean_cat).lower().strip()
     if clean_cat:
         matched = _match_category(clean_cat)
         if matched:
@@ -746,7 +761,7 @@ def _extract_futuretools_page(page):
 def parse_futuretools():
     collected = []
     seen_slugs = set()
-    max_pages = 220
+    max_pages = 250
     wave_size = 12
     idx_counter = 0
 
@@ -893,12 +908,132 @@ def parse_futurepedia():
     return items
 
 
+def parse_baoboxs():
+    raw_html = fetch_text("https://www.baoboxs.com/", timeout=18)
+    joined = next_f_join(raw_html)
+    marker = '"initialCategories":'
+    idx = joined.find(marker)
+    if idx == -1:
+        raise RuntimeError("baoboxs initialCategories payload not found")
+    cats, _ = json.JSONDecoder().raw_decode(joined, idx + len(marker))
+
+    items = []
+    seen = set()
+    rank = 0
+    for cat in cats:
+        if not isinstance(cat, dict):
+            continue
+        cname = strip_tags(cat.get("cname") or "")
+        for grp in cat.get("glist") or []:
+            if not isinstance(grp, dict):
+                continue
+            gname = strip_tags(grp.get("groupName") or "")
+            raw_cat = f"{cname} {gname}".strip()
+            for tool in grp.get("tools") or []:
+                if not isinstance(tool, dict):
+                    continue
+                url = normalize_url(tool.get("url") or "")
+                name = strip_tags(tool.get("title") or "")
+                if not url or not name or domain_of(url) in SKIP_DOMAINS or url in seen:
+                    continue
+                seen.add(url)
+                rank += 1
+                desc = strip_tags(tool.get("desc") or "") or f"{cname or '程序员宝盒'} · {gname}".strip(" ·")
+                icon = safe_icon_url(tool.get("img") or "")
+                items.append({
+                    "name": name,
+                    "url": url,
+                    "description": desc,
+                    "icon": icon,
+                    "raw_cat": raw_cat,
+                    "source": "baoboxs",
+                    "region": "domestic",
+                    "source_rank": rank,
+                })
+    return items
+
+
+def fetch_and_write_hotlist(hotlist_path):
+    raw_json = fetch_text(
+        "https://www.baoboxs.com/api/utility/proxy/hotlist",
+        timeout=15,
+        retries=2,
+        extra_headers={
+            "Referer": "https://www.baoboxs.com/",
+            "Accept": "application/json,text/plain,*/*",
+        },
+    )
+    payload = json.loads(raw_json)
+    platforms = []
+    for entry in payload.get("data") or []:
+        cfg = entry.get("config") or {}
+        pid = str(cfg.get("platformId") or "").strip()
+        pname = strip_tags(cfg.get("platformName") or pid)
+        if not pid or not pname:
+            continue
+        norm_items = []
+        for it in (entry.get("items") or [])[:30]:
+            title = strip_tags(it.get("title") or "")
+            url = normalize_url(it.get("url") or "")
+            if not title or not url:
+                continue
+            norm_items.append({
+                "title": title,
+                "url": url,
+                "hot_value": str(it.get("hotValue") or ""),
+                "is_hot": bool(it.get("isHot")),
+                "is_new": bool(it.get("isNew")),
+                "is_rising": bool(it.get("isRising")),
+            })
+        if not norm_items:
+            continue
+        platforms.append({
+            "id": pid,
+            "name": pname,
+            "short_name": strip_tags(cfg.get("platformShortName") or pname),
+            "icon": safe_icon_url(cfg.get("iconUrl") or ""),
+            "color": str(cfg.get("color") or "#0071e3"),
+            "updated_at": str(cfg.get("lastUpdateTime") or ""),
+            "items": norm_items,
+        })
+
+    if not platforms:
+        raise RuntimeError("hotlist returned 0 valid platforms")
+
+    data = {
+        "generated_at": datetime.datetime.now(datetime.timezone(datetime.timedelta(hours=8))).isoformat(timespec="seconds"),
+        "platforms_count": len(platforms),
+        "platforms": platforms,
+    }
+    out_dir = os.path.dirname(os.path.abspath(hotlist_path))
+    os.makedirs(out_dir, exist_ok=True)
+    tmp_path = hotlist_path + ".tmp"
+    with open(tmp_path, "w", encoding="utf-8") as f:
+        json.dump(data, f, ensure_ascii=False, separators=(",", ":"))
+    os.chmod(tmp_path, 0o644)
+
+    if os.path.exists(hotlist_path):
+        prev_tmp = os.path.join(out_dir, "hotlist.prev.json.tmp")
+        prev_path = os.path.join(out_dir, "hotlist.prev.json")
+        try:
+            shutil.copy2(hotlist_path, prev_tmp)
+            os.chmod(prev_tmp, 0o644)
+            os.replace(prev_tmp, prev_path)
+        except Exception:
+            pass
+
+    os.replace(tmp_path, hotlist_path)
+    print(f"[OK] hotlist      -> {len(platforms)} platforms atomically written to {hotlist_path}")
+    return len(platforms)
+
+
 SOURCES = [
     ("ai-bot", "AI 工具集", "domestic", parse_aibot),
     ("aibase", "AIbase 基地", "domestic", parse_aibase),
     ("yupi-ai", "鱼皮 AI 导航", "domestic", parse_yupi_ai),
     ("ai-zhiku", "AI 智库", "domestic", parse_aizhiku),
     ("waytoagi", "WaytoAGI", "domestic", parse_waytoagi),
+    ("baoboxs", "程序员宝盒", "domestic", parse_baoboxs),
     ("producthunt", "Product Hunt", "overseas", parse_producthunt),
     ("futuretools", "FutureTools", "overseas", parse_futuretools),
     ("futurepedia", "Futurepedia", "overseas", parse_futurepedia),
@@ -1031,9 +1166,25 @@ def merge_and_build(raw_items, source_stats):
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument("--output", required=True, help="Output catalog.json path")
+    parser.add_argument("--output", help="Output catalog.json path")
+    parser.add_argument("--hotlist-output", help="Output hotlist.json path (defaults beside --output)")
+    parser.add_argument("--hotlist-only", action="store_true", help="Refresh only hotlist.json and exit")
     parser.add_argument("--min-items", type=int, default=500, help="Safety threshold before overwriting")
     args = parser.parse_args()
+
+    if args.hotlist_only:
+        hl_path = args.hotlist_output
+        if not hl_path and args.output:
+            hl_path = os.path.join(os.path.dirname(os.path.abspath(args.output)), "hotlist.json")
+        if not hl_path:
+            parser.error("--hotlist-output or --output is required with --hotlist-only")
+        fetch_and_write_hotlist(hl_path)
+        return
+
+    if not args.output:
+        parser.error("--output is required unless --hotlist-only is specified")
+
+    hl_path = args.hotlist_output or os.path.join(os.path.dirname(os.path.abspath(args.output)), "hotlist.json")
 
     raw_items = []
     source_stats = []
@@ -1097,6 +1248,11 @@ def main():
 
     os.replace(tmp_path, args.output)
     print(f"Atomically wrote {args.output}")
+
+    try:
+        fetch_and_write_hotlist(hl_path)
+    except Exception as e:
+        print(f"[WARN] hotlist refresh failed: {e}")
 
 
 if __name__ == "__main__":

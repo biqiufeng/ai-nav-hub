@@ -18,7 +18,7 @@ fi
 {
   echo "=========================================="
   echo "[$(date +%Y-%m-%dT%H:%M:%S%z)] Starting daily AI navigation crawl (APP_DIR=${APP_DIR})"
-  python3 -u "${APP_DIR}/crawler/fetch_all.py" --output "${APP_DIR}/web/data/catalog.json"
+  python3 -u "${APP_DIR}/crawler/fetch_all.py" --output "${APP_DIR}/web/data/catalog.json" --hotlist-output "${APP_DIR}/web/data/hotlist.json"
   echo "[$(date +%Y-%m-%dT%H:%M:%S%z)] Crawl finished successfully"
 } >> "${LOG_FILE}" 2>&1
 

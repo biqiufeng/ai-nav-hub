@@ -4,6 +4,7 @@ const SOURCE_URLS = {
   "yupi-ai": "https://ai.codefather.cn/",
   "ai-zhiku": "https://ai-zhiku.com/",
   "waytoagi": "https://www.waytoagi.com/zh",
+  "baoboxs": "https://www.baoboxs.com/",
   "producthunt": "https://www.producthunt.com/",
   "futuretools": "https://www.futuretools.io/",
   "futurepedia": "https://www.futurepedia.io/",

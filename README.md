@@ -4,9 +4,10 @@
 
 ## 核心特性
 
-- **全量多源聚合与两阶段去重**：全量遍历国内外公开 AI 导航全部分类/分页目录与 RSS 订阅，统一去除追踪参数与多语言路径前缀并按规范化域名/路径合并，再将聚合页包装条目归并至官方主域名，优先展示多源交叉收录与高赞工具。
+- **四大实用频道**：基于响应式自适应顶栏（`首页` 全库聚合导航、`AI` 大模型聚合工作台、`工具` 12 款本地开发者实用工具箱 + 导航、`摸鱼` 14 大平台每小时热榜 + 休闲导航）。
+- **全量多源聚合与两阶段去重**：全量遍历国内外 9 大公开 AI/开发导航目录与 RSS 订阅，统一去除追踪参数与多语言路径前缀并按规范化域名/路径合并，再将聚合页包装条目归并至官方主域名。
 - **零灰色地球 / 三层图标回退**：自动识别并过滤源站懒加载默认占位图（如出现频次 `>= 4` 的默认图标），前端按「真实图标 → 高清 Favicon → 域名哈希质感首字母 Monogram」平滑降级。
-- **每日自动化工作流**：通过 `flock` 防并发锁 + `crontab` 每日 `04:00` 定时爬取；抓取总数低于安全阈值时自动保留线上旧版 `catalog.json`，并通过拷贝备份 + 单次 `os.replace` 实现零停机原子更新。
+- **每日全量 + 每小时热榜工作流**：通过 `flock` 防并发锁 + `crontab` 每日 `04:00` 定时爬取全库、`每小时 15 分` 刷新热榜；抓取总数低于安全阈值时自动保留线上旧版 `catalog.json`，并通过拷贝备份 + 单次 `os.replace` 实现零停机原子更新。
 - **桌面端快速侧栏 + 移动端手势抽屉**：
   - 桌面端（`>= 960px`）左侧固定快速选择栏：快速视图（全部精选 / 多源热门 / 国内主流 / 海外主流 / 我的收藏）、9 大分类 Scrollspy 联动、8 大源站直选；
   - 移动端（`< 960px`）采用水平 `scroll-snap` + 滚动驱动背景渐变的原生手势侧滑抽屉。
@@ -32,7 +33,7 @@
 
 | 区域 | 站点 | 接入方式 |
 |---|---|---|
-| 国内主流 | [AI 工具集](https://ai-bot.cn/) · [鱼皮 AI 导航](https://ai.codefather.cn/) · [AI 智库](https://ai-zhiku.com/) · [AIbase 基地](https://www.aibase.com/zh/tools) · [WaytoAGI](https://www.waytoagi.com/zh) | 每日自动聚合 |
+| 国内主流 | [AI 工具集](https://ai-bot.cn/) · [鱼皮 AI 导航](https://ai.codefather.cn/) · [AI 智库](https://ai-zhiku.com/) · [AIbase 基地](https://www.aibase.com/zh/tools) · [WaytoAGI](https://www.waytoagi.com/zh) · [程序员宝盒](https://www.baoboxs.com/) | 每日全量 + 每小时热榜 |
 | 海外主流 | [Product Hunt](https://www.producthunt.com/)（官方 RSS）· [FutureTools](https://www.futuretools.io/) · [Futurepedia](https://www.futurepedia.io/) | 每日自动聚合 |
 
 > **前后台分离**：公开首页 `/` 仅面向访客展示工具检索与导航，不包含后台统计与友链明细；站点运维明细与来源归属统一收口至独立 `/admin/` 页面（默认设置 `X-Robots-Tag: noindex, nofollow` 且不在首页留入口）。
@@ -49,18 +50,20 @@ ai-nav-hub/
 │   ├── install.sh            # 通用 ECS 一键安装/升级脚本（Caddy / Nginx + Crontab）
 │   ├── Caddyfile             # Caddy 静态服务配置（zstd/gzip 压缩、缓存与安全头）
 │   ├── nginx.conf.template   # Nginx 站点配置模板
+│   ├── refresh_hotlist.sh    # 每小时更新全网热榜（hotlist.json）
 │   └── run_weekly_crawl.sh   # 带 flock 互斥锁与 30 天日志轮转的定时执行脚本
 └── web/
     ├── index.html            # 公开浏览首页
+    ├── nav.js                # 响应式自适应顶栏与外观同步
     ├── styles.css
     ├── app.js
     ├── favicon.png
     ├── apple-touch-icon.png
     ├── logo.jpg
+    ├── ai/                   # AI 大模型聚合工作台（/ai/）
+    ├── tools/                # 在线开发者工具箱与导航（/tools/）
+    ├── moyu/                 # 全网实时热榜与摸鱼导航（/moyu/）
     └── admin/                # 独立数据后台（/admin/，noindex）
-        ├── index.html
-        ├── admin.css
-        └── admin.js
 ```
 
 ## 本地快速运行

@@ -4,6 +4,8 @@ __pycache__/
 logs/
 web/data/catalog.json
 web/data/catalog.prev.json
+web/data/hotlist.json
+web/data/hotlist.prev.json
 web/data/*.tmp
 node_modules/
 .cloudflare/
