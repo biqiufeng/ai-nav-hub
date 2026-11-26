@@ -5,8 +5,9 @@ import {
   createToast,
   bindSearchBox,
   setRefreshBusy,
-  prefersReducedMotion,
-} from "../nav.js?v=2";
+  safeHttpUrl,
+  renderToolAvatar,
+} from "../nav.js?v=3";
 
 const GROUP_MAP = {
   tech: new Set(["36kr", "sspai", "ithome", "juejin", "csdn"]),
@@ -14,13 +15,14 @@ const GROUP_MAP = {
   media: new Set(["bilibili", "douyin", "doubannew", "tieba"]),
 };
 
-const HOT_PREVIEW = 15;
+const HOT_LIMIT = 15;
+const LEISURE_CATS = ["全部", "影视动漫", "音乐音效", "在线游戏", "磁力与工具", "趣味摸鱼"];
+const LEISURE_BATCH = 48;
 
 const els = {
   topBar: document.getElementById("topBar"),
   themeToggle: document.getElementById("themeToggle"),
   themeToggleLabel: document.getElementById("themeToggleLabel"),
-  hotlistMeta: document.getElementById("hotlistMeta"),
   hotSearchBox: document.getElementById("hotSearchBox"),
   hotSearch: document.getElementById("hotSearch"),
   hotSearchClear: document.getElementById("hotSearchClear"),
@@ -32,31 +34,45 @@ const els = {
   hotEmptyDesc: document.getElementById("hotEmptyDesc"),
   hotEmptyBtn: document.getElementById("hotEmptyBtn"),
   leisureCount: document.getElementById("leisureCount"),
+  leisureCats: document.getElementById("leisureCats"),
   leisureGrid: document.getElementById("leisureGrid"),
+  leisureLoadMoreWrap: document.getElementById("leisureLoadMoreWrap"),
+  leisureLoadMoreBtn: document.getElementById("leisureLoadMoreBtn"),
   toast: document.getElementById("toast"),
 };
 
 const showToast = createToast(els.toast);
 
-function safeUrl(raw) {
-  try {
-    const u = new URL(raw);
-    return u.protocol === "http:" || u.protocol === "https:" ? u.href : "";
-  } catch {
-    return "";
-  }
-}
-
 let platforms = [];
 let activeGroup = "all";
 let hotLoadFailed = false;
-const expandedSet = new Set();
+
+let leisureItems = [];
+let leisureCat = "全部";
+let leisureLimit = LEISURE_BATCH;
 
 function formatHotVal(v) {
   const num = Number(v);
   if (!Number.isFinite(num) || num <= 0) return v ? String(v) : "";
   if (num >= 10000) return `${(num / 10000).toFixed(1)}w`;
   return String(num);
+}
+
+function classifyLeisure(it) {
+  const text = `${it.name || ""} ${it.description || ""} ${it.domain || ""}`.toLowerCase();
+  if (/(音乐|音频|音效|配乐|歌曲|mp3|k歌|钢琴|猫耳fm|freesound|freepd|soundstripe|music|audio|bgm|声带|耳聆|淘声)/.test(text)) {
+    return "音乐音效";
+  }
+  if (/(磁力|\bbt\b|bt之家|bt联盟|种子|dht|网盘|解析下载|视频下载|av\/bv|语音转文字|提取音频|convertio|datatool|下载熊猫|vip视频解析)/.test(text)) {
+    return "磁力与工具";
+  }
+  if (/(游戏|game|贪吃蛇|红色警戒|红色井界|minecraft|我的世界|闯关|冒险|手柄|脑力|benchmark|play cs|poki|台球|弹力球|暗室|放风筝|在线驾驶)/.test(text)) {
+    return "在线游戏";
+  }
+  if (/(电影|影视|剧|动漫|综艺|片库|资源站|资源网|资源采集|预告片|netflix|奈飞|video|追剧|搜番|喵物|potplayer)/.test(text)) {
+    return "影视动漫";
+  }
+  return "趣味摸鱼";
 }
 
 function renderHotSkeletons() {
@@ -76,7 +92,7 @@ function renderLeisureSkeletons() {
   for (let i = 0; i < 8; i++) {
     const card = document.createElement("div");
     card.className = "skeleton-card";
-    card.style.minHeight = "108px";
+    card.style.minHeight = "112px";
     card.setAttribute("aria-hidden", "true");
     card.innerHTML = `<div class="skeleton-line skeleton-line--title"></div><div class="skeleton-line"></div><div class="skeleton-line skeleton-line--short"></div>`;
     frag.appendChild(card);
@@ -84,17 +100,18 @@ function renderLeisureSkeletons() {
   els.leisureGrid.replaceChildren(frag);
 }
 
-function createHotItemLi(item, idx, reveal = false) {
-  const href = safeUrl(item.url);
+function createHotItemLi(item, idx) {
+  const href = safeHttpUrl(item.url);
   if (!href) return null;
 
   const li = document.createElement("li");
-  li.className = "hot-item" + (reveal ? " hot-item--reveal" : "");
+  li.className = "hot-item";
 
   const a = document.createElement("a");
   a.href = href;
   a.target = "_blank";
   a.rel = "noopener noreferrer";
+  a.title = item.title;
 
   const left = document.createElement("span");
   left.className = "hot-item__left";
@@ -167,7 +184,7 @@ function renderHotGrid() {
     const brand = document.createElement("div");
     brand.className = "hot-card__brand";
 
-    const iconHref = safeUrl(plat.icon);
+    const iconHref = safeHttpUrl(plat.icon);
     if (iconHref) {
       const img = document.createElement("img");
       img.className = "hot-card__icon";
@@ -188,52 +205,16 @@ function renderHotGrid() {
     timeEl.textContent = plat.updated_at ? plat.updated_at.slice(5, 16) : "";
     head.append(brand, timeEl);
 
-    const isExpanded = expandedSet.has(plat.id) || Boolean(q);
-    const visible = isExpanded ? matchedItems : matchedItems.slice(0, HOT_PREVIEW);
+    const visible = matchedItems.slice(0, HOT_LIMIT);
     const ul = document.createElement("ul");
     ul.className = "hot-card__list";
 
     visible.forEach((item, idx) => {
-      const li = createHotItemLi(item, idx, false);
+      const li = createHotItemLi(item, idx);
       if (li) ul.appendChild(li);
     });
 
     card.append(head, ul);
-
-    if (!q && matchedItems.length > HOT_PREVIEW) {
-      const foot = document.createElement("div");
-      foot.className = "hot-card__foot";
-      const moreBtn = document.createElement("button");
-      moreBtn.type = "button";
-      moreBtn.className = "btn-secondary hot-more-btn";
-      moreBtn.setAttribute("aria-expanded", String(isExpanded));
-      moreBtn.textContent = isExpanded ? "收起部分榜单" : `展开全部 ${matchedItems.length} 条`;
-
-      moreBtn.addEventListener("click", () => {
-        const nextExpanded = !expandedSet.has(plat.id);
-        if (nextExpanded) {
-          expandedSet.add(plat.id);
-          const extraFrag = document.createDocumentFragment();
-          const animateReveal = !prefersReducedMotion();
-          for (let i = HOT_PREVIEW; i < matchedItems.length; i++) {
-            const li = createHotItemLi(matchedItems[i], i, animateReveal);
-            if (li) extraFrag.appendChild(li);
-          }
-          ul.appendChild(extraFrag);
-        } else {
-          expandedSet.delete(plat.id);
-          while (ul.children.length > HOT_PREVIEW) {
-            ul.removeChild(ul.lastElementChild);
-          }
-        }
-        moreBtn.setAttribute("aria-expanded", String(nextExpanded));
-        moreBtn.textContent = nextExpanded ? "收起部分榜单" : `展开全部 ${matchedItems.length} 条`;
-      });
-
-      foot.appendChild(moreBtn);
-      card.appendChild(foot);
-    }
-
     frag.appendChild(card);
   }
 
@@ -259,13 +240,10 @@ async function loadHotlist(showFeedback = false) {
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
     const data = await res.json();
     platforms = Array.isArray(data.platforms) ? data.platforms : [];
-    const syncTime = data.generated_at ? data.generated_at.replace("T", " ").slice(0, 16) : "";
-    els.hotlistMeta.textContent = `已聚合 ${platforms.length} 大平台实时榜单 · 最近刷新 ${syncTime}`;
     renderHotGrid();
     if (showFeedback) showToast("热榜已刷新");
   } catch {
     hotLoadFailed = true;
-    els.hotlistMeta.textContent = "热榜加载失败，请稍后刷新重试";
     if (platforms.length === 0) {
       els.hotGrid.replaceChildren();
       els.hotEmpty.hidden = false;
@@ -279,38 +257,109 @@ async function loadHotlist(showFeedback = false) {
   }
 }
 
+function renderLeisureSection() {
+  const counts = new Map();
+  for (const it of leisureItems) {
+    counts.set(it.subCat, (counts.get(it.subCat) || 0) + 1);
+  }
+
+  const catsFrag = document.createDocumentFragment();
+  for (const c of LEISURE_CATS) {
+    const num = c === "全部" ? leisureItems.length : counts.get(c) || 0;
+    if (c !== "全部" && num === 0) continue;
+    const active = leisureCat === c;
+    const b = document.createElement("button");
+    b.type = "button";
+    b.className = "cat-pill" + (active ? " is-active" : "");
+    b.setAttribute("aria-pressed", String(active));
+    b.textContent = c + " ";
+    const span = document.createElement("span");
+    span.className = "cat-pill__num";
+    span.textContent = String(num);
+    b.appendChild(span);
+    b.addEventListener("click", () => {
+      leisureCat = leisureCat === c && c !== "全部" ? "全部" : c;
+      leisureLimit = LEISURE_BATCH;
+      renderLeisureSection();
+    });
+    catsFrag.appendChild(b);
+  }
+  els.leisureCats.replaceChildren(catsFrag);
+
+  const filtered = leisureCat === "全部"
+    ? leisureItems
+    : leisureItems.filter((it) => it.subCat === leisureCat);
+
+  els.leisureCount.textContent = `共收录 ${filtered.length} 个精选休闲站点`;
+
+  const shown = filtered.slice(0, leisureLimit);
+  const frag = document.createDocumentFragment();
+  for (const it of shown) {
+    const href = safeHttpUrl(it.url);
+    if (!href) continue;
+    const a = document.createElement("a");
+    a.className = "leisure-card";
+    a.href = href;
+    a.target = "_blank";
+    a.rel = "noopener noreferrer";
+
+    const top = document.createElement("div");
+    top.className = "leisure-card__top";
+
+    const head = document.createElement("div");
+    head.className = "leisure-card__head";
+    const avatar = document.createElement("div");
+    avatar.className = "tool-avatar tool-avatar--sm";
+    avatar.setAttribute("aria-hidden", "true");
+    renderToolAvatar(avatar, it);
+
+    const titles = document.createElement("div");
+    titles.className = "leisure-card__titles";
+    const h = document.createElement("h3");
+    h.className = "leisure-card__name";
+    h.textContent = it.name;
+    const d = document.createElement("span");
+    d.className = "leisure-card__domain";
+    d.textContent = it.domain;
+    titles.append(h, d);
+
+    head.append(avatar, titles);
+
+    const tag = document.createElement("span");
+    tag.className = "tag-chip";
+    tag.textContent = it.subCat;
+
+    top.append(head, tag);
+
+    const p = document.createElement("p");
+    p.className = "leisure-card__desc";
+    p.textContent = it.description || it.domain;
+
+    a.append(top, p);
+    frag.appendChild(a);
+  }
+  els.leisureGrid.replaceChildren(frag);
+
+  const remaining = filtered.length - shown.length;
+  els.leisureLoadMoreWrap.hidden = remaining <= 0;
+  if (remaining > 0) {
+    els.leisureLoadMoreBtn.textContent = `展开更多（还有 ${remaining} 个）`;
+  }
+}
+
 async function loadLeisureSites() {
   renderLeisureSkeletons();
   try {
     const res = await fetch("../data/catalog.json", { cache: "no-cache" });
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
     const data = await res.json();
-    const list = (data.items || []).filter((it) => it.category === "划水摸鱼").slice(0, 48);
-    els.leisureCount.textContent = `共收录 ${list.length} 个精选休闲站点`;
-    const frag = document.createDocumentFragment();
-    for (const it of list) {
-      const href = safeUrl(it.url);
-      if (!href) continue;
-      const a = document.createElement("a");
-      a.className = "leisure-card";
-      a.href = href;
-      a.target = "_blank";
-      a.rel = "noopener noreferrer";
-      const h = document.createElement("h3");
-      h.className = "leisure-card__name";
-      h.textContent = it.name;
-      const p = document.createElement("p");
-      p.className = "leisure-card__desc";
-      p.textContent = it.description || it.domain;
-      const d = document.createElement("span");
-      d.className = "leisure-card__domain";
-      d.textContent = it.domain;
-      a.append(h, p, d);
-      frag.appendChild(a);
-    }
-    els.leisureGrid.replaceChildren(frag);
+    leisureItems = (data.items || [])
+      .filter((it) => it.category === "划水摸鱼")
+      .map((it) => ({ ...it, subCat: classifyLeisure(it) }));
+    renderLeisureSection();
   } catch {
     els.leisureGrid.replaceChildren();
+    els.leisureLoadMoreWrap.hidden = true;
     els.leisureCount.textContent = "休闲站点加载失败";
   }
 }
@@ -342,6 +391,11 @@ els.hotEmptyBtn.addEventListener("click", () => {
   syncGroupPills();
   hotSearchController.sync();
   renderHotGrid();
+});
+
+els.leisureLoadMoreBtn.addEventListener("click", () => {
+  leisureLimit += LEISURE_BATCH;
+  renderLeisureSection();
 });
 
 els.refreshHotBtn.addEventListener("click", () => loadHotlist(true));

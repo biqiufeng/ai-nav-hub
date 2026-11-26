@@ -7,7 +7,9 @@ import {
   bindTwoStepConfirm,
   copyWithFeedback,
   prefersReducedMotion,
-} from "../nav.js?v=2";
+  safeHttpUrl,
+  renderToolAvatar,
+} from "../nav.js?v=3";
 
 const els = {
   topBar: document.getElementById("topBar"),
@@ -798,15 +800,6 @@ let dirCat = "全部";
 let dirLimit = DIR_BATCH;
 let dirLoadFailed = false;
 
-function safeUrl(raw) {
-  try {
-    const u = new URL(raw);
-    return u.protocol === "http:" || u.protocol === "https:" ? u.href : "";
-  } catch {
-    return "";
-  }
-}
-
 function renderDirSkeletons() {
   const frag = document.createDocumentFragment();
   for (let i = 0; i < 6; i++) {
@@ -862,7 +855,7 @@ function renderDir() {
   const shown = list.slice(0, dirLimit);
   const frag = document.createDocumentFragment();
   for (const it of shown) {
-    const href = safeUrl(it.url);
+    const href = safeHttpUrl(it.url);
     if (!href) continue;
     const card = el("a", "dir-card");
     card.href = href;
@@ -870,11 +863,21 @@ function renderDir() {
     card.rel = "noopener noreferrer";
 
     const top = el("div", "dir-card__top");
-    top.append(el("h3", "dir-card__name", it.name), el("span", "tag-chip", it.category));
-    const desc = el("p", "dir-card__desc", it.description || it.domain);
-    const dom = el("span", "dir-card__domain", it.domain);
+    const head = el("div", "dir-card__head");
+    const avatar = el("div", "tool-avatar tool-avatar--sm");
+    avatar.setAttribute("aria-hidden", "true");
+    renderToolAvatar(avatar, it);
 
-    card.append(top, desc, dom);
+    const titles = el("div", "dir-card__titles");
+    titles.append(
+      el("h3", "dir-card__name", it.name),
+      el("span", "dir-card__domain", it.domain)
+    );
+    head.append(avatar, titles);
+    top.append(head, el("span", "tag-chip", it.category));
+
+    const desc = el("p", "dir-card__desc", it.description || it.domain);
+    card.append(top, desc);
     frag.appendChild(card);
   }
   els.dirGrid.replaceChildren(frag);

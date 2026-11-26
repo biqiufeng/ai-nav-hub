@@ -60,7 +60,6 @@ ai-nav-hub/
     ├── favicon.png
     ├── apple-touch-icon.png
     ├── logo.jpg
-    ├── ai/                   # AI 大模型聚合工作台（/ai/）
     ├── tools/                # 在线开发者工具箱与导航（/tools/）
     ├── moyu/                 # 全网实时热榜与摸鱼导航（/moyu/）
     └── admin/                # 独立数据后台（/admin/，noindex）

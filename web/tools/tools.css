@@ -283,9 +283,22 @@
 
 .dir-card__top {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: space-between;
-  gap: 8px;
+  gap: 10px;
+}
+
+.dir-card__head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+  flex: 1;
+}
+
+.dir-card__titles {
+  min-width: 0;
+  flex: 1;
 }
 
 .dir-card__name {
@@ -309,6 +322,11 @@
 }
 
 .dir-card__domain {
+  display: block;
+  margin-top: 2px;
   font-size: 11.5px;
   color: var(--text-secondary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }

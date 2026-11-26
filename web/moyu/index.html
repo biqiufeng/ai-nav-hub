@@ -15,9 +15,9 @@
   <meta name="description" content="聚合全网 B 站、微博、知乎、抖音、百度、36氪、少数派、掘金、CSDN 等 14 大平台实时热榜及休闲摸鱼导航。">
   <link rel="icon" type="image/png" sizes="64x64" href="../favicon.png?v=4">
   <link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png?v=4">
-  <link rel="stylesheet" href="../styles.css?v=10">
-  <link rel="stylesheet" href="./moyu.css?v=2">
-  <script type="module" src="./moyu.js?v=2"></script>
+  <link rel="stylesheet" href="../styles.css?v=11">
+  <link rel="stylesheet" href="./moyu.css?v=3">
+  <script type="module" src="./moyu.js?v=3"></script>
 </head>
 <body>
   <header class="top-bar site-header" id="topBar">
@@ -45,7 +45,6 @@
           </button>
           <ul id="site-menu" class="site-menu" popover="auto">
             <li><a href="../">首页</a></li>
-            <li><a href="../ai/">AI</a></li>
             <li><a href="../tools/">工具</a></li>
             <li><a href="./" aria-current="page">摸鱼</a></li>
           </ul>
@@ -71,10 +70,7 @@
 
   <main class="moyu-shell">
     <section class="moyu-hero">
-      <div>
-        <h1 class="moyu-hero__title">全网实时摸鱼热榜</h1>
-        <p class="moyu-hero__sub" id="hotlistMeta">每小时自动更新 · 正在加载全网榜单…</p>
-      </div>
+      <h1 class="moyu-hero__title">全网实时摸鱼热榜</h1>
       <div class="moyu-hero__controls">
         <div class="search-box search-box--compact moyu-search-wrap" id="hotSearchBox" role="search">
           <svg class="search-box__icon" viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -120,7 +116,11 @@
         <h2 class="leisure-head__title" id="leisureHeading">划水摸鱼 &amp; 影音游戏精选</h2>
         <span class="leisure-head__count" id="leisureCount"></span>
       </div>
+      <div class="leisure-cats" id="leisureCats" role="group" aria-label="休闲站点分类"></div>
       <div class="leisure-grid" id="leisureGrid"></div>
+      <div class="load-more-wrap" id="leisureLoadMoreWrap" hidden>
+        <button class="btn-secondary" id="leisureLoadMoreBtn" type="button">展开更多</button>
+      </div>
     </section>
   </main>
 

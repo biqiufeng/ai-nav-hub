@@ -8,7 +8,9 @@ import {
   copyWithFeedback,
   prefersReducedMotion,
   canTransitionDisplay,
-} from "./nav.js?v=2";
+  safeHttpUrl,
+  renderToolAvatar,
+} from "./nav.js?v=3";
 
 const CAT_ICONS = {
   "对话写作": `<svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>`,
@@ -29,21 +31,6 @@ const QUICK_VIEWS = [
   { id: "domestic", label: "国内主流" },
   { id: "overseas", label: "海外主流" },
   { id: "favorites", label: "我的收藏" },
-];
-
-const AGGREGATOR_HOSTS = new Set([
-  "ai.codefather.cn",
-  "futuretools.io",
-  "futurepedia.io",
-  "producthunt.com",
-  "ai-bot.cn",
-  "ai-zhiku.com",
-  "aibase.com",
-]);
-
-const AVATAR_PALETTE = [
-  "#0A84FF", "#5E5CE6", "#BF5AF2", "#FF375F",
-  "#FF9F0A", "#30B0C7", "#34C759", "#AF52DE",
 ];
 
 const FAVORITES_KEY = "ai_nav_hub_favorites_v1";
@@ -109,16 +96,6 @@ const els = {
 
 function catSlug(cat) {
   return "cat-" + encodeURIComponent(cat).replace(/%/g, "_");
-}
-
-function safeHttpUrl(raw) {
-  if (!raw || typeof raw !== "string") return "";
-  try {
-    const parsed = new URL(raw.trim(), location.href);
-    return parsed.protocol === "http:" || parsed.protocol === "https:" ? parsed.href : "";
-  } catch {
-    return "";
-  }
 }
 
 const showToast = createToast(els.toast);
@@ -277,51 +254,6 @@ function saveFavorites() {
 function loadRegion() {
   const val = safeGetStorage(REGION_KEY);
   return ["all", "hot", "domestic", "overseas", "favorites"].includes(val) ? val : "all";
-}
-
-/* ---------- Three-layer icon fallback ---------- */
-function hashColor(str) {
-  let h = 0;
-  for (let i = 0; i < str.length; i++) {
-    h = ((h << 5) - h + str.charCodeAt(i)) | 0;
-  }
-  return AVATAR_PALETTE[Math.abs(h) % AVATAR_PALETTE.length];
-}
-
-function renderAvatar(container, item) {
-  container.textContent = "";
-  const letter = (item.name || item.domain || "?").trim().charAt(0).toUpperCase();
-  container.style.setProperty("--avatar-bg", hashColor(item.domain || item.name));
-  const fallback = document.createElement("span");
-  fallback.textContent = letter;
-  container.appendChild(fallback);
-
-  const primaryIcon = safeHttpUrl(item.icon);
-  const canTryDomainFavicon = item.domain && !AGGREGATOR_HOSTS.has(item.domain);
-  const faviconUrl = canTryDomainFavicon
-    ? `https://favicon.im/${encodeURIComponent(item.domain)}?larger=true`
-    : "";
-
-  const firstTry = primaryIcon || faviconUrl;
-  if (!firstTry) return;
-
-  const img = document.createElement("img");
-  img.alt = "";
-  img.loading = "lazy";
-  img.decoding = "async";
-  img.referrerPolicy = "no-referrer";
-  let triedFallback = !primaryIcon;
-
-  img.addEventListener("error", () => {
-    if (!triedFallback && faviconUrl && img.src !== faviconUrl) {
-      triedFallback = true;
-      img.src = faviconUrl;
-    } else {
-      img.remove();
-    }
-  });
-  img.src = firstTry;
-  container.appendChild(img);
 }
 
 /* ---------- Segmented control thumb ---------- */
@@ -594,7 +526,7 @@ function createCardElement(item, index, animateEnter, deferIndex = 16) {
 
   const avatar = document.createElement("div");
   avatar.className = "tool-avatar";
-  renderAvatar(avatar, item);
+  renderToolAvatar(avatar, item);
 
   const titles = document.createElement("div");
   titles.className = "tool-card__titles";
@@ -836,7 +768,7 @@ const clearFavConfirm = bindTwoStepConfirm(els.clearFavBtn, {
 /* ---------- Dialog details ---------- */
 function openDialog(item) {
   state.activeTool = item;
-  renderAvatar(els.dialogAvatar, item);
+  renderToolAvatar(els.dialogAvatar, item);
   els.dialogTitle.textContent = item.name;
   els.dialogDomain.textContent = item.domain;
   els.dialogDesc.textContent = item.description || "暂无详细介绍，点击下方按钮前往官网体验。";

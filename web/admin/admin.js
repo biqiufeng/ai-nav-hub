@@ -3,7 +3,7 @@ import {
   initTopBarScrollHide,
   createToast,
   setRefreshBusy,
-} from "../nav.js?v=2";
+} from "../nav.js?v=3";
 
 const SOURCE_URLS = {
   "ai-bot": "https://ai-bot.cn/",

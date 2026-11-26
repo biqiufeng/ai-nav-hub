@@ -339,3 +339,74 @@ export function setRefreshBusy(btn, busy, idleLabel = "刷新", busyLabel = "刷
   const lbl = btn.querySelector(".btn-label");
   if (lbl) lbl.textContent = busy ? busyLabel : idleLabel;
 }
+
+const AGGREGATOR_HOSTS = new Set([
+  "ai.codefather.cn",
+  "futuretools.io",
+  "futurepedia.io",
+  "producthunt.com",
+  "ai-bot.cn",
+  "ai-zhiku.com",
+  "aibase.com",
+  "baoboxs.com",
+]);
+
+const AVATAR_PALETTE = [
+  "#0A84FF", "#5E5CE6", "#BF5AF2", "#FF375F",
+  "#FF9F0A", "#30B0C7", "#34C759", "#AF52DE",
+];
+
+export function safeHttpUrl(raw) {
+  if (!raw || typeof raw !== "string") return "";
+  try {
+    const parsed = new URL(raw.trim(), location.href);
+    return parsed.protocol === "http:" || parsed.protocol === "https:" ? parsed.href : "";
+  } catch {
+    return "";
+  }
+}
+
+function hashAvatarColor(str) {
+  let h = 0;
+  for (let i = 0; i < str.length; i++) {
+    h = ((h << 5) - h + str.charCodeAt(i)) | 0;
+  }
+  return AVATAR_PALETTE[Math.abs(h) % AVATAR_PALETTE.length];
+}
+
+export function renderToolAvatar(container, item) {
+  container.textContent = "";
+  const seed = item.domain || item.name || "?";
+  const letter = (item.name || item.domain || "?").trim().charAt(0).toUpperCase();
+  container.style.setProperty("--avatar-bg", hashAvatarColor(seed));
+  const fallback = document.createElement("span");
+  fallback.textContent = letter;
+  container.appendChild(fallback);
+
+  const primaryIcon = safeHttpUrl(item.icon);
+  const canTryDomainFavicon = item.domain && !AGGREGATOR_HOSTS.has(item.domain);
+  const faviconUrl = canTryDomainFavicon
+    ? `https://favicon.im/${encodeURIComponent(item.domain)}?larger=true`
+    : "";
+
+  const firstTry = primaryIcon || faviconUrl;
+  if (!firstTry) return;
+
+  const img = document.createElement("img");
+  img.alt = "";
+  img.loading = "lazy";
+  img.decoding = "async";
+  img.referrerPolicy = "no-referrer";
+  let triedFallback = !primaryIcon;
+
+  img.addEventListener("error", () => {
+    if (!triedFallback && faviconUrl && img.src !== faviconUrl) {
+      triedFallback = true;
+      img.src = faviconUrl;
+    } else {
+      img.remove();
+    }
+  });
+  img.src = firstTry;
+  container.appendChild(img);
+}

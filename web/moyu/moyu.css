@@ -9,23 +9,17 @@
 
 .moyu-hero {
   display: flex;
-  align-items: flex-end;
+  align-items: center;
   justify-content: space-between;
   gap: 14px;
   flex-wrap: wrap;
 }
 
 .moyu-hero__title {
-  margin: 0 0 6px;
+  margin: 0;
   font-size: clamp(24px, 3vw, 32px);
   font-weight: 700;
   letter-spacing: -0.025em;
-}
-
-.moyu-hero__sub {
-  margin: 0;
-  font-size: 13.5px;
-  color: var(--text-secondary);
 }
 
 .moyu-hero__controls {
@@ -45,7 +39,8 @@
   border-radius: 10px;
 }
 
-.hot-groups {
+.hot-groups,
+.leisure-cats {
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
@@ -54,10 +49,13 @@
 .hot-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  grid-auto-rows: 1fr;
+  align-items: stretch;
   gap: 16px;
 }
 
 .hot-card {
+  height: 100%;
   background: var(--surface);
   border: 1px solid var(--border);
   border-radius: 18px;
@@ -74,6 +72,7 @@
   align-items: center;
   justify-content: space-between;
   gap: 10px;
+  flex-shrink: 0;
 }
 
 .hot-card__brand {
@@ -104,26 +103,29 @@
   white-space: nowrap;
 }
 
+/* Uniform 15-row height across every platform card */
 .hot-card__list {
   list-style: none;
   margin: 0;
   padding: 8px 12px;
+  height: calc(15 * 34px + 16px);
   display: flex;
   flex-direction: column;
-  gap: 2px;
+  gap: 0;
+  overflow: hidden;
 }
 
 .hot-item a {
+  height: 34px;
   display: flex;
-  align-items: baseline;
+  align-items: center;
   justify-content: space-between;
-  gap: 10px;
-  padding: 6px 6px;
+  gap: 8px;
+  padding: 0 6px;
   border-radius: 8px;
   color: var(--text-primary);
   text-decoration: none;
   font-size: 13.5px;
-  line-height: 1.45;
   transition: background-color var(--dur-fast) ease, color var(--dur-fast) ease;
 }
 
@@ -136,21 +138,16 @@
   color: var(--text-secondary);
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .hot-item--reveal {
-    animation: cardEnter 180ms var(--ease-out-expo) both;
-  }
-}
-
 .hot-skeleton {
-  min-height: 280px;
+  height: calc(15 * 34px + 16px + 50px);
 }
 
 .hot-item__left {
   display: flex;
-  align-items: baseline;
+  align-items: center;
   gap: 8px;
-  min-width: 0;
+  min-inline-size: 0;
+  flex: 1;
 }
 
 .hot-item__rank {
@@ -168,7 +165,10 @@
 }
 
 .hot-item__title {
-  overflow-wrap: anywhere;
+  min-inline-size: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .hot-item__meta {
@@ -195,19 +195,6 @@
   font-variant-numeric: tabular-nums;
 }
 
-.hot-card__foot {
-  padding: 8px 14px 12px;
-  display: flex;
-  justify-content: center;
-}
-
-.hot-more-btn {
-  width: 100%;
-  padding: 6px 12px;
-  font-size: 12.5px;
-  border-radius: 9px;
-}
-
 .leisure-section {
   display: flex;
   flex-direction: column;
@@ -220,6 +207,7 @@
   align-items: baseline;
   justify-content: space-between;
   gap: 10px;
+  flex-wrap: wrap;
 }
 
 .leisure-head__title {
@@ -231,18 +219,19 @@
 .leisure-head__count {
   font-size: 12.5px;
   color: var(--text-secondary);
+  font-variant-numeric: tabular-nums;
 }
 
 .leisure-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
   gap: 12px;
 }
 
 .leisure-card {
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 8px;
   padding: 14px;
   border-radius: 14px;
   background: var(--surface);
@@ -267,10 +256,33 @@
   .leisure-card:active { transform: scale(0.988); }
 }
 
+.leisure-card__top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.leisure-card__head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+  flex: 1;
+}
+
+.leisure-card__titles {
+  min-width: 0;
+  flex: 1;
+}
+
 .leisure-card__name {
   margin: 0;
   font-size: 14.5px;
   font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .leisure-card__desc {
@@ -285,6 +297,11 @@
 }
 
 .leisure-card__domain {
+  display: block;
+  margin-top: 2px;
   font-size: 11.5px;
   color: var(--text-secondary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
