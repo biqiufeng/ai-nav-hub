@@ -698,30 +698,22 @@ body {
 
 .hero {
   position: sticky;
-  top: var(--topbar-h, 55px);
+  top: calc(var(--topbar-h, 55px) - 1px);
   z-index: 15;
   container-type: scroll-state;
   container-name: hero-dock;
-  margin: -18px -4px 16px;
-  padding: 18px 4px 0;
+  margin: -19px -10px 16px;
+  padding: 0;
 }
 
 .controls-dock {
   display: flex;
   flex-direction: column;
   gap: 12px;
-  padding: 0 2px 14px;
+  padding: 19px 10px 14px;
   background-color: var(--bg);
   border-bottom: 1px solid transparent;
   transition: border-color var(--dur-fast) ease, box-shadow var(--dur-fast) ease;
-}
-
-@supports (backdrop-filter: blur(1px)) {
-  .controls-dock {
-    background-color: color-mix(in srgb, var(--bg) 86%, transparent);
-    backdrop-filter: saturate(180%) blur(18px);
-    -webkit-backdrop-filter: saturate(180%) blur(18px);
-  }
 }
 
 @container hero-dock scroll-state(stuck: top) {
@@ -1727,8 +1719,8 @@ body {
 @media (max-width: 640px) {
   .top-bar__inner { padding: 10px 14px; }
   .workspace-layout { padding: 14px 14px 42px; }
-  .hero { margin: -14px -4px 12px; padding: 14px 4px 0; }
-  .controls-dock { gap: 10px; padding-bottom: 10px; }
+  .hero { margin: -15px -6px 12px; padding: 0; }
+  .controls-dock { gap: 10px; padding: 15px 6px 10px; }
   .segmented__btn { padding: 6px 10px; font-size: 13px; }
   .category-bar {
     flex-wrap: nowrap;

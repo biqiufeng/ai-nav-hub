@@ -862,7 +862,7 @@ function renderCatalogSkeletons() {
 function syncStickyMetrics() {
   const topBarH = els.topBar?.getBoundingClientRect().height || 55;
   const heroH = els.heroDock?.getBoundingClientRect().height || 170;
-  document.documentElement.style.setProperty("--topbar-h", `${Math.round(topBarH)}px`);
+  document.documentElement.style.setProperty("--topbar-h", `${Math.floor(topBarH)}px`);
   document.documentElement.style.setProperty("--sticky-offset", `${Math.round(topBarH + heroH + 8)}px`);
 }
 
