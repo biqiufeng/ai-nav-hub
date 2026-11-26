@@ -4,7 +4,6 @@ import {
   initTopBarScrollHide,
   createToast,
   bindSearchBox,
-  setRefreshBusy,
   copyWithFeedback,
   safeHttpUrl,
   canTransitionDisplay,
@@ -20,7 +19,7 @@ const els = {
   newsSearchBox: document.getElementById("newsSearchBox"),
   newsSearch: document.getElementById("newsSearch"),
   newsSearchClear: document.getElementById("newsSearchClear"),
-  refreshNewsBtn: document.getElementById("refreshNewsBtn"),
+  siteMenu: document.getElementById("site-menu"),
   newsTopics: document.getElementById("newsTopics"),
   newsCount: document.getElementById("newsCount"),
   newsGrid: document.getElementById("newsGrid"),
@@ -52,6 +51,7 @@ let visibleLimit = PAGE_BATCH;
 let loadFailed = false;
 let generatedAt = "";
 let activeDialogItem = null;
+let isLoading = false;
 
 function supportsTopLayerExit() {
   return Boolean(window.CSS?.supports?.("overlay", "auto") && canTransitionDisplay());
@@ -398,9 +398,10 @@ function renderNews() {
 }
 
 async function loadNews(showFeedback = false) {
+  if (isLoading) return;
+  isLoading = true;
   loadFailed = false;
   els.newsEmpty.hidden = true;
-  setRefreshBusy(els.refreshNewsBtn, true, "刷新资讯", "刷新中…");
   if (items.length === 0) renderSkeletons();
 
   try {
@@ -425,7 +426,7 @@ async function loadNews(showFeedback = false) {
     }
     if (showFeedback) showToast("AI 资讯刷新失败");
   } finally {
-    setRefreshBusy(els.refreshNewsBtn, false, "刷新资讯", "刷新中…");
+    isLoading = false;
   }
 }
 
@@ -458,7 +459,19 @@ els.newsLoadMoreBtn.addEventListener("click", () => {
   renderNews();
 });
 
-els.refreshNewsBtn.addEventListener("click", () => loadNews(true));
+const currentNewsNavLink = els.siteMenu?.querySelector('a[aria-current="page"]');
+currentNewsNavLink?.addEventListener("click", (event) => {
+  event.preventDefault();
+  if (els.siteMenu?.matches?.(":popover-open")) {
+    try { els.siteMenu.hidePopover(); } catch {}
+  } else {
+    els.siteMenu?.classList.remove("is-fallback-open");
+  }
+  if (window.scrollY > 120) {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }
+  loadNews(true);
+});
 
 initSiteNav();
 initTopBarScrollHide(els.topBar);

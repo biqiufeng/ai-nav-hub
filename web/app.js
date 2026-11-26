@@ -31,12 +31,16 @@ const QUICK_VIEWS = [
   { id: "domestic", label: "国内主流" },
   { id: "overseas", label: "海外主流" },
   { id: "dev", label: "开发效率" },
-  { id: "leisure", label: "划水摸鱼" },
+  { id: "leisure", label: "影音娱乐" },
   { id: "favorites", label: "我的收藏" },
 ];
 
 const DEV_CATEGORIES = new Set(["编程开发", "办公效率", "图像设计", "Agent与自动化"]);
-const LEISURE_CATS = ["全部", "影视动漫", "音乐音效", "在线游戏", "磁力与工具", "趣味摸鱼"];
+const LEISURE_CATS = ["全部", "影视动漫", "音乐音效", "在线游戏", "磁力与工具", "休闲趣味"];
+
+function displayCategoryName(cat) {
+  return cat === "划水摸鱼" ? "影音娱乐" : cat;
+}
 
 function classifyLeisure(it) {
   const text = `${it.name || ""} ${it.description || ""} ${it.domain || ""}`.toLowerCase();
@@ -52,7 +56,7 @@ function classifyLeisure(it) {
   if (/(电影|影视|剧|动漫|综艺|片库|资源站|资源网|资源采集|预告片|netflix|奈飞|video|追剧|搜番|喵物|potplayer)/.test(text)) {
     return "影视动漫";
   }
-  return "趣味摸鱼";
+  return "休闲趣味";
 }
 
 const FAVORITES_KEY = "ai_nav_hub_favorites_v1";
@@ -299,7 +303,7 @@ function matchesRegion(item, region) {
   if (region === "favorites") return state.favorites.has(item.id);
   if (region === "hot") return (item.sources?.length || 0) >= 2;
   if (region === "dev") return DEV_CATEGORIES.has(item.category);
-  if (region === "leisure") return item.category === "划水摸鱼";
+  if (region === "leisure") return item.category === "划水摸鱼" || item.category === "影音娱乐";
   if (region === "domestic") {
     return Array.isArray(item.regions) ? item.regions.includes("domestic") : item.region === "domestic";
   }
@@ -403,7 +407,7 @@ function renderSidebarInto(hostEl, isMobile = false) {
       el.type = "button";
       el.className = "sidebar-item" + (state.category === cat ? " is-active" : "");
     }
-    el.innerHTML = `<span class="sidebar-item__left"><span class="sidebar-item__icon" aria-hidden="true">${iconSvg}</span><span class="sidebar-item__label">${cat}</span></span><span class="sidebar-item__count">${cnt}</span>`;
+    el.innerHTML = `<span class="sidebar-item__left"><span class="sidebar-item__icon" aria-hidden="true">${iconSvg}</span><span class="sidebar-item__label">${isLeisureView ? cat : displayCategoryName(cat)}</span></span><span class="sidebar-item__count">${cnt}</span>`;
     el.addEventListener("click", () => {
       if (!sectionMode) {
         if (!isLeisureView && cat === "划水摸鱼") {
@@ -517,7 +521,7 @@ function renderCategories(baseItems) {
     btn.className = "cat-pill" + (state.category === cat ? " is-active" : "");
     btn.setAttribute("aria-pressed", String(state.category === cat));
     btn.dataset.category = cat;
-    btn.textContent = cat + " ";
+    btn.textContent = (isLeisureView ? cat : displayCategoryName(cat)) + " ";
 
     const span = document.createElement("span");
     span.className = "cat-pill__num";
@@ -561,7 +565,7 @@ function createCardElement(item, index, animateEnter, deferIndex = 16) {
   }
   card.tabIndex = 0;
   card.setAttribute("role", "button");
-  card.setAttribute("aria-label", `${item.name}，${item.category}，点击查看详情`);
+  card.setAttribute("aria-label", `${item.name}，${displayCategoryName(item.category)}，点击查看详情`);
 
   const top = document.createElement("div");
   top.className = "tool-card__top";
@@ -629,7 +633,7 @@ function createCardElement(item, index, animateEnter, deferIndex = 16) {
 
   const catTag = document.createElement("span");
   catTag.className = "tag-chip";
-  catTag.textContent = item._leisureSub || item.category;
+  catTag.textContent = item._leisureSub || displayCategoryName(item.category);
 
   const regs = item.regions || [item.region];
   const regHint = document.createElement("span");
@@ -680,7 +684,7 @@ function renderSectionedView(items, animateEnter) {
 
     const titleWrap = document.createElement("div");
     titleWrap.className = "cat-section__title-wrap";
-    const sectionTitle = cat === "划水摸鱼" ? "划水摸鱼 & 影音游戏精选" : cat;
+    const sectionTitle = cat === "划水摸鱼" ? "影音娱乐精选" : cat;
     titleWrap.innerHTML = `<span class="cat-section__icon" aria-hidden="true">${CAT_ICONS[cat] || CAT_ICONS["其他工具"]}</span><h2 class="cat-section__title">${sectionTitle}</h2><span class="cat-section__count">${list.length} 款</span>`;
 
     const moreBtn = document.createElement("button");
@@ -832,9 +836,10 @@ function openDialog(item) {
   } else {
     els.dialogRegionBadge.textContent = regs[0] === "domestic" ? "国内主流" : "海外主流";
   }
+  const catLabel = displayCategoryName(item.category);
   els.dialogCategoryBadge.textContent = item._leisureSub
-    ? `${item.category} · ${item._leisureSub}`
-    : item.category;
+    ? `${catLabel} · ${item._leisureSub}`
+    : catLabel;
 
   const safeHref = safeHttpUrl(item.url);
   if (safeHref) {
@@ -958,7 +963,9 @@ async function init() {
     state.loadFailed = false;
     state.catalog = catalog;
     state.items = (Array.isArray(catalog.items) ? catalog.items : []).map((it) =>
-      it.category === "划水摸鱼" ? { ...it, _leisureSub: classifyLeisure(it) } : it
+      it.category === "划水摸鱼" || it.category === "影音娱乐"
+        ? { ...it, _leisureSub: classifyLeisure(it) }
+        : it
     );
     applyFilters(true);
   } catch {
