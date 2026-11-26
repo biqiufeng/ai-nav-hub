@@ -171,7 +171,7 @@
 html {
   container-type: scroll-state;
   scroll-behavior: smooth;
-  scroll-padding-top: 4.5rem;
+  scroll-padding-top: var(--sticky-offset, 4.5rem);
   -webkit-text-size-adjust: 100%;
 }
 
@@ -566,7 +566,7 @@ body {
 .workspace-layout {
   max-width: 1360px;
   margin: 0 auto;
-  padding: 24px 20px 56px;
+  padding: 18px 20px 56px;
   display: grid;
   grid-template-columns: 236px minmax(0, 1fr);
   gap: 28px;
@@ -575,8 +575,8 @@ body {
 
 .sidebar {
   position: sticky;
-  top: 70px;
-  max-height: calc(100dvh - 88px);
+  top: calc(var(--topbar-h, 55px) + 18px);
+  max-height: calc(100dvh - var(--topbar-h, 55px) - 34px);
   overflow-y: auto;
   padding: 14px 10px;
   border-radius: 16px;
@@ -693,25 +693,47 @@ body {
 
 .page-shell {
   min-width: 0;
+  overflow-anchor: none;
 }
 
 .hero {
-  margin-bottom: 22px;
-}
-
-.hero__title {
-  margin: 0 0 16px;
-  font-size: clamp(26px, 3.4vw, 36px);
-  font-weight: 700;
-  letter-spacing: -0.025em;
-  line-height: 1.15;
-  text-wrap: balance;
+  position: sticky;
+  top: var(--topbar-h, 55px);
+  z-index: 15;
+  container-type: scroll-state;
+  container-name: hero-dock;
+  margin: -18px -4px 16px;
+  padding: 18px 4px 0;
 }
 
 .controls-dock {
   display: flex;
   flex-direction: column;
-  gap: 14px;
+  gap: 12px;
+  padding: 0 2px 14px;
+  background-color: var(--bg);
+  border-bottom: 1px solid transparent;
+  transition: border-color var(--dur-fast) ease, box-shadow var(--dur-fast) ease;
+}
+
+@supports (backdrop-filter: blur(1px)) {
+  .controls-dock {
+    background-color: color-mix(in srgb, var(--bg) 86%, transparent);
+    backdrop-filter: saturate(180%) blur(18px);
+    -webkit-backdrop-filter: saturate(180%) blur(18px);
+  }
+}
+
+@container hero-dock scroll-state(stuck: top) {
+  .controls-dock {
+    border-bottom-color: var(--border);
+    box-shadow: 0 6px 18px -14px rgba(0, 0, 0, 0.28);
+  }
+}
+
+.hero.is-stuck .controls-dock {
+  border-bottom-color: var(--border);
+  box-shadow: 0 6px 18px -14px rgba(0, 0, 0, 0.28);
 }
 
 /* Search box */
@@ -1022,7 +1044,7 @@ body {
 
 /* Partitioned category sections */
 .cat-section {
-  scroll-margin-top: 76px;
+  scroll-margin-top: var(--sticky-offset, 236px);
 }
 
 .cat-section + .cat-section {
@@ -1704,8 +1726,19 @@ body {
 
 @media (max-width: 640px) {
   .top-bar__inner { padding: 10px 14px; }
-  .workspace-layout { padding: 18px 14px 42px; }
+  .workspace-layout { padding: 14px 14px 42px; }
+  .hero { margin: -14px -4px 12px; padding: 14px 4px 0; }
+  .controls-dock { gap: 10px; padding-bottom: 10px; }
   .segmented__btn { padding: 6px 10px; font-size: 13px; }
+  .category-bar {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    scrollbar-width: none;
+    scroll-snap-type: x proximity;
+    padding-bottom: 2px;
+  }
+  .category-bar::-webkit-scrollbar { display: none; }
+  .cat-pill { flex-shrink: 0; scroll-snap-align: start; }
   .cards-grid { grid-template-columns: 1fr; }
   .tool-dialog__actions { flex-direction: column; }
   .tool-dialog__actions .btn-primary, .tool-dialog__actions .btn-secondary { width: 100%; }

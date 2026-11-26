@@ -56,6 +56,7 @@ const state = {
 
 const els = {
   topBar: document.getElementById("topBar"),
+  heroDock: document.getElementById("heroDock"),
   themeToggle: document.getElementById("themeToggle"),
   themeToggleLabel: document.getElementById("themeToggleLabel"),
   desktopSidebar: document.getElementById("desktopSidebar"),
@@ -431,7 +432,7 @@ function setupScrollspy() {
         }
       }
     },
-    { rootMargin: "-25% 0px -65% 0px", threshold: 0 }
+    { rootMargin: "-32% 0px -60% 0px", threshold: 0 }
   );
   sections.forEach((sec) => state.scrollspyObserver.observe(sec));
 }
@@ -858,11 +859,35 @@ function renderCatalogSkeletons() {
   els.catalogContainer.replaceChildren(grid);
 }
 
+function syncStickyMetrics() {
+  const topBarH = els.topBar?.getBoundingClientRect().height || 55;
+  const heroH = els.heroDock?.getBoundingClientRect().height || 170;
+  document.documentElement.style.setProperty("--topbar-h", `${Math.round(topBarH)}px`);
+  document.documentElement.style.setProperty("--sticky-offset", `${Math.round(topBarH + heroH + 8)}px`);
+}
+
+if (typeof ResizeObserver === "function") {
+  const stickyRo = new ResizeObserver(syncStickyMetrics);
+  if (els.topBar) stickyRo.observe(els.topBar);
+  if (els.heroDock) stickyRo.observe(els.heroDock);
+}
+
+if (!CSS.supports("container-type", "scroll-state") && els.heroDock) {
+  window.addEventListener(
+    "scroll",
+    () => {
+      els.heroDock.classList.toggle("is-stuck", window.scrollY > 8);
+    },
+    { passive: true }
+  );
+}
+
 /* ---------- Bootstrap & data fetch ---------- */
 async function init() {
   initSiteNav();
-  initTopBarScrollHide(els.topBar);
+  initTopBarScrollHide(els.topBar, { enabled: false });
   initThemeToggle(els.themeToggle, els.themeToggleLabel, showToast);
+  syncStickyMetrics();
   els.regionSegmented.querySelectorAll(".segmented__btn").forEach((b) => {
     const active = b.dataset.region === state.region;
     b.classList.toggle("is-active", active);
