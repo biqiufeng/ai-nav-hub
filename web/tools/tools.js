@@ -3,12 +3,9 @@ import {
   initThemeToggle,
   initTopBarScrollHide,
   createToast,
-  bindSearchBox,
   bindTwoStepConfirm,
   copyWithFeedback,
   prefersReducedMotion,
-  safeHttpUrl,
-  renderToolAvatar,
 } from "../nav.js?v=3";
 
 const els = {
@@ -17,18 +14,6 @@ const els = {
   themeToggleLabel: document.getElementById("themeToggleLabel"),
   toolTabs: document.getElementById("toolTabs"),
   workbenchBody: document.getElementById("workbenchBody"),
-  dirCount: document.getElementById("dirCount"),
-  dirSearchBox: document.getElementById("dirSearchBox"),
-  dirSearch: document.getElementById("dirSearch"),
-  dirSearchClear: document.getElementById("dirSearchClear"),
-  dirCats: document.getElementById("dirCats"),
-  dirGrid: document.getElementById("dirGrid"),
-  dirEmpty: document.getElementById("dirEmpty"),
-  dirEmptyTitle: document.getElementById("dirEmptyTitle"),
-  dirEmptyDesc: document.getElementById("dirEmptyDesc"),
-  dirEmptyBtn: document.getElementById("dirEmptyBtn"),
-  dirLoadMoreWrap: document.getElementById("dirLoadMoreWrap"),
-  dirLoadMoreBtn: document.getElementById("dirLoadMoreBtn"),
   toast: document.getElementById("toast"),
 };
 
@@ -792,157 +777,8 @@ tabs.forEach((tab, idx) => {
   });
 });
 
-/* ---------- Curated Tools Directory ---------- */
-const TOOL_CATS = ["全部", "编程开发", "办公效率", "图像设计", "Agent与自动化"];
-const DIR_BATCH = 60;
-let dirItems = [];
-let dirCat = "全部";
-let dirLimit = DIR_BATCH;
-let dirLoadFailed = false;
-
-function renderDirSkeletons() {
-  const frag = document.createDocumentFragment();
-  for (let i = 0; i < 6; i++) {
-    const card = document.createElement("div");
-    card.className = "skeleton-card";
-    card.style.minHeight = "112px";
-    card.innerHTML = `<div class="skeleton-line skeleton-line--title"></div><div class="skeleton-line"></div><div class="skeleton-line skeleton-line--short"></div>`;
-    frag.appendChild(card);
-  }
-  els.dirGrid.replaceChildren(frag);
-}
-
-function renderDir() {
-  const catsFrag = document.createDocumentFragment();
-  for (const c of TOOL_CATS) {
-    const active = dirCat === c;
-    const b = el("button", "cat-pill" + (active ? " is-active" : ""), c);
-    b.type = "button";
-    b.setAttribute("aria-pressed", String(active));
-    b.addEventListener("click", () => {
-      dirCat = dirCat === c && c !== "全部" ? "全部" : c;
-      dirLimit = DIR_BATCH;
-      renderDir();
-    });
-    catsFrag.appendChild(b);
-  }
-  els.dirCats.replaceChildren(catsFrag);
-
-  const q = els.dirSearch.value.trim().toLowerCase();
-  const list = dirItems.filter((it) => {
-    if (dirCat === "全部") {
-      if (!TOOL_CATS.includes(it.category)) return false;
-    } else if (it.category !== dirCat) {
-      return false;
-    }
-    if (!q) return true;
-    return `${it.name} ${it.description} ${it.domain} ${it.category}`.toLowerCase().includes(q);
-  });
-
-  els.dirCount.textContent = `共筛选 ${list.length} 款在线工具`;
-
-  if (list.length === 0) {
-    els.dirGrid.replaceChildren();
-    els.dirLoadMoreWrap.hidden = true;
-    els.dirEmpty.hidden = false;
-    els.dirEmptyTitle.textContent = "没有找到匹配的工具";
-    els.dirEmptyDesc.textContent = "试试调整关键词，或切换回全部分类查看。";
-    els.dirEmptyBtn.textContent = "重置筛选";
-    return;
-  }
-
-  els.dirEmpty.hidden = true;
-  const shown = list.slice(0, dirLimit);
-  const frag = document.createDocumentFragment();
-  for (const it of shown) {
-    const href = safeHttpUrl(it.url);
-    if (!href) continue;
-    const card = el("a", "dir-card");
-    card.href = href;
-    card.target = "_blank";
-    card.rel = "noopener noreferrer";
-
-    const top = el("div", "dir-card__top");
-    const head = el("div", "dir-card__head");
-    const avatar = el("div", "tool-avatar tool-avatar--sm");
-    avatar.setAttribute("aria-hidden", "true");
-    renderToolAvatar(avatar, it);
-
-    const titles = el("div", "dir-card__titles");
-    titles.append(
-      el("h3", "dir-card__name", it.name),
-      el("span", "dir-card__domain", it.domain)
-    );
-    head.append(avatar, titles);
-    top.append(head, el("span", "tag-chip", it.category));
-
-    const desc = el("p", "dir-card__desc", it.description || it.domain);
-    card.append(top, desc);
-    frag.appendChild(card);
-  }
-  els.dirGrid.replaceChildren(frag);
-
-  const remaining = list.length - shown.length;
-  els.dirLoadMoreWrap.hidden = remaining <= 0;
-  if (remaining > 0) {
-    els.dirLoadMoreBtn.textContent = `展开更多（还有 ${remaining} 款）`;
-  }
-}
-
-const dirSearchController = bindSearchBox({
-  input: els.dirSearch,
-  clearBtn: els.dirSearchClear,
-  boxEl: els.dirSearchBox,
-  onChange: () => {
-    dirLimit = DIR_BATCH;
-    renderDir();
-  },
-  enableGlobalShortcut: true,
-});
-
-els.dirLoadMoreBtn.addEventListener("click", () => {
-  dirLimit += DIR_BATCH;
-  renderDir();
-});
-
-els.dirEmptyBtn.addEventListener("click", () => {
-  if (dirLoadFailed) {
-    loadDir();
-    return;
-  }
-  els.dirSearch.value = "";
-  dirCat = "全部";
-  dirLimit = DIR_BATCH;
-  dirSearchController.sync();
-  renderDir();
-});
-
-async function loadDir() {
-  dirLoadFailed = false;
-  els.dirEmpty.hidden = true;
-  els.dirCount.textContent = "正在加载目录…";
-  renderDirSkeletons();
-  try {
-    const res = await fetch("../data/catalog.json", { cache: "no-cache" });
-    if (!res.ok) throw new Error(`HTTP ${res.status}`);
-    const data = await res.json();
-    dirItems = Array.isArray(data.items) ? data.items : [];
-    renderDir();
-  } catch {
-    dirLoadFailed = true;
-    els.dirGrid.replaceChildren();
-    els.dirLoadMoreWrap.hidden = true;
-    els.dirCount.textContent = "目录加载失败";
-    els.dirEmpty.hidden = false;
-    els.dirEmptyTitle.textContent = "在线工具目录加载失败";
-    els.dirEmptyDesc.textContent = "请检查网络连接后重试。";
-    els.dirEmptyBtn.textContent = "重新加载";
-  }
-}
-
 initSiteNav();
 initTopBarScrollHide(els.topBar);
 initThemeToggle(els.themeToggle, els.themeToggleLabel, showToast);
 const initialTab = location.hash ? location.hash.slice(1) : "json";
 activateTab(RENDERERS[initialTab] ? initialTab : "json", false);
-loadDir();

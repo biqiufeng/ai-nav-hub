@@ -30,8 +30,11 @@ const QUICK_VIEWS = [
   { id: "hot", label: "热门推荐" },
   { id: "domestic", label: "国内主流" },
   { id: "overseas", label: "海外主流" },
+  { id: "dev", label: "开发效率" },
   { id: "favorites", label: "我的收藏" },
 ];
+
+const DEV_CATEGORIES = new Set(["编程开发", "办公效率", "图像设计", "Agent与自动化"]);
 
 const FAVORITES_KEY = "ai_nav_hub_favorites_v1";
 const REGION_KEY = "ai_nav_hub_region_v1";
@@ -254,7 +257,7 @@ function saveFavorites() {
 
 function loadRegion() {
   const val = safeGetStorage(REGION_KEY);
-  return ["all", "hot", "domestic", "overseas", "favorites"].includes(val) ? val : "all";
+  return ["all", "hot", "domestic", "overseas", "dev", "favorites"].includes(val) ? val : "all";
 }
 
 /* ---------- Segmented control thumb ---------- */
@@ -276,6 +279,7 @@ document.fonts?.ready?.then(() => positionThumb(false));
 function matchesRegion(item, region) {
   if (region === "favorites") return state.favorites.has(item.id);
   if (region === "hot") return (item.sources?.length || 0) >= 2;
+  if (region === "dev") return DEV_CATEGORIES.has(item.category);
   if (region === "domestic") {
     return Array.isArray(item.regions) ? item.regions.includes("domestic") : item.region === "domestic";
   }
@@ -319,8 +323,9 @@ function renderSidebarInto(hostEl, isMobile = false) {
   const hotCount = state.items.filter((i) => matchesRegion(i, "hot")).length;
   const domCount = state.items.filter((i) => matchesRegion(i, "domestic")).length;
   const ovsCount = state.items.filter((i) => matchesRegion(i, "overseas")).length;
+  const devCount = state.items.filter((i) => matchesRegion(i, "dev")).length;
   const favCount = state.items.filter((i) => state.favorites.has(i.id)).length;
-  const regionCounts = { all: allCount, hot: hotCount, domestic: domCount, overseas: ovsCount, favorites: favCount };
+  const regionCounts = { all: allCount, hot: hotCount, domestic: domCount, overseas: ovsCount, dev: devCount, favorites: favCount };
 
   const baseItems = getBaseItems();
   const catCounts = new Map();
@@ -443,6 +448,7 @@ function updateCounts() {
     hot: state.items.filter((i) => matchesRegion(i, "hot")).length,
     domestic: state.items.filter((i) => matchesRegion(i, "domestic")).length,
     overseas: state.items.filter((i) => matchesRegion(i, "overseas")).length,
+    dev: state.items.filter((i) => matchesRegion(i, "dev")).length,
     favorites: state.items.filter((i) => state.favorites.has(i.id)).length,
   };
   for (const [k, v] of Object.entries(map)) {
