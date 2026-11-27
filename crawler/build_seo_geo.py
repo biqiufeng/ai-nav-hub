@@ -403,7 +403,7 @@ def page_shell_html(
   <link rel="stylesheet" href="{rel_root}styles.css?v=19">
   <link rel="stylesheet" href="{rel_root}seo-geo.css?v=2">
   <script type="application/ld+json">{ld_json}</script>
-  <script type="module" src="{rel_root}subpage.js?v=2"></script>
+  <script type="module" src="{rel_root}subpage.js?v=3"></script>
 </head>
 <body>
   <header class="top-bar site-header" id="topBar">
@@ -499,6 +499,33 @@ def page_shell_html(
 """
 
 
+def _avatar_icon_img(item, size=38):
+    raw_ic = (item.get("icon") or "").strip()
+    dom = (item.get("domain") or "").strip().lower()
+    if raw_ic.startswith(("http://", "https://")):
+        src = raw_ic
+    elif dom and "." in dom:
+        src = f"/api/icon?d={urllib.parse.quote(dom)}"
+    else:
+        return ""
+    return (
+        f'<img src="{esc(src)}" alt="" width="{size}" height="{size}" '
+        f'loading="lazy" decoding="async" referrerpolicy="no-referrer">'
+    )
+
+
+def clean_news_href(raw_url, item_id, base_url):
+    u = (raw_url or "").strip()
+    if u.startswith("/news/"):
+        return f"{base_url}{u}"
+    if "codefather.cn/news/" in u:
+        pid = u.rstrip("/").split("/")[-1]
+        return f"{base_url}/news/?id={urllib.parse.quote(item_id or pid)}"
+    if "codefather.cn" in u or not u.startswith(("http://", "https://")):
+        return f"{base_url}/news/?id={urllib.parse.quote(str(item_id))}" if item_id else f"{base_url}/news/"
+    return u
+
+
 def render_static_card(item, cat_display, rel_root="", slug_by_id=None):
     name = item.get("name") or item.get("domain") or "AI 工具"
     domain = item.get("domain") or ""
@@ -506,6 +533,7 @@ def render_static_card(item, cat_display, rel_root="", slug_by_id=None):
     desc = item.get("description") or f"{cat_display} · {domain}"
     letter = name.strip()[0].upper() if name.strip() else "A"
     bg = avatar_color(domain or name)
+    icon_img = _avatar_icon_img(item, 38)
     reg = region_label(item)
     p_chip = pricing_chip_html(item.get("pricing"))
     tslug = (slug_by_id or {}).get(item.get("id"))
@@ -519,7 +547,7 @@ def render_static_card(item, cat_display, rel_root="", slug_by_id=None):
     return f"""        <article class="tool-card seo-tool-card">
           <div class="tool-card__top">
             <div class="tool-card__head">
-              <div class="tool-avatar" style="--avatar-bg:{bg}" aria-hidden="true"><span>{esc(letter)}</span></div>
+              <div class="tool-avatar" style="--avatar-bg:{bg}" aria-hidden="true"><span>{esc(letter)}</span>{icon_img}</div>
               <div class="tool-card__titles">
                 <h3 class="tool-card__name"><a class="seo-tool-card__title-link" href="{esc(title_href)}"{title_target}>{esc(name)}</a></h3>
                 <p class="tool-card__domain">{esc(domain)}</p>
@@ -542,21 +570,28 @@ def render_static_card(item, cat_display, rel_root="", slug_by_id=None):
         </article>"""
 
 
-def build_flagship_tool_pages(web_dir, base_url, by_cat, today_str):
-    """Generates ~439 static /tool/<slug>/index.html pages for high-consensus (>=3 sources) tools + /tool/index.html."""
-    tool_root = os.path.join(web_dir, "tool")
-    os.makedirs(tool_root, exist_ok=True)
-
+def prepare_flagship_slugs(by_cat):
     used_slugs = set()
     flagship_items = []
     for cfg in CATEGORY_CONFIG:
         for it in sort_tools(by_cat.get(cfg["cat"], [])):
             if len(it.get("sources") or []) >= 3:
                 flagship_items.append(it)
-
     slug_by_id = {}
     for it in flagship_items:
         slug_by_id[it["id"]] = make_tool_slug(it, used_slugs)
+    return flagship_items, slug_by_id
+
+
+def build_flagship_tool_pages(
+    web_dir, base_url, by_cat, today_str, flagship_items=None, slug_by_id=None, vs_links_by_tool_id=None, vs_links_by_cat=None
+):
+    """Generates static /tool/<slug>/index.html pages for high-consensus (>=3 sources) tools + /tool/index.html."""
+    tool_root = os.path.join(web_dir, "tool")
+    os.makedirs(tool_root, exist_ok=True)
+
+    if flagship_items is None or slug_by_id is None:
+        flagship_items, slug_by_id = prepare_flagship_slugs(by_cat)
 
     generated_urls = []
 
@@ -705,6 +740,31 @@ def build_flagship_tool_pages(web_dir, base_url, by_cat, today_str):
         canon = f"{base_url}/tool/{tslug}/"
         letter = name.strip()[0].upper() if name.strip() else "A"
         bg = avatar_color(domain or name)
+        hero_icon = _avatar_icon_img(it, 48)
+        pricing_str = it.get("pricing") or "免费额度"
+
+        tool_vs_pairs = (vs_links_by_tool_id or {}).get(it["id"]) or (vs_links_by_cat or {}).get(cfg["cat"], [])[:4]
+        vs_sec_html = ""
+        if tool_vs_pairs:
+            vs_heading_txt = (
+                f"{name} 与同赛道热门竞品一对一横评（VS）"
+                if (vs_links_by_tool_id or {}).get(it["id"])
+                else f"「{disp}」热门工具一对一横评参考（VS）"
+            )
+            vs_cards = "\n".join(
+                f'          <a class="topic-link-card" href="../../vs/{pslug}/"><span>{esc(plabel)}</span><span>一对一横评 →</span></a>'
+                for pslug, plabel in tool_vs_pairs[:6]
+            )
+            vs_sec_html = f"""
+    <section class="seo-section" aria-labelledby="tool-vs-heading">
+      <div class="seo-section__head">
+        <h2 class="seo-section__title" id="tool-vs-heading">{esc(vs_heading_txt)}</h2>
+        <a class="cat-section__more" href="../../vs/">全部 VS 对比库 →</a>
+      </div>
+      <div class="topic-links-grid">
+{vs_cards}
+      </div>
+    </section>"""
 
         main_html = f"""    <nav class="breadcrumb" aria-label="面包屑导航">
       <ol>
@@ -716,7 +776,7 @@ def build_flagship_tool_pages(web_dir, base_url, by_cat, today_str):
 
     <section class="seo-hero">
       <div style="display:flex;align-items:center;gap:14px;margin-bottom:14px;">
-        <div class="tool-avatar tool-avatar--lg" style="--avatar-bg:{bg}" aria-hidden="true"><span>{esc(letter)}</span></div>
+        <div class="tool-avatar tool-avatar--lg" style="--avatar-bg:{bg}" aria-hidden="true"><span>{esc(letter)}</span>{hero_icon}</div>
         <div>
           <span class="seo-hero__eyebrow" style="margin-bottom:4px;">{esc(disp)} · 获 {src_cnt} 大导航站共识推荐</span>
           <h1 class="seo-hero__title" style="margin:0;">{esc(name)}</h1>
@@ -767,7 +827,7 @@ def build_flagship_tool_pages(web_dir, base_url, by_cat, today_str):
       <div class="cards-grid">
 {sibling_cards}
       </div>
-    </section>
+    </section>{vs_sec_html}
 
     <section class="seo-section" aria-labelledby="tool-faq-heading">
       <div class="seo-section__head">
@@ -777,6 +837,24 @@ def build_flagship_tool_pages(web_dir, base_url, by_cat, today_str):
 {faq_html}
       </div>
     </section>"""
+
+        sw_app = {
+            "@type": "SoftwareApplication",
+            "name": name,
+            "applicationCategory": cfg["app_cat"],
+            "operatingSystem": "Web",
+            "url": url,
+            "description": desc,
+            "inLanguage": "zh-CN",
+        }
+        if pricing_str in ("完全免费", "开源免费", "免费额度"):
+            sw_app["offers"] = {
+                "@type": "Offer",
+                "price": "0",
+                "priceCurrency": "CNY",
+                "availability": "https://schema.org/InStock",
+                "description": pricing_str,
+            }
 
         ld_obj = {
             "@context": "https://schema.org",
@@ -789,15 +867,7 @@ def build_flagship_tool_pages(web_dir, base_url, by_cat, today_str):
                         {"@type": "ListItem", "position": 3, "name": name, "item": canon},
                     ],
                 },
-                {
-                    "@type": "SoftwareApplication",
-                    "name": name,
-                    "applicationCategory": cfg["app_cat"],
-                    "operatingSystem": "Web",
-                    "url": url,
-                    "description": desc,
-                    "inLanguage": "zh-CN",
-                },
+                sw_app,
                 {
                     "@type": "FAQPage",
                     "mainEntity": [
@@ -834,7 +904,7 @@ def build_flagship_tool_pages(web_dir, base_url, by_cat, today_str):
     return generated_urls, slug_by_id, flagship_items
 
 
-def build_category_pages(web_dir, base_url, by_cat, today_str, slug_by_id):
+def build_category_pages(web_dir, base_url, by_cat, today_str, slug_by_id, vs_links_by_cat=None):
     cat_root = os.path.join(web_dir, "category")
     os.makedirs(cat_root, exist_ok=True)
     generated_urls = []
@@ -991,6 +1061,24 @@ def build_category_pages(web_dir, base_url, by_cat, today_str, slug_by_id):
             for i, (q, a) in enumerate(faqs)
         )
 
+        cat_vs = (vs_links_by_cat or {}).get(cfg["cat"], [])
+        cat_vs_html = ""
+        if cat_vs:
+            vlinks = "\n".join(
+                f'          <a class="topic-link-card" href="../../vs/{pslug}/"><span>{esc(plabel)}</span><span>同屏横评 →</span></a>'
+                for pslug, plabel in cat_vs[:6]
+            )
+            cat_vs_html = f"""
+    <section class="seo-section" aria-labelledby="cat-vs-heading">
+      <div class="seo-section__head">
+        <h2 class="seo-section__title" id="cat-vs-heading">「{esc(disp)}」热门工具二选一深度横评（VS）</h2>
+        <a class="cat-section__more" href="../../vs/">查看全部横评 →</a>
+      </div>
+      <div class="topic-links-grid">
+{vlinks}
+      </div>
+    </section>"""
+
         filter_link = f"../../?cat={urllib.parse.quote(cfg['cat'])}"
         main_html = f"""    <nav class="breadcrumb" aria-label="面包屑导航">
       <ol>
@@ -1049,7 +1137,7 @@ def build_category_pages(web_dir, base_url, by_cat, today_str, slug_by_id):
       <div class="cards-grid">
 {cards_html}
       </div>
-    </section>
+    </section>{cat_vs_html}
 
     <section class="seo-section" aria-labelledby="faq-heading">
       <div class="seo-section__head">
@@ -1145,14 +1233,21 @@ def build_daily_archives(web_dir, base_url, news_data, today_str, entities=None)
     for it in news_data.get("items", []):
         dt = (it.get("date") or "").strip()
         if re.match(r"^\d{4}-\d{2}-\d{2}$", dt) and it.get("title"):
+            nid = str(it.get("id") or "")
             grouped_live[dt].append({
-                "id": str(it.get("id") or ""),
+                "id": nid,
                 "title": (it.get("title") or "").strip(),
                 "summary": (it.get("summary") or "").strip()[:280],
-                "url": (it.get("source_url") or it.get("url") or "").strip(),
+                "url": clean_news_href(it.get("source_url") or it.get("url") or "", nid, base_url),
                 "topic": (it.get("topic") or "前沿速递").strip(),
                 "published_at": (it.get("published_at") or dt).strip(),
             })
+
+    for dt, lst in list(history.items()):
+        if isinstance(lst, list):
+            for entry in lst:
+                if isinstance(entry, dict):
+                    entry["url"] = clean_news_href(entry.get("url") or "", entry.get("id") or "", base_url)
 
     for dt, lst in grouped_live.items():
         existing = {x.get("title"): x for x in history.get(dt, []) if isinstance(x, dict)}
@@ -1184,7 +1279,10 @@ def build_daily_archives(web_dir, base_url, news_data, today_str, entities=None)
 
         items_html = []
         for n_idx, item in enumerate(entries, 1):
-            href = item.get("url") or f"{base_url}/news/"
+            href = clean_news_href(item.get("url") or "", item.get("id") or "", base_url)
+            is_internal = href.startswith(base_url)
+            tgt_attr = "" if is_internal else ' target="_blank" rel="noopener noreferrer"'
+            foot_lbl = "站内阅读完整正文 →" if is_internal else "阅读原始信源 ↗"
             matched_ents = match_entities_in_text(
                 f"{item.get('title') or ''} {item.get('summary') or ''}", entities or [], limit=3
             )
@@ -1201,10 +1299,10 @@ def build_daily_archives(web_dir, base_url, news_data, today_str, entities=None)
             <span class="tag-chip">{esc(item.get('topic') or 'AI快讯')}</span>
             <span class="region-hint">{esc(item.get('published_at') or dt)}</span>
           </div>
-          <h2 class="brief-item__title"><a href="{esc(href)}" target="_blank" rel="noopener noreferrer">{esc(item['title'])}</a></h2>
+          <h2 class="brief-item__title"><a href="{esc(href)}"{tgt_attr}>{esc(item['title'])}</a></h2>
           <p class="brief-item__summary">{esc(item.get('summary') or '')}</p>
           <div class="brief-item__foot">
-            <a href="{esc(href)}" target="_blank" rel="noopener noreferrer">阅读消息源原文 ↗</a>
+            <a href="{esc(href)}"{tgt_attr}>{foot_lbl}</a>
             {ent_html}
           </div>
         </li>""")
@@ -1626,7 +1724,7 @@ def write_llms_files(web_dir, base_url, by_cat, news_data, sorted_dates, total_i
         for idx, ni in enumerate(news_items, 1):
             t = (ni.get("title") or "").strip()
             s = (ni.get("summary") or "").strip()[:180]
-            u = (ni.get("source_url") or ni.get("url") or f"{base_url}/news/").strip()
+            u = clean_news_href(ni.get("source_url") or ni.get("url") or "", ni.get("id") or "", base_url)
             dt = (ni.get("published_at") or ni.get("date") or today_str).strip()
             full_lines.append(f"{idx}. [{dt}] **{t}** ({u})：{s}")
         full_lines.append("")
@@ -1640,7 +1738,7 @@ def write_rss_feed(web_dir, base_url, news_data):
     items_xml = []
     for ni in (news_data.get("items") or [])[:35]:
         title = esc(ni.get("title") or "AI 快讯")
-        link = esc(ni.get("source_url") or ni.get("url") or f"{base_url}/news/")
+        link = esc(clean_news_href(ni.get("source_url") or ni.get("url") or "", ni.get("id") or "", base_url))
         desc = esc(ni.get("summary") or "")
         guid = esc(str(ni.get("id") or link))
         cat = esc(ni.get("topic") or "AI资讯")
@@ -1802,21 +1900,9 @@ def main():
             hotlist_data = json.load(f)
 
     hot_cnt, hot_bytes = build_hot_catalog_shard(web_dir, catalog, by_cat)
-    tool_urls, slug_by_id, flagship_items = build_flagship_tool_pages(web_dir, base_url, by_cat, today_str)
+    flagship_items, slug_by_id = prepare_flagship_slugs(by_cat)
     entities = write_tool_slugs_index(web_dir, flagship_items, slug_by_id)
-    scene_urls = build_scene_pages(
-        web_dir,
-        base_url,
-        items,
-        slug_by_id,
-        today_str,
-        sort_tools,
-        region_label,
-        is_domestic,
-        page_shell_html,
-        render_static_card,
-    )
-    vs_urls, _, _ = build_vs_pages(
+    vs_urls, vs_links_by_cat, vs_links_by_tool_id = build_vs_pages(
         web_dir,
         base_url,
         by_cat,
@@ -1829,7 +1915,31 @@ def main():
         page_shell_html,
         render_static_card,
     )
-    cat_urls = build_category_pages(web_dir, base_url, by_cat, today_str, slug_by_id)
+    tool_urls, _, _ = build_flagship_tool_pages(
+        web_dir,
+        base_url,
+        by_cat,
+        today_str,
+        flagship_items=flagship_items,
+        slug_by_id=slug_by_id,
+        vs_links_by_tool_id=vs_links_by_tool_id,
+        vs_links_by_cat=vs_links_by_cat,
+    )
+    scene_urls = build_scene_pages(
+        web_dir,
+        base_url,
+        items,
+        slug_by_id,
+        today_str,
+        sort_tools,
+        region_label,
+        is_domestic,
+        page_shell_html,
+        render_static_card,
+    )
+    cat_urls = build_category_pages(
+        web_dir, base_url, by_cat, today_str, slug_by_id, vs_links_by_cat=vs_links_by_cat
+    )
     daily_urls, _, sorted_dates = build_daily_archives(web_dir, base_url, news_data, today_str, entities=entities)
     prerender_news_and_moyu(web_dir, base_url, news_data, hotlist_data, entities, today_str)
     write_openapi_spec(web_dir, base_url, len(items))

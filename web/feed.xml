@@ -6,7 +6,49 @@
     <atom:link href="https://dlzbkj-ai.pages.dev/feed.xml" rel="self" type="application/rss+xml"/>
     <description>每日自动同步国内外主流 AI 工具、大模型发布与智能体前沿快讯。</description>
     <language>zh-cn</language>
-    <lastBuildDate>Fri, 27 Nov 2026 16:52:13 +0800</lastBuildDate>
+    <lastBuildDate>Fri, 27 Nov 2026 19:20:20 +0800</lastBuildDate>
+    <item>
+      <title>[HN热议] The group chat where your AI talks behind your back</title>
+      <link>https://construct22.com</link>
+      <guid isPermaLink="false">hn-50663595</guid>
+      <category>前沿速递</category>
+      <description>Hacker News 极客热议（🔥 296 赞 · 124 评论）· 来源：construct22.com</description>
+    </item>
+    <item>
+      <title>[HN热议] AI agents now control part of DeepMind&#x27;s compute for Gemini experiments</title>
+      <link>https://the-decoder.com/ai-agents-now-control-part-of-deepminds-compute-for-gemini-experiments-but-recursive-self-improvement-remains-distant</link>
+      <guid isPermaLink="false">hn-50661218</guid>
+      <category>大模型</category>
+      <description>Hacker News 极客热议（🔥 54 赞 · 27 评论）· 来源：the-decoder.com</description>
+    </item>
+    <item>
+      <title>[HN热议] AI made self-hosting fun again</title>
+      <link>https://janlukas.blog/posts/ai-self-hosting</link>
+      <guid isPermaLink="false">hn-50660180</guid>
+      <category>前沿速递</category>
+      <description>Hacker News 极客热议（🔥 747 赞 · 371 评论）· 来源：janlukas.blog</description>
+    </item>
+    <item>
+      <title>[HN热议] The USA as a Civilizations-esque map</title>
+      <link>https://karpathy.ai/usaciv</link>
+      <guid isPermaLink="false">hn-50658997</guid>
+      <category>前沿速递</category>
+      <description>Hacker News 极客热议（🔥 72 赞 · 58 评论）· 来源：karpathy.ai</description>
+    </item>
+    <item>
+      <title>[HN热议] Ask HN: How do you find meaning of life at 41?</title>
+      <link>https://news.ycombinator.com/item?id=50657957</link>
+      <guid isPermaLink="false">hn-50657957</guid>
+      <category>前沿速递</category>
+      <description>Hacker News 极客热议（🔥 62 赞 · 106 评论）· 来源：news.ycombinator.com</description>
+    </item>
+    <item>
+      <title>[HN热议] Tracking Diseases Cured by AI</title>
+      <link>https://diseasescuredbyai.com</link>
+      <guid isPermaLink="false">hn-50657307</guid>
+      <category>前沿速递</category>
+      <description>Hacker News 极客热议（🔥 310 赞 · 190 评论）· 来源：diseasescuredbyai.com</description>
+    </item>
     <item>
       <title>SpaceX 下调 Blackwell 芯片租金最高 35%，Anthropic 退还的 H200 被低价转租</title>
       <link>https://news.aibase.com/zh/news/32536</link>
@@ -169,88 +211,46 @@
       <description>导读 用代码做出一把椅子或者一盏台灯并不难，但要搭建出一座图书馆、一片自然森林或者一个能在网页里实时交互的街区，往往需要编写数千乃至上万行代码，并在环境里经过上百轮交互调优。然而，现有的开源 3D 代码数据大多只包含简单单物体的单轮代码，面向复杂场景的多轮训练数据十分匮乏。 为此，小红书提出大规模全自动 3D 数据合成框架 3DCodeFactory。无需依赖存量 3D 资产，只需从互联网海量的通</description>
     </item>
     <item>
+      <title>[HN热议] Google Will Make AI Agents Use Its MCP Servers. The Gmail One Can&#x27;t Send Email</title>
+      <link>https://techstackups.com/articles/google-workspace-ai-agents-mcp</link>
+      <guid isPermaLink="false">hn-50653477</guid>
+      <category>开发与Agent</category>
+      <description>Hacker News 极客热议（🔥 339 赞 · 303 评论）· 来源：techstackups.com</description>
+    </item>
+    <item>
+      <title>[HN热议] Moat: OpenRouter replacement</title>
+      <link>https://commandcode.ai/moat</link>
+      <guid isPermaLink="false">hn-50652184</guid>
+      <category>前沿速递</category>
+      <description>Hacker News 极客热议（🔥 291 赞 · 156 评论）· 来源：commandcode.ai</description>
+    </item>
+    <item>
+      <title>[HN热议] The New York Times warns photographers not to update Photoshop over AI features</title>
+      <link>https://www.theverge.com/ai-artificial-intelligence/1041227/the-new-york-times-warns-photographers-not-to-update-photoshop-over-ai-features</link>
+      <guid isPermaLink="false">hn-50647673</guid>
+      <category>前沿速递</category>
+      <description>Hacker News 极客热议（🔥 674 赞 · 530 评论）· 来源：theverge.com</description>
+    </item>
+    <item>
+      <title>[HN热议] Spending 35B Opus 5.5 Tokens to Write a Symphony</title>
+      <link>https://danprice.ai/blog/opus-symphony</link>
+      <guid isPermaLink="false">hn-50646662</guid>
+      <category>前沿速递</category>
+      <description>Hacker News 极客热议（🔥 57 赞 · 69 评论）· 来源：danprice.ai</description>
+    </item>
+    <item>
+      <title>[HN热议] New York bans AI toys, including those using internet to talk to children</title>
+      <link>https://www.theguardian.com/us-news/2026/nov/25/new-york-bans-ai-toys</link>
+      <guid isPermaLink="false">hn-50644909</guid>
+      <category>前沿速递</category>
+      <description>Hacker News 极客热议（🔥 56 赞 · 14 评论）· 来源：theguardian.com</description>
+    </item>
+    <item>
       <title>关闭浏览器仍狂吃数百兆内存！Chrome隐藏的“AI内存刺客”被揪出，一招教你彻底释放资源</title>
       <link>https://news.aibase.com/zh/news/32514</link>
       <guid isPermaLink="false">2125618215471026177</guid>
       <category>前沿速递</category>
       <description>在日常办公或娱乐结束后，习惯性点击右上角关闭 Chrome 浏览器，但打开任务管理器却赫然发现:多个 Chrome 进程仍在后台“顽强”运行，白白吞噬着300MB 至700MB 的宝贵内存。更令人抓狂的是，即便你已经关闭了“Chrome 关闭后继续运行后台应用”选项，并尝试了禁用扩展、清除缓存、重置设置等所有常规排查手段，问题依然如影随形。 这并非你的电脑中了病毒，也不是流氓插件在作祟。近日，有开</description>
-    </item>
-    <item>
-      <title>GPT-6 不带专用生物模型上场：322 个设计蛋白进实验室，约一成有结合迹象</title>
-      <link>https://news.aibase.com/zh/news/32513</link>
-      <guid isPermaLink="false">2125618215471026178</guid>
-      <category>大模型</category>
-      <description>聊天大模型能不能干专业生物模型的活？OpenAI 在 11 月 24 日发布的预印本论文里给了一半肯定答案：GPT-6 系列不依赖专用生物模型，仅凭推理和通用编程工具就能设计新的蛋白质三维结构与氨基酸序列，并已通过多轮实验室检验。测试由 OpenAI 与合作机构 Onava 联手完成。 先赢计算，再过湿实验 以 GPT-6.2 设计的结构为蓝本，团队制作了 322 个微型结合蛋白，覆盖 5 个靶点</description>
-    </item>
-    <item>
-      <title>陈睿:AI将提升优质内容供给效率，B站有望成为AI时代受益平台</title>
-      <link>https://news.aibase.com/zh/news/32512</link>
-      <guid isPermaLink="false">2125618215471026179</guid>
-      <category>行业动态</category>
-      <description>B站11月24日公布2026年第三季度财报。截至9月30日，公司第三季度总营收达到83.2亿元，同比增长8%。社区活跃度持续提升，日均活跃用户数（DAU）达到1.24亿，月均活跃用户数(MAU)增至3.94亿，日均使用时长首次突破两小时，达到121分钟，三项社区核心指标均创历史新高。 在财报电话会上，B站董事长兼首席执行官陈睿表示，社区是B站最重要的竞争壁垒，由用户、UP主和平台共同构成。其中，用</description>
-    </item>
-    <item>
-      <title>AI生成世界不再只有画面:高德ABot-World0.5支持实时交互与声音生成</title>
-      <link>https://news.aibase.com/zh/news/32511</link>
-      <guid isPermaLink="false">2125618215475220482</guid>
-      <category>行业动态</category>
-      <description>阿里巴巴集团旗下高德近日正式发布新一代通用交互式世界模型 ABot-World0.5，重点升级真实物理反馈、音画同步生成和自然语言实时重塑能力，新增攻击、跳跃、驾驶等交互技能。该模型在权威世界模型评测基准 WBench 中获得物理性和总分双项第一，即日起开放用户体验。 此次升级依托高德自研数据管线 Phys AI Data，模型通过海量真实世界数据学习人物、物体及环境的动态演变，进一步理解动作执行</description>
-    </item>
-    <item>
-      <title>Anthropic 给 Claude Artifacts 加“安装为应用”：AI 生成的工具可装进 macOS 和 Windows 桌面</title>
-      <link>https://news.aibase.com/zh/news/32510</link>
-      <guid isPermaLink="false">2125618215475220483</guid>
-      <category>大模型</category>
-      <description>在 Claude 里让 AI 顺手“做”出一个网页小工具，早已不是新鲜事；新鲜的是这些作品过去只能寄居在浏览器标签页里，窗口一关就沉了底。11 月 25 日，Anthropic 为交互式 Artifacts 功能推出“安装为应用”（Install as app）选项，用户可以把 AI 生成的应用直接装进 macOS 和 Windows 桌面，当作独立软件来启动。 像装网页应用一样装作品 据官方介绍</description>
-    </item>
-    <item>
-      <title>谷歌为 Gemini 新增独立隐私开关：保留聊天记录的同时，可选择退出 AI 训练</title>
-      <link>https://news.aibase.com/zh/news/32532</link>
-      <guid isPermaLink="false">2125618215475220484</guid>
-      <category>大模型</category>
-      <description>谷歌近日为 Gemini 应用推出新的隐私设置，允许用户在保留聊天记录的前提下，独立控制聊天内容是否用于生成式 AI 模型训练。此前，用户若不想数据被用于训练，通常需要删除聊天记录，现在二者可以解耦。 具体操作上，用户在 Gemini 中点击设置图标，即可在页面底部找到新增的&quot;活动记录&quot;选项。点击后跳转至&quot;Google 我的活动页面&quot;，通过下拉菜单即可开启或关闭相关功能。 谷歌表示，关闭该功能后，</description>
-    </item>
-    <item>
-      <title>小鹏IRON人形机器人计划2027年二季度发布，1月启动硬件量产</title>
-      <link>https://news.aibase.com/zh/news/32530</link>
-      <guid isPermaLink="false">2125618215475220485</guid>
-      <category>芯片与算力</category>
-      <description>小鹏汽车董事长、CEO何小鹏在2026小鹏科技日上宣布，人形机器人小鹏IRON将于2027年1月进入硬件量产阶段，目标于2027年第二季度正式对外发布。IRON定位为具备全天候服务能力的通用机器人，可自主排程、跨岗位工作和自动补能，并通过软硬件OTA持续升级，向真正的机器人员工演进。 据介绍，IRON支持7×24小时连续工作，可根据日程自主切换导购、迎宾、内训师、安保等岗位，未来还将拓展至节假日值</description>
-    </item>
-    <item>
-      <title>ERNIE 5.5 Flash Preview 正式开源</title>
-      <link>https://mp.weixin.qq.com/s/S9MyfFssIdKF88fFzC-3sg</link>
-      <guid isPermaLink="false">2125618215475220486</guid>
-      <category>前沿速递</category>
-      <description>11 月 11 日，我们发布了 ERNIE 5.5 Flash Preview。今天，我们正式开放其模型权重。这是 ERNIE 5.5 Flash 系列首个开源的后训练版本： 总参数 280B，激活参数 14B，支持 1M 上下文 Apache 2.0 协议，支持下载、部署、微调和商业使用 vLLM / SGLang 及昆仑芯 Day-0 支持部署 模型下载地址 Hugging Face: htt</description>
-    </item>
-    <item>
-      <title>OpenAI 窃听案嫌犯获准保释：100 万美元担保 + 电子脚镣，法官称证据不足以继续关押</title>
-      <link>https://news.aibase.com/zh/news/32519</link>
-      <guid isPermaLink="false">2125618215475220487</guid>
-      <category>大模型</category>
-      <description>一场因高管会议室里“裹着卫生纸的窃听器”引发的案子迎来转机。当地时间 11 月 24 日，美国旧金山联邦法院裁定，涉嫌在 OpenAI 装窃听装置的前工程师阿尔福赞获准交 100 万美元保释，条件是戴电子脚镣、居家监控。 法官松口：别拿国籍说事 主持听证的联邦治安法官亚历克斯·谢认为，证据不足以继续关押候审，也没有充分理由认定其有严重潜逃风险。他 35 岁，是沙特公民兼美国永久居民，10 月 9</description>
-    </item>
-    <item>
-      <title>千问Go全面开放AI代打电话服务，支持预约、查询及定时外呼</title>
-      <link>https://news.aibase.com/zh/news/32518</link>
-      <guid isPermaLink="false">2125618215475220488</guid>
-      <category>大模型</category>
-      <description>阿里千问Go全面开放AI代打电话服务，用户无需亲自拨号，即可通过AI助手完成电话沟通。用户只需告知千问拨打对象及具体需求，并在获得授权后，千问便可代为联系餐厅预订包间、向酒店查询遗失物品、联系快递员确认配送进度等，并在通话结束后反馈沟通结果。此外，该功能还支持定时代打电话，可按照用户设定的时间执行外呼任务。 在安全机制方面，千问代打电话需要经过用户授权，通话过程中会主动说明AI助手身份，并设置外呼</description>
-    </item>
-    <item>
-      <title>隐私AI初创公司Maple完成530万美元融资，推出AI桌面智能体</title>
-      <link>https://news.aibase.com/zh/news/32517</link>
-      <guid isPermaLink="false">2125618215475220489</guid>
-      <category>开发与Agent</category>
-      <description>隐私保护AI初创公司 Maple 近日完成530万美元种子轮融资，正式加速布局个人及企业级AI智能体市场。该轮融资由 Epic Ventures 领投，Draper Associates、Planetary VC 和 Epoch VC 参投。Maple计划利用资金开发一款云端AI助手，使其能够在用户电脑关机后继续执行任务，并计划于2027年上半年启动A轮融资。 Maple由苹果前工程师 Mark</description>
-    </item>
-    <item>
-      <title>算力提升12倍!特斯拉AI5芯片将率先赋能人形机器人</title>
-      <link>https://news.aibase.com/zh/news/32516</link>
-      <guid isPermaLink="false">2125618215475220490</guid>
-      <category>芯片与算力</category>
-      <description>特斯拉CEO埃隆·马斯克11月22日在X平台表示，下一代AI5芯片将优先部署于Optimus人形机器人及相关AI训练系统，汽车产品则将继续使用现有AI4芯片。马斯克回应网友关于AI5何时应用于新车的提问时称，AI4的计算能力已经足以支持特斯拉实现超越人类水平的自动驾驶，因此暂时没有必要将AI5优先用于汽车。 马斯克此前在特斯拉第一季度财报电话会议上也表达过类似观点，认为AI4足以支持无人监督自动驾</description>
     </item>
   </channel>
 </rss>

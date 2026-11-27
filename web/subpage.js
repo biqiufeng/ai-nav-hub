@@ -4,7 +4,7 @@ import {
   initTopBarScrollHide,
   createToast,
   initSubmitToolDialog,
-} from "./nav.js?v=5";
+} from "./nav.js?v=6";
 
 const topBar = document.getElementById("topBar");
 const themeToggle = document.getElementById("themeToggle");
@@ -16,3 +16,14 @@ initSiteNav();
 initSubmitToolDialog(showToast);
 initTopBarScrollHide(topBar);
 initThemeToggle(themeToggle, themeToggleLabel, showToast);
+
+document.addEventListener(
+  "error",
+  (event) => {
+    const el = event.target;
+    if (el instanceof HTMLImageElement && el.closest(".tool-avatar")) {
+      el.remove();
+    }
+  },
+  true
+);

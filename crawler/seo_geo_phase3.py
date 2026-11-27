@@ -636,29 +636,25 @@ def build_vs_pages(
         dom_list = [i for i in cat_items if is_domestic_fn(i)]
         ovs_list = [i for i in cat_items if not is_domestic_fn(i)]
 
-        # 1. Top domestic #1 vs #2, #1 vs #3
-        if len(dom_list) >= 2:
-            add_pair(dom_list[0], dom_list[1], cfg)
-        if len(dom_list) >= 3:
-            add_pair(dom_list[0], dom_list[2], cfg)
+        # 1. Top domestic #1 vs #2..#5
+        for j in range(1, min(5, len(dom_list))):
+            add_pair(dom_list[0], dom_list[j], cfg)
 
-        # 2. Top overseas #1 vs Top domestic #1 & #2 (High-intent domestic alternative query!)
+        # 2. Top overseas #1..#2 vs Top domestic #1..#3 (High-intent domestic alternative queries!)
         if ovs_list and dom_list:
-            add_pair(ovs_list[0], dom_list[0], cfg)
-            if len(ovs_list) >= 2:
-                add_pair(ovs_list[1], dom_list[0], cfg)
-            if len(dom_list) >= 2:
-                add_pair(ovs_list[0], dom_list[1], cfg)
+            for oi in range(min(2, len(ovs_list))):
+                for di in range(min(3, len(dom_list))):
+                    add_pair(ovs_list[oi], dom_list[di], cfg)
 
-        # 3. Top overseas #1 vs #2
-        if len(ovs_list) >= 2:
-            add_pair(ovs_list[0], ovs_list[1], cfg)
+        # 3. Top overseas #1 vs #2..#3
+        for j in range(1, min(3, len(ovs_list))):
+            add_pair(ovs_list[0], ovs_list[j], cfg)
 
     generated_urls = []
     vs_links_by_cat = {}
     vs_links_by_tool_id = {}
 
-    for a, b, cfg in pairs[:64]:
+    for a, b, cfg in pairs[:80]:
         sa = slug_by_id[a["id"]]
         sb = slug_by_id[b["id"]]
         pair_slug = f"{sa}-vs-{sb}"
@@ -946,10 +942,12 @@ def prerender_news_and_moyu(web_dir, base_url, news_data, hotlist_data, entities
 
         cards = []
         for idx, it in enumerate(news_items[:24]):
-            href = it.get("source_url") or it.get("url") or "#"
+            nid = str(it.get("id") or idx)
+            share_href = f"?id={urllib.parse.quote(nid)}"
             title = it.get("title") or ""
             summary = it.get("summary") or ""
             topic = it.get("topic") or "前沿速递"
+            src_name = it.get("source_name") or "AI 快讯"
             pub = it.get("published_at") or it.get("date") or today_str
             cover = it.get("cover") or ""
             cover_tag = ""
@@ -969,11 +967,11 @@ def prerender_news_and_moyu(web_dir, base_url, news_data, hotlist_data, entities
             <span class="tag-chip">{esc(topic)}</span>
             <time class="news-card__time">{esc(pub)}</time>
           </div>
-          <h2 class="news-card__title"><a class="card-link" href="{esc(href)}" target="_blank" rel="noopener noreferrer">{esc(title)}</a></h2>
+          <h2 class="news-card__title"><a class="card-link" href="{esc(share_href)}">{esc(title)}</a></h2>
         </header>
         <p class="news-card__summary">{esc(summary)}</p>
         <footer class="brief-item__foot" style="margin-top:auto;">
-          <span>AI 行业快讯</span>{ent_links}
+          <span>{esc(src_name)}</span>{ent_links}
         </footer>
       </article>""")
 
@@ -1011,7 +1009,12 @@ def prerender_news_and_moyu(web_dir, base_url, news_data, hotlist_data, entities
                         "@type": "ListItem",
                         "position": i_pos,
                         "name": ni.get("title") or "",
-                        "url": ni.get("source_url") or ni.get("url") or f"{base_url}/news/",
+                        "url": (
+                            ni.get("source_url")
+                            if (ni.get("source_url") or "").startswith(("http://", "https://"))
+                            and "codefather.cn" not in (ni.get("source_url") or "")
+                            else f"{base_url}/news/?id={urllib.parse.quote(str(ni.get('id') or i_pos))}"
+                        ),
                     }
                     for i_pos, ni in enumerate(news_items[:20], 1)
                 ],

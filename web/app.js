@@ -12,7 +12,7 @@ import {
   renderToolAvatar,
   initSubmitToolDialog,
   yieldToMain,
-} from "./nav.js?v=5";
+} from "./nav.js?v=6";
 
 const CAT_ICONS = {
   "对话写作": `<svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>`,

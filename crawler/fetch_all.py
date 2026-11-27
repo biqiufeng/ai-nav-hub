@@ -1131,6 +1131,159 @@ def _parse_news_content(raw_html):
     return cover, paragraphs
 
 
+def _source_label_from_url(ext_url):
+    if not ext_url:
+        return "AI 快讯"
+    h = domain_of(ext_url)
+    if "openai.com" in h:
+        return "OpenAI 官方"
+    if "huggingface.co" in h:
+        return "HF 热门论文"
+    if "ithome.com" in h:
+        return "IT之家"
+    if "weixin.qq.com" in h:
+        return "深度解读"
+    if "36kr.com" in h:
+        return "36氪"
+    if "github.com" in h:
+        return "GitHub 开源"
+    if "arxiv.org" in h:
+        return "arXiv 论文"
+    if "aibase.com" in h:
+        return "AI 行业快讯"
+    return h or "AI 快讯"
+
+
+def _fetch_extra_authoritative_news(tz8):
+    extra = []
+    # 1. OpenAI Official News RSS
+    try:
+        xml_txt = fetch_text("https://openai.com/news/rss.xml", timeout=10, retries=1)
+        root = ET.fromstring(xml_txt)
+        for item_el in root.findall("./channel/item")[:12]:
+            title = strip_tags(item_el.findtext("title") or "")
+            link = normalize_url(item_el.findtext("link") or "")
+            desc = strip_tags(item_el.findtext("description") or "")
+            pub_raw = strip_tags(item_el.findtext("pubDate") or "")
+            if not title or not link:
+                continue
+            try:
+                import email.utils as _eu
+                dt = _eu.parsedate_to_datetime(pub_raw).astimezone(tz8)
+                ts_ms = int(dt.timestamp() * 1000)
+                pub_str, d_str = dt.strftime("%Y-%m-%d %H:%M"), dt.strftime("%Y-%m-%d")
+            except Exception:
+                now_dt = datetime.datetime.now(tz8)
+                ts_ms = int(now_dt.timestamp() * 1000)
+                pub_str, d_str = now_dt.strftime("%Y-%m-%d %H:%M"), now_dt.strftime("%Y-%m-%d")
+            oid = "oai-" + link.rstrip("/").split("/")[-1][:36]
+            extra.append({
+                "id": oid,
+                "title": f"[OpenAI] {title}",
+                "summary": f"[OpenAI 官方动态] {desc or title}"[:220],
+                "cover": "",
+                "url": f"/news/?id={oid}",
+                "source_url": link,
+                "source_name": "OpenAI 官方",
+                "topic": classify_news_topic(title, desc),
+                "published_ts": ts_ms,
+                "published_at": pub_str,
+                "date": d_str,
+                "views": 0,
+                "paragraphs": [{"type": "text", "text": (desc or title)[:1600]}],
+            })
+    except Exception as e:
+        print(f"[WARN] openai-rss skipped: {e}")
+
+    # 2. Hugging Face Daily Papers API
+    try:
+        hf_raw = fetch_text("https://huggingface.co/api/daily_papers?limit=12", timeout=10, retries=1)
+        hf_arr = json.loads(hf_raw)
+        if isinstance(hf_arr, list):
+            for entry in hf_arr[:12]:
+                p = entry.get("paper") or {}
+                pid = str(p.get("id") or "").strip()
+                raw_t = strip_tags(entry.get("title") or p.get("title") or "")
+                if not pid or not raw_t:
+                    continue
+                sum_raw = strip_tags(entry.get("summary") or p.get("summary") or "")
+                upvotes = int(p.get("upvotes") or entry.get("numComments") or 0)
+                pub_iso = str(entry.get("publishedAt") or p.get("publishedAt") or "")
+                try:
+                    dt = datetime.datetime.fromisoformat(pub_iso.replace("Z", "+00:00")).astimezone(tz8)
+                    ts_ms = int(dt.timestamp() * 1000)
+                    pub_str, d_str = dt.strftime("%Y-%m-%d %H:%M"), dt.strftime("%Y-%m-%d")
+                except Exception:
+                    now_dt = datetime.datetime.now(tz8)
+                    ts_ms = int(now_dt.timestamp() * 1000)
+                    pub_str, d_str = now_dt.strftime("%Y-%m-%d %H:%M"), now_dt.strftime("%Y-%m-%d")
+                hid = f"hf-{pid}"
+                extra.append({
+                    "id": hid,
+                    "title": f"[HF高赞论文] {raw_t}",
+                    "summary": f"Hugging Face 社区高赞论文（👍 {upvotes}）：{sum_raw}"[:220],
+                    "cover": safe_icon_url(entry.get("thumbnail") or ""),
+                    "url": f"/news/?id={hid}",
+                    "source_url": f"https://huggingface.co/papers/{pid}",
+                    "source_name": "HF 热门论文",
+                    "topic": classify_news_topic(raw_t, sum_raw),
+                    "published_ts": ts_ms,
+                    "published_at": pub_str,
+                    "date": d_str,
+                    "views": upvotes,
+                    "paragraphs": [
+                        {"type": "heading", "text": "论文核心摘要（Abstract）"},
+                        {"type": "text", "text": sum_raw[:1600] or raw_t},
+                    ],
+                })
+    except Exception as e:
+        print(f"[WARN] hf-daily-papers skipped: {e}")
+
+    # 3. Hacker News Algolia AI Top Stories
+    try:
+        hn_url = (
+            "https://hn.algolia.com/api/v1/search_by_date?"
+            "query=AI&tags=story&numericFilters=points%3E50&hitsPerPage=12"
+        )
+        hn_raw = fetch_text(hn_url, timeout=10, retries=1)
+        hn_data = json.loads(hn_raw)
+        for hit in (hn_data.get("hits") or [])[:12]:
+            oid = str(hit.get("objectID") or "").strip()
+            title = strip_tags(hit.get("title") or "")
+            if not oid or not title:
+                continue
+            ext_u = normalize_url(hit.get("url") or "") or f"https://news.ycombinator.com/item?id={oid}"
+            pts = int(hit.get("points") or 0)
+            cmts = int(hit.get("num_comments") or 0)
+            ts_ms = int(hit.get("created_at_i") or 0) * 1000
+            dt = datetime.datetime.fromtimestamp(ts_ms / 1000, tz8) if ts_ms > 0 else datetime.datetime.now(tz8)
+            nid = f"hn-{oid}"
+            extra.append({
+                "id": nid,
+                "title": f"[HN热议] {title}",
+                "summary": f"Hacker News 极客热议（🔥 {pts} 赞 · {cmts} 评论）· 来源：{_source_label_from_url(ext_u)}",
+                "cover": "",
+                "url": f"/news/?id={nid}",
+                "source_url": ext_u,
+                "source_name": "Hacker News",
+                "topic": classify_news_topic(title, ""),
+                "published_ts": ts_ms,
+                "published_at": dt.strftime("%Y-%m-%d %H:%M"),
+                "date": dt.strftime("%Y-%m-%d"),
+                "views": pts,
+                "paragraphs": [
+                    {
+                        "type": "text",
+                        "text": f"{title} —— 该话题在 Hacker News 获得 {pts} 热度与 {cmts} 条技术讨论，点击下方阅读原始出处可查看完整技术文章或代码库。",
+                    }
+                ],
+            })
+    except Exception as e:
+        print(f"[WARN] hn-ai skipped: {e}")
+
+    return extra
+
+
 def fetch_and_write_news(news_path, max_pages=4):
     tz8 = datetime.timezone(datetime.timedelta(hours=8))
     raw_records = []
@@ -1187,9 +1340,8 @@ def fetch_and_write_news(news_path, max_pages=4):
         if not paragraphs and summary:
             paragraphs = [{"type": "text", "text": summary}]
 
-        detail_url = f"https://ai.codefather.cn/news/{pid}"
         ext_url = normalize_url(rec.get("externalLink") or "")
-        if ext_url == detail_url:
+        if "codefather.cn" in ext_url:
             ext_url = ""
 
         try:
@@ -1214,8 +1366,9 @@ def fetch_and_write_news(news_path, max_pages=4):
             "title": title,
             "summary": summary,
             "cover": cover,
-            "url": detail_url,
+            "url": f"/news/?id={pid}",
             "source_url": ext_url,
+            "source_name": _source_label_from_url(ext_url),
             "topic": classify_news_topic(title, summary),
             "published_ts": ts_ms,
             "published_at": published_at,
@@ -1223,6 +1376,14 @@ def fetch_and_write_news(news_path, max_pages=4):
             "views": views,
             "paragraphs": paragraphs,
         })
+
+    for ex_item in _fetch_extra_authoritative_news(tz8):
+        nt = re.sub(r"\s+", "", ex_item["title"].lower())
+        if ex_item["id"] in seen_ids or nt in seen_titles:
+            continue
+        seen_ids.add(ex_item["id"])
+        seen_titles.add(nt)
+        items.append(ex_item)
 
     items.sort(key=lambda x: (-x["published_ts"], x["id"]))
     if len(items) < 10:

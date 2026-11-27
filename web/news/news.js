@@ -8,7 +8,7 @@ import {
   safeHttpUrl,
   canTransitionDisplay,
   initSubmitToolDialog,
-} from "../nav.js?v=5";
+} from "../nav.js?v=6";
 
 const PAGE_BATCH = 24;
 const SUPPORTS_HAS = typeof CSS !== "undefined" && CSS.supports?.("selector(:has(*))");
@@ -136,12 +136,25 @@ els.newsDialog.addEventListener("click", (event) => {
 
 els.newsDialogCloseBtn.addEventListener("click", () => closeTopLayer(els.newsDialog));
 
+els.newsDialog.addEventListener("close", () => {
+  if (location.search.includes("id=")) {
+    const clean = new URL(location.href);
+    clean.searchParams.delete("id");
+    history.replaceState(null, "", clean.pathname + clean.search + clean.hash);
+  }
+});
+
+function buildShareNewsUrl(item) {
+  const u = new URL(location.href);
+  u.search = "";
+  u.hash = "";
+  u.searchParams.set("id", item.id);
+  return u.toString();
+}
+
 els.newsDialogCopyBtn.addEventListener("click", () => {
   if (!activeDialogItem) return;
-  const url = safeHttpUrl(activeDialogItem.url);
-  if (url) {
-    copyWithFeedback(url, els.newsDialogCopyBtn, showToast, els.newsDialogCopyText);
-  }
+  copyWithFeedback(buildShareNewsUrl(activeDialogItem), els.newsDialogCopyBtn, showToast, els.newsDialogCopyText);
 });
 
 function formatDisplayTime(tsMs, fallbackText = "") {
@@ -223,10 +236,16 @@ function openNewsDialog(item) {
   timeSpan.textContent = item.published_at || formatDisplayTime(item.published_ts);
 
   const badgeNodes = [badge, timeSpan];
+  if (item.source_name) {
+    const sSpan = document.createElement("span");
+    sSpan.className = "meta-badge";
+    sSpan.textContent = item.source_name;
+    badgeNodes.push(sSpan);
+  }
   if (item.views > 0) {
     const vSpan = document.createElement("span");
     vSpan.className = "meta-badge";
-    vSpan.textContent = `${item.views} 次浏览`;
+    vSpan.textContent = `${item.views} 热度`;
     badgeNodes.push(vSpan);
   }
   els.newsDialogMeta.replaceChildren(...badgeNodes);
@@ -275,34 +294,28 @@ function openNewsDialog(item) {
     }
   }
 
-  const visitHref = safeHttpUrl(item.url);
-  if (visitHref) {
-    els.newsDialogVisitBtn.href = visitHref;
+  const rawSource = safeHttpUrl(item.source_url);
+  const cleanSource = rawSource && !rawSource.includes("codefather.cn") ? rawSource : "";
+  if (cleanSource) {
+    els.newsDialogVisitBtn.href = cleanSource;
+    els.newsDialogVisitBtn.textContent = `阅读原始出处（${item.source_name || "原文"}）↗`;
     els.newsDialogVisitBtn.hidden = false;
   } else {
     els.newsDialogVisitBtn.removeAttribute("href");
     els.newsDialogVisitBtn.hidden = true;
   }
-
-  const sourceHref = safeHttpUrl(item.source_url);
-  if (sourceHref && sourceHref !== visitHref) {
-    els.newsDialogSourceBtn.href = sourceHref;
-    els.newsDialogSourceBtn.hidden = false;
-  } else {
-    els.newsDialogSourceBtn.removeAttribute("href");
-    els.newsDialogSourceBtn.hidden = true;
-  }
+  els.newsDialogSourceBtn.removeAttribute("href");
+  els.newsDialogSourceBtn.hidden = true;
 
   els.newsDialogCopyBtn.classList.remove("is-copied");
-  els.newsDialogCopyText.textContent = "复制链接";
+  els.newsDialogCopyText.textContent = "复制本站分享链接";
 
   els.newsDialog.removeAttribute("data-closing");
   els.newsDialog.showModal();
 }
 
 function createNewsCard(item, index, isLcpCover) {
-  const safeHref = safeHttpUrl(item.url);
-  if (!safeHref) return null;
+  const shareHref = `?id=${encodeURIComponent(item.id)}`;
 
   const article = document.createElement("article");
   article.className = "news-card";
@@ -354,10 +367,14 @@ function createNewsCard(item, index, isLcpCover) {
   title.className = "news-card__title";
   const titleLink = document.createElement("a");
   titleLink.className = "card-link";
-  titleLink.href = safeHref;
-  titleLink.target = "_blank";
-  titleLink.rel = "noopener noreferrer";
+  titleLink.href = shareHref;
   titleLink.textContent = item.title;
+  titleLink.addEventListener("click", (e) => {
+    if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || e.button !== 0) return;
+    e.preventDefault();
+    history.replaceState(null, "", shareHref);
+    openNewsDialog(item);
+  });
   title.appendChild(titleLink);
 
   header.append(meta, title);
@@ -371,7 +388,8 @@ function createNewsCard(item, index, isLcpCover) {
 
   const stats = document.createElement("span");
   stats.className = "news-card__stats";
-  stats.textContent = item.views > 0 ? `${item.views} 次浏览` : "";
+  const srcPrefix = item.source_name ? `${item.source_name}` : "AI 快讯";
+  stats.textContent = item.views > 0 ? `${srcPrefix} · ${item.views} 热度` : srcPrefix;
 
   const actions = document.createElement("div");
   actions.className = "news-card__actions";
@@ -381,14 +399,17 @@ function createNewsCard(item, index, isLcpCover) {
   previewBtn.className = "news-action-btn";
   previewBtn.textContent = "速览正文";
   previewBtn.setAttribute("aria-label", `速览 ${item.title}`);
-  previewBtn.addEventListener("click", () => openNewsDialog(item));
+  previewBtn.addEventListener("click", () => {
+    history.replaceState(null, "", shareHref);
+    openNewsDialog(item);
+  });
 
   const copyBtn = document.createElement("button");
   copyBtn.type = "button";
   copyBtn.className = "news-action-btn";
-  copyBtn.textContent = "复制链接";
-  copyBtn.setAttribute("aria-label", `复制 ${item.title} 的链接`);
-  copyBtn.addEventListener("click", () => copyWithFeedback(safeHref, copyBtn, showToast));
+  copyBtn.textContent = "分享链接";
+  copyBtn.setAttribute("aria-label", `复制 ${item.title} 的本站分享链接`);
+  copyBtn.addEventListener("click", () => copyWithFeedback(buildShareNewsUrl(item), copyBtn, showToast));
 
   actions.append(previewBtn, copyBtn);
   footer.append(stats, actions);
@@ -476,6 +497,11 @@ async function loadNews(showFeedback = false) {
     topics = Array.isArray(data.topics) ? data.topics : [];
     generatedAt = String(data.generated_at || "");
     renderNews();
+    const deepId = new URLSearchParams(location.search).get("id");
+    if (deepId && !els.newsDialog.open) {
+      const targetItem = items.find((x) => String(x.id) === deepId);
+      if (targetItem) openNewsDialog(targetItem);
+    }
     if (showFeedback) {
       showToast(fromLive ? "AI 资讯已同步最新数据" : "实时接口暂不可用，已加载缓存资讯");
     }

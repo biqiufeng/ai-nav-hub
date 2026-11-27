@@ -115,13 +115,19 @@
     <priority>0.82</priority>
   </url>
   <url>
-    <loc>https://dlzbkj-ai.pages.dev/vs/gptzero-vs-zhida-zhihu/</loc>
+    <loc>https://dlzbkj-ai.pages.dev/vs/zhida-zhihu-vs-metaso/</loc>
     <lastmod>2026-11-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.82</priority>
   </url>
   <url>
-    <loc>https://dlzbkj-ai.pages.dev/vs/perplexity-vs-zhida-zhihu/</loc>
+    <loc>https://dlzbkj-ai.pages.dev/vs/zhida-zhihu-vs-wenxiaobai/</loc>
+    <lastmod>2026-11-27</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.82</priority>
+  </url>
+  <url>
+    <loc>https://dlzbkj-ai.pages.dev/vs/gptzero-vs-zhida-zhihu/</loc>
     <lastmod>2026-11-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.82</priority>
@@ -133,7 +139,37 @@
     <priority>0.82</priority>
   </url>
   <url>
+    <loc>https://dlzbkj-ai.pages.dev/vs/gptzero-vs-yiyan-baidu/</loc>
+    <lastmod>2026-11-27</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.82</priority>
+  </url>
+  <url>
+    <loc>https://dlzbkj-ai.pages.dev/vs/perplexity-vs-zhida-zhihu/</loc>
+    <lastmod>2026-11-27</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.82</priority>
+  </url>
+  <url>
+    <loc>https://dlzbkj-ai.pages.dev/vs/perplexity-vs-deepseek/</loc>
+    <lastmod>2026-11-27</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.82</priority>
+  </url>
+  <url>
+    <loc>https://dlzbkj-ai.pages.dev/vs/perplexity-vs-yiyan-baidu/</loc>
+    <lastmod>2026-11-27</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.82</priority>
+  </url>
+  <url>
     <loc>https://dlzbkj-ai.pages.dev/vs/gptzero-vs-perplexity/</loc>
+    <lastmod>2026-11-27</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.82</priority>
+  </url>
+  <url>
+    <loc>https://dlzbkj-ai.pages.dev/vs/gptzero-vs-copyleaks/</loc>
     <lastmod>2026-11-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.82</priority>
@@ -151,13 +187,19 @@
     <priority>0.82</priority>
   </url>
   <url>
-    <loc>https://dlzbkj-ai.pages.dev/vs/features-copilot-vs-codegeex/</loc>
+    <loc>https://dlzbkj-ai.pages.dev/vs/codegeex-vs-codefuse-alipay/</loc>
     <lastmod>2026-11-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.82</priority>
   </url>
   <url>
-    <loc>https://dlzbkj-ai.pages.dev/vs/huggingface-vs-codegeex/</loc>
+    <loc>https://dlzbkj-ai.pages.dev/vs/codegeex-vs-piccopilot/</loc>
+    <lastmod>2026-11-27</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.82</priority>
+  </url>
+  <url>
+    <loc>https://dlzbkj-ai.pages.dev/vs/features-copilot-vs-codegeex/</loc>
     <lastmod>2026-11-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.82</priority>
@@ -169,7 +211,37 @@
     <priority>0.82</priority>
   </url>
   <url>
+    <loc>https://dlzbkj-ai.pages.dev/vs/features-copilot-vs-comate-baidu/</loc>
+    <lastmod>2026-11-27</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.82</priority>
+  </url>
+  <url>
+    <loc>https://dlzbkj-ai.pages.dev/vs/huggingface-vs-codegeex/</loc>
+    <lastmod>2026-11-27</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.82</priority>
+  </url>
+  <url>
+    <loc>https://dlzbkj-ai.pages.dev/vs/huggingface-vs-hunyuan-tencent/</loc>
+    <lastmod>2026-11-27</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.82</priority>
+  </url>
+  <url>
+    <loc>https://dlzbkj-ai.pages.dev/vs/huggingface-vs-comate-baidu/</loc>
+    <lastmod>2026-11-27</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.82</priority>
+  </url>
+  <url>
     <loc>https://dlzbkj-ai.pages.dev/vs/features-copilot-vs-huggingface/</loc>
+    <lastmod>2026-11-27</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.82</priority>
+  </url>
+  <url>
+    <loc>https://dlzbkj-ai.pages.dev/vs/features-copilot-vs-aws-amazon-codewhisperer/</loc>
     <lastmod>2026-11-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.82</priority>
@@ -187,13 +259,19 @@
     <priority>0.82</priority>
   </url>
   <url>
-    <loc>https://dlzbkj-ai.pages.dev/vs/midjourney-vs-app-klingai/</loc>
+    <loc>https://dlzbkj-ai.pages.dev/vs/app-klingai-vs-abeiai/</loc>
     <lastmod>2026-11-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.82</priority>
   </url>
   <url>
-    <loc>https://dlzbkj-ai.pages.dev/vs/civitai-vs-app-klingai/</loc>
+    <loc>https://dlzbkj-ai.pages.dev/vs/app-klingai-vs-img-logosc/</loc>
+    <lastmod>2026-11-27</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.82</priority>
+  </url>
+  <url>
+    <loc>https://dlzbkj-ai.pages.dev/vs/midjourney-vs-app-klingai/</loc>
     <lastmod>2026-11-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.82</priority>
@@ -205,7 +283,37 @@
     <priority>0.82</priority>
   </url>
   <url>
+    <loc>https://dlzbkj-ai.pages.dev/vs/midjourney-vs-tool-56aa5e91f7a6/</loc>
+    <lastmod>2026-11-27</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.82</priority>
+  </url>
+  <url>
+    <loc>https://dlzbkj-ai.pages.dev/vs/civitai-vs-app-klingai/</loc>
+    <lastmod>2026-11-27</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.82</priority>
+  </url>
+  <url>
+    <loc>https://dlzbkj-ai.pages.dev/vs/civitai-vs-yige-baidu/</loc>
+    <lastmod>2026-11-27</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.82</priority>
+  </url>
+  <url>
+    <loc>https://dlzbkj-ai.pages.dev/vs/civitai-vs-tool-56aa5e91f7a6/</loc>
+    <lastmod>2026-11-27</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.82</priority>
+  </url>
+  <url>
     <loc>https://dlzbkj-ai.pages.dev/vs/midjourney-vs-civitai/</loc>
+    <lastmod>2026-11-27</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.82</priority>
+  </url>
+  <url>
+    <loc>https://dlzbkj-ai.pages.dev/vs/midjourney-vs-designer-microsoft/</loc>
     <lastmod>2026-11-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.82</priority>
@@ -223,13 +331,19 @@
     <priority>0.82</priority>
   </url>
   <url>
-    <loc>https://dlzbkj-ai.pages.dev/vs/mubert-vs-moyin/</loc>
+    <loc>https://dlzbkj-ai.pages.dev/vs/moyin-vs-audioeditor-ximalaya/</loc>
     <lastmod>2026-11-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.82</priority>
   </url>
   <url>
-    <loc>https://dlzbkj-ai.pages.dev/vs/suno-vs-moyin/</loc>
+    <loc>https://dlzbkj-ai.pages.dev/vs/moyin-vs-nadoupro-iqiyi/</loc>
+    <lastmod>2026-11-27</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.82</priority>
+  </url>
+  <url>
+    <loc>https://dlzbkj-ai.pages.dev/vs/mubert-vs-moyin/</loc>
     <lastmod>2026-11-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.82</priority>
@@ -241,7 +355,37 @@
     <priority>0.82</priority>
   </url>
   <url>
+    <loc>https://dlzbkj-ai.pages.dev/vs/mubert-vs-tianyin-163/</loc>
+    <lastmod>2026-11-27</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.82</priority>
+  </url>
+  <url>
+    <loc>https://dlzbkj-ai.pages.dev/vs/suno-vs-moyin/</loc>
+    <lastmod>2026-11-27</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.82</priority>
+  </url>
+  <url>
+    <loc>https://dlzbkj-ai.pages.dev/vs/suno-vs-haimian/</loc>
+    <lastmod>2026-11-27</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.82</priority>
+  </url>
+  <url>
+    <loc>https://dlzbkj-ai.pages.dev/vs/suno-vs-tianyin-163/</loc>
+    <lastmod>2026-11-27</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.82</priority>
+  </url>
+  <url>
     <loc>https://dlzbkj-ai.pages.dev/vs/mubert-vs-suno/</loc>
+    <lastmod>2026-11-27</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.82</priority>
+  </url>
+  <url>
+    <loc>https://dlzbkj-ai.pages.dev/vs/mubert-vs-podcast-adobe/</loc>
     <lastmod>2026-11-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.82</priority>
@@ -259,13 +403,19 @@
     <priority>0.82</priority>
   </url>
   <url>
-    <loc>https://dlzbkj-ai.pages.dev/vs/napkin-vs-aippt/</loc>
+    <loc>https://dlzbkj-ai.pages.dev/vs/aippt-vs-pan-baidu/</loc>
     <lastmod>2026-11-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.82</priority>
   </url>
   <url>
-    <loc>https://dlzbkj-ai.pages.dev/vs/fireflies-vs-aippt/</loc>
+    <loc>https://dlzbkj-ai.pages.dev/vs/aippt-vs-tingwu-aliyun/</loc>
+    <lastmod>2026-11-27</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.82</priority>
+  </url>
+  <url>
+    <loc>https://dlzbkj-ai.pages.dev/vs/napkin-vs-aippt/</loc>
     <lastmod>2026-11-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.82</priority>
@@ -277,7 +427,37 @@
     <priority>0.82</priority>
   </url>
   <url>
+    <loc>https://dlzbkj-ai.pages.dev/vs/napkin-vs-tinywow/</loc>
+    <lastmod>2026-11-27</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.82</priority>
+  </url>
+  <url>
+    <loc>https://dlzbkj-ai.pages.dev/vs/fireflies-vs-aippt/</loc>
+    <lastmod>2026-11-27</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.82</priority>
+  </url>
+  <url>
+    <loc>https://dlzbkj-ai.pages.dev/vs/fireflies-vs-processon/</loc>
+    <lastmod>2026-11-27</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.82</priority>
+  </url>
+  <url>
+    <loc>https://dlzbkj-ai.pages.dev/vs/fireflies-vs-tinywow/</loc>
+    <lastmod>2026-11-27</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.82</priority>
+  </url>
+  <url>
     <loc>https://dlzbkj-ai.pages.dev/vs/napkin-vs-fireflies/</loc>
+    <lastmod>2026-11-27</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.82</priority>
+  </url>
+  <url>
+    <loc>https://dlzbkj-ai.pages.dev/vs/napkin-vs-humata/</loc>
     <lastmod>2026-11-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.82</priority>
@@ -295,13 +475,19 @@
     <priority>0.82</priority>
   </url>
   <url>
-    <loc>https://dlzbkj-ai.pages.dev/vs/lovart-vs-fellou/</loc>
+    <loc>https://dlzbkj-ai.pages.dev/vs/fellou-vs-skillhub-tencent/</loc>
     <lastmod>2026-11-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.82</priority>
   </url>
   <url>
-    <loc>https://dlzbkj-ai.pages.dev/vs/manus-im-vs-fellou/</loc>
+    <loc>https://dlzbkj-ai.pages.dev/vs/fellou-vs-yuanqiai/</loc>
+    <lastmod>2026-11-27</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.82</priority>
+  </url>
+  <url>
+    <loc>https://dlzbkj-ai.pages.dev/vs/lovart-vs-fellou/</loc>
     <lastmod>2026-11-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.82</priority>
@@ -313,7 +499,37 @@
     <priority>0.82</priority>
   </url>
   <url>
+    <loc>https://dlzbkj-ai.pages.dev/vs/lovart-vs-oiioii/</loc>
+    <lastmod>2026-11-27</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.82</priority>
+  </url>
+  <url>
+    <loc>https://dlzbkj-ai.pages.dev/vs/manus-im-vs-fellou/</loc>
+    <lastmod>2026-11-27</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.82</priority>
+  </url>
+  <url>
+    <loc>https://dlzbkj-ai.pages.dev/vs/manus-im-vs-724claw/</loc>
+    <lastmod>2026-11-27</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.82</priority>
+  </url>
+  <url>
+    <loc>https://dlzbkj-ai.pages.dev/vs/manus-im-vs-oiioii/</loc>
+    <lastmod>2026-11-27</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.82</priority>
+  </url>
+  <url>
     <loc>https://dlzbkj-ai.pages.dev/vs/lovart-vs-manus-im/</loc>
+    <lastmod>2026-11-27</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.82</priority>
+  </url>
+  <url>
+    <loc>https://dlzbkj-ai.pages.dev/vs/lovart-vs-aishort/</loc>
     <lastmod>2026-11-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.82</priority>
@@ -331,13 +547,19 @@
     <priority>0.82</priority>
   </url>
   <url>
-    <loc>https://dlzbkj-ai.pages.dev/vs/beautiful-vs-promptperfect-jinaai/</loc>
+    <loc>https://dlzbkj-ai.pages.dev/vs/promptperfect-jinaai-vs-coding-qq/</loc>
     <lastmod>2026-11-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.82</priority>
   </url>
   <url>
-    <loc>https://dlzbkj-ai.pages.dev/vs/kaggle-vs-promptperfect-jinaai/</loc>
+    <loc>https://dlzbkj-ai.pages.dev/vs/promptperfect-jinaai-vs-developer-aliyun/</loc>
+    <lastmod>2026-11-27</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.82</priority>
+  </url>
+  <url>
+    <loc>https://dlzbkj-ai.pages.dev/vs/beautiful-vs-promptperfect-jinaai/</loc>
     <lastmod>2026-11-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.82</priority>
@@ -349,7 +571,13 @@
     <priority>0.82</priority>
   </url>
   <url>
-    <loc>https://dlzbkj-ai.pages.dev/vs/beautiful-vs-kaggle/</loc>
+    <loc>https://dlzbkj-ai.pages.dev/vs/beautiful-vs-brilliant/</loc>
+    <lastmod>2026-11-27</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.82</priority>
+  </url>
+  <url>
+    <loc>https://dlzbkj-ai.pages.dev/vs/kaggle-vs-promptperfect-jinaai/</loc>
     <lastmod>2026-11-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.82</priority>
@@ -427,9 +655,15 @@
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://dlzbkj-ai.pages.dev/daily/2026-11-26/</loc>
+    <loc>https://dlzbkj-ai.pages.dev/daily/2026-11-27/</loc>
     <lastmod>2026-11-27</lastmod>
     <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://dlzbkj-ai.pages.dev/daily/2026-11-26/</loc>
+    <lastmod>2026-11-26</lastmod>
+    <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>

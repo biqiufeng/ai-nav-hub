@@ -26,7 +26,22 @@ export function canTransitionDisplay() {
   return supportsDisplayTransition;
 }
 
+let avatarErrorDelegated = false;
+
 export function initSiteNav() {
+  if (!avatarErrorDelegated && typeof document !== "undefined") {
+    avatarErrorDelegated = true;
+    document.addEventListener(
+      "error",
+      (event) => {
+        const el = event.target;
+        if (el instanceof HTMLImageElement && el.closest(".tool-avatar")) {
+          el.remove();
+        }
+      },
+      true
+    );
+  }
   const header = document.querySelector(".site-header");
   const inner = header?.querySelector(".top-bar__inner");
   const menuList = document.getElementById("site-menu");
@@ -394,7 +409,7 @@ export function renderToolAvatar(container, item) {
   const primaryIcon = safeHttpUrl(item.icon);
   const canTryDomainFavicon = item.domain && !AGGREGATOR_HOSTS.has(item.domain);
   const faviconUrl = canTryDomainFavicon
-    ? `https://favicon.im/${encodeURIComponent(item.domain)}?larger=true`
+    ? `/api/icon?d=${encodeURIComponent(item.domain)}`
     : "";
 
   const firstTry = primaryIcon || faviconUrl;
