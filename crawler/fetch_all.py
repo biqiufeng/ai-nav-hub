@@ -90,6 +90,7 @@ AGGREGATOR_HOSTS = {
     "ai.codefather.cn",
     "futurepedia.io",
     "futuretools.io",
+    "futuretools.link",
     "producthunt.com",
 }
 
@@ -111,8 +112,13 @@ def fetch_text(url, timeout=18, retries=2, max_bytes=10 * 1024 * 1024, extra_hea
         req = urllib.request.Request(url, headers=headers)
         try:
             with urllib.request.urlopen(req, timeout=timeout) as r:
-                charset = r.headers.get_content_charset() or "utf-8"
+                charset = (r.headers.get_content_charset() or "utf-8").strip().lower()
                 raw = r.read(max_bytes)
+                if charset in ("iso-8859-1", "latin-1", "latin1", "ascii"):
+                    try:
+                        return raw.decode("utf-8")
+                    except UnicodeDecodeError:
+                        pass
                 return raw.decode(charset, "ignore")
         except urllib.error.HTTPError as e:
             last_err = f"HTTP {e.code}"

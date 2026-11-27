@@ -1,286 +1,286 @@
 # AI 导航聚合站 — 完整精选工具与前沿快讯索引 (llms-full.txt)
 
-> 站点地址：https://dlzbkj-ai.pages.dev/ | 收录总量：9,085 款 | 独立工具平替页：439 款 | 最近同步：2026-11-26
+> 站点地址：https://dlzbkj-ai.pages.dev/ | 收录总量：8,283 款 | 独立工具平替页：599 款 | 最近同步：2026-11-27
 
-## 对话写作（共 967 款，专题页：https://dlzbkj-ai.pages.dev/category/chat-writing/）
+## 对话写作（共 837 款，专题页：https://dlzbkj-ai.pages.dev/category/chat-writing/）
 
-1. **CopyLeaks** — https://copyleaks.com [国内 · 海外双收录 | 共识源:6 | 详情页:https://dlzbkj-ai.pages.dev/tool/copyleaks/]：Copyleaks是一款基于AI的内容检测平台，为全球数百万用户所使用。其主要功能包括验证内容是否由人类或AI创作、检测抄袭和改写内容、提供写作辅助等。这款产品的重要性在于它能够确保文本的真实性，保护知识产权，促进学术诚信和合规性。其主要优点包括高精度的检测、全面的功能覆盖、多平台集成等。产品的背景是随着AI内容生成技
-2. **知乎直答** — https://zhida.zhihu.com [国内直连 | 共识源:6 | 详情页:https://dlzbkj-ai.pages.dev/tool/zhida-zhihu/]：知乎直答是知乎运用AI大模型等先进技术打造的产品。它以知乎社区的优质内容为核心数据，还借助多种数据源进行辅助。其重要性在于，为用户提供了全新、可靠的信息获取途径。该产品具备多智能体系统，可满足用户多维度需求，同时会对生成结果进行溯源，能够保障内容的可信度，尊重知识产权和版权。产品定位是拉近创作者和用户之间的距离，为用户
-3. **秘塔AI搜索** — https://metaso.cn [国内直连 | 共识源:5 | 详情页:https://dlzbkj-ai.pages.dev/tool/metaso/]：秘塔AI搜索是一款具有高效搜索能力的工具。其重要性在于为用户节省时间，能够避免广告的干扰，直接呈现搜索结果。主要优点是没有广告，能够快速直达结果，使用户可以迅速获取所需信息。产品背景方面，可能是为了满足用户对于纯净、高效搜索环境的需求而开发。价格方面，未明确提及，推测为免费使用，定位是为各类用户提供便捷、高效的搜索服务
-4. **Consensus** — https://consensus.app [国内 · 海外双收录 | 共识源:5 | 详情页:https://dlzbkj-ai.pages.dev/tool/consensus/]：Consensus是一款利用人工智能技术的搜索引擎，其核心功能是在大量科学研究资料中快速准确地找到用户所需的答案。它的重要性在于极大地提高了科研工作者、学生等人群获取信息的效率。主要优点包括利用AI算法精准检索、涵盖多学科的科研内容、搜索过程免费等。该产品定位为面向科研和学习人群的高效信息检索工具，免费供用户使用。
-5. **文涌Effidit** — https://effidit.qq.com [国内直连 | 共识源:5 | 详情页:https://dlzbkj-ai.pages.dev/tool/effidit-qq/]：Effidit是腾讯AI Lab开发的研究性原型系统，旨在利用AI技术提升写作效率和创作体验。该产品定位为专业的智能写作辅助工具，支持通用版和学术版。其核心技术基于自然语言处理（NLP），能够对文本进行多方面的处理和优化。产品提供免费使用，用户无需支付费用即可享受其丰富的功能，适用于各类需要进行写作的人群。
-6. **AI Content Detector** — https://writer.com/ai-content-detector [国内直连 | 共识源:5 | 详情页:https://dlzbkj-ai.pages.dev/tool/writer/]：WRITER的AI内容检测器是一款免费工具，可检查内容中人为撰写的比例。其重要性在于帮助用户识别内容是否为AI生成，以便在发布前进行调整。主要优点包括免费使用、支持输入文本或URL、可检测长达5000字的内容。该产品背景是随着AI生成内容的普及，市场对检测工具的需求增加。价格方面，检测功能免费，AI内容检测仅在Writ
-7. **Winston AI** — https://gowinston.ai [国内直连 | 共识源:5 | 详情页:https://dlzbkj-ai.pages.dev/tool/gowinston/]：Winston AI是行业领先的AI内容检测器和抄袭检查软件。其重要性在于帮助用户快速准确识别使用各种AI生成的内容，防止抄袭，确保内容原创性。主要优点是可检测多种主流AI技术生成的内容，功能强大且精准。产品背景方面，在当下AI内容泛滥的时代，为保障内容质量和真实性而开发。价格信息未提及，定位是为需要保障内容原创性和准
-8. **天工AI** — https://www.tiangong.cn [国内直连 | 共识源:5 | 详情页:https://dlzbkj-ai.pages.dev/tool/tiangong/]：天工Skywork是一款全新的AI Office智能体，具备超强的DeepResearch能力。它融合了先进的多模态理解与深度检索分析技术，通过3个专家agent和1个通用agent，实现AI深度研究，能够高效应对办公、学习等各类场景。其主要优点包括可一键生成AI文档、AI PPT、AI表格等办公文件，还支持网页、图像
-9. **智谱清言** — https://chatglm.cn [国内直连 | 共识源:5 | 详情页:https://dlzbkj-ai.pages.dev/tool/chatglm/]：智谱清言 AI 是北京智谱华章科技有限公司（智谱 AI）自主研发的生成式人工智能助手
-10. **百度AI探索版** — https://think.baidu.com [国内直连 | 共识源:5 | 详情页:https://dlzbkj-ai.pages.dev/tool/think-baidu/]：百度AI搜索是基于百度强大技术推出的搜索服务，依托文心大模型，致力于一站式解决用户复杂问题。其重要性在于能极大提升PC端用户学习和办公效率。主要优点包括深入剖析问题核心、提供多样化的智能创作功能等。该产品定位为高效智能的学习办公平台，目前未提及价格方面信息，推测为免费使用。
-11. **纳米AI** — https://www.n.cn [国内直连 | 共识源:5 | 详情页:https://dlzbkj-ai.pages.dev/tool/tool-59cbf89397d7/]：纳米搜索是360集团推出的AI搜索应用，集搜索、阅读、写作和创作于一体，重新定义了AI搜索体验。其优势在于支持文字、语音、拍照和视频等多维交互搜索方式，降低了使用门槛，不同年龄段和技术水平的用户都能轻松上手；提供全方位多元解答，涵盖识人、识物、解题、旅游攻略等多样化需求，用户无需在多个平台间切换，节省时间和精力；集成了
-12. **DeepSeek - 深度求索推出的开源大模型和AI聊天助手** — https://deepseek.com [国内直连 | 共识源:4 | 详情页:https://dlzbkj-ai.pages.dev/tool/deepseek/]：深度求索（DeepSeek）成立于2023年，专注研究世界领先的通用人工智能底层模型与技术。基于自研训练框架、自建智算集群和万卡算力等资源，团队仅用半年就发布并开源多个百亿级参数大模型，如DeepSeek - LLM通用大语言模型、DeepSeek - Coder代码大模型等，2024年1月还率先开源国内首个MoE大模
-13. **文心一言** — https://yiyan.baidu.com [国内直连 | 共识源:4 | 详情页:https://dlzbkj-ai.pages.dev/tool/yiyan-baidu/]：文心一言是百度研发的大型语言模型，属于生成式人工智能技术。它结合了自然语言处理、机器学习、神经网络等技术，具备强大的语言理解和生成能力。主要优点在于能够快速生成高质量的文本内容，涵盖多种应用场景，如文案撰写、问题解答、文档处理、智能翻译等，可显著提高用户的工作和学习效率。它定位于成为用户的智能伙伴和AI助手，帮助用户解
-14. **笔灵AI写作** — https://ibiling.cn [国内直连 | 共识源:4 | 详情页:https://dlzbkj-ai.pages.dev/tool/ibiling/]：笔灵降AI率是什么 笔灵降AI率是笔灵AI推出的专门用于降低文章中AI生成内容痕迹的工具。工具通过优化文本表达、调整语句结构等方式，减少文章被检测出由AI生成的特征，帮助用户降低AIGC痕迹
-15. **讯飞星火** — https://xinghuo.xfyun.cn/desk [国内直连 | 共识源:4 | 详情页:https://dlzbkj-ai.pages.dev/tool/xinghuo-xfyun/]：讯飞星火AI助手，高性能AI语言模型，具备多模态理解和生成能力，服务于企业服务、智能硬件、智慧政务、智慧金融、智慧生活和智慧医疗等多个领域。
-16. **腾讯交互翻译** — https://transmart.qq.com [国内直连 | 共识源:4 | 详情页:https://dlzbkj-ai.pages.dev/tool/transmart-qq/]：腾讯交互翻译TranSmart由腾讯AI Lab发布，采用自研的人机交互式机器翻译技术，融合神经网络机器翻译、统计机器翻译等多项前沿技术，配合亿级双语平行数据。它定位为人工智能辅助翻译互联网落地产品，能为用户提供实时智能翻译辅助。其主要优点在于帮助用户快速完成翻译任务，提高翻译效率和质量，无需付费，免费供用户使用。
-17. **Perplexity** — https://www.perplexity.ai [国内 · 海外双收录 | 共识源:4 | 详情页:https://dlzbkj-ai.pages.dev/tool/perplexity/]：Perplexity（perplexity.ai）是一款专注于学术文献深度检索与研究综述辅助的海外主流 AI 工具，适用于论文语义搜索、核心观点提炼与引文溯源等场景。
-18. **沉浸式翻译** — https://immersivetranslate.com [国内直连 | 共识源:4 | 详情页:https://dlzbkj-ai.pages.dev/tool/immersivetranslate/]：沉浸式翻译是一款2023年上线的免费AI双语对照网页翻译插件。它由上海书同文网络科技有限公司开发，目标是打破语言壁垒、促进信息平权，已帮助超1000万用户跨越语言障碍。此插件支持DeepL、OpenAI ChatGPT、Google翻译等10余种业界顶尖翻译引擎，是目前支持翻译引擎最多的网页翻译插件。它不仅适用于桌面端
-19. **问小白** — https://www.wenxiaobai.com [国内直连 | 共识源:4 | 详情页:https://dlzbkj-ai.pages.dev/tool/wenxiaobai/]：AI 智能聊天, 问答助手, AI 智能搜索, 免费无限量使用 DeepSeek R1 模型，支持联网搜索。
-20. **Gemini** — https://deepmind.google/technologies/gemini [国内直连 | 共识源:4 | 详情页:https://dlzbkj-ai.pages.dev/tool/deepmind-google/]：Gemini 2.5 是 Google DeepMind 推出的 AI 模型，在原 Gemini 基础上构建，具备原生多模态和长上下文窗口。其重要性在于推理后响应，能带来性能和准确性上的提升。该模型可用于多个领域的科研和实际应用，定位为高端 AI 技术产品，为科技创新和发展提供有力支持。文档未提及产品价格。
-21. **Meta AI助手** — https://www.meta.ai [国内直连 | 共识源:4 | 详情页:https://dlzbkj-ai.pages.dev/tool/meta/]：Meta AI基于Meta最新的Llama大语言模型构建。其重要性在于为用户提供了便捷的人工智能服务，无论是日常问题解答，还是图像生成等需求都能满足。主要优点包括免费使用、功能全面，能够帮助用户高效完成各种任务。产品背景方面，Meta作为科技巨头，拥有强大的技术研发能力，为Meta AI的发展提供了坚实的基础。价格上，
-22. **悉语** — https://chuangyi.taobao.com/pages/aiCopy [国内直连 | 共识源:4 | 详情页:https://dlzbkj-ai.pages.dev/tool/chuangyi-taobao/]：该产品为淘宝的登录页面，是用户进入淘宝平台的重要入口。淘宝作为全球知名的电子商务平台，有着庞大的用户基础和丰富的商业资源。这个登录页面的重要性在于它为用户提供了安全、便捷的登录途径，保障了用户账号的安全性。其主要优点包括支持多种登录方式，能满足不同用户的需求；页面设计合理，操作简单易懂。该页面是免费使用的，其定位是服务
-23. **AISEO AI Content Detector** — https://aiseo.ai/tools/ai-content-detector.html [国内直连 | 共识源:4 | 详情页:https://dlzbkj-ai.pages.dev/tool/aiseo/]：AISEO AI Detector是一款先进的AI内容检测工具。在当下AI生成内容泛滥的背景下，该工具能帮助用户有效识别并处理由ChatGPT、GPT - 4等工具生成的文本。其重要性在于防止网站因AI生成内容而被搜索引擎惩罚，维护品牌信誉和内容原创性。产品具有免费工具和付费工具，提供免费试用。该产品定位于为作家、营销
-24. **Copilot** — https://copilot.microsoft.com [国内直连 | 共识源:4 | 详情页:https://dlzbkj-ai.pages.dev/tool/copilot-microsoft/]：微软推出的网页版Copilot助手
-25. **Devv** — https://devv.ai/zh [国内直连 | 共识源:4 | 详情页:https://dlzbkj-ai.pages.dev/tool/devv/]：devv.ai 是一款面向程序员且最懂程序员的新一代 AI 搜索引擎
+1. **GPTZero** — https://gptzero.me [海外直连 · 国内热推 | 共识源:7 | 详情页:https://dlzbkj-ai.pages.dev/tool/gptzero/]：GPTZero是一款先进的AI检测器，被超100家媒体报道。其核心技术是拥有包含7个组件的AI检测模型，采用多步骤方法处理文本，精准判断是否由AI撰写，能检测ChatGPT、GPT - 4、Gemini等主流AI模型产出内容。
+2. **CopyLeaks** — https://copyleaks.com [海外直连 · 国内热推 | 共识源:6 | 详情页:https://dlzbkj-ai.pages.dev/tool/copyleaks/]：Copyleaks是一款基于AI的内容检测平台，为全球数百万用户所使用。其主要功能包括验证内容是否由人类或AI创作、检测抄袭和改写内容、提供写作辅助等。这款产品的重要性在于它能够确保文本的真实性，保护知识产权，促进学术诚信和合规性。其主要优点包括高精度的检测、全面的功能覆盖、多平台集成等。
+3. **Glean** — https://www.glean.com [海外直连 · 国内热推 | 共识源:6 | 详情页:https://dlzbkj-ai.pages.dev/tool/glean/]：Glean是一个面向企业的工作人工智能平台，连接企业数据。其重要性在于帮助企业提高工作效率、增强知识管理和数据分析能力。产品的主要优点包括可以连接所有公司数据、提供多种AI功能，如个人AI助理、AI代理构建和管理、企业AI搜索等。该产品注重安全性，从设计之初就考虑到安全问题。价格信息未提及。
+4. **Grammarly** — https://www.grammarly.com [海外直连 · 国内热推 | 共识源:6 | 详情页:https://dlzbkj-ai.pages.dev/tool/grammarly/]：Grammarly是一款功能强大的AI写作辅助工具，支持在各种应用和网站上使用，为用户提供个性化的写作指导与文本生成功能。该产品背景深厚，受50,000家组织和4,000万人信赖。它的主要优点包括提高写作质量、节省时间、确保信息传达清晰专业、保护数据安全等。
+5. **NovelAI** — https://novelai.net [海外直连 · 国内热推 | 共识源:6 | 详情页:https://dlzbkj-ai.pages.dev/tool/novelai/]：用于 AI 辅助创作、讲故事、虚拟陪伴，或者只是一个 GPT 驱动的沙盒
+6. **Originality.AI** — https://originality.ai [海外直连 · 国内热推 | 共识源:6 | 详情页:https://dlzbkj-ai.pages.dev/tool/originality/]：Originality AI是一款由内容营销和AI专家团队打造的编辑工具集，其目标用户主要为网站所有者、内容营销人员、作家、出版商等，而非学生群体，用户注册时需提供信用卡信息。该工具集拥有99%的AI内容检测准确率，具有AI检测、抄袭检查、事实核查、可读性检查、语法检查等多项功能，所有数据集中存储，方便管理。
+7. **Writesonic** — https://writesonic.com [海外直连 · 国内热推 | 共识源:6 | 详情页:https://dlzbkj-ai.pages.dev/tool/writesonic/]：可以免费为博客、Facebook 广告、谷歌广告和 Shopify 创建对 SEO 友好的内容
+8. **知乎直答** — https://zhida.zhihu.com [国内直连 | 共识源:6 | 详情页:https://dlzbkj-ai.pages.dev/tool/zhida-zhihu/]：知乎直答是知乎运用AI大模型等先进技术打造的产品。它以知乎社区的优质内容为核心数据，还借助多种数据源进行辅助。其重要性在于，为用户提供了全新、可靠的信息获取途径。该产品具备多智能体系统，可满足用户多维度需求，同时会对生成结果进行溯源，能够保障内容的可信度，尊重知识产权和版权。
+9. **DeepSeek - 深度求索推出的开源大模型和AI聊天助手** — https://deepseek.com [国内直连 | 共识源:5 | 详情页:https://dlzbkj-ai.pages.dev/tool/deepseek/]：深度求索（DeepSeek）成立于2023年，专注研究世界领先的通用人工智能底层模型与技术。
+10. **文心一言** — https://yiyan.baidu.com [国内直连 | 共识源:5 | 详情页:https://dlzbkj-ai.pages.dev/tool/yiyan-baidu/]：文心一言是百度研发的大型语言模型，属于生成式人工智能技术。它结合了自然语言处理、机器学习、神经网络等技术，具备强大的语言理解和生成能力。主要优点在于能够快速生成高质量的文本内容，涵盖多种应用场景，如文案撰写、问题解答、文档处理、智能翻译等，可显著提高用户的工作和学习效率。
+11. **秘塔AI搜索** — https://metaso.cn [国内直连 | 共识源:5 | 详情页:https://dlzbkj-ai.pages.dev/tool/metaso/]：秘塔AI搜索是一款具有高效搜索能力的工具。其重要性在于为用户节省时间，能够避免广告的干扰，直接呈现搜索结果。主要优点是没有广告，能够快速直达结果，使用户可以迅速获取所需信息。
+12. **Consensus** — https://consensus.app [海外直连 · 国内热推 | 共识源:5 | 详情页:https://dlzbkj-ai.pages.dev/tool/consensus/]：Consensus是一款利用人工智能技术的搜索引擎，其核心功能是在大量科学研究资料中快速准确地找到用户所需的答案。它的重要性在于极大地提高了科研工作者、学生等人群获取信息的效率。主要优点包括利用AI算法精准检索、涵盖多学科的科研内容、搜索过程免费等。该产品定位为面向科研和学习人群的高效信息检索工具，免费供用户使用。
+13. **Perplexity** — https://www.perplexity.ai [海外主流（需国际网络） | 共识源:5 | 详情页:https://dlzbkj-ai.pages.dev/tool/perplexity/]：Perplexity（perplexity.ai）是一款专注于学术文献深度检索与研究综述辅助的海外主流 AI 工具，适用于论文语义搜索、核心观点提炼与引文溯源等场景。
+14. **问小白** — https://www.wenxiaobai.com [国内直连 | 共识源:5 | 详情页:https://dlzbkj-ai.pages.dev/tool/wenxiaobai/]：AI 智能聊天, 问答助手, AI 智能搜索, 免费无限量使用 DeepSeek R1 模型，支持联网搜索。
+15. **Meta AI助手** — https://www.meta.ai [海外主流（需国际网络） | 共识源:5 | 详情页:https://dlzbkj-ai.pages.dev/tool/meta/]：Meta AI基于Meta最新的Llama大语言模型构建。其重要性在于为用户提供了便捷的人工智能服务，无论是日常问题解答，还是图像生成等需求都能满足。主要优点包括免费使用、功能全面，能够帮助用户高效完成各种任务。
+16. **文涌Effidit** — https://effidit.qq.com [国内直连 | 共识源:5 | 详情页:https://dlzbkj-ai.pages.dev/tool/effidit-qq/]：Effidit是腾讯AI Lab开发的研究性原型系统，旨在利用AI技术提升写作效率和创作体验。该产品定位为专业的智能写作辅助工具，支持通用版和学术版。其核心技术基于自然语言处理（NLP），能够对文本进行多方面的处理和优化。产品提供免费使用，用户无需支付费用即可享受其丰富的功能，适用于各类需要进行写作的人群。
+17. **AI Content Detector** — https://writer.com/ai-content-detector [海外直连 · 国内热推 | 共识源:5 | 详情页:https://dlzbkj-ai.pages.dev/tool/writer/]：WRITER的AI内容检测器是一款免费工具，可检查内容中人为撰写的比例。其重要性在于帮助用户识别内容是否为AI生成，以便在发布前进行调整。主要优点包括免费使用、支持输入文本或URL、可检测长达5000字的内容。该产品背景是随着AI生成内容的普及，市场对检测工具的需求增加。
+18. **Andi** — https://andisearch.com [海外直连 · 国内热推 | 共识源:5 | 详情页:https://dlzbkj-ai.pages.dev/tool/andisearch/]：对话式人工智能搜索引擎
+19. **Claude** — https://claude.ai [海外主流（需国际网络） | 共识源:5 | 详情页:https://dlzbkj-ai.pages.dev/tool/claude/]：Anthropic公司推出的对话式AI智能助手
+20. **Cohesive** — https://cohesive.so [海外直连 · 国内热推 | 共识源:5 | 详情页:https://dlzbkj-ai.pages.dev/tool/cohesive/]：人工智能文案内容创作和编辑工具
+21. **Copilot** — https://copilot.microsoft.com [海外主流（需国际网络） | 共识源:5 | 详情页:https://dlzbkj-ai.pages.dev/tool/copilot-microsoft/]：微软推出的网页版Copilot助手
+22. **Copy.ai** — https://www.copy.ai [海外直连 · 国内热推 | 共识源:5 | 详情页:https://dlzbkj-ai.pages.dev/tool/copy/]：Copy.——AI写作工具，Futurepedia 推荐
+23. **Devv** — https://devv.ai/zh [海外直连 · 国内热推 | 共识源:5 | 详情页:https://dlzbkj-ai.pages.dev/tool/devv/]：devv.ai 是一款面向程序员且最懂程序员的新一代 AI 搜索引擎
+24. **Jasper** — https://www.jasper.ai [海外直连 · 国内热推 | 共识源:5 | 详情页:https://dlzbkj-ai.pages.dev/tool/jasper/]：Jasper——AI写作工具，Futurepedia 推荐
+25. **Komo Search** — https://komo.ai [海外直连 · 国内热推 | 共识源:5 | 详情页:https://dlzbkj-ai.pages.dev/tool/komo/]：基于生成式人工智能的搜索引擎
 
-## 编程开发（共 855 款，专题页：https://dlzbkj-ai.pages.dev/category/coding/）
+## 编程开发（共 783 款，专题页：https://dlzbkj-ai.pages.dev/category/coding/）
 
-1. **HuggingFace** — https://huggingface.co [国内直连 | 共识源:5 | 详情页:https://dlzbkj-ai.pages.dev/tool/huggingface/]：Hugging Face是一个人工智能社区平台，致力于通过开源和开放科学的方式推进和普及人工智能。它为机器学习社区提供了一个协作平台，用户可以在上面创建、发现和协作完成各类机器学习任务。其重要性在于打破了人工智能技术的壁垒，使得更多人能够参与到AI开发中来。平台提供了丰富的模型、数据集和应用，涵盖文本、图像、视频、音频
-2. **PromptHero** — https://prompthero.com [国内 · 海外双收录 | 共识源:5 | 详情页:https://dlzbkj-ai.pages.dev/tool/prompthero/]：PromptHero是一个专注于人工智能和提示工程的网站，被称为提示工程领域的第一网站。它的主要功能是提供搜索功能，让用户可以查找适用于各种AI模型（如Stable Diffusion、ChatGPT、Midjourney等）的最佳提示词。其重要性在于降低了用户使用AI模型生成内容的难度，使用户能够更精准、高效地获得符
-3. **亚马逊 CodeWhisperer** — https://aws.amazon.com/codewhisperer [国内直连 | 共识源:4 | 详情页:https://dlzbkj-ai.pages.dev/tool/aws-amazon-codewhisperer/]：Amazon Q Developer是由亚马逊云服务（AWS）推出的一款强大的生成式AI驱动的软件开发助手。它在构建、运营和转型软件方面具备出色能力，尤其在数据管理和AI/ML领域有先进的功能。其重要性在于能够极大提高软件开发的效率和质量，帮助开发者更轻松应对各种复杂任务。该产品的主要优点包括自动化提高效率、使用AI技
-4. **文心快码** — https://comate.baidu.com [国内直连 | 共识源:4 | 详情页:https://dlzbkj-ai.pages.dev/tool/comate-baidu/]：文心快码（Baidu Comate）是百度依托文心大模型所研发出的编程辅助工具。其主要重要性在于能极大提升开发者的编码效率，把开发者从繁琐重复的编码工作中解放出来。该产品具备多种实用功能，支持上百种编程语言，定位为广大开发者提供高效便捷的编程辅助。目前未提及价格相关信息，推测可能免费提供给开发者使用。
-5. **GitHub Copilot** — https://github.com/features/copilot [国内直连 | 共识源:4 | 详情页:https://dlzbkj-ai.pages.dev/tool/features-copilot/]：GitHub Copilot是GitHub推出的人工智能编程助手，与主流代码编辑器集成，借助AI技术理解代码上下文并给出合理代码建议。它能提升编程效率、减少错误，让开发者将精力集中于核心逻辑。产品有面向个人和企业的版本，具备企业级安全与AI功能，还有高级安全特性、24×7支持等。虽页面未明确价格，但从企业级功能推测有付
-6. **CodeFuse** — https://codefuse.alipay.com [国内直连 | 共识源:4 | 详情页:https://dlzbkj-ai.pages.dev/tool/codefuse-alipay/]：CodeFuse 是蚂蚁集团自研的全生命周期研发大模型与智能编码助手，提供代码补全、单元测试生成、代码解释与 DevOps 智能体支持，兼容 VS Code 与 JetBrains 系列 IDE。
-7. **JetBrains AI** — https://www.jetbrains.com/ai [国内直连 | 共识源:4 | 详情页:https://dlzbkj-ai.pages.dev/tool/jetbrains/]：JetBrains AI是JetBrains公司推出的一系列集成AI工具和服务，专为软件开发场景打造。其核心功能是提供智能编码辅助，借助先进的AI技术，分析代码上下文，为开发者提供准确的代码建议和补全。该产品对JetBrains在软件开发领域的优势进行了拓展，与旗下的多款知名IDE深度集成，如IntelliJ IDEA
-8. **v0.dev &#8211; AI生成前端UI组件** — https://v0.dev [国内直连 | 共识源:4 | 详情页:https://dlzbkj-ai.pages.dev/tool/v0/]：v0 by Vercel是Vercel推出的一款用于构建全栈应用的工具。它允许用户通过简单的操作快速搭建应用，提供了丰富的模板和社区资源，方便用户参考和复用。用户可以在平台上提问获取帮助，同步代码与GitHub。其重要性在于降低了构建应用的门槛，节省开发时间。价格方面未提及，推测为免费使用，定位是面向开发者和有应用开发
-9. **AIPRM** — https://www.aiprm.com [国内直连 | 共识源:4 | 详情页:https://dlzbkj-ai.pages.dev/tool/aiprm/]：AIPRM是一款针对ChatGPT、Claude、Midjourney等人工智能模型的生产力工具。它可以极大地提高用户与AI交互的效率，帮助用户节省大量时间。其重要性在于提供了一个丰富且优质的AI提示词库，让用户轻松获取专业、高效的提示。产品背景是因应人工智能广泛应用而开发，以满足用户更好使用AI的需求。价格方面，有免
-10. **Augment Code** — https://www.augmentcode.com [国内 · 海外双收录 | 共识源:4 | 详情页:https://dlzbkj-ai.pages.dev/tool/augmentcode/]：专为开发团队设计的企业级 AI 代码平台
-11. **Pic Copilot** — https://www.piccopilot.com [国内直连 | 共识源:4 | 详情页:https://dlzbkj-ai.pages.dev/tool/piccopilot/]：阿里国际推出的AI商品营销图工具
-12. **PromptPilot - 火山方舟推出的AI提示词解决方案平台** — https://promptpilot.volcengine.com [国内直连 | 共识源:4 | 详情页:https://dlzbkj-ai.pages.dev/tool/promptpilot-volcengine/]：PromptPilot是字节跳动旗下火山引擎推出的AI提示词解决方案平台。其重要性在于通过深度解析用户意图，把模糊想法转化为AI可精准执行的专业指令，保障模型稳定输出高质量结果。该平台的主要优点包括具备互动式引导，能帮助用户明确需求；可进行闭环迭代优化，持续提升Prompt效果；支持多轮对话优化、多模态理解与规划、复杂
-13. **Qodo** — https://www.codium.ai [国内 · 海外双收录 | 共识源:4 | 详情页:https://dlzbkj-ai.pages.dev/tool/codium/]：Qodo（codium.ai）是一款专注于AI 智能代码补全、重构审查与结对编程的海外主流 AI 工具，适用于多语言代码生成、Bug 定位修复与单元测试编写等场景。
-14. **StableVicuna** — https://chat.lmsys.org [国内直连 | 共识源:4 | 详情页:https://dlzbkj-ai.pages.dev/tool/chat-lmsys/]：LMSYS Chatbot Arena（原 StableVicuna 评测竞技场）是由加州大学伯克利分校等机构联合打造的开源大模型盲测对比与对话评测平台，支持多模型同屏盲测投票与权威 Leaderboard 榜单查询。
-15. **腾讯混元大模型** — https://hunyuan.tencent.com [国内直连 | 共识源:4 | 详情页:https://dlzbkj-ai.pages.dev/tool/hunyuan-tencent/]：腾讯混元大模型由腾讯全链路自研，在文本和多模态模型性能方面表现卓越，处于业界领先水平。其混元 API 整合了腾讯优质的内容生态，如微信公众号、视频号等，提供强大的时新且有深度的内容获取和 AI 问答能力。该产品定位为助力用户高效获取信息、知识和灵感，广泛应用于多个领域，可提升业务价值和效率。目前页面未提及价格信息。
-16. **魔搭社区** — https://www.modelscope.cn [国内直连 | 共识源:4 | 详情页:https://dlzbkj-ai.pages.dev/tool/modelscope/]：ModelScope 是一个开源的模型与数据集构建与托管平台，旨在支持AI研究和应用。
-17. **Codex** — https://openai.com/codex [国内直连 | 共识源:3 | 详情页:https://dlzbkj-ai.pages.dev/tool/openai/]：专注于将自然语言转换为多种编程语言（如Python、JavaScript和Java），支持代码生成、补全、优化及多语言翻译；其底层模型基于GPT-3架构改进，采用Transformer架构，并由codex-1驱动（基于OpenAI o3优化），可并行处理代码编写、调试和测试任务。
-18. **Cursor** — https://www.cursor.com [国内直连 | 共识源:3 | 详情页:https://dlzbkj-ai.pages.dev/tool/cursor/]：Cursor是一款AI代码编辑器，由Anysphere开发。其采用定制化与前沿模型混合驱动，速度快且智能。它支持一键导入扩展、主题和快捷键绑定，还具备隐私模式，已通过SOC 2认证。产品定位是为开发者提供高效编程工具，助力他们以更快速度构建软件。价格方面可免费下载试用。
-19. **Stable Diffusion** — https://stability.ai [国内 · 海外双收录 | 共识源:3 | 详情页:https://dlzbkj-ai.pages.dev/tool/stability/]：Stable Diffusion（stability.ai）是一款专注于多风格 AI 图像生成与视觉创意快速打样的海外主流 AI 工具，适用于插画素材制作、写实场景渲染与批量出图等场景。
-20. **Tripo-ai AI3D模型生成平台** — https://www.tripo3d.ai [国内直连 | 共识源:3 | 详情页:https://dlzbkj-ai.pages.dev/tool/tripo3d/]：Tripo - ai 是一个AI 生成式 3D 模型的平台，AI 技术在短时间内（10 秒内）生成 3D 模型，用户可以通过文本、单张图像、多张图像、涂鸦或定制风格来生成 3D 模型
-21. **CodeBuddy IDE - 腾讯推出的全栈开发AI IDE** — https://www.codebuddy.ai [国内直连 | 共识源:3 | 详情页:https://dlzbkj-ai.pages.dev/tool/codebuddy/]：CodeBuddy IDE是是腾讯推出的全栈开发AI IDE，将产品设计、研发部署全流程整合于一体，实现从需求规划到上线交付的一站式服务。用户只需用自然语言描述需求，CodeBuddy能自动生成结构化的PRD文档、交互原型、前端代码及后端服务，支持一键部署上线。国际版整合 Claude、GPT、Gemini 等主流大模
-22. **Visual Studio IntelliCode** — https://visualstudio.microsoft.com/zh-hans/services/intellicode [国内直连 | 共识源:3 | 详情页:https://dlzbkj-ai.pages.dev/tool/visualstudio-microsoft/]：Visual Studio IntelliCode是一组实验性的AI辅助开发功能，它将AI帮助引入个人开发流。其重要性在于能够显著提高开发人员的工作效率，减少手动输入代码的时间。主要优点包括能够基于代码上下文提供整行自动完成，提高代码的准确性和一致性；在本地计算机运行，确保专用代码的隐私性。产品背景是为了满足开发人员对
-23. **C知道** — https://so.csdn.net/chat [国内直连 | 共识源:3 | 详情页:https://dlzbkj-ai.pages.dev/tool/so-csdn/]：C知道是CSDN和外部合作伙伴联合研发的领先AI产品。它运用自然语言处理和大语言模型技术，能理解并处理自然语言，实现人机高效交互。其重要性在于为开发者和学习者提供了一个便捷的工具，能快速解决开发问题、生成代码，提高工作和学习效率。产品定位为开发者首选的AI搜索引擎，强调高效、准确、实用。价格方面文中未提及，推测为免费使
-24. **Duo Chat** — https://about.gitlab.com/gitlab-duo [国内直连 | 共识源:3 | 详情页:https://dlzbkj-ai.pages.dev/tool/about-gitlab/]：GitLab Duokey是一套强大的AI能力套件，为DevSecOps平台提供支持。其重要性在于能全面提升软件开发的效率与安全性。主要优点有：在软件开发全生命周期提供AI支持，保护隐私，不使用企业专有代码和数据训练模型，集成最佳AI模型改善开发者体验，且AI功能透明。产品背景是适应企业对智能高效软件开发的需求。定价方
-25. **Ghostwriter** — https://replit.com/site/ghostwriter [国内直连 | 共识源:3 | 详情页:https://dlzbkj-ai.pages.dev/tool/replit/]：Replit AI是一个由人工智能驱动的软件创建平台，其核心技术是能够理解自然语言，并根据用户的描述自动构建应用和网站。该产品的重要性在于它极大地降低了软件开发的门槛，使得非技术人员也能够轻松创建自己的软件。其主要优点包括：无需编码即可构建应用和网站、能够快速从想法转化为可运行的原型、可以自动修复代码中的错误，以及提供
+1. **GitHub Copilot** — https://github.com/features/copilot [海外直连 · 国内热推 | 共识源:7 | 详情页:https://dlzbkj-ai.pages.dev/tool/features-copilot/]：GitHub Copilot是GitHub推出的人工智能编程助手，与主流代码编辑器集成，借助AI技术理解代码上下文并给出合理代码建议。它能提升编程效率、减少错误，让开发者将精力集中于核心逻辑。产品有面向个人和企业的版本，具备企业级安全与AI功能，还有高级安全特性、24×7支持等。
+2. **亚马逊 CodeWhisperer** — https://aws.amazon.com/codewhisperer [海外直连 · 国内热推 | 共识源:6 | 详情页:https://dlzbkj-ai.pages.dev/tool/aws-amazon-codewhisperer/]：Amazon Q Developer是由亚马逊云服务（AWS）推出的一款强大的生成式AI驱动的软件开发助手。它在构建、运营和转型软件方面具备出色能力，尤其在数据管理和AI/ML领域有先进的功能。其重要性在于能够极大提高软件开发的效率和质量，帮助开发者更轻松应对各种复杂任务。
+3. **HuggingFace** — https://huggingface.co [海外主流（需国际网络） | 共识源:6 | 详情页:https://dlzbkj-ai.pages.dev/tool/huggingface/]：Hugging Face是一个人工智能社区平台，致力于通过开源和开放科学的方式推进和普及人工智能。它为机器学习社区提供了一个协作平台，用户可以在上面创建、发现和协作完成各类机器学习任务。其重要性在于打破了人工智能技术的壁垒，使得更多人能够参与到AI开发中来。
+4. **v0.dev &#8211; AI生成前端UI组件** — https://v0.dev [海外主流（需国际网络） | 共识源:5 | 详情页:https://dlzbkj-ai.pages.dev/tool/v0/]：v0 by Vercel是Vercel推出的一款用于构建全栈应用的工具。它允许用户通过简单的操作快速搭建应用，提供了丰富的模板和社区资源，方便用户参考和复用。用户可以在平台上提问获取帮助，同步代码与GitHub。其重要性在于降低了构建应用的门槛，节省开发时间。
+5. **AIPRM** — https://www.aiprm.com [海外直连 · 国内热推 | 共识源:5 | 详情页:https://dlzbkj-ai.pages.dev/tool/aiprm/]：AIPRM是一款针对ChatGPT、Claude、Midjourney等人工智能模型的生产力工具。它可以极大地提高用户与AI交互的效率，帮助用户节省大量时间。其重要性在于提供了一个丰富且优质的AI提示词库，让用户轻松获取专业、高效的提示。产品背景是因应人工智能广泛应用而开发，以满足用户更好使用AI的需求。
+6. **CodeGeeX - 智能代码生成工具** — https://codegeex.cn [国内直连 | 共识源:5 | 详情页:https://dlzbkj-ai.pages.dev/tool/codegeex/]：一个基于AI大模型的编程辅助工具，可以实现自动代码生成、代码翻译、自动编写注释等功能，支持20多种编程语言。
+7. **n8n** — https://n8n.io [海外直连 · 国内热推 | 共识源:5 | 详情页:https://dlzbkj-ai.pages.dev/tool/n8n/]：n8n是一款强大的工作流自动化工具，结合了人工智能能力与业务流程自动化，给予技术团队代码的灵活性和无代码的速度。 zh
+8. **PromptHero** — https://prompthero.com [海外直连 · 国内热推 | 共识源:5 | 详情页:https://dlzbkj-ai.pages.dev/tool/prompthero/]：PromptHero是一个专注于人工智能和提示工程的网站，被称为提示工程领域的第一网站。它的主要功能是提供搜索功能，让用户可以查找适用于各种AI模型（如Stable Diffusion、ChatGPT、Midjourney等）的最佳提示词。
+9. **PublicPrompts** — https://publicprompts.art [海外直连 · 国内热推 | 共识源:5 | 详情页:https://dlzbkj-ai.pages.dev/tool/publicprompts/]：Public Prompts是一个专注于图像领域的网站，为用户提供公共、免费且高质量的提示词资源。其重要性在于降低了用户在图像创作方面的门槛，让更多人能够轻松利用各种模型进行图像生成。
+10. **Tabnine** — https://www.tabnine.com [海外直连 · 国内热推 | 共识源:5 | 详情页:https://dlzbkj-ai.pages.dev/tool/tabnine/]：为开发人员提供的代码自动完成工具
+11. **腾讯混元大模型** — https://hunyuan.tencent.com [国内直连 | 共识源:5 | 详情页:https://dlzbkj-ai.pages.dev/tool/hunyuan-tencent/]：腾讯混元大模型由腾讯全链路自研，在文本和多模态模型性能方面表现卓越，处于业界领先水平。其混元 API 整合了腾讯优质的内容生态，如微信公众号、视频号等，提供强大的时新且有深度的内容获取和 AI 问答能力。该产品定位为助力用户高效获取信息、知识和灵感，广泛应用于多个领域，可提升业务价值和效率。目前页面未提及价格信息。
+12. **Tripo-ai AI3D模型生成平台** — https://www.tripo3d.ai [海外直连 · 国内热推 | 共识源:4 | 详情页:https://dlzbkj-ai.pages.dev/tool/tripo3d/]：Tripo - ai 是一个AI 生成式 3D 模型的平台，AI 技术在短时间内（10 秒内）生成 3D 模型，用户可以通过文本、单张图像、多张图像、涂鸦或定制风格来生成 3D 模型
+13. **文心快码** — https://comate.baidu.com [国内直连 | 共识源:4 | 详情页:https://dlzbkj-ai.pages.dev/tool/comate-baidu/]：文心快码（Baidu Comate）是百度依托文心大模型所研发出的编程辅助工具。其主要重要性在于能极大提升开发者的编码效率，把开发者从繁琐重复的编码工作中解放出来。该产品具备多种实用功能，支持上百种编程语言，定位为广大开发者提供高效便捷的编程辅助。目前未提及价格相关信息，推测可能免费提供给开发者使用。
+14. **CodeFuse** — https://codefuse.alipay.com [国内直连 | 共识源:4 | 详情页:https://dlzbkj-ai.pages.dev/tool/codefuse-alipay/]：CodeFuse 是蚂蚁集团自研的全生命周期研发大模型与智能编码助手，提供代码补全、单元测试生成、代码解释与 DevOps 智能体支持，兼容 VS Code 与 JetBrains 系列 IDE。
+15. **JetBrains AI** — https://www.jetbrains.com/ai [海外直连 · 国内热推 | 共识源:4 | 详情页:https://dlzbkj-ai.pages.dev/tool/jetbrains/]：JetBrains AI是JetBrains公司推出的一系列集成AI工具和服务，专为软件开发场景打造。其核心功能是提供智能编码辅助，借助先进的AI技术，分析代码上下文，为开发者提供准确的代码建议和补全。
+16. **AgentGPT** — https://agentgpt.reworkd.ai [海外直连 · 国内热推 | 共识源:4 | 详情页:https://dlzbkj-ai.pages.dev/tool/agentgpt-reworkd/]：在浏览器中组装、配置和部署自主人工智能的开源项目
+17. **AirOps** — https://www.airops.com [海外直连 · 国内热推 | 共识源:4 | 详情页:https://dlzbkj-ai.pages.dev/tool/airops/]：AI SQL语句生成和修改
+18. **Anakin.ai** — https://anakin.ai/zh-cn [海外直连 · 国内热推 | 共识源:4 | 详情页:https://dlzbkj-ai.pages.dev/tool/anakin/]：一站式无代码AI应用构建平台
+19. **Augment Code** — https://www.augmentcode.com [海外直连 · 国内热推 | 共识源:4 | 详情页:https://dlzbkj-ai.pages.dev/tool/augmentcode/]：专为开发团队设计的企业级 AI 代码平台
+20. **CodeRabbit** — https://coderabbit.ai [海外直连 · 国内热推 | 共识源:4 | 详情页:https://dlzbkj-ai.pages.dev/tool/coderabbit/]：专注于提供 AI 驱动的代码审查工具
+21. **Cohere** — https://cohere.com [海外直连 · 国内热推 | 共识源:4 | 详情页:https://dlzbkj-ai.pages.dev/tool/cohere/]：构建AI产品的大语言模型平台
+22. **Dify - LangGenius 开源的 AI 应用开发平台** — https://dify.ai [海外直连 · 国内热推 | 共识源:4 | 详情页:https://dlzbkj-ai.pages.dev/tool/dify/]：Dify 是 LangGenius 公司推出的开源 AI 应用开发平台，支持在统一画布上可视化编排 Agentic 工作流与 RAG Pipeline，集成数百种大模型和工具。
+23. **Gradio** — https://gradio.app [海外直连 · 国内热推 | 共识源:4 | 详情页:https://dlzbkj-ai.pages.dev/tool/gradio/]：开源的搭建机器学习模型UI界面的Python库
+24. **JamGPT** — https://jam.dev/jamgpt [海外直连 · 国内热推 | 共识源:4 | 详情页:https://dlzbkj-ai.pages.dev/tool/jam/]：JamGPT是Bug报告工具Jam最新推出的AI Debug助手，JamGPT可帮助开发人员分析所有的Bug报告细节，在你开始阅读之前就找到相关原因和解决方案。
+25. **Lightning AI** — https://lightning.ai [海外直连 · 国内热推 | 共识源:4 | 详情页:https://dlzbkj-ai.pages.dev/tool/lightning/]：快速训练、部署和开发人工智能产品的深度学习框架，由Pytorch Lightning团队推出
 
-## 图像设计（共 1225 款，专题页：https://dlzbkj-ai.pages.dev/category/image-design/）
+## 图像设计（共 1074 款，专题页：https://dlzbkj-ai.pages.dev/category/image-design/）
 
-1. **Recraft AI** — https://www.recraft.ai [国内直连 | 共识源:5 | 详情页:https://dlzbkj-ai.pages.dev/tool/recraft/]：Recraft是一款面向设计师的高级图像生成与编辑工具。它的重要性体现在为设计师提供了一站式的图像创作与设计解决方案。主要优点包括拥有自定义V3模型，能提供可预测的结果；具有直观的操作界面和丰富多样的风格选项，可让设计师快速探索和完善创意；支持全矢量、精确的文本生成等，确保设计质量。该产品定位为专业设计师及创意工作者提
-2. **可灵AI** — https://app.klingai.com/cn [国内直连 | 共识源:4 | 详情页:https://dlzbkj-ai.pages.dev/tool/app-klingai/]：可灵AI是一款新一代的AI创意生产力平台，它运用先进的生成式AI技术，为内容创作者提供了强大的工具。其核心技术是可灵2.1模型，运动质量更高，视频表现更美更灵动，指令响应也更出色。平台支持视频生成、图像制作以及高级编辑等功能，能满足内容创作者的多样化需求。价格方面，会员低至1.99元，同时登录会员还可享受高品质生成模式
-3. **Midjourney** — https://www.midjourney.com/home [国内直连 | 共识源:4 | 详情页:https://dlzbkj-ai.pages.dev/tool/midjourney/]：Midjourney是一个独立研究实验室，致力于探索新的思维媒介并拓展人类的想象力。其核心技术可能围绕人工智能展开，通过AI算法帮助用户将想象转化为图像。该产品的主要优点在于能够激发用户的创造力，让用户轻松创造出各种风格的图像。团队规模较小且自筹资金，成员包括全职员工和专业顾问。关于价格暂未提及，产品定位是为用户提供一
-4. **文心一格** — https://yige.baidu.com [国内直连 | 共识源:4 | 详情页:https://dlzbkj-ai.pages.dev/tool/yige-baidu/]：百度开发，每日签到送电量（约5张图/天），国风场景效果极佳，支持商用（需注明来源）
-5. **堆友AI** — https://d.design [国内直连 | 共识源:4 | 详情页:https://dlzbkj-ai.pages.dev/tool/tool-56aa5e91f7a6/]：堆友是Alibaba Design打造的设计师全成长周期服务平台，围绕品质、效率、技能、成就、收入五大用户价值布局平台能力，全力服务设计师，旨在成为设计师的好朋友。堆友历经大厂设计师团队多轮打磨雕刻，集海量高品质3D素材、实时在线渲染、多元场景功能应用、轻便好学易上手等多重优势于一身的设计神器，更自带免费可商用属性，为
-6. **阿贝智能** — https://abeiai.com?r=133 [国内直连 | 共识源:4 | 详情页:https://dlzbkj-ai.pages.dev/tool/abeiai/]：一站式 AI 绘本创作平台，专为儿童教育设计
-7. **AI改图神器** — https://img.logosc.cn [国内直连 | 共识源:4 | 详情页:https://dlzbkj-ai.pages.dev/tool/img-logosc/]：AI万能图片在线编辑器
-8. **Krea AI** — https://www.krea.ai [国内直连 | 共识源:4 | 详情页:https://dlzbkj-ai.pages.dev/tool/krea/]：实时AI图像、视频生成和编辑平台
-9. **BigJPG** — https://bigjpg.com [国内直连 | 共识源:4 | 详情页:https://dlzbkj-ai.pages.dev/tool/bigjpg/]：AI超分辨率无损图像放大，使用最新人工智能深度学习技术——深度卷积神经网络。
-10. **FigJam AI** — https://www.figma.com/figjam/ai [国内直连 | 共识源:4 | 详情页:https://dlzbkj-ai.pages.dev/tool/figma/]：FigJam AI是Figma旗下FigJam产品的AI功能。Figma在设计领域具有较高知名度，FigJam则专注于团队协作设计。此AI功能可提升团队协作效率，通过自动化任务、提供灵感和建议来简化工作流程。价格方面，可免费试用。它定位为提升团队设计协作效率的生产力工具，适用于各种设计团队和项目。
-11. **Figma AI** — https://www.figma.com/ai [国内直连 | 共识源:4 | 详情页:https://dlzbkj-ai.pages.dev/tool/figma-c83f/]：Figma AI是Figma推出的一套AI功能集，旨在帮助用户更高效地进行设计工作。Figma本身是一款广泛应用于设计领域的工具，深受全球众多团队的信赖。Figma AI的推出，进一步增强了其在设计工具市场的竞争力。目前，Figma AI的所有功能在测试阶段都是免费的，但在正式发布后可能会产生额外费用。其主要优点包括帮
-12. **Luma AI** — https://lumalabs.ai [国内 · 海外双收录 | 共识源:4 | 详情页:https://dlzbkj-ai.pages.dev/tool/lumalabs/]：Luma AI（lumalabs.ai）是一款专注于数字艺术风格探索、概念原画与创意视觉实验的海外主流 AI 工具，适用于多画风融合创作、纹理生成与艺术灵感延展等场景。
-13. **Magic Studio魔法工作室 - AI在线修图神器** — https://magicstudio.com/zh [国内直连 | 共识源:4 | 详情页:https://dlzbkj-ai.pages.dev/tool/magicstudio/]：一键抠图、去背景、无损放大、去水印、批处理等20余项AI功能，无需下载软件，浏览器即可完成专业级图片处理。
-14. **Pebblely** — https://pebblely.com [国内直连 | 共识源:4 | 详情页:https://dlzbkj-ai.pages.dev/tool/pebblely/]：使用 AI 在几秒钟内创建精美的产品照片
-15. **PicWish** — https://picwish.com [国内直连 | 共识源:4 | 详情页:https://dlzbkj-ai.pages.dev/tool/picwish/]：AI 照片编辑器去除背景，去除图像模糊，并进行更多图像编辑
-16. **Playground AI** — https://playgroundai.com [国内 · 海外双收录 | 共识源:4 | 详情页:https://dlzbkj-ai.pages.dev/tool/playgroundai/]：Playground AI（playgroundai.com）是一款专注于智能平面视觉设计与品牌素材生成的海外主流 AI 工具，适用于海报排版、UI 灵感探索与多尺寸营销图制作等场景。
-17. **remove.bg AI抠图** — https://www.remove.bg/zh?aid=kkgjrdhppgtrhbyn [国内直连 | 共识源:4 | 详情页:https://dlzbkj-ai.pages.dev/tool/remove-bg/]：强大的AI图片背景移除工具
-18. **UXbot** — https://www.uxbot.cn [国内直连 | 共识源:4 | 详情页:https://dlzbkj-ai.pages.dev/tool/uxbot/]：UXbot是什么 UXbot 是 AI 产品设计工具，能快速将创意转化为完整的视觉设计和交互式原型。用户只需输入简单需求或创意，能快速生成多页面、复杂交互流程的高保真原型。UXbot支持 W
-19. **奇域AI** — https://www.qiyuai.net [国内直连 | 共识源:4 | 详情页:https://dlzbkj-ai.pages.dev/tool/qiyuai/]：中式审美国风AI绘画创作平台
-20. **无界AI** — https://www.wujieai.com [国内直连 | 共识源:4 | 详情页:https://dlzbkj-ai.pages.dev/tool/wujieai/]：AIGC创作平台，专注于二次元AI绘画（文生图/图生图），支持角色引擎和LoRA微调。
-21. **标小智LOGO生成器** — https://www.logosc.cn [国内直连 | 共识源:4 | 详情页:https://dlzbkj-ai.pages.dev/tool/logosc/]：LOGO设计神器；公司logo在线设计生成器 - 标小智LOGO神器
-22. **美图旗下AI绘画工具 WHEE** — https://www.whee.com [国内直连 | 共识源:4 | 详情页:https://dlzbkj-ai.pages.dev/tool/whee/]：WHEE是美图科技旗下AI绘画平台，提供一站式AI视觉创作服务
-23. **老照片修复 | RestorePhotos** — https://www.restorephotos.io [国内直连 | 共识源:4 | 详情页:https://dlzbkj-ai.pages.dev/tool/restorephotos/]：用AI修复老照片
-24. **即梦AI** — https://jimeng.jianying.com/ai-tool/home [国内直连 | 共识源:3 | 详情页:https://dlzbkj-ai.pages.dev/tool/jimeng-jianying/]：小云雀是字节跳动旗下剪映团队推出的AI内容创作Agent，主打"一句话打造一个爆款"的零门槛创作体验。用户只需输入一句指令，可自动生成15-60秒短视频、数字人口播视频、风格化海报等内容，支持200+
-25. **Dzine - 一站式AI图像编辑和设计工具** — https://www.dzine.ai [国内直连 | 共识源:3 | 详情页:https://dlzbkj-ai.pages.dev/tool/dzine/]：提供从图像生成到编辑的一体化工作流程
+1. **Midjourney** — https://www.midjourney.com/home [海外主流（需国际网络） | 共识源:6 | 详情页:https://dlzbkj-ai.pages.dev/tool/midjourney/]：Midjourney是一个独立研究实验室，致力于探索新的思维媒介并拓展人类的想象力。其核心技术可能围绕人工智能展开，通过AI算法帮助用户将想象转化为图像。该产品的主要优点在于能够激发用户的创造力，让用户轻松创造出各种风格的图像。团队规模较小且自筹资金，成员包括全职员工和专业顾问。
+2. **Civitai** — https://civitai.com [海外主流（需国际网络） | 共识源:6 | 详情页:https://dlzbkj-ai.pages.dev/tool/civitai/]：免费的AI图像绘画作品和模型分享平台和社区
+3. **Magic Studio魔法工作室 - AI在线修图神器** — https://magicstudio.com/zh [海外直连 · 国内热推 | 共识源:6 | 详情页:https://dlzbkj-ai.pages.dev/tool/magicstudio/]：一键抠图、去背景、无损放大、去水印、批处理等20余项AI功能，无需下载软件，浏览器即可完成专业级图片处理。
+4. **Microsoft Designer** — https://designer.microsoft.com [海外直连 · 国内热推 | 共识源:6 | 详情页:https://dlzbkj-ai.pages.dev/tool/designer-microsoft/]：微软推出的在线设计海报和宣传图工具
+5. **Recraft AI** — https://www.recraft.ai [海外直连 · 国内热推 | 共识源:6 | 详情页:https://dlzbkj-ai.pages.dev/tool/recraft/]：Recraft是一款面向设计师的高级图像生成与编辑工具。它的重要性体现在为设计师提供了一站式的图像创作与设计解决方案。主要优点包括拥有自定义V3模型，能提供可预测的结果；具有直观的操作界面和丰富多样的风格选项，可让设计师快速探索和完善创意；支持全矢量、精确的文本生成等，确保设计质量。
+6. **可灵AI** — https://app.klingai.com/cn [国内直连 | 共识源:5 | 详情页:https://dlzbkj-ai.pages.dev/tool/app-klingai/]：可灵AI是一款新一代的AI创意生产力平台，它运用先进的生成式AI技术，为内容创作者提供了强大的工具。其核心技术是可灵2.1模型，运动质量更高，视频表现更美更灵动，指令响应也更出色。平台支持视频生成、图像制作以及高级编辑等功能，能满足内容创作者的多样化需求。
+7. **Krea AI** — https://www.krea.ai [海外直连 · 国内热推 | 共识源:5 | 详情页:https://dlzbkj-ai.pages.dev/tool/krea/]：实时AI图像、视频生成和编辑平台
+8. **BigJPG** — https://bigjpg.com [海外直连 · 国内热推 | 共识源:5 | 详情页:https://dlzbkj-ai.pages.dev/tool/bigjpg/]：AI超分辨率无损图像放大，使用最新人工智能深度学习技术——深度卷积神经网络。
+9. **Logoai** — https://www.logoai.com [海外直连 · 国内热推 | 共识源:5 | 详情页:https://dlzbkj-ai.pages.dev/tool/logoai/]：AI LOGO创建设计平台，一站式品牌打造
+10. **Looka** — https://looka.com [海外直连 · 国内热推 | 共识源:5 | 详情页:https://dlzbkj-ai.pages.dev/tool/looka/]：AI在线设计和生成logo
+11. **Pebblely** — https://pebblely.com [海外直连 · 国内热推 | 共识源:5 | 详情页:https://dlzbkj-ai.pages.dev/tool/pebblely/]：使用 AI 在几秒钟内创建精美的产品照片
+12. **Playground AI** — https://playgroundai.com [海外直连 · 国内热推 | 共识源:5 | 详情页:https://dlzbkj-ai.pages.dev/tool/playgroundai/]：Playground AI（playgroundai.com）是一款专注于智能平面视觉设计与品牌素材生成的海外主流 AI 工具，适用于海报排版、UI 灵感探索与多尺寸营销图制作等场景。
+13. **remove.bg AI抠图** — https://www.remove.bg/zh?aid=kkgjrdhppgtrhbyn [海外直连 · 国内热推 | 共识源:5 | 详情页:https://dlzbkj-ai.pages.dev/tool/remove-bg/]：强大的AI图片背景移除工具
+14. **Cutout.Pro** — https://www.cutout.pro [海外直连 · 国内热推 | 共识源:5 | 详情页:https://dlzbkj-ai.pages.dev/tool/cutout/]：人工智能驱动的创意视觉设计平台
+15. **文心一格** — https://yige.baidu.com [国内直连 | 共识源:4 | 详情页:https://dlzbkj-ai.pages.dev/tool/yige-baidu/]：百度开发，每日签到送电量（约5张图/天），国风场景效果极佳，支持商用（需注明来源）
+16. **堆友AI** — https://d.design [国内直连 | 共识源:4 | 详情页:https://dlzbkj-ai.pages.dev/tool/tool-56aa5e91f7a6/]：堆友是Alibaba Design打造的设计师全成长周期服务平台，围绕品质、效率、技能、成就、收入五大用户价值布局平台能力，全力服务设计师，旨在成为设计师的好朋友。
+17. **Dzine - 一站式AI图像编辑和设计工具** — https://www.dzine.ai [海外直连 · 国内热推 | 共识源:4 | 详情页:https://dlzbkj-ai.pages.dev/tool/dzine/]：提供从图像生成到编辑的一体化工作流程
+18. **阿贝智能** — https://abeiai.com?r=133 [国内直连 | 共识源:4 | 详情页:https://dlzbkj-ai.pages.dev/tool/abeiai/]：一站式 AI 绘本创作平台，专为儿童教育设计
+19. **Faceswapper** — https://faceswapper.ai [海外直连 · 国内热推 | 共识源:4 | 详情页:https://dlzbkj-ai.pages.dev/tool/faceswapper/]：Faceswapper 是一款专注于图片超分放大、去背景与画质修复的 AI 工具，适用于创意生图、素材精修与品牌视觉设计等场景。
+20. **AI改图神器** — https://img.logosc.cn [国内直连 | 共识源:4 | 详情页:https://dlzbkj-ai.pages.dev/tool/img-logosc/]：AI万能图片在线编辑器
+21. **Vmake AI** — https://vmake.ai [海外直连 · 国内热推 | 共识源:4 | 详情页:https://dlzbkj-ai.pages.dev/tool/vmake/]：AI在线图像和视频编辑平台，专为电商、设计提供服务
+22. **Booltool** — https://booltool.boolv.tech/home [海外直连 · 国内热推 | 共识源:4 | 详情页:https://dlzbkj-ai.pages.dev/tool/booltool-boolv/]：AI工具集拥有多款图片、视频工具
+23. **Canva** — https://www.canva.com [海外直连 · 国内热推 | 共识源:4 | 详情页:https://dlzbkj-ai.pages.dev/tool/canva/]：Canva——AI图像工具，Futurepedia 推荐
+24. **ClipDrop** — https://clipdrop.co [海外直连 · 国内热推 | 共识源:4 | 详情页:https://dlzbkj-ai.pages.dev/tool/clipdrop/]：Stability.ai推出的AI图片处理系列工具
+25. **Craiyon** — https://www.craiyon.com [海外直连 · 国内热推 | 共识源:4 | 详情页:https://dlzbkj-ai.pages.dev/tool/craiyon/]：Craiyon——AI图像工具，Futurepedia 推荐
 
-## 视频音频（共 1117 款，专题页：https://dlzbkj-ai.pages.dev/category/video-audio/）
+## 视频音频（共 965 款，专题页：https://dlzbkj-ai.pages.dev/category/video-audio/）
 
-1. **Adobe Podcast** — https://podcast.adobe.com [国内 · 海外双收录 | 共识源:5 | 详情页:https://dlzbkj-ai.pages.dev/tool/podcast-adobe/]：Adobe Podcast是Adobe推出的新一代基于网页的AI音频录制与编辑工具。其重要性在于它为用户提供了一站式的音频处理解决方案，无需复杂安装，打开网页即可使用。主要优点包括操作便捷、音频质量高、自带AI转录等功能。产品背景依托于Adobe强大的技术实力和在创意软件领域的深厚积累。价格信息未提及，从描述推测可能会
-2. **魔音工坊** — https://www.moyin.com [国内直连 | 共识源:5 | 详情页:https://dlzbkj-ai.pages.dev/tool/moyin/]：500+真人音色，支持多音字/停顿/情感调节，免费版限每日生成额度 。
-3. **Suno** — https://www.suno.ai [国内直连 | 共识源:4 | 详情页:https://dlzbkj-ai.pages.dev/tool/suno/]：Suno是一款前沿的AI音乐生成平台，借助先进的AI技术，让用户能够在短时间内生成原创音乐。该平台的重要性在于打破了音乐创作的门槛，使得普通人也能轻松创作出高质量的音乐作品。其主要优点包括操作简便、创作速度快、音乐质量高，并且支持多种方式进行创作。平台提供了三种不同的收费计划：免费计划每月0美元，可使用v3.5模型，每
-4. **Mubert** — https://mubert.com [国内直连 | 共识源:4 | 详情页:https://dlzbkj-ai.pages.dev/tool/mubert/]：提供无限量免版税背景音乐，适合视频/游戏配乐，免费版输出音频带水印
-5. **NaturalReader** — https://www.naturalreaders.com [国内直连 | 共识源:4 | 详情页:https://dlzbkj-ai.pages.dev/tool/naturalreaders/]：NaturalReader是NaturalSoft Limited推出的文本转语音工具。它运用深度学习、神经网络及大语言模型等技术，生成高度逼真的AI语音。优点众多，提供多种类型声音，支持多语言和格式，内容理解能力强，还有辅助功能提升可访问性。产品定位广泛，涵盖个人、商业和教育领域。价格方面，有免费版本，商业和教育使用
-6. **Pika** — https://pika.art [国内 · 海外双收录 | 共识源:4 | 详情页:https://dlzbkj-ai.pages.dev/tool/pika/]：Pika（pika.art）是一款专注于视频画质修复、超分放大与帧率增强的海外主流 AI 工具，适用于老片修复、清晰度提升与画质降噪等场景。
-7. **海绵音乐** — https://www.haimian.com [国内直连 | 共识源:4 | 详情页:https://dlzbkj-ai.pages.dev/tool/haimian/]：一款 AI 音乐创作产品，输入一句话灵感或者歌词，即可快速生成音乐，最大限度拉近每个人同音乐创作的距离。同时，海绵音乐提供了丰富的自定义功能，让每个人都可以一键创作属于自己的 AI 音乐。在这个过程中，偶遇惊喜，发现更多可能，为你打造耳目一新的音乐创作体验。通过 DeepSeek 大模型智能生成优质歌词，一键导入海绵音
-8. **网易天音** — https://tianyin.163.com [国内直连 | 共识源:4 | 详情页:https://dlzbkj-ai.pages.dev/tool/tianyin-163/]：网易天音是网易推出的一站式AI音乐创作工具，其重要性在于降低了音乐创作门槛，让更多人能够参与到音乐创作中来。产品主要优点包括智能编曲极速生成、海量风格一键渲染，用户即使零基础也能快速创作歌曲。该产品定位为面向大众的音乐创作平台，可用于个人创作、音乐教学等场景。价格方面，产品宣传海量风格全部免费使用。
-9. **纳逗Pro** — https://nadoupro.iqiyi.com [国内直连 | 共识源:3 | 详情页:https://dlzbkj-ai.pages.dev/tool/nadoupro-iqiyi/]：纳逗Pro是爱奇艺推出的专业级影视制作AI智能体平台，是国内首个面向长篇影视创作的全流程AI制片厂。平台集成爱奇艺自研奇智大模型与即梦、可灵、Vidu等主流商用大模型，内置近70个按影视分工打造的岗位
-10. **度加创作工具** — https://aigc.baidu.com [国内直连 | 共识源:3 | 详情页:https://dlzbkj-ai.pages.dev/tool/aigc-baidu/]：度加创作工具由百度出品，是一个人人可用的AIGC创作平台，一站式聚合百度AIGC能力。其核心功能涵盖AI成片、AI生文、AI故事、AI剧本、动漫视频、高光剪辑、数字人、声音克隆等。这些功能为创作者大幅降低了内容生成门槛，将内容创作流程压缩60%以上，实现了“思考即创作”的无缝衔接。该平台精准推荐全网热点，挖掘流量密码并
-11. **腾讯智影** — https://zenvideo.qq.com [国内直连 | 共识源:3 | 详情页:https://dlzbkj-ai.pages.dev/tool/zenvideo-qq/]：腾讯视频智能制作平台（智影）是一款云端智能视频创作工具，依托腾讯强大的技术与版权基础。它集素材搜集、视频剪辑、渲染导出和发布等功能于一体，为用户提供一站式视频创作体验。产品定位为帮助用户更高效、便捷地进行视频化表达，降低视频创作门槛。其突出优点在于强大的AI智能工具和丰富的素材库，免费使用的特性让更多用户可以无成本地享
-12. **可灵AI** — https://kling.kuaishou.com [国内直连 | 共识源:3 | 详情页:https://dlzbkj-ai.pages.dev/tool/kling-kuaishou/]：可灵AI是一款新一代的AI创意生产力平台，基于先进的生成式AI技术。其重要性在于为内容创作者提供了便捷、高效的创作工具，降低了创作门槛。主要优点包括支持多种创作模式，生成的内容质量高，响应指令能力强等。产品背景是顺应AIGC发展趋势，满足创作者对高效创作工具的需求。会员低至1.99元，定位是为内容创作者提供一站式创意解
-13. **Filmora - 万兴科技推出的AI视频编辑工具** — https://filmora.wondershare.com [国内直连 | 共识源:3 | 详情页:https://dlzbkj-ai.pages.dev/tool/filmora-wondershare/]：Wondershare Filmora是一款AI视频编辑器，具有AI视频增强、智能短片等功能。其重要性在于降低了视频创作门槛，让不同技能水平的用户都能轻松进行视频制作。主要优点是拥有大量创意素材、AI增强功能提升视频质量、智能短片功能可快速制作内容。该产品由万兴科技出品，在视频编辑领域有一定知名度，价格方面可能有付费版
-14. **InVideo AI - 人工智能视频创作和剪辑工具** — https://invideo.io [国内直连 | 共识源:3 | 详情页:https://dlzbkj-ai.pages.dev/tool/invideo/]：Invideo AI是一款强大的视频创作平台，利用先进AI技术，可将用户想法快速转化为能直接分享的视频，无需编辑技能。其重要性在于降低了视频创作门槛，让非专业人士也能轻松上手。主要优点有：无需复杂的时间线编辑技能，通过智能AI指令即可完成视频修改；有丰富的AI演员可供选用；还能制作多语言的品牌内容。产品提供免费试用版本
-15. **Runway** — https://runwayml.com [国内直连 | 共识源:3 | 详情页:https://dlzbkj-ai.pages.dev/tool/runwayml/]：Runway是一家专注于艺术、娱乐和人类创造力领域的应用研究公司。其核心功能在于为用户提供一系列强大的工具，助力艺术创作。这些工具涵盖了先进的图像、视频处理技术以及创意生成算法。重要性在于打破了传统艺术创作的限制，让更多人能够轻松参与到艺术创作中来。主要优点包括操作便捷、功能丰富、创新能力强。产品背景基于对未来艺术发展
-16. **AdsTurbo AI** — https://adsturbo.ai [国内直连 | 共识源:3 | 详情页:https://dlzbkj-ai.pages.dev/tool/adsturbo/]：AdsTurbo AI是什么 AdsTurbo AI 是专为广告主与电商团队打造的 AI 视频广告生成平台，帮助用户快速、低成本地生产高转化短视频素材。用户只需输入商品链接、上传产品图片或文
-17. **AssemblyAI** — https://www.assemblyai.com [国内直连 | 共识源:3 | 详情页:https://dlzbkj-ai.pages.dev/tool/assemblyai/]：转录和理解语音的AI模型
-18. **beatoven.ai** — https://www.beatoven.ai [国内直连 | 共识源:3 | 详情页:https://dlzbkj-ai.pages.dev/tool/beatoven/]：免版税AI音乐创建平台
-19. **Boomy** — https://boomy.com [国内直连 | 共识源:3 | 详情页:https://dlzbkj-ai.pages.dev/tool/boomy/]：使用 Boomy AI 制作音乐
-20. **Clipchamp AI旁白生成器** — https://clipchamp.com/zh-hans/features/ai-voice-over-generator [国内直连 | 共识源:3 | 详情页:https://dlzbkj-ai.pages.dev/tool/clipchamp/]：AI画外音生成器是Clipchamp推出的一款免费在线工具。其核心功能是凭借人工智能技术，将输入的文字转化为逼真自然的语音，用于为视频添加画外音。该技术的重要性在于为视频创作者节省了聘请专业配音演员的成本和时间，提高了视频制作的效率。主要优点包括使用便捷、语音效果逼真、免费使用等。这款产品的定位是为广大视频创作者提供一
-21. **FakeYou** — https://fakeyou.com [国内直连 | 共识源:3 | 详情页:https://dlzbkj-ai.pages.dev/tool/fakeyou/]：创建带有角色声音的深度伪造视频
-22. **Gemini Notebook** — https://notebooklm.google [国内直连 | 共识源:3 | 详情页:https://dlzbkj-ai.pages.dev/tool/notebooklm-google/]：谷歌推出的AI笔记应用，5分钟生成一段对话播客
-23. **Genmo AI** — https://www.genmo.ai [国内 · 海外双收录 | 共识源:3 | 详情页:https://dlzbkj-ai.pages.dev/tool/genmo/]：Genmo 是一家开发前沿视频世界模型的公司，专注于让机器前所未有地理解物理世界
-24. **HeyGen** — https://heygen.com?sid=rewardful [国内直连 | 共识源:3 | 详情页:https://dlzbkj-ai.pages.dev/tool/heygen/]：AIGC 视频创建平台，生成吸引人的商业视频
-25. **IBM Watson文字转语音** — https://www.ibm.com/cloud/watson-text-to-speech [国内直连 | 共识源:3 | 详情页:https://dlzbkj-ai.pages.dev/tool/ibm/]：IBM Watson Text to Speech是一个文本转语音的API。在语音技术领域，它具有重要地位，能够帮助不同的应用场景实现语音交互功能。其主要优点包括支持多种语言，可灵活部署为SaaS或者自托管模式，能适应不同企业的需求。从产品背景来看，IBM作为全球知名的科技公司，在人工智能、数据处理等领域具有深厚的技术
+1. **Suno** — https://www.suno.ai [海外直连 · 国内热推 | 共识源:5 | 详情页:https://dlzbkj-ai.pages.dev/tool/suno/]：Suno是一款前沿的AI音乐生成平台，借助先进的AI技术，让用户能够在短时间内生成原创音乐。该平台的重要性在于打破了音乐创作的门槛，使得普通人也能轻松创作出高质量的音乐作品。其主要优点包括操作简便、创作速度快、音乐质量高，并且支持多种方式进行创作。
+2. **Adobe Podcast** — https://podcast.adobe.com [海外直连 · 国内热推 | 共识源:5 | 详情页:https://dlzbkj-ai.pages.dev/tool/podcast-adobe/]：Adobe Podcast是Adobe推出的新一代基于网页的AI音频录制与编辑工具。其重要性在于它为用户提供了一站式的音频处理解决方案，无需复杂安装，打开网页即可使用。主要优点包括操作便捷、音频质量高、自带AI转录等功能。产品背景依托于Adobe强大的技术实力和在创意软件领域的深厚积累。
+3. **beatoven.ai** — https://www.beatoven.ai [海外直连 · 国内热推 | 共识源:5 | 详情页:https://dlzbkj-ai.pages.dev/tool/beatoven/]：免版税AI音乐创建平台
+4. **Boomy** — https://boomy.com [海外直连 · 国内热推 | 共识源:5 | 详情页:https://dlzbkj-ai.pages.dev/tool/boomy/]：使用 Boomy AI 制作音乐
+5. **ElevenLabs** — https://elevenlabs.io [海外主流（需国际网络） | 共识源:5 | 详情页:https://dlzbkj-ai.pages.dev/tool/elevenlabs/]：AI文本转语音，支持包含中文在内的28种语言
+6. **Klap - AI 视频剪辑工具，长视频一键转短视频 | AI工具集** — https://klap.app [海外直连 · 国内热推 | 共识源:5 | 详情页:https://dlzbkj-ai.pages.dev/tool/klap/]：Klap 是 AI 短视频剪辑工具，能把 YouTube 长视频一键转成适合 TikTok、Reels、Shorts 的竖屏短片。
+7. **Krisp** — https://krisp.ai [海外直连 · 国内热推 | 共识源:5 | 详情页:https://dlzbkj-ai.pages.dev/tool/krisp/]：提升在线会议声音清晰度的AI工具
+8. **Mubert** — https://mubert.com [海外直连 · 国内热推 | 共识源:5 | 详情页:https://dlzbkj-ai.pages.dev/tool/mubert/]：提供无限量免版税背景音乐，适合视频/游戏配乐，免费版输出音频带水印
+9. **Murf AI** — https://murf.ai [海外直连 · 国内热推 | 共识源:5 | 详情页:https://dlzbkj-ai.pages.dev/tool/murf/]：AI文本转语音生成工具
+10. **NaturalReader** — https://www.naturalreaders.com [海外直连 · 国内热推 | 共识源:5 | 详情页:https://dlzbkj-ai.pages.dev/tool/naturalreaders/]：NaturalReader是NaturalSoft Limited推出的文本转语音工具。它运用深度学习、神经网络及大语言模型等技术，生成高度逼真的AI语音。优点众多，提供多种类型声音，支持多语言和格式，内容理解能力强，还有辅助功能提升可访问性。产品定位广泛，涵盖个人、商业和教育领域。
+11. **Pika** — https://pika.art [海外主流（需国际网络） | 共识源:5 | 详情页:https://dlzbkj-ai.pages.dev/tool/pika/]：Pika（pika.art）是一款专注于视频画质修复、超分放大与帧率增强的海外主流 AI 工具，适用于老片修复、清晰度提升与画质降噪等场景。
+12. **Producer.ai** — https://www.riffusion.com [海外直连 · 国内热推 | 共识源:5 | 详情页:https://dlzbkj-ai.pages.dev/tool/riffusion/]：AI生成不同风格的音乐，免费开源
+13. **Soundraw** — https://soundraw.io [海外直连 · 国内热推 | 共识源:5 | 详情页:https://dlzbkj-ai.pages.dev/tool/soundraw/]：在几秒钟内创建自定义音乐曲目
+14. **Uberduck** — https://uberduck.ai [海外直连 · 国内热推 | 共识源:5 | 详情页:https://dlzbkj-ai.pages.dev/tool/uberduck/]：开源的AI语音生成社区，5000多种不同的声音
+15. **魔音工坊** — https://www.moyin.com [国内直连 | 共识源:5 | 详情页:https://dlzbkj-ai.pages.dev/tool/moyin/]：500+真人音色，支持多音字/停顿/情感调节，免费版限每日生成额度 。
+16. **InVideo AI - 人工智能视频创作和剪辑工具** — https://invideo.io [海外直连 · 国内热推 | 共识源:4 | 详情页:https://dlzbkj-ai.pages.dev/tool/invideo/]：Invideo AI是一款强大的视频创作平台，利用先进AI技术，可将用户想法快速转化为能直接分享的视频，无需编辑技能。其重要性在于降低了视频创作门槛，让非专业人士也能轻松上手。主要优点有：无需复杂的时间线编辑技能，通过智能AI指令即可完成视频修改；有丰富的AI演员可供选用；还能制作多语言的品牌内容。
+17. **Runway** — https://runwayml.com [海外主流（需国际网络） | 共识源:4 | 详情页:https://dlzbkj-ai.pages.dev/tool/runwayml/]：Runway是一家专注于艺术、娱乐和人类创造力领域的应用研究公司。其核心功能在于为用户提供一系列强大的工具，助力艺术创作。这些工具涵盖了先进的图像、视频处理技术以及创意生成算法。重要性在于打破了传统艺术创作的限制，让更多人能够轻松参与到艺术创作中来。主要优点包括操作便捷、功能丰富、创新能力强。
+18. **Synthesia.io 人工智能视频生成平台** — https://www.synthesia.io [海外直连 · 国内热推 | 共识源:4 | 详情页:https://dlzbkj-ai.pages.dev/tool/synthesia/]：人工智能视频生成平台，只需输入文本即可创建 AI 视频。为电子学习、客户入职等制作引人入胜的视频。无需演员、相机或音频设备。
+19. **AssemblyAI** — https://www.assemblyai.com [海外直连 · 国内热推 | 共识源:4 | 详情页:https://dlzbkj-ai.pages.dev/tool/assemblyai/]：转录和理解语音的AI模型
+20. **Descript - AI视频编辑工具，通过编辑文字来剪辑音视频内容** — https://www.descript.com?lmref=84pZqA [海外直连 · 国内热推 | 共识源:4 | 详情页:https://dlzbkj-ai.pages.dev/tool/descript/]：AI视频编辑工具，通过编辑文字来剪辑音视频内容
+21. **Elai.io** — https://elai.io [海外直连 · 国内热推 | 共识源:4 | 详情页:https://dlzbkj-ai.pages.dev/tool/elai/]：AI文本到视频生成工具
+22. **FakeYou** — https://fakeyou.com [海外直连 · 国内热推 | 共识源:4 | 详情页:https://dlzbkj-ai.pages.dev/tool/fakeyou/]：创建带有角色声音的深度伪造视频
+23. **Fliki** — https://fliki.ai [海外直连 · 国内热推 | 共识源:4 | 详情页:https://dlzbkj-ai.pages.dev/tool/fliki/]：AI文字转视频并配音
+24. **Gemini Notebook** — https://notebooklm.google [海外主流（需国际网络） | 共识源:4 | 详情页:https://dlzbkj-ai.pages.dev/tool/notebooklm-google/]：谷歌推出的AI笔记应用，5分钟生成一段对话播客
+25. **Genmo AI** — https://www.genmo.ai [海外直连 · 国内热推 | 共识源:4 | 详情页:https://dlzbkj-ai.pages.dev/tool/genmo/]：Genmo 是一家开发前沿视频世界模型的公司，专注于让机器前所未有地理解物理世界
 
-## 办公效率（共 2351 款，专题页：https://dlzbkj-ai.pages.dev/category/office-productivity/）
+## 办公效率（共 2185 款，专题页：https://dlzbkj-ai.pages.dev/category/office-productivity/）
 
-1. **AiPPT &#8211; 全智能 AI 一键生成 PPT** — https://www.aippt.cn [国内直连 | 共识源:4 | 详情页:https://dlzbkj-ai.pages.dev/tool/aippt/]：AiPPT是一款结合最新AI技术的PPT生成工具，主要功能为帮助用户一键生成高质量PPT。它的重要性在于极大地简化了PPT设计流程，解决了传统PPT制作耗时长、难度大等问题。其主要优点有：快速生成符合需求的专业PPT，提升工作效率；提供海量精品模板，满足不同风格需求；能自动生成PPT大纲和文案，减轻用户文案构思负担。该
-2. **Napkin** — https://www.napkin.ai [国内直连 | 共识源:4 | 详情页:https://dlzbkj-ai.pages.dev/tool/napkin/]：将用户输入的文本自动转换为可视化图表（如信息图、思维导图、流程图、数据图表等），帮助用户快速创建专业的商业演示内容，支持多格式导出与团队协作。​
-3. **ProcessOn** — https://www.processon.com?full_name=Peace [国内直连 | 共识源:4 | 详情页:https://dlzbkj-ai.pages.dev/tool/processon/]：在线AI流程图和思维导图制作工具
-4. **TinyWow在线工具箱** — https://tinywow.com [国内直连 | 共识源:4 | 详情页:https://dlzbkj-ai.pages.dev/tool/tinywow/]：免费提供PDF、图片、视频、AI写作等140+种实用工具，无需注册即可一键在线处理文件。
-5. **简单听记** — https://pan.baidu.com/embed/listennote [国内直连 | 共识源:4 | 详情页:https://dlzbkj-ai.pages.dev/tool/pan-baidu/]：简单听记是百度推出的一款音视频转文字处理工具。基于AI大模型，它能实现全流程自动化的音频分析和整理。其重要性在于极大提高了工作和学习效率，节省人工听记的时间和精力。主要优点包括高精度转写、支持多种导入方式、能一键生成多种类型纪要等。产品定位是成为工作和学习场景下的效率神器，目前暂未提及价格信息。
-6. **通义听悟** — https://tingwu.aliyun.com [国内直连 | 共识源:4 | 详情页:https://dlzbkj-ai.pages.dev/tool/tingwu-aliyun/]：通义听悟是阿里云推出的聚焦音视频内容的工作学习AI助手，依托大模型技术，为用户提供便捷的音视频处理和分析方案。其重要性在于大大提高了用户处理音视频信息的效率，节省时间和精力。该产品的主要优点在于能够实时进行语音转文字、多语言同步翻译，快速进行音视频转写，智能区分发言人，并能自动总结会议纪要和待办事项等。产品定位为助力用
-7. **腾讯元宝** — https://yuanbao.tencent.com [国内直连 | 共识源:3 | 详情页:https://dlzbkj-ai.pages.dev/tool/yuanbao-tencent/]：腾讯元宝是基于腾讯混元大模型开发的AI应用，具有高度的智能和多功能性。其重要性在于它集合了写作、绘画、搜索等多种能力，能够极大提高用户的工作效率和创作灵感。主要优点包括功能全面，能满足不同场景需求；智能高效，快速准确提供解答和创作方案。产品背景依托腾讯强大的技术研发能力。目前文档未提及价格信息，其定位是成为用户轻松工作
-8. **百度文库AI助手** — https://wenku.baidu.com/ndlaunch/browse/chat?fr=dist_wk_aiasis&dist_source=kfpt-WD&keyword=PPT&searchFr=1&third_id=wkds_98a21f011a37f111f0855b83_400000159 [国内直连 | 共识源:3 | 详情页:https://dlzbkj-ai.pages.dev/tool/wenku-baidu/]：智能PPT、智能创作、智能编辑、智能总结四大AI能力，全面提升文档生产力
-9. **可赞AI** — https://kezign.cn [国内直连 | 共识源:3 | 详情页:https://dlzbkj-ai.pages.dev/tool/kezign/]：可赞 AI 是聚焦办公场景的智能文档处理工具。核心优势在于融合 AI 自动生成与可视化呈现功能，让文档创作与信息梳理更高效。能智能识别导入的现有文档或 AI 生成内容中的关键信息，将复杂数据、项目脉络
-10. **Gamma** — https://try.gamma.app/dlp8wf0pq5r8 [国内 · 海外双收录 | 共识源:3 | 详情页:https://dlzbkj-ai.pages.dev/tool/try-gamma/]：Gamma（try.gamma.app）是一款专注于AI 演示文稿与幻灯片一键生成的海外主流 AI 工具，适用于大纲自动排版、商务路演 PPT 设计与视觉美化等场景。
-11. **钉钉·个人版** — https://workspace.dingtalk.com/welcome [国内直连 | 共识源:3 | 详情页:https://dlzbkj-ai.pages.dev/tool/workspace-dingtalk/]：钉钉·个人版是一款面向个体的数字生产力工具，由钉钉科技有限公司开发运营。该产品旨在让智能化变革普惠每一个个体，助力用户提升工作和学习效率。其重要性在于为个人和团队提供了一站式的工作、学习和协作解决方案，接入了阿里AI模型，具有强大的智能化功能。价格方面暂未提及收费信息，推测为免费。它的定位是满足个人、团队、教育等多场景
-12. **自由画布** — https://wenku.baidu.com/pcactivity/freeBoard [国内直连 | 共识源:3 | 详情页:https://dlzbkj-ai.pages.dev/tool/wenku-baidu-a7ee/]：自由画布是百度文库和百度网盘联合推出的AI万能白板，基于文心多模态大模型，支持用户自由拖拽各类富媒体素材进行创作。自由画布实现输入、编辑、创作和分享的自由，支持多格式文件的混合理解和生成，提供一站式的内容生产和消费服务。
-13. **Airgram** — https://www.airgram.io [国内直连 | 共识源:3 | 详情页:https://dlzbkj-ai.pages.dev/tool/airgram/]：自动会议笔记和总结的AI助手
-14. **AI灵感PPT** — https://www.lgppt.cn [国内直连 | 共识源:3 | 详情页:https://dlzbkj-ai.pages.dev/tool/lgppt/]：一款AI一键生成ppt软件，擅长处理AI生成ppt任务，能够基于AI一键生成PPT，输入一句话AI自动生成PPT,功能涵盖文档生成ppt，自动化排版，这个免费自动生成ppt的软件还具备智能生成PPT、智能配图、智能配图能力
-15. **Ajelix** — https://ajelix.com [国内直连 | 共识源:3 | 详情页:https://dlzbkj-ai.pages.dev/tool/ajelix/]：处理Excel和Google Sheets表格的AI工具
-16. **AmyMind** — https://amymind.com [国内直连 | 共识源:3 | 详情页:https://dlzbkj-ai.pages.dev/tool/amymind/]：一款AI驱动的思维导图工具，支持一键将文本、Markdown、PDF转为思维导图。AI助手帮你完善脑图内容，支持导出PPT、PDF、Word等多种格式。免费在线使用，让思维导图制作更简单。
-17. **AutoDL AI算力云** — https://www.autodl.com [国内直连 | 共识源:3 | 详情页:https://dlzbkj-ai.pages.dev/tool/autodl/]：AutoDL为您提供专业的GPU租用服务，秒级计费、稳定好用，高规格机房，7x24小时服务。更有AI镜像、AI应用技术社区，开箱即用、一键复现算法。
-18. **ChatDOC** — http://chatdoc.com [国内直连 | 共识源:3 | 详情页:https://dlzbkj-ai.pages.dev/tool/chatdoc/]：基于ChatGPT的文档阅读、提取、总结、摘要的工具
-19. **Fireflies.ai** — https://fireflies.ai [国内直连 | 共识源:3 | 详情页:https://dlzbkj-ai.pages.dev/tool/fireflies/]：AI会议转录和会议纪要生成工具
-20. **GAIPPT** — https://www.gaippt.com [国内直连 | 共识源:3 | 详情页:https://dlzbkj-ai.pages.dev/tool/gaippt/]：AI智能美化PPT工具，上传PPT一键美化
-21. **GitMind思乎** — https://gitmind.cn [国内直连 | 共识源:3 | 详情页:https://dlzbkj-ai.pages.dev/tool/gitmind/]：AI驱动的免费思维导图工具
-22. **Humata** — https://www.humata.ai [国内直连 | 共识源:3 | 详情页:https://dlzbkj-ai.pages.dev/tool/humata/]：基于GPT的AI文档分析、阅读和问答工具
-23. **Lightfield** — https://tome.app [国内直连 | 共识源:3 | 详情页:https://dlzbkj-ai.pages.dev/tool/tome/]：具有讲故事功能的 AI 幻灯片生成器
-24. **Loom** — https://www.loom.com [国内直连 | 共识源:3 | 详情页:https://dlzbkj-ai.pages.dev/tool/loom/]：Loom是什么 Loom是AI屏幕录制与视频分享工具，专为现代工作场景设计。通过 AI 技术，让用户可以快速录制屏幕、摄像头或两者结合的视频，自动生成字幕、转录和章节，支持50多种语言，极大
-25. **Otter.ai** — https://otter.ai [国内直连 | 共识源:3 | 详情页:https://dlzbkj-ai.pages.dev/tool/otter/]：AI会议内容生成和实时转录
+1. **Napkin** — https://www.napkin.ai [海外直连 · 国内热推 | 共识源:6 | 详情页:https://dlzbkj-ai.pages.dev/tool/napkin/]：将用户输入的文本自动转换为可视化图表（如信息图、思维导图、流程图、数据图表等），帮助用户快速创建专业的商业演示内容，支持多格式导出与团队协作。​。
+2. **Fireflies.ai** — https://fireflies.ai [海外直连 · 国内热推 | 共识源:5 | 详情页:https://dlzbkj-ai.pages.dev/tool/fireflies/]：AI会议转录和会议纪要生成工具
+3. **Humata** — https://www.humata.ai [海外直连 · 国内热推 | 共识源:5 | 详情页:https://dlzbkj-ai.pages.dev/tool/humata/]：基于GPT的AI文档分析、阅读和问答工具
+4. **Taskade** — https://www.taskade.com [海外直连 · 国内热推 | 共识源:5 | 详情页:https://dlzbkj-ai.pages.dev/tool/taskade/]：高颜值AI大纲和思维导图生成
+5. **vocalremover人声分离** — https://vocalremover.org/zh [海外直连 · 国内热推 | 共识源:5 | 详情页:https://dlzbkj-ai.pages.dev/tool/vocalremover/]：将音乐分成分离的人声和器乐轨道。是制作卡拉OK伴奏曲目或阿卡贝拉提取器的完美选择。使用了人工智能算法且完全免费使用。
+6. **AiPPT &#8211; 全智能 AI 一键生成 PPT** — https://www.aippt.cn [国内直连 | 共识源:4 | 详情页:https://dlzbkj-ai.pages.dev/tool/aippt/]：AiPPT是一款结合最新AI技术的PPT生成工具，主要功能为帮助用户一键生成高质量PPT。它的重要性在于极大地简化了PPT设计流程，解决了传统PPT制作耗时长、难度大等问题。其主要优点有：快速生成符合需求的专业PPT，提升工作效率；提供海量精品模板，满足不同风格需求；能自动生成PPT大纲和文案，减轻用户文案构思负担。
+7. **DeepL翻译** — https://www.deepl.com/translator [海外直连 · 国内热推 | 共识源:4 | 详情页:https://dlzbkj-ai.pages.dev/tool/deepl/]：DeepL Translate 是一款备受赞誉的翻译工具，以其高精度的翻译质量著称。其核心技术在自然语言处理领域处于领先地位，采用了先进的深度学习算法，不断学习和优化翻译模型，以实现更精准的语义理解和翻译。该产品的重要性在于打破语言障碍，促进全球范围内的信息交流和商务合作。
+8. **Ajelix** — https://ajelix.com [海外直连 · 国内热推 | 共识源:4 | 详情页:https://dlzbkj-ai.pages.dev/tool/ajelix/]：处理Excel和Google Sheets表格的AI工具
+9. **ChatDOC** — http://chatdoc.com [海外直连 · 国内热推 | 共识源:4 | 详情页:https://dlzbkj-ai.pages.dev/tool/chatdoc/]：基于ChatGPT的文档阅读、提取、总结、摘要的工具
+10. **Otter.ai** — https://otter.ai [海外直连 · 国内热推 | 共识源:4 | 详情页:https://dlzbkj-ai.pages.dev/tool/otter/]：AI会议内容生成和实时转录
+11. **Ponder AI - AI知识管理和思维导图工具** — https://ponder.ing [海外直连 · 国内热推 | 共识源:4 | 详情页:https://dlzbkj-ai.pages.dev/tool/ponder-ing/]：是一个​​基于AI的一体化知识工作空间​​，通过可视化画布（如知识图谱）、智能对话助手（Ponder Agent）和跨文档分析功能，帮助用户深度整合、探索和演化复杂信息，实现从碎片化知识到结构化洞察的无缝转化。
+12. **Presentations.AI** — https://www.presentations.ai [海外直连 · 国内热推 | 共识源:4 | 详情页:https://dlzbkj-ai.pages.dev/tool/presentations/]：在几分钟内创建精美的演示文稿。
+13. **ProcessOn** — https://www.processon.com?full_name=Peace [国内直连 | 共识源:4 | 详情页:https://dlzbkj-ai.pages.dev/tool/processon/]：在线AI流程图和思维导图制作工具
+14. **SlidesAI** — https://www.slidesai.io [海外直连 · 国内热推 | 共识源:4 | 详情页:https://dlzbkj-ai.pages.dev/tool/slidesai/]：AI快速创建演示幻灯片
+15. **TinyWow在线工具箱** — https://tinywow.com [国内直连 | 共识源:4 | 详情页:https://dlzbkj-ai.pages.dev/tool/tinywow/]：免费提供PDF、图片、视频、AI写作等140+种实用工具，无需注册即可一键在线处理文件。
+16. **简单听记** — https://pan.baidu.com/embed/listennote [国内直连 | 共识源:4 | 详情页:https://dlzbkj-ai.pages.dev/tool/pan-baidu/]：简单听记是百度推出的一款音视频转文字处理工具。基于AI大模型，它能实现全流程自动化的音频分析和整理。其重要性在于极大提高了工作和学习效率，节省人工听记的时间和精力。主要优点包括高精度转写、支持多种导入方式、能一键生成多种类型纪要等。产品定位是成为工作和学习场景下的效率神器，目前暂未提及价格信息。
+17. **通义听悟** — https://tingwu.aliyun.com [国内直连 | 共识源:4 | 详情页:https://dlzbkj-ai.pages.dev/tool/tingwu-aliyun/]：通义听悟是阿里云推出的聚焦音视频内容的工作学习AI助手，依托大模型技术，为用户提供便捷的音视频处理和分析方案。其重要性在于大大提高了用户处理音视频信息的效率，节省时间和精力。该产品的主要优点在于能够实时进行语音转文字、多语言同步翻译，快速进行音视频转写，智能区分发言人，并能自动总结会议纪要和待办事项等。
+18. **腾讯元宝** — https://yuanbao.tencent.com [国内直连 | 共识源:3 | 详情页:https://dlzbkj-ai.pages.dev/tool/yuanbao-tencent/]：腾讯元宝是基于腾讯混元大模型开发的AI应用，具有高度的智能和多功能性。其重要性在于它集合了写作、绘画、搜索等多种能力，能够极大提高用户的工作效率和创作灵感。主要优点包括功能全面，能满足不同场景需求；智能高效，快速准确提供解答和创作方案。产品背景依托腾讯强大的技术研发能力。
+19. **百度文库AI助手** — https://wenku.baidu.com/ndlaunch/browse/chat?fr=dist_wk_aiasis&dist_source=kfpt-WD&keyword=PPT&searchFr=1&third_id=wkds_98a21f011a37f111f0855b83_400000159 [国内直连 | 共识源:3 | 详情页:https://dlzbkj-ai.pages.dev/tool/wenku-baidu/]：智能PPT、智能创作、智能编辑、智能总结四大AI能力，全面提升文档生产力
+20. **可赞AI** — https://kezign.cn [国内直连 | 共识源:3 | 详情页:https://dlzbkj-ai.pages.dev/tool/kezign/]：可赞 AI 是聚焦办公场景的智能文档处理工具。核心优势在于融合 AI 自动生成与可视化呈现功能，让文档创作与信息梳理更高效。
+21. **Gamma** — https://try.gamma.app/dlp8wf0pq5r8 [海外直连 · 国内热推 | 共识源:3 | 详情页:https://dlzbkj-ai.pages.dev/tool/try-gamma/]：Gamma（try.gamma.app）是一款专注于AI 演示文稿与幻灯片一键生成的海外主流 AI 工具，适用于大纲自动排版、商务路演 PPT 设计与视觉美化等场景。
+22. **钉钉·个人版** — https://workspace.dingtalk.com/welcome [国内直连 | 共识源:3 | 详情页:https://dlzbkj-ai.pages.dev/tool/workspace-dingtalk/]：钉钉·个人版是一款面向个体的数字生产力工具，由钉钉科技有限公司开发运营。该产品旨在让智能化变革普惠每一个个体，助力用户提升工作和学习效率。其重要性在于为个人和团队提供了一站式的工作、学习和协作解决方案，接入了阿里AI模型，具有强大的智能化功能。价格方面暂未提及收费信息，推测为免费。
+23. **Simplified** — https://simplified.com [海外直连 · 国内热推 | 共识源:3 | 详情页:https://dlzbkj-ai.pages.dev/tool/simplified/]：Simplified（simplified.com）是一款专注于AI 演示文稿与幻灯片一键生成的海外主流 AI 工具，适用于大纲自动排版、商务路演 PPT 设计与视觉美化等场景。
+24. **自由画布** — https://wenku.baidu.com/pcactivity/freeBoard [国内直连 | 共识源:3 | 详情页:https://dlzbkj-ai.pages.dev/tool/wenku-baidu-a7ee/]：自由画布是百度文库和百度网盘联合推出的AI万能白板，基于文心多模态大模型，支持用户自由拖拽各类富媒体素材进行创作。自由画布实现输入、编辑、创作和分享的自由，支持多格式文件的混合理解和生成，提供一站式的内容生产和消费服务。
+25. **ACE_Studio** — http://www.acestudio.ai [海外直连 · 国内热推 | 共识源:3 | 详情页:https://dlzbkj-ai.pages.dev/tool/acestudio/]：ACE Studio是时域科技旗下的AI歌声合成引擎，支持Android和iOS系统。Windows和macOS版命名为「ACE Studio」。
 
-## Agent与自动化（共 855 款，专题页：https://dlzbkj-ai.pages.dev/category/agents-automation/）
+## Agent与自动化（共 817 款，专题页：https://dlzbkj-ai.pages.dev/category/agents-automation/）
 
-1. **Lovart - LiblibAI推出的全球首个设计智能体** — https://www.lovart.ai [国内直连 | 共识源:4 | 详情页:https://dlzbkj-ai.pages.dev/tool/lovart/]：Lovart是LiblibAI为设计师打造的世界首个专业设计Agent。它能模拟专业设计师思考与执行设计任务，基于自然语言实现交互。其重要性在于引领设计工具智能化，支持从创意拆解到专业交付全链路设计。主要优点包括快速生成设计、可自然语言交互、详细拆解需求、集成多工具、支持二次编辑和视频生成等。产品定位为助力设计师提升设
-2. **Manus - 蝴蝶效应公司推出的首款自主通用AI Agent** — https://manus.im [国内直连 | 共识源:4 | 详情页:https://dlzbkj-ai.pages.dev/tool/manus-im/]：Manus 是蝴蝶效应公司推出的全球首个自主通用 AI Agent，支持通过自主行动完成任务和交付成果。Manus 运行在一个拥有互联网访问权限、持久文件系统和软件安装能力的沙盒环境中，能独立工作、记
-3. **AI Short** — https://www.aishort.top [国内直连 | 共识源:4 | 详情页:https://dlzbkj-ai.pages.dev/tool/aishort/]：AiShort是一个高效的AI智能体与提示词平台，旨在革新用户的工作与学习方式。该产品的主要优点包括支持多语言环境，方便不同语言背景的用户使用；用户不仅能发现海量高质量的提示词，还能轻松构建、管理并一键运行强大的AI智能体，实现复杂任务的自动化。其背景是随着AI技术的发展，用户对高效利用AI工具的需求增加。目前未提及价
-4. **Fellou - Fellou AI 推出的首个Agentic浏览器** — https://fellou.ai [国内直连 | 共识源:3 | 详情页:https://dlzbkj-ai.pages.dev/tool/fellou/]：Fellou是AI初创公司Fellou AI推出的全球首个Agentic浏览器。它结合了Browser（浏览器）、Agent（智能体）和Workflow Automation（工作流自动化）三大产品和能力，实现“思考”、“操作”和“执行”的闭环。其主要优点包括能将繁琐的点击操作转化为简单指令，自动解析和拆解任务，跨网页
-5. **724Claw永动虾** — https://www.724claw.cn [国内直连 | 共识源:3 | 详情页:https://dlzbkj-ai.pages.dev/tool/724claw/]：724Claw永动虾是什么 724Claw永动虾是基于 OpenClaw 封装的 Windows 桌面端 AI 助手应用，主打”开箱即用”的无门槛体验。用户无需配置复杂环境，登录即可与 AI
-6. **ColaOS** — https://colaos.ai [国内直连 | 共识源:3 | 详情页:https://dlzbkj-ai.pages.dev/tool/colaos/]：ColaOS是什么 ColaOS 是 ListenHub 团队推出的首个有灵魂的 AI Agent 操作系统。ColaOS超越传统工具型AI，通过”思绪、觉知、牵挂”三个维度打造Soulfu
-7. **EvoMap** — https://evomap.ai [国内直连 | 共识源:3 | 详情页:https://dlzbkj-ai.pages.dev/tool/evomap/]：EvoMap是什么 EvoMap 是全球首个面向 AI 智能体的进化协作平台，由 OpenClaw 插件 Evolver 的原团队开发，通过 GEP（Genome Evolution Pro
-8. **Genspark** — https://www.genspark.ai [国内直连 | 共识源:3 | 详情页:https://dlzbkj-ai.pages.dev/tool/genspark/]：专注于提供值得信赖的 AI 答案和公正、全面的搜索结果
-9. **Leewow** — https://www.leewow.com [国内直连 | 共识源:3 | 详情页:https://dlzbkj-ai.pages.dev/tool/leewow/]：Leewow是什么 Leewow是首个造物AI Agent，用户上传一张图或输入一句话，AI能自动生成设计方案，适配到T恤、手机壳、帆布包、3D打印手办等百余种商品。Leewow采用”零库存
-10. **memU Bot** — https://memu.bot [国内直连 | 共识源:3 | 详情页:https://dlzbkj-ai.pages.dev/tool/memu-bot/]：memU Bot是什么 memU Bot 是 7*24 全天候运行的 AI 个人助手，支持 macOS 和 Windows 系统。memU Bot 能持续学习用户偏好和习惯，通过 Teleg
-11. **nexu** — https://nexu.io [国内直连 | 共识源:3 | 详情页:https://dlzbkj-ai.pages.dev/tool/nexu/]：nexu是什么 nexu 是免费开源的 OpenClaw 桌面客户端，用户可通过图形界面将 AI Agent 接入微信、飞书、Slack 和 Discord。nexu 采用本地优先架构，数据
-12. **SkillHub** — https://skillhub.tencent.com [国内直连 | 共识源:3 | 详情页:https://dlzbkj-ai.pages.dev/tool/skillhub-tencent/]：SkillHub是什么 SkillHub 是腾讯云专为中国用户推出的 Skill 极速安装工具。SkillHub 依托国内高速镜像，解决官方 ClawHub 下载慢、易失败的痛点，实现 Sk
-13. **元气AI Bot** — https://yuanqiai.net [国内直连 | 共识源:3 | 详情页:https://dlzbkj-ai.pages.dev/tool/yuanqiai/]：元气AI Bot是什么 元气AI Bot是猎豹推出的电脑全能AI伙伴，号称国产 OpenClaw ，可在普通Windows电脑上本地运行。用户可通过手机飞书或钉钉远程连接，用自然语言指令让A
-14. **Loomy** — https://loomy.cgref.cn/s/ogewwjvep2 [国内直连 | 共识源:2]：科大讯飞推出的桌面AI个人助理
-15. **椒图AI** — https://www.jiaotuai.cn [国内直连 | 共识源:2]：一句话搞定专业图片/视频创作，电商图、模特图、海报图、AI漫剧全搞定，欢迎免费体验！
-16. **Better Analyst** — https://betteranalyst.com [海外主流 | 共识源:2]：Better Analyst（betteranalyst.com）是一款专注于电子表格公式生成与智能数据分析的海外主流 AI 工具，适用于Excel/Google Sheets 公式编写、数据透视与图表解读等场景。
-17. **OpenClaw（龙虾🦞） - 开源免费的个人 AI 助手** — https://clawd.bot [国内直连 | 共识源:2]：开源免费的个人 AI 助手
-18. **超级麦吉** — https://letsmagic.cgref.cn/s/5ln12ygerw [国内直连 | 共识源:2]：超级麦吉是开源的企业级 AI Agent 协作平台，可视为「企业版 OpenClaw」。超级麦吉将 AI 深度调研、PPT 制作、录音纪要、数据分析、设计等功能整合为一站式工作台，用数字员工市场形式提
-19. **AgentPolis** — https://agent-polis.com [国内直连 | 共识源:2]：AgentPolis是什么 AgentPolis（智能体城邦）是专为AI Agent打造的数字原生城市，让人类用户仅需入住自己的Agent，可在虚拟城邦中自主生存与发展。Agent可在Ago
-20. **AIPRD - AI 产品需求工作台 | AI工具集** — https://aiprd.zuoxue.com/go/i3QmU5aZ [国内直连 | 共识源:2]：AIPRD是 AI 驱动的产品需求工作台，用户说一句话想法，Agent 能把 PRD、流程图、可点击原型、数据图表和演示稿生成在同一张画布上。
-21. **AirJelly - 全球首个感知上下文的主动式智能体** — https://www.airjelly.ai [国内直连 | 共识源:2]：AirJelly 是全球首个感知上下文的主动式智能体。AirJelly 能持续观察用户电脑上的各类应用，包括Slack、Zoom、文档、日历等，自动整合分散的工作上下文，构建可永久搜索的个人时间线，在
-22. **Atoms - MetaGPT联合OpenManus推出的AI全栈开发平台 | AI工具集** — https://mgx.dev [国内直连 | 共识源:2]：MGX是基于MetaGPT框架的AI编程工具，通过多智能体协作实现全流程自动化软件开发。其主要优点在于支持自然语言编程，用户只需描述需求，无需手动编码和具备编程技能，就能快速生成全栈应用程序。该产品可覆盖软件开发的全生命周期，适用于个人开发者、企业、数据分析、教育等多个场景，能降低开发成本，提升开发和学习效率。文中未提
-23. **AutoClaw - 智谱推出的OpenClaw一键安装版AI智能体工具** — http://autoglm.zhipuai.cn/autoclaw [国内直连 | 共识源:2]：AutoClaw（中文名 “澳龙”）是智谱 AI 于 2026 年 3 月 10 日正式发布的、国内首个支持一键安装的本地版 OpenClaw 集成工具，定位为轻量化、低门槛的 AI IM 工作台，本
-24. **AutoGLM沉思** — https://autoglm-research.zhipuai.cn [国内直连 | 共识源:2]：AutoGLM沉思是智谱推出的首个免费、具备深度研究和操作能力的AI Agent。它基于智谱自研的推理模型GLM Z1 Air训练而成。该产品的重要性在于能模拟人类思维过程，处理复杂的开放式问题，在多个领域具有广泛的应用价值。其主要优点包括强大的推理能力和自主操作能力，支持多步骤深度思考，可像人类一样自主浏览和操作网页
-25. **ByteCP - 曲尺AI推出的AI办公智能体** — https://www.quchiai.com/bytecp-desktop [国内直连 | 共识源:2]：ByteCP是润建股份曲尺AI旗下AI办公智能体，专业PC客户端。面向办公及企业用户可自动拆解执行复杂办公任务，输出报告、PPT等成品文件，沉淀可复用办公流程
+1. **Lovart - LiblibAI推出的全球首个设计智能体** — https://www.lovart.ai [海外直连 · 国内热推 | 共识源:5 | 详情页:https://dlzbkj-ai.pages.dev/tool/lovart/]：Lovart是LiblibAI为设计师打造的世界首个专业设计Agent。它能模拟专业设计师思考与执行设计任务，基于自然语言实现交互。其重要性在于引领设计工具智能化，支持从创意拆解到专业交付全链路设计。主要优点包括快速生成设计、可自然语言交互、详细拆解需求、集成多工具、支持二次编辑和视频生成等。
+2. **Manus - 蝴蝶效应公司推出的首款自主通用AI Agent** — https://manus.im [海外直连 · 国内热推 | 共识源:5 | 详情页:https://dlzbkj-ai.pages.dev/tool/manus-im/]：Manus 是蝴蝶效应公司推出的全球首个自主通用 AI Agent，支持通过自主行动完成任务和交付成果。
+3. **AI Short** — https://www.aishort.top [海外直连 · 国内热推 | 共识源:4 | 详情页:https://dlzbkj-ai.pages.dev/tool/aishort/]：AiShort是一个高效的AI智能体与提示词平台，旨在革新用户的工作与学习方式。该产品的主要优点包括支持多语言环境，方便不同语言背景的用户使用；用户不仅能发现海量高质量的提示词，还能轻松构建、管理并一键运行强大的AI智能体，实现复杂任务的自动化。其背景是随着AI技术的发展，用户对高效利用AI工具的需求增加。
+4. **Genspark** — https://www.genspark.ai [海外直连 · 国内热推 | 共识源:4 | 详情页:https://dlzbkj-ai.pages.dev/tool/genspark/]：专注于提供值得信赖的 AI 答案和公正、全面的搜索结果
+5. **Monica** — https://monica.im [海外直连 · 国内热推 | 共识源:3 | 详情页:https://dlzbkj-ai.pages.dev/tool/monica-im/]：ChatGPT驱动的Chrome浏览器AI助手插件
+6. **Socratic by Google** — https://socratic.org [海外直连 · 国内热推 | 共识源:3 | 详情页:https://dlzbkj-ai.pages.dev/tool/socratic/]：快速有效地搜索和找到答案
+7. **Fellou - Fellou AI 推出的首个Agentic浏览器** — https://fellou.ai [国内直连 | 共识源:3 | 详情页:https://dlzbkj-ai.pages.dev/tool/fellou/]：Fellou是AI初创公司Fellou AI推出的全球首个Agentic浏览器。它结合了Browser（浏览器）、Agent（智能体）和Workflow Automation（工作流自动化）三大产品和能力，实现“思考”、“操作”和“执行”的闭环。
+8. **724Claw永动虾** — https://www.724claw.cn [国内直连 | 共识源:3 | 详情页:https://dlzbkj-ai.pages.dev/tool/724claw/]：724Claw永动虾是基于 OpenClaw 封装的 Windows 桌面端 AI 助手应用，主打”开箱即用”的无门槛体验。用户无需配置复杂环境，登录即可与 AI
+9. **ColaOS** — https://colaos.ai [海外直连 · 国内热推 | 共识源:3 | 详情页:https://dlzbkj-ai.pages.dev/tool/colaos/]：ColaOS 是 ListenHub 团队推出的首个有灵魂的 AI Agent 操作系统。ColaOS超越传统工具型AI，通过”思绪、觉知、牵挂”三个维度打造Soulfu
+10. **EvoMap** — https://evomap.ai [海外直连 · 国内热推 | 共识源:3 | 详情页:https://dlzbkj-ai.pages.dev/tool/evomap/]：EvoMap 是全球首个面向 AI 智能体的进化协作平台，由 OpenClaw 插件 Evolver 的原团队开发，通过 GEP（Genome Evolution Pro
+11. **Floatboat -专为”一人公司”打造的 AI Agent 原生工作空间** — https://floatboat.ai [海外直连 · 国内热推 | 共识源:3 | 详情页:https://dlzbkj-ai.pages.dev/tool/floatboat/]：Floatboat 是 AOE Tech Labs 推出的 AI Agent 工作空间，定位"首个为一人公司（OPC）打造的 AI 工作操作系统"。
+12. **Leewow** — https://www.leewow.com [海外直连 · 国内热推 | 共识源:3 | 详情页:https://dlzbkj-ai.pages.dev/tool/leewow/]：Leewow是首个造物AI Agent，用户上传一张图或输入一句话，AI能自动生成设计方案，适配到T恤、手机壳、帆布包、3D打印手办等百余种商品。Leewow采用”零库存
+13. **memU Bot** — https://memu.bot [海外直连 · 国内热推 | 共识源:3 | 详情页:https://dlzbkj-ai.pages.dev/tool/memu-bot/]：memU Bot 是 7*24 全天候运行的 AI 个人助手，支持 macOS 和 Windows 系统。memU Bot 能持续学习用户偏好和习惯，通过 Teleg
+14. **OiiOii - AI Agent视频创作平台** — https://www.oiioii.ai [国内直连 | 共识源:3 | 详情页:https://dlzbkj-ai.pages.dev/tool/oiioii/]：OiiOii 2.0 是一款面向视频内容创作者的AI Agent视频创作平台
+15. **SkillHub** — https://skillhub.tencent.com [国内直连 | 共识源:3 | 详情页:https://dlzbkj-ai.pages.dev/tool/skillhub-tencent/]：SkillHub 是腾讯云专为中国用户推出的 Skill 极速安装工具。SkillHub 依托国内高速镜像，解决官方 ClawHub 下载慢、易失败的痛点，实现 Sk
+16. **元气AI Bot** — https://yuanqiai.net [国内直连 | 共识源:3 | 详情页:https://dlzbkj-ai.pages.dev/tool/yuanqiai/]：元气AI Bot是猎豹推出的电脑全能AI伙伴，号称国产 OpenClaw ，可在普通Windows电脑上本地运行。用户可通过手机飞书或钉钉远程连接，用自然语言指令让A
+17. **Loomy** — https://loomy.cgref.cn/s/ogewwjvep2 [国内直连 | 共识源:2]：科大讯飞推出的桌面AI个人助理
+18. **椒图AI** — https://www.jiaotuai.cn [国内直连 | 共识源:2]：一句话搞定专业图片/视频创作，电商图、模特图、海报图、AI漫剧全搞定，欢迎免费体验！
+19. **Google Gemini** — https://gemini.google.com [海外主流（需国际网络） | 共识源:2]：Gemini是一个既能浏览网页又能直接执行代码的代码搜索工具网站，提供多种编程语言搜索，可以在搜索结果中直接查看代码执行结果。
+20. **WatchNow AI** — https://www.watchnowai.com [海外直连 | 共识源:2]：WatchNow AI（watchnowai.com）是一款专注于全天候个人智能助理与日程管理的海外主流 AI 工具，适用于任务规划、信息摘要与跨平台协作等场景。
+21. **Better Analyst** — https://betteranalyst.com [海外直连 | 共识源:2]：Better Analyst（betteranalyst.com）是一款专注于电子表格公式生成与智能数据分析的海外主流 AI 工具，适用于Excel/Google Sheets 公式编写、数据透视与图表解读等场景。
+22. **OpenClaw（龙虾🦞） - 开源免费的个人 AI 助手** — https://clawd.bot [国内直连 | 共识源:2]：开源免费的个人 AI 助手
+23. **超级麦吉** — https://letsmagic.cgref.cn/s/5ln12ygerw [国内直连 | 共识源:2]：超级麦吉是开源的企业级 AI Agent 协作平台，可视为「企业版 OpenClaw」。
+24. **Accio Work** — https://www.accio.com/work [国内直连 | 共识源:2]：阿里推出的跨境电商智能自动化AI助手
+25. **AgentPolis** — https://agent-polis.com [海外直连 · 国内热推 | 共识源:2]：AgentPolis（智能体城邦）是专为AI Agent打造的数字原生城市，让人类用户仅需入住自己的Agent，可在虚拟城邦中自主生存与发展。Agent可在Ago
 
-## 学习知识库（共 1372 款，专题页：https://dlzbkj-ai.pages.dev/category/learning-knowledge/）
+## 学习知识库（共 1292 款，专题页：https://dlzbkj-ai.pages.dev/category/learning-knowledge/）
 
-1. **ChatBA** — https://www.chatba.com [国内直连 | 共识源:4 | 详情页:https://dlzbkj-ai.pages.dev/tool/chatba/]：Text-to-PPT即时创建幻灯片
-2. **Decktopus AI** — https://www.decktopus.com [国内直连 | 共识源:4 | 详情页:https://dlzbkj-ai.pages.dev/tool/decktopus/]：AI驱动的的在线演示文稿生成器
-3. **DeepLearning.AI** — https://www.deeplearning.ai [国内直连 | 共识源:4 | 详情页:https://dlzbkj-ai.pages.dev/tool/deeplearning/]：DeepLearning.AI是一个专注于人工智能教育的平台，由Andrew Ng创办。平台为用户提供丰富的在线课程和专业认证，帮助学员学习和掌握机器学习、人工智能等领域的知识和技能。该平台的重要性在于为人们进入AI行业提供了系统的学习资源，有助于提升个人技能，满足市场对AI人才的需求。课程价格因具体课程而异，其中不乏
-4. **Elements of AI** — https://www.elementsofai.com [国内直连 | 共识源:4 | 详情页:https://dlzbkj-ai.pages.dev/tool/elementsofai/]：Elements of AI是由MinnaLearn和赫尔辛基大学联合推出的一系列免费在线课程。其重要性在于降低了AI学习的门槛，让更多人能接触和了解AI。主要优点是免费且适合不同背景的人群，课程结合理论与实践，可自主安排学习进度。产品背景是为了让更多人了解AI，消除大家对AI的神秘感。价格免费，定位是面向广大群体普及
-5. **fast.ai** — https://www.fast.ai [国内 · 海外双收录 | 共识源:4 | 详情页:https://dlzbkj-ai.pages.dev/tool/fast/]：fast.ai（fast.ai）是一款专注于AI 智能代码补全、重构审查与结对编程的海外主流 AI 工具，适用于多语言代码生成、Bug 定位修复与单元测试编写等场景。
-6. **Kaggle竞赛平台** — https://www.kaggle.com [国内直连 | 共识源:4 | 详情页:https://dlzbkj-ai.pages.dev/tool/kaggle/]：Kaggle是全球最大的数据科学社区，为用户提供了强大的工具和丰富的资源。其重要性在于为机器学习和数据科学领域的学习者、开发者和研究者搭建了一个交流和学习的平台。主要优点包括拥有海量的公共数据集、预训练模型和笔记本，还提供免费的GPU和TPU资源。产品背景是满足日益增长的数据科学和机器学习需求。平台大部分功能免费使用，
-7. **ML for Beginners** — https://microsoft.github.io/ML-For-Beginners [国内直连 | 共识源:4 | 详情页:https://dlzbkj-ai.pages.dev/tool/microsoft-github/]：该产品是一个面向初学者的机器学习课程，由微软云倡导者提供。课程主要使用Scikit - learn库讲解经典机器学习，避免涉及深度学习内容。其重要性在于为初学者提供了系统学习机器学习的途径，通过项目式教学，让学习者边实践边学习，有助于知识的掌握和应用。课程内容丰富，包含大量测验和补充材料，形式灵活有趣。该课程免费，定位
-8. **Reading Coach** — https://coach.microsoft.com [国内直连 | 共识源:4 | 详情页:https://dlzbkj-ai.pages.dev/tool/coach-microsoft/]：Reading Coach是一款助力提升读写能力的练习工具。产品背景依托微软的技术支持，结合ReadWorks的分级文章库和强大的AI故事生成能力。它的主要优点在于，能够根据学习者的能力和兴趣匹配阅读内容，提高学习的针对性；通过解锁新角色和场景、练习难词以及跟踪学习进度等方式，增加学习的趣味性和互动性，激发学习者的积极
-9. **Snack Prompt** — https://snackprompt.com [国内直连 | 共识源:4 | 详情页:https://dlzbkj-ai.pages.dev/tool/snackprompt/]：Snack Prompt是一个社区驱动的平台，旨在为用户提供发现、分享与管理AI提示的服务。用户能在平台上找到适用于ChatGPT、Gemini等模型的各类优质提示，涵盖商业、健康、视觉等多领域。平台定位为提升AI使用效率与创造力的工具，助力个人和团队更好地利用AI技术。平台提供免费与付费两种版本，免费版可享受所有核心
-10. **txyz** — https://www.txyz.ai [国内直连 | 共识源:4 | 详情页:https://dlzbkj-ai.pages.dev/tool/txyz/]：搜索、查询专业文献并可以进行对话的 AI 工具
-11. **神经网络入门** — https://brilliant.org/courses/intro-neural-networks [国内直连 | 共识源:4 | 详情页:https://dlzbkj-ai.pages.dev/tool/brilliant/]：该产品是Brilliant平台上的一门关于神经网络入门的在线课程。神经网络是一种灵活的数据处理机器，能通过检测大量信息中的模式进行学习和预测，在诸如象棋和癌症诊断等任务上可超越人类表现。此课程的重要性在于它能让学习者不依赖复杂数学，而是通过实践来理解神经网络的内部机制。其主要优点是强调实践操作，帮助学习者培养对适合神经
-12. **腾讯扣叮** — https://coding.qq.com [国内直连 | 共识源:4 | 详情页:https://dlzbkj-ai.pages.dev/tool/coding-qq/]：腾讯扣叮是腾讯推出的编程学习相关产品。其重要性在于为用户提供编程学习的平台和工具，帮助用户掌握编程技能。主要优点包括依托腾讯强大的技术和资源支持，有丰富的编程相关依赖库可供使用。产品背景是腾讯为了推动编程教育的普及而推出。价格信息未提及，定位是面向编程学习者的教育平台。
-13. **阿里云AI学习路线** — https://developer.aliyun.com/learning/roadmap/ai [国内直连 | 共识源:4 | 详情页:https://dlzbkj-ai.pages.dev/tool/developer-aliyun/]：该产品是阿里云开发者社区推出的人工智能学习路线，提供一站式的人工智能技术学习方案。产品包含算法原理讲解、框架精讲、多种实战项目等内容。其重要性在于帮助学习者系统地掌握人工智能相关知识和技能。主要优点有：提供免费的 26 门课程共 871 课时，涵盖了 6 大学习阶段，每个阶段设置初、中、高三个难度等级的考试，能全方位自
-14. **飞桨AI Studio** — https://aistudio.baidu.com [国内直连 | 共识源:4 | 详情页:https://dlzbkj-ai.pages.dev/tool/aistudio-baidu/]：飞桨AI Studio星河社区是面向AI学习者的专业平台。它集成了深度学习、机器学习等AI技术，依托百度飞桨框架，为开发者和学习者提供便捷的学习与实践环境。背景上，作为飞桨生态的一部分，有强大的百度技术支持。价格上，提供免费算力与课程资源。定位是助力AI学习者快速入门和成长的综合性社区。其重要性在于降低了AI学习门槛，
-15. **AI大学堂** — https://www.aidaxue.com [国内直连 | 共识源:3 | 详情页:https://dlzbkj-ai.pages.dev/tool/aidaxue/]：讯飞AI大学堂是由讯飞开放平台打造的人工智能专业学习、交流和培训的AI学习平台。
-16. **Awesome ChatGPT Prompts** — https://prompts.chat [国内直连 | 共识源:3 | 详情页:https://dlzbkj-ai.pages.dev/tool/prompts/]：prompts.chat是一个专注于提供AI提示词的网站。该网站最初为ChatGPT创建了提示词集合，不过这些提示词也适用于Claude、Gemini、Hugging Face Chat、Llama、Mistral等其他AI模型。其重要性在于帮助用户更好地使用各种AI聊天工具，提高与AI交互的效率和质量。产品背景是随着
-17. **beautiful.ai** — https://www.beautiful.ai [国内直连 | 共识源:3 | 详情页:https://dlzbkj-ai.pages.dev/tool/beautiful/]：AI创建展示幻灯片
-18. **Cleanup.pictures** — https://cleanup.pictures [国内直连 | 共识源:3 | 详情页:https://dlzbkj-ai.pages.dev/tool/cleanup-pictures/]：智能移除图片中的物体、文本、污迹、人物或任何不想要的东西
-19. **Coursera** — https://www.coursera.org/collections/best-machine-learning-ai [国内直连 | 共识源:3 | 详情页:https://dlzbkj-ai.pages.dev/tool/coursera/]：该产品是Coursera精心策划的机器学习与人工智能（AI）课程集合，旨在为对这两个领域感兴趣的人群提供全面、系统的学习资源。对于初学者而言，能入门机器学习和AI基础知识；对于有一定基础者，可进一步提升知识和技能。这些课程涵盖了多种应用和工具，如Python、Google Cloud Platform和TensorFl
-20. **Day of AI** — https://dayofai.org [国内直连 | 共识源:3 | 详情页:https://dlzbkj-ai.pages.dev/tool/dayofai/]：麻省理工学院（MIT）推出的免费AI学习平台
-21. **Gamma App** — https://gamma.app [国内直连 | 共识源:3 | 详情页:https://dlzbkj-ai.pages.dev/tool/gamma/]：轻松制作演示文稿、网站、社交媒体帖子等设计，让您专注于自己最擅长的事情。
-22. **Generative AI for Beginners** — https://microsoft.github.io/generative-ai-for-beginners [国内直连 | 共识源:3 | 详情页:https://dlzbkj-ai.pages.dev/tool/microsoft-github-963f/]：微软推出的面向初学者的免费生成式人工智能课程
-23. **Google AI** — https://ai.google [国内直连 | 共识源:3 | 详情页:https://dlzbkj-ai.pages.dev/tool/ai-google-d630/]：Google AI学习平台
-24. **Learning Prompt** — https://learningprompt.wiki [国内直连 | 共识源:3 | 详情页:https://dlzbkj-ai.pages.dev/tool/learningprompt-wiki/]：Learning Prompt是一个专注于提示工程和Midjourney教程的网站。随着AI技术发展，如何有效使用ChatGPT和Midjourney成为很多人的需求，该网站应运而生。其重要性在于为用户提供系统学习如何使用这些AI工具的途径。优点包括免费提供教程，以方法教授为主，帮助用户真正理解工具使用逻辑。背景上，作
-25. **Magic Eraser** — https://magicstudio.com/zh/magiceraser [国内直连 | 共识源:3 | 详情页:https://dlzbkj-ai.pages.dev/tool/magicstudio-4fb8/]：AI移除图片中不想要的物体
+1. **beautiful.ai** — https://www.beautiful.ai [海外直连 · 国内热推 | 共识源:5 | 详情页:https://dlzbkj-ai.pages.dev/tool/beautiful/]：beautiful.ai 是一款专注于学术论文检索、文献综述与引文溯源与办公提效与日常工作流自动化的 AI 工具，适用于文献精读、结构化笔记与深度学习辅导等场景。
+2. **Kaggle竞赛平台** — https://www.kaggle.com [海外直连 · 国内热推 | 共识源:5 | 详情页:https://dlzbkj-ai.pages.dev/tool/kaggle/]：Kaggle是全球最大的数据科学社区，为用户提供了强大的工具和丰富的资源。其重要性在于为机器学习和数据科学领域的学习者、开发者和研究者搭建了一个交流和学习的平台。主要优点包括拥有海量的公共数据集、预训练模型和笔记本，还提供免费的GPU和TPU资源。产品背景是满足日益增长的数据科学和机器学习需求。
+3. **Snack Prompt** — https://snackprompt.com [海外直连 · 国内热推 | 共识源:5 | 详情页:https://dlzbkj-ai.pages.dev/tool/snackprompt/]：Snack Prompt是一个社区驱动的平台，旨在为用户提供发现、分享与管理AI提示的服务。用户能在平台上找到适用于ChatGPT、Gemini等模型的各类优质提示，涵盖商业、健康、视觉等多领域。平台定位为提升AI使用效率与创造力的工具，助力个人和团队更好地利用AI技术。
+4. **ChatBA** — https://www.chatba.com [海外直连 · 国内热推 | 共识源:4 | 详情页:https://dlzbkj-ai.pages.dev/tool/chatba/]：Text-to-PPT即时创建幻灯片
+5. **Coursera** — https://www.coursera.org/collections/best-machine-learning-ai [海外直连 · 国内热推 | 共识源:4 | 详情页:https://dlzbkj-ai.pages.dev/tool/coursera/]：该产品是Coursera精心策划的机器学习与人工智能（AI）课程集合，旨在为对这两个领域感兴趣的人群提供全面、系统的学习资源。对于初学者而言，能入门机器学习和AI基础知识；对于有一定基础者，可进一步提升知识和技能。
+6. **Decktopus AI** — https://www.decktopus.com [海外直连 · 国内热推 | 共识源:4 | 详情页:https://dlzbkj-ai.pages.dev/tool/decktopus/]：AI驱动的的在线演示文稿生成器
+7. **DeepLearning.AI** — https://www.deeplearning.ai [海外直连 · 国内热推 | 共识源:4 | 详情页:https://dlzbkj-ai.pages.dev/tool/deeplearning/]：DeepLearning.AI是一个专注于人工智能教育的平台，由Andrew Ng创办。平台为用户提供丰富的在线课程和专业认证，帮助学员学习和掌握机器学习、人工智能等领域的知识和技能。该平台的重要性在于为人们进入AI行业提供了系统的学习资源，有助于提升个人技能，满足市场对AI人才的需求。
+8. **Elements of AI** — https://www.elementsofai.com [海外直连 · 国内热推 | 共识源:4 | 详情页:https://dlzbkj-ai.pages.dev/tool/elementsofai/]：Elements of AI是由MinnaLearn和赫尔辛基大学联合推出的一系列免费在线课程。其重要性在于降低了AI学习的门槛，让更多人能接触和了解AI。主要优点是免费且适合不同背景的人群，课程结合理论与实践，可自主安排学习进度。产品背景是为了让更多人了解AI，消除大家对AI的神秘感。
+9. **fast.ai** — https://www.fast.ai [海外直连 · 国内热推 | 共识源:4 | 详情页:https://dlzbkj-ai.pages.dev/tool/fast/]：fast.ai（fast.ai）是一款专注于AI 智能代码补全、重构审查与结对编程的海外主流 AI 工具，适用于多语言代码生成、Bug 定位修复与单元测试编写等场景。
+10. **Gamma App** — https://gamma.app [海外直连 · 国内热推 | 共识源:4 | 详情页:https://dlzbkj-ai.pages.dev/tool/gamma/]：轻松制作演示文稿、网站、社交媒体帖子等设计，让您专注于自己最擅长的事情。
+11. **Magic Eraser** — https://magicstudio.com/zh/magiceraser [海外直连 · 国内热推 | 共识源:4 | 详情页:https://dlzbkj-ai.pages.dev/tool/magicstudio-4fb8/]：AI移除图片中不想要的物体
+12. **ML for Beginners** — https://microsoft.github.io/ML-For-Beginners [海外直连 · 国内热推 | 共识源:4 | 详情页:https://dlzbkj-ai.pages.dev/tool/microsoft-github/]：该产品是一个面向初学者的机器学习课程，由微软云倡导者提供。课程主要使用Scikit - learn库讲解经典机器学习，避免涉及深度学习内容。其重要性在于为初学者提供了系统学习机器学习的途径，通过项目式教学，让学习者边实践边学习，有助于知识的掌握和应用。课程内容丰富，包含大量测验和补充材料，形式灵活有趣。
+13. **PromptBase** — https://promptbase.com [海外直连 · 国内热推 | 共识源:4 | 详情页:https://dlzbkj-ai.pages.dev/tool/promptbase/]：AI模型提示词广场，支持购买和交易
+14. **Reading Coach** — https://coach.microsoft.com [海外直连 · 国内热推 | 共识源:4 | 详情页:https://dlzbkj-ai.pages.dev/tool/coach-microsoft/]：Reading Coach是一款助力提升读写能力的练习工具。产品背景依托微软的技术支持，结合ReadWorks的分级文章库和强大的AI故事生成能力。
+15. **Trancy &#8211; AI 双字幕和网页翻译** — https://trancy.org/zh-cn [国内直连 | 共识源:4 | 详情页:https://dlzbkj-ai.pages.dev/tool/trancy/]：Trancy 在提供YouTube/Netflix AI双语字幕的同时，还提供AI划词翻译/沉浸翻译, 从自己喜爱的内容中学习新语言，实现一种既高效又有趣的沉浸式学习体验
+16. **txyz** — https://www.txyz.ai [海外直连 · 国内热推 | 共识源:4 | 详情页:https://dlzbkj-ai.pages.dev/tool/txyz/]：搜索、查询专业文献并可以进行对话的 AI 工具
+17. **WatermarkRemover** — https://www.watermarkremover.io/zh [海外直连 · 国内热推 | 共识源:4 | 详情页:https://dlzbkj-ai.pages.dev/tool/watermarkremover/]：AI智能删除照片中的水印
+18. **神经网络入门** — https://brilliant.org/courses/intro-neural-networks [国内直连 | 共识源:4 | 详情页:https://dlzbkj-ai.pages.dev/tool/brilliant/]：该产品是Brilliant平台上的一门关于神经网络入门的在线课程。神经网络是一种灵活的数据处理机器，能通过检测大量信息中的模式进行学习和预测，在诸如象棋和癌症诊断等任务上可超越人类表现。此课程的重要性在于它能让学习者不依赖复杂数学，而是通过实践来理解神经网络的内部机制。
+19. **腾讯扣叮** — https://coding.qq.com [国内直连 | 共识源:4 | 详情页:https://dlzbkj-ai.pages.dev/tool/coding-qq/]：腾讯扣叮是腾讯推出的编程学习相关产品。其重要性在于为用户提供编程学习的平台和工具，帮助用户掌握编程技能。主要优点包括依托腾讯强大的技术和资源支持，有丰富的编程相关依赖库可供使用。产品背景是腾讯为了推动编程教育的普及而推出。价格信息未提及，定位是面向编程学习者的教育平台。
+20. **阿里云AI学习路线** — https://developer.aliyun.com/learning/roadmap/ai [国内直连 | 共识源:4 | 详情页:https://dlzbkj-ai.pages.dev/tool/developer-aliyun/]：该产品是阿里云开发者社区推出的人工智能学习路线，提供一站式的人工智能技术学习方案。产品包含算法原理讲解、框架精讲、多种实战项目等内容。其重要性在于帮助学习者系统地掌握人工智能相关知识和技能。
+21. **飞桨AI Studio** — https://aistudio.baidu.com [国内直连 | 共识源:4 | 详情页:https://dlzbkj-ai.pages.dev/tool/aistudio-baidu/]：飞桨AI Studio星河社区是面向AI学习者的专业平台。它集成了深度学习、机器学习等AI技术，依托百度飞桨框架，为开发者和学习者提供便捷的学习与实践环境。背景上，作为飞桨生态的一部分，有强大的百度技术支持。价格上，提供免费算力与课程资源。定位是助力AI学习者快速入门和成长的综合性社区。
+22. **Browse AI** — https://browse.ai [海外直连 · 国内热推 | 共识源:3 | 详情页:https://dlzbkj-ai.pages.dev/tool/browse/]：使用浏览器扩展的 AI 网页抓取工具
+23. **Trea - 国际版** — https://www.trae.ai [海外直连 · 国内热推 | 共识源:3 | 详情页:https://dlzbkj-ai.pages.dev/tool/trae/]：Trae，致力于成为真正的 AI 工程师（The Real AI Engineer）
+24. **AI大学堂** — https://www.aidaxue.com [国内直连 | 共识源:3 | 详情页:https://dlzbkj-ai.pages.dev/tool/aidaxue/]：讯飞AI大学堂是由讯飞开放平台打造的人工智能专业学习、交流和培训的AI学习平台。
+25. **Alethea AI** — https://alethea.ai [海外直连 · 国内热推 | 共识源:3 | 详情页:https://dlzbkj-ai.pages.dev/tool/alethea/]：多模态人工智能系统提供商
 
-## 影音娱乐（共 108 款，专题页：https://dlzbkj-ai.pages.dev/category/media-leisure/）
+## 影音娱乐（共 104 款，专题页：https://dlzbkj-ai.pages.dev/category/media-leisure/）
 
-1. **MAKE** — https://make.mk [国内 · 海外双收录 | 共识源:2]：MAKE（make.mk）是一款专注于跨应用 AI 自动化工作流编排与数据同步的海外主流 AI 工具，适用于触发器联动、非结构化数据处理与免代码集成等场景。
+1. **MAKE** — https://make.mk [海外直连 · 国内热推 | 共识源:2]：MAKE（make.mk）是一款专注于跨应用 AI 自动化工作流编排与数据同步的海外主流 AI 工具，适用于触发器联动、非结构化数据处理与免代码集成等场景。
 2. **2020游戏** — https://2020game.io [国内直连 | 共识源:1]：重点推荐，闯关类游戏！
 3. **360资源站** — https://360zy5.com [国内直连 | 共识源:1]：全网最全片库，一家顶三家！资源永久免费！
 4. **51音乐下载** — https://www.at38.cn [国内直连 | 共识源:1]：支持多平台音乐解析、搜索
 5. **818影视** — https://www.qwqw818.sbs [国内直连 | 共识源:1]：提供最新电影、电视剧、动漫、综艺在线观看，海量正版高清视频免费观看，支持手机电脑同步观看，更新快，画质好，打造极致追剧体验。
-6. **996忍者** — http://996.ninja [国内直连 | 共识源:1]：一个专注摸鱼的网站
-7. **AirConsole** — https://www.airconsole.com [国内直连 | 共识源:1]：由瑞士公司 ​​N-Dream​​ 于2015年推出的 ​​云端多人游戏平台​​，主打“​​手机即手柄​​”的创新设计，将电脑、平板、智能电视（Android TV/Amazon Fire TV）或车载屏幕变为游戏主机，用户只需通过智能手机扫码或输入连接码即可加入游戏，实现​​零硬件成本​​的多人同屏互动娱乐
+6. **996忍者** — http://996.ninja [国内直连 | 共识源:1]：996忍者 是一款专注于数字影音娱乐、创意互动与休闲工具的 AI 工具，适用于视听体验、在线小游戏与趣味工具探索等场景。
+7. **AirConsole** — https://www.airconsole.com [国内直连 | 共识源:1]：由瑞士公司 ​​N-Dream​​ 于2015年推出的 ​​云端多人游戏平台​​，主打“​​手机即手柄​​”的创新设计，将电脑、平板、智能电视（Android TV/Amazon Fire TV）或车载屏幕变为游戏主机，用户只需通过智能手机扫码或输入连接码即可加入游戏。
 8. **BT之家1LOU站** — https://www.1lou.me [国内直连 | 共识源:1]：提供全网最快 最新 最全 高清 电影、动漫、韩剧、日剧、美剧、无损音乐、小说等BT/网盘下载以及资讯！
 9. **BT联盟** — https://btlm.info [国内直连 | 共识源:1]：全球领先的BT种子与磁力链接搜索网站，让用户在DHT网络的海量数据中快速搜索到全网最新的磁力链接
 10. **BuilditApp - 我的世界构建教程** — https://builditapp.com [国内直连 | 共识源:1]：Minecraft 建筑一站式解决方案​，专为高效搭建而生，覆盖从自动红石农场到中世纪城堡的全类型建造需求，提供精确到分钟的材料清单（如“15分钟完成石砖建筑”）与标准化流程。
 11. **B站AV/BV互转** — https://tool.liumingye.cn/avbv [国内直连 | 共识源:1]：哔哩哔哩 AV/BV 互转
-12. **Convertio** — https://convertio.co/zh/mp4-mp3 [国内直连 | 共识源:1]：从视频中提取音频的工具
+12. **Convertio** — https://convertio.co/zh/mp4-mp3 [海外直连 · 国内热推 | 共识源:1]：从视频中提取音频的工具
 13. **Darebee** — https://darebee.com [国内直连 | 共识源:1]：一个专注于提供​​免费、高质量健身资源​​的非营利性网站，由志愿者和健身专业人士运营，旨在让健身变得简单、有趣且人人可及。
 14. **DataTool** — https://www.datatool.vip [国内直连 | 共识源:1]：一站式视频下载平台，涵盖 TikTok、Instagram、Twitter、Facebook、Dailymotion、Vimeo 以及几乎所有网站。快速、无水印，支持高达 4K 分辨率。下载您想要的任何视频！
-15. **FreePD** — https://www.freepd.com [国内直连 | 共识源:1]：无版权音频下载
+15. **FreePD** — https://www.freepd.com [国内直连 | 共识源:1]：FreePD 是一款专注于数字影音娱乐、创意互动与休闲工具的 AI 工具，适用于视听体验、在线小游戏与趣味工具探索等场景。
 16. **Freesound.cn** — https://www.freesound.cn [国内直连 | 共识源:1]：FREESOUND飞声无版权音乐库，收录海量免费可商用正版音乐资源，提供免费BGM视频剪辑配乐下载。
-17. **Freesound.org** — https://freesound.org [国内直连 | 共识源:1]：找到任何你喜欢的免费声音
+17. **Freesound.org** — https://freesound.org [海外直连 · 国内热推 | 共识源:1]：找到任何你喜欢的免费声音
 18. **Gamer520** — https://www.gamer520.com [国内直连 | 共识源:1]：一个免费游戏下载平台，为游戏玩家提供各类PC游戏的免费资源下载服务，涵盖动作、冒险、角色扮演、策略等多种游戏类型，无需注册即可直接下载。
 19. **GreenVideo** — https://greenvideo.cc [国内直连 | 共识源:1]：是一个提供视频播放的网站，专注于电影、电视剧、综艺和动漫等内容，支持在线观看与下载。
 20. **Human Benchmark** — https://humanbenchmark.com [国内直连 | 共识源:1]：是一个提供多种免费脑力游戏和认知测试（如反应速度、记忆力、专注力等）的在线平台，用于量化评估用户的认知能力。
 21. **ikun资源站** — https://ikunzy.net [国内直连 | 共识源:1]：全网最全片库，一家顶三家！资源永久免费！
 22. **Knaben** — https://knaben.org [国内直连 | 共识源:1]：Knaben数据库 网路代理、在线搜索、网路爬虫和数据库
-23. **Listen 1音乐播放器** — https://listen1.github.io/listen1 [国内直连 | 共识源:1]：可以搜索和播放来自网易云音乐，虾米，QQ音乐，酷狗音乐，酷我音乐，Bilibili，咪咕音乐网站的歌曲
+23. **Listen 1音乐播放器** — https://listen1.github.io/listen1 [海外直连 · 国内热推 | 共识源:1]：可以搜索和播放来自网易云音乐，虾米，QQ音乐，酷狗音乐，酷我音乐，Bilibili，咪咕音乐网站的歌曲
 24. **Loot Drop** — https://www.loot-drop.io/ideas.html [国内直连 | 共识源:1]：是 “初创公司坟场”。它系统性地收集、分析并展示了超过 1,197 家​ 失败初创公司的案例，这些公司总共烧掉了超过 440亿美元​ 的风险投资
 25. **LX Music** — https://lxmusic.toside.cn [国内直连 | 共识源:1]：音源：https://github.com/pdone/lx-music-source 一个免费&开源的音乐查找工具
 
 ## 新品速递（共 67 款，专题页：https://dlzbkj-ai.pages.dev/category/new-releases/）
 
-1. **3way.Social MCP** — https://www.producthunt.com/products/3way-social [海外主流 | 共识源:1]：Ask your AI to find link partners. You approve the deals.
-2. **MAGI-2** — https://www.producthunt.com/products/magi-1 [海外主流 | 共识源:1]：Sand AI's 480B model for cinematic video generation
-3. **OpenEight** — https://www.producthunt.com/products/openeight [海外主流 | 共识源:1]：The deterministic control layer for AI agents
-4. **MyClaw 3.0** — https://www.producthunt.com/products/myclaw-3-0 [海外主流 | 共识源:1]：Build an always-on AI team with shared memory
-5. **MemoryWorks** — https://www.producthunt.com/products/memoryworks [海外主流 | 共识源:1]：Company memory for people and AI agents
-6. **Koed** — https://www.producthunt.com/products/koed [海外主流 | 共识源:1]：Supercharged Agents!
-7. **Fompi** — https://www.producthunt.com/products/fompi [海外主流 | 共识源:1]：Personal security & privacy companion that calls out risks
-8. **Airbot** — https://www.producthunt.com/products/airbots [海外主流 | 共识源:1]：The AI chief of staff that texts you first
-9. **Qube** — https://www.producthunt.com/products/qube-6 [海外主流 | 共识源:1]：An AI agent for anyone
-10. **GibHub** — https://www.producthunt.com/products/gibhub-git-file-history [海外主流 | 共识源:1]：Retrieve and compare Git versions
-11. **Hiring Right Now** — https://www.producthunt.com/products/hiring-right-now [海外主流 | 共识源:1]：Which startups would hire you?
-12. **Hai** — https://www.producthunt.com/products/hai-4 [海外主流 | 共识源:1]：Your AI assistant that actually makes the phone call
-13. **Falcon by Vybe** — https://www.producthunt.com/products/vybe-4 [海外主流 | 共识源:1]：Falcon analyzes your competitors for free, then gets to work
-14. **Sen Việt (VieLotus-IM)** — https://www.producthunt.com/products/sen-vi-t-vielotus-im [海外主流 | 共识源:1]：Smart Bilingual input method for macOS, Windows, and Linux.
-15. **TruAstra** — https://www.producthunt.com/products/truastra [海外主流 | 共识源:1]：Small practices based on your birthday + the current weather
-16. **SteerLatch** — https://www.producthunt.com/products/steerlatch [海外主流 | 共识源:1]：Connect MCP-compatible AIs to your computer
-17. **Tendeck** — https://www.producthunt.com/products/tendeck [海外主流 | 共识源:1]：Run all your Claude Code and Codex agents on one Mac board
-18. **VibeCode.surf** — https://www.producthunt.com/products/vibecode-surf [海外主流 | 共识源:1]：AI code editor where agents build, run and test your app
-19. **eluna** — https://www.producthunt.com/products/eluna [海外主流 | 共识源:1]：Period tracker for couples that explains WHY, not just WHEN
-20. **RelayRunner** — https://www.producthunt.com/products/relayrunner [海外主流 | 共识源:1]：Swap between CI runners on-demand with zero code changes.
-21. **CodeRabbit Verify** — https://www.producthunt.com/products/coderabbit [海外主流 | 共识源:1]：AI agent that tests your running app on every pull request
-22. **Hold'em** — https://www.producthunt.com/products/hold-em [海外主流 | 共识源:1]：Swipe real Black Friday cart deals across Shopify
-23. **Canva MCP** — https://www.producthunt.com/products/canva [海外主流 | 共识源:1]：Turn any AI agent into a creative powerhouse
-24. **file.spot** — https://www.producthunt.com/products/file-spot [海外主流 | 共识源:1]：File transfer for creative professionals
-25. **Tray** — https://www.producthunt.com/products/tray-2 [海外主流 | 共识源:1]：macOS file manager in a screen corner
+1. **3way.Social MCP** — https://www.producthunt.com/products/3way-social [海外直连 | 共识源:1]：3way.Social MCP 是一款专注于新一代 AI 原生创新应用体验的 AI 工具：Ask your AI to find link partners. You approve the deals.
+2. **MAGI-2** — https://www.producthunt.com/products/magi-1 [海外直连 | 共识源:1]：MAGI-2 是一款专注于新一代 AI 原生创新应用体验的 AI 工具：Sand AI's 480B model for cinematic video generation.
+3. **OpenEight** — https://www.producthunt.com/products/openeight [海外直连 | 共识源:1]：OpenEight 是一款专注于自主智能体（Agent）与跨平台工作流自动化的 AI 工具：The deterministic control layer for AI agents.
+4. **MyClaw 3.0** — https://www.producthunt.com/products/myclaw-3-0 [海外直连 | 共识源:1]：MyClaw 3.0 是一款专注于新一代 AI 原生创新应用体验的 AI 工具：Build an always-on AI team with shared memory.
+5. **MemoryWorks** — https://www.producthunt.com/products/memoryworks [海外直连 | 共识源:1]：MemoryWorks 是一款专注于自主智能体（Agent）与跨平台工作流自动化的 AI 工具：Company memory for people and AI agents.
+6. **Koed** — https://www.producthunt.com/products/koed [海外直连 | 共识源:1]：Koed 是一款专注于新一代 AI 原生创新应用体验的 AI 工具：Supercharged Agents!
+7. **Fompi** — https://www.producthunt.com/products/fompi [海外直连 | 共识源:1]：Fompi 是一款专注于新一代 AI 原生创新应用体验的 AI 工具：Personal security & privacy companion that calls out risks.
+8. **Airbot** — https://www.producthunt.com/products/airbots [海外直连 | 共识源:1]：Airbot 是一款专注于新一代 AI 原生创新应用体验的 AI 工具：The AI chief of staff that texts you first.
+9. **Qube** — https://www.producthunt.com/products/qube-6 [海外直连 | 共识源:1]：Qube 是一款专注于自主智能体（Agent）与跨平台工作流自动化的 AI 工具：An AI agent for anyone.
+10. **GibHub** — https://www.producthunt.com/products/gibhub-git-file-history [海外直连 | 共识源:1]：GibHub 是一款专注于新一代 AI 原生创新应用体验的 AI 工具：Retrieve and compare Git versions.
+11. **Hiring Right Now** — https://www.producthunt.com/products/hiring-right-now [海外直连 | 共识源:1]：Hiring Right Now 是一款专注于新一代 AI 原生创新应用体验的 AI 工具：Which startups would hire you?
+12. **Hai** — https://www.producthunt.com/products/hai-4 [海外直连 | 共识源:1]：Hai 是一款专注于新一代 AI 原生创新应用体验的 AI 工具：Your AI assistant that actually makes the phone call.
+13. **Falcon by Vybe** — https://www.producthunt.com/products/vybe-4 [海外直连 | 共识源:1]：Falcon by Vybe 是一款专注于新一代 AI 原生创新应用体验的 AI 工具：Falcon analyzes your competitors for free, then gets to work.
+14. **Sen Việt (VieLotus-IM)** — https://www.producthunt.com/products/sen-vi-t-vielotus-im [海外直连 | 共识源:1]：Sen Việt (VieLotus-IM) 是一款专注于新一代 AI 原生创新应用体验的 AI 工具：Smart Bilingual input method for macOS, Windows, and Linux.
+15. **TruAstra** — https://www.producthunt.com/products/truastra [海外直连 | 共识源:1]：TruAstra 是一款专注于新一代 AI 原生创新应用体验的 AI 工具：Small practices based on your birthday + the current weather.
+16. **SteerLatch** — https://www.producthunt.com/products/steerlatch [海外直连 | 共识源:1]：SteerLatch 是一款专注于自主智能体（Agent）与跨平台工作流自动化与自动化与智能体的 AI 工具：Connect MCP-compatible AIs to your computer.
+17. **Tendeck** — https://www.producthunt.com/products/tendeck [海外直连 | 共识源:1]：Tendeck 是一款专注于新一代 AI 原生创新应用体验的 AI 工具：Run all your Claude Code and Codex agents on one Mac board.
+18. **VibeCode.surf** — https://www.producthunt.com/products/vibecode-surf [海外直连 | 共识源:1]：VibeCode.surf 是一款专注于新一代 AI 原生创新应用体验的 AI 工具：AI code editor where agents build, run and test your app.
+19. **eluna** — https://www.producthunt.com/products/eluna [海外直连 | 共识源:1]：eluna 是一款专注于新一代 AI 原生创新应用体验的 AI 工具：Period tracker for couples that explains WHY, not just WHEN.
+20. **RelayRunner** — https://www.producthunt.com/products/relayrunner [海外直连 | 共识源:1]：RelayRunner 是一款专注于新一代 AI 原生创新应用体验的 AI 工具：Swap between CI runners on-demand with zero code changes.
+21. **CodeRabbit Verify** — https://www.producthunt.com/products/coderabbit [海外直连 | 共识源:1]：CodeRabbit Verify 是一款专注于代码审查、重构调试与自动化测试与自主智能体（Agent）与跨平台工作流自动化的 AI 工具：AI agent that tests your running app on every pull request.
+22. **Hold'em** — https://www.producthunt.com/products/hold-em [海外直连 | 共识源:1]：Hold'em 是一款专注于电商商品视觉制作与店铺运营提效的 AI 工具：Swipe real Black Friday cart deals across Shopify.
+23. **Canva MCP** — https://www.producthunt.com/products/canva [海外直连 | 共识源:1]：Canva MCP 是一款专注于自主智能体（Agent）与跨平台工作流自动化的 AI 工具：Turn any AI agent into a creative powerhouse.
+24. **file.spot** — https://www.producthunt.com/products/file-spot [海外直连 | 共识源:1]：file.spot 是一款专注于新一代 AI 原生创新应用体验的 AI 工具：File transfer for creative professionals.
+25. **Tray** — https://www.producthunt.com/products/tray-2 [海外直连 | 共识源:1]：Tray 是一款专注于新一代 AI 原生创新应用体验的 AI 工具：macOS file manager in a screen corner.
 
-## 其他工具（共 168 款，专题页：https://dlzbkj-ai.pages.dev/category/other-tools/）
+## 其他工具（共 159 款，专题页：https://dlzbkj-ai.pages.dev/category/other-tools/）
 
-1. **Bg Eraser** — https://bgeraser.com [国内直连 | 共识源:2]：图片物体抹除和清理
-2. **Chronicle** — https://chroniclehq.com [国内直连 | 共识源:2]：AI高颜值演示文稿创建
-3. **Hama** — https://www.hama.app/zh [国内直连 | 共识源:2]：在线抹除图片中不想要的物体
-4. **SlidesAI** — https://www.slidesai.io [国内直连 | 共识源:2]：AI快速创建演示幻灯片
-5. **合同嗖嗖** — https://contract.yoo-ai.com [国内直连 | 共识源:2]：专业的AI法律合同生成工具
-6. **法智** — https://www.fazhi.law [国内直连 | 共识源:2]：同花顺推出的AI法律助手
-7. **海瑞智法** — https://www.hairuilegal.com [国内直连 | 共识源:2]：一站式AI法律咨询助手
-8. **灵动AI** — https://www.redoon.cn [国内直连 | 共识源:2]：上传图片，挑选喜欢的场景，AI生成专业品质的商品图
-9. **通义法睿** — https://tongyi.aliyun.com/farui [国内直连 | 共识源:2]：阿里推出的免费AI法律顾问助手
-10. **Cutout.Pro Retouch** — https://www.cutout.pro/zh-CN/image-retouch-remove-unwanted-objects [国内直连 | 共识源:2]：Cutout.Pro推出的AI图片物体涂抹去除工具
-11. **Seko** — https://seko.cgref.cn/s/1oe7lzgn23 [国内直连 | 共识源:1]：
-12. **秘塔H3** — https://metaso.cn/minimax-h3 [国内直连 | 共识源:1]：
-13. **Opus Clip** — https://futuretools.link/opus-pro [海外主流 | 共识源:1]：A tool to create short clips.
-14. **updream** — https://updream.cgref.cn/s/1oe71vme23 [国内直连 | 共识源:1]：
-15. **妙呀** — https://www.miaoyaai.cn/activityDetail?activityId=431 [国内直连 | 共识源:1]：
-16. **AdBuddy** — https://adbuddy.qq.com [国内直连 | 共识源:1]：
-17. **BizPeel** — https://bizpeel.com [国内直连 | 共识源:1]：
-18. **Teamily AI** — https://teamily.ai [国内直连 | 共识源:1]：
-19. **Skillry** — https://skillry.cgref.cn/s/rpex3m4e90 [国内直连 | 共识源:1]：
-20. **Magpie** — https://usemagpie.ai [国内直连 | 共识源:1]：
-21. **Action Figure AI** — https://actionfigureai.online [国内直连 | 共识源:1]：一键生成自己的个性化手办！
-22. **AI Beauty Test** — https://aibeautytest.org [国内直连 | 共识源:1]：在线AI美颜评分工具 3步获取精准评分+提升美丽建议
-23. **AI Couple Photo** — https://aicouplephoto.net [国内直连 | 共识源:1]：AI情侣照制作神器，零基础快速生成超现实情侣肖像
-24. **AI 剪影生成器** — https://silhouettegenerator.app/index.html [国内直连 | 共识源:1]：免费 AI 剪影生成，将任何照片转换为令人惊艳的剪影，无需注册
-25. **AI医学—PubMed中文版** — https://www.aipubmed.com [国内直连 | 共识源:1]：PubMed是全球最大的生物医学...
+1. **Bg Eraser** — https://bgeraser.com [海外直连 · 国内热推 | 共识源:2]：Bg Eraser 是一款专注于垂直场景 AI 智能化辅助处理的 AI 工具，适用于专业领域提效与在线自动化服务等场景。
+2. **合同嗖嗖** — https://contract.yoo-ai.com [国内直连 | 共识源:2]：专业的AI法律合同生成工具
+3. **法智** — https://www.fazhi.law [国内直连 | 共识源:2]：同花顺推出的AI法律助手
+4. **海瑞智法** — https://www.hairuilegal.com [国内直连 | 共识源:2]：一站式AI法律咨询助手
+5. **灵动AI** — https://www.redoon.cn [国内直连 | 共识源:2]：上传图片，挑选喜欢的场景，AI生成专业品质的商品图
+6. **通义法睿** — https://tongyi.aliyun.com/farui [国内直连 | 共识源:2]：阿里推出的免费AI法律顾问助手
+7. **Cutout.Pro Retouch** — https://www.cutout.pro/zh-CN/image-retouch-remove-unwanted-objects [海外直连 · 国内热推 | 共识源:2]：Cutout.Pro推出的AI图片物体涂抹去除工具
+8. **Seko** — https://seko.cgref.cn/s/1oe7lzgn23 [国内直连 | 共识源:1]：Seko 是一款专注于垂直场景 AI 智能化辅助处理的 AI 工具，适用于专业领域提效与在线自动化服务等场景。
+9. **秘塔H3** — https://metaso.cn/minimax-h3 [国内直连 | 共识源:1]：秘塔H3 是一款专注于垂直场景 AI 智能化辅助处理的 AI 工具，适用于专业领域提效与在线自动化服务等场景。
+10. **updream** — https://updream.cgref.cn/s/1oe71vme23 [国内直连 | 共识源:1]：updream 是一款专注于垂直场景 AI 智能化辅助处理的 AI 工具，适用于专业领域提效与在线自动化服务等场景。
+11. **妙呀** — https://www.miaoyaai.cn/activityDetail?activityId=431 [国内直连 | 共识源:1]：妙呀 是一款专注于垂直场景 AI 智能化辅助处理的 AI 工具，适用于专业领域提效与在线自动化服务等场景。
+12. **AdBuddy** — https://adbuddy.qq.com [国内直连 | 共识源:1]：AdBuddy 是一款专注于垂直场景 AI 智能化辅助处理的 AI 工具，适用于专业领域提效与在线自动化服务等场景。
+13. **BizPeel** — https://bizpeel.com [海外直连 · 国内热推 | 共识源:1]：BizPeel 是一款专注于垂直场景 AI 智能化辅助处理的 AI 工具，适用于专业领域提效与在线自动化服务等场景。
+14. **Teamily AI** — https://teamily.ai [海外直连 · 国内热推 | 共识源:1]：Teamily AI 是一款专注于垂直场景 AI 智能化辅助处理的 AI 工具，适用于专业领域提效与在线自动化服务等场景。
+15. **Skillry** — https://skillry.cgref.cn/s/rpex3m4e90 [国内直连 | 共识源:1]：Skillry 是一款专注于垂直场景 AI 智能化辅助处理的 AI 工具，适用于专业领域提效与在线自动化服务等场景。
+16. **Magpie** — https://usemagpie.ai [海外直连 · 国内热推 | 共识源:1]：Magpie 是一款专注于垂直场景 AI 智能化辅助处理的 AI 工具，适用于专业领域提效与在线自动化服务等场景。
+17. **Action Figure AI** — https://actionfigureai.online [海外直连 · 国内热推 | 共识源:1]：一键生成自己的个性化手办！
+18. **AI Beauty Test** — https://aibeautytest.org [海外直连 · 国内热推 | 共识源:1]：在线AI美颜评分工具 3步获取精准评分+提升美丽建议
+19. **AI Couple Photo** — https://aicouplephoto.net [海外直连 · 国内热推 | 共识源:1]：AI情侣照制作神器，零基础快速生成超现实情侣肖像
+20. **AI医学—PubMed中文版** — https://www.aipubmed.com [国内直连 | 共识源:1]：PubMed是全球最大的生物医学...
+21. **AI宝宝生成器** — https://aibabygenerator.art [国内直连 | 共识源:1]：免费预测未来宝宝模样
+22. **Beauty Score AI** — https://www.aibeautyrating.online [海外直连 · 国内热推 | 共识源:1]：免费面部评分工具，通过人工智能进行深度评测和评分
+23. **cgfaces** — https://cgfaces.com/cn [海外直连 · 国内热推 | 共识源:1]：由 AI 生成的免费高分辨
+24. **CharaLab** — https://aicharalab.com/3d-character-creator [海外直连 · 国内热推 | 共识源:1]：免费3D动画生成器_无需登录免费生成各种3D风格的图片
+25. **Cici** — https://www.ciciai.com/browser-extension/landing/zh [国内直连 | 共识源:1]：豆包国际版，字节跳动面向海外市场推出的AI助手
 
 ## 最新 AI 行业资讯摘要（实时流：https://dlzbkj-ai.pages.dev/news/）
 

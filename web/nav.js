@@ -350,6 +350,7 @@ export function setRefreshBusy(btn, busy, idleLabel = "刷新", busyLabel = "刷
 const AGGREGATOR_HOSTS = new Set([
   "ai.codefather.cn",
   "futuretools.io",
+  "futuretools.link",
   "futurepedia.io",
   "producthunt.com",
   "ai-bot.cn",

@@ -148,11 +148,28 @@ def is_overseas(item):
 
 
 def region_label(item):
-    d = is_domestic(item)
-    o = is_overseas(item)
-    if d and o:
-        return "国内 · 海外双收录"
-    return "国内直连" if d else "海外主流"
+    am = item.get("access_mode") or ""
+    if am == "cn_native" or is_domestic(item):
+        return "国内直连"
+    if am == "intl_network":
+        return "海外主流（需国际网络）"
+    if item.get("cn_featured"):
+        return "海外直连 · 国内热推"
+    return "海外直连"
+
+
+def pricing_chip_html(pricing):
+    p = (pricing or "").strip()
+    if not p:
+        return ""
+    mod = "tag-chip--freemium"
+    if p == "完全免费":
+        mod = "tag-chip--free"
+    elif p == "开源免费":
+        mod = "tag-chip--oss"
+    elif p == "付费订阅":
+        mod = "tag-chip--paid"
+    return f'<span class="tag-chip {mod}">{esc(p)}</span>'
 
 
 def sort_tools(items):
@@ -373,7 +390,7 @@ def page_shell_html(
   <meta name="twitter:image" content="https://dlzbkj-ai.pages.dev/og-cover.png?v=2">
   <link rel="icon" type="image/png" sizes="64x64" href="{rel_root}favicon.png?v=5">
   <link rel="apple-touch-icon" sizes="180x180" href="{rel_root}apple-touch-icon.png?v=5">
-  <link rel="stylesheet" href="{rel_root}styles.css?v=17">
+  <link rel="stylesheet" href="{rel_root}styles.css?v=18">
   <link rel="stylesheet" href="{rel_root}seo-geo.css?v=2">
   <script type="application/ld+json">{ld_json}</script>
   <script type="module" src="{rel_root}subpage.js?v=2"></script>
@@ -475,6 +492,7 @@ def render_static_card(item, cat_display, rel_root="", slug_by_id=None):
     letter = name.strip()[0].upper() if name.strip() else "A"
     bg = avatar_color(domain or name)
     reg = region_label(item)
+    p_chip = pricing_chip_html(item.get("pricing"))
     tslug = (slug_by_id or {}).get(item.get("id"))
     title_href = f"{rel_root}tool/{tslug}/" if tslug else url
     title_target = "" if tslug else ' target="_blank" rel="noopener noreferrer"'
@@ -500,7 +518,10 @@ def render_static_card(item, cat_display, rel_root="", slug_by_id=None):
           </div>
           <p class="tool-card__desc">{esc(desc)}</p>
           <div class="tool-card__foot">
-            <span class="tag-chip">{esc(cat_display)}</span>
+            <div class="tool-card__tags">
+              <span class="tag-chip">{esc(cat_display)}</span>
+              {p_chip}
+            </div>
             {detail_hint}
           </div>
         </article>"""
@@ -693,6 +714,7 @@ def build_flagship_tool_pages(web_dir, base_url, by_cat, today_str):
           <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M7 7h10v10"/></svg>
         </a>
         <span class="stat-pill">访问属性 <strong>{esc(reg)}</strong></span>
+        <span class="stat-pill">计费模式 <strong>{esc(it.get('pricing') or '免费额度')}</strong></span>
         <span class="stat-pill">所属赛道 <strong>{esc(disp)}</strong></span>
         <a class="btn-secondary" href="../../category/{cat_slug}/" style="padding:7px 14px;font-size:13px;">浏览全部 {len(by_cat.get(cfg['cat'], []))} 款{esc(disp)}工具 →</a>
       </div>

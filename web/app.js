@@ -118,6 +118,7 @@ const els = {
   dialogDomain: document.getElementById("dialogDomain"),
   dialogDesc: document.getElementById("dialogDesc"),
   dialogRegionBadge: document.getElementById("dialogRegionBadge"),
+  dialogPricingBadge: document.getElementById("dialogPricingBadge"),
   dialogCategoryBadge: document.getElementById("dialogCategoryBadge"),
   dialogVisitBtn: document.getElementById("dialogVisitBtn"),
   dialogCopyBtn: document.getElementById("dialogCopyBtn"),
@@ -593,6 +594,28 @@ function updateCardFavButton(btnEl, item, nowFaved) {
   if (poly) poly.setAttribute("fill", nowFaved ? "currentColor" : "none");
 }
 
+function formatAccessLabel(item, compact = false) {
+  const am = item.access_mode || "";
+  const regs = Array.isArray(item.regions) ? item.regions : [item.region];
+  if (am === "cn_native" || regs.includes("domestic")) {
+    return compact ? "国内直连" : "国内直连";
+  }
+  if (am === "intl_network") {
+    return compact ? "需国际网络" : "海外主流 · 需国际网络";
+  }
+  if (item.cn_featured) {
+    return compact ? "海外直连" : "海外直连 · 国内热推";
+  }
+  return "海外直连";
+}
+
+function pricingChipClass(pricing) {
+  if (pricing === "完全免费") return "tag-chip tag-chip--free";
+  if (pricing === "开源免费") return "tag-chip tag-chip--oss";
+  if (pricing === "付费订阅") return "tag-chip tag-chip--paid";
+  return "tag-chip tag-chip--freemium";
+}
+
 function createCardElement(item, index, animateEnter, deferIndex = 16) {
   const card = document.createElement("article");
   card.className = "tool-card";
@@ -670,21 +693,26 @@ function createCardElement(item, index, animateEnter, deferIndex = 16) {
   const foot = document.createElement("div");
   foot.className = "tool-card__foot";
 
+  const tagsWrap = document.createElement("div");
+  tagsWrap.className = "tool-card__tags";
+
   const catTag = document.createElement("span");
   catTag.className = "tag-chip";
   catTag.textContent = item._leisureSub || displayCategoryName(item.category);
+  tagsWrap.appendChild(catTag);
 
-  const regs = item.regions || [item.region];
+  if (item.pricing) {
+    const pTag = document.createElement("span");
+    pTag.className = pricingChipClass(item.pricing);
+    pTag.textContent = item.pricing;
+    tagsWrap.appendChild(pTag);
+  }
+
   const regHint = document.createElement("span");
   regHint.className = "region-hint";
-  regHint.textContent =
-    regs.includes("domestic") && regs.includes("overseas")
-      ? "国内 · 海外"
-      : regs[0] === "domestic"
-        ? "国内"
-        : "海外";
+  regHint.textContent = formatAccessLabel(item, true);
 
-  foot.append(catTag, regHint);
+  foot.append(tagsWrap, regHint);
   card.append(top, desc, foot);
 
   card.addEventListener("click", () => openDialog(item));
@@ -775,7 +803,7 @@ function applyFilters(animateEnter = false) {
       if (catKey !== state.category) return false;
     }
     if (!q) return true;
-    const hay = `${it.name} ${it.description} ${it.domain} ${it.category} ${it._leisureSub || ""}`.toLowerCase();
+    const hay = `${it.name} ${it.description} ${it.domain} ${it.category} ${it.pricing || ""} ${it._leisureSub || ""}`.toLowerCase();
     return hay.includes(q);
   });
 
@@ -924,11 +952,14 @@ function openDialog(item) {
   els.dialogTitle.textContent = item.name;
   els.dialogDomain.textContent = item.domain;
   els.dialogDesc.textContent = item.description || "暂无详细介绍，点击下方按钮前往官网体验。";
-  const regs = Array.isArray(item.regions) ? item.regions : [item.region];
-  if (regs.includes("domestic") && regs.includes("overseas")) {
-    els.dialogRegionBadge.textContent = "国内 · 海外双收录";
-  } else {
-    els.dialogRegionBadge.textContent = regs[0] === "domestic" ? "国内主流" : "海外主流";
+  els.dialogRegionBadge.textContent = formatAccessLabel(item, false);
+  if (els.dialogPricingBadge) {
+    if (item.pricing) {
+      els.dialogPricingBadge.textContent = item.pricing;
+      els.dialogPricingBadge.hidden = false;
+    } else {
+      els.dialogPricingBadge.hidden = true;
+    }
   }
   const catLabel = displayCategoryName(item.category);
   els.dialogCategoryBadge.textContent = item._leisureSub

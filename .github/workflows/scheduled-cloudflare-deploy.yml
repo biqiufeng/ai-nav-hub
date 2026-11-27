@@ -78,6 +78,11 @@ jobs:
             curl -fsSL -m 20 "$CF_LIVE_URL/data/news.json" -o web/data/news.json
           fi
 
+      - name: Run data quality governance (URL unwrapping, deduplication, bilingual & dead-link patrol)
+        shell: bash
+        run: |
+          python3 -u crawler/data_governance.py --catalog web/data/catalog.json --unwrap --patrol --workers 32
+
       - name: Validate generated data files
         run: |
           python3 - <<'PY'
