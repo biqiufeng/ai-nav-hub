@@ -440,13 +440,6 @@ def page_shell_html(
           </ul>
         </nav>
 
-        <button class="submit-trigger" type="button" command="show-modal" commandfor="submitToolDialog">
-          <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true">
-            <path d="M12 5v14M5 12h14"/>
-          </svg>
-          <span><span class="submit-trigger__prefix">提交</span>收录</span>
-        </button>
-
         <button class="theme-toggle" id="themeToggle" type="button" aria-label="切换浅色或深色外观" title="切换外观（可收回至跟随系统）">
           <span class="theme-toggle__icon theme-toggle__icon--sun" aria-hidden="true">
             <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
@@ -1049,7 +1042,7 @@ def build_category_pages(web_dir, base_url, by_cat, today_str, slug_by_id, vs_li
             ),
             (
                 f"如何检索全部 {total_cnt} 款「{disp}」工具或提交新产品收录？",
-                f"本专题页静态直出多源共识度最高的前 {min(total_cnt, 96)} 款代表产品；点击顶部「在全库实时筛选本分类」即可秒级检索全部 {total_cnt} 款工具，开发者亦可通过右上角「提交收录」免费自荐新品。",
+                f"本专题页静态直出多源共识度最高的前 {min(total_cnt, 96)} 款代表产品；点击顶部「在全库实时筛选本分类」即可秒级检索全部 {total_cnt} 款工具，开发者亦可通过页脚「免费提交工具收录」入口免费自荐新品。",
             ),
         ]
 
