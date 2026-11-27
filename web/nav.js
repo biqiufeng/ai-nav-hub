@@ -557,6 +557,79 @@ function ensureInvokerSupport() {
   }
 }
 
+/* ---------- Deferred click telemetry (modern-web-guidance: full-session-analytics) ---------- */
+globalThis.fetchLater ??= function fetchLater(url, init = {}) {
+  let timeoutHandle;
+  let activated = false;
+
+  function sendNow() {
+    if (!(init.signal && init.signal.aborted)) {
+      if (
+        "keepalive" in Request.prototype ||
+        init.method !== "POST" ||
+        init.headers
+      ) {
+        fetch(url, Object.assign({}, init, { keepalive: true, priority: "low" })).catch(() => {});
+        activated = true;
+      } else {
+        activated = navigator.sendBeacon(url, init.body);
+      }
+    }
+    destroy();
+  }
+
+  function destroy() {
+    document.removeEventListener("visibilitychange", sendNow);
+    clearTimeout(timeoutHandle);
+  }
+
+  if (document.visibilityState === "hidden") {
+    queueMicrotask(sendNow);
+  } else {
+    document.addEventListener("visibilitychange", sendNow);
+    if (typeof init.activateAfter === "number" && init.activateAfter >= 0) {
+      timeoutHandle = setTimeout(sendNow, init.activateAfter);
+    }
+  }
+
+  if (init.signal) {
+    init.signal.addEventListener("abort", destroy);
+  }
+
+  return {
+    get activated() {
+      return activated;
+    },
+  };
+};
+
+const pendingClickIds = new Set();
+let clickBeaconController = null;
+
+export function queueToolClickBeacon(toolId, endpoint = "/api/click") {
+  const id = String(toolId || "").trim().toLowerCase();
+  if (!/^[a-f0-9]{6,24}$/.test(id)) return;
+  pendingClickIds.add(id);
+
+  if (clickBeaconController) {
+    clickBeaconController.abort();
+  }
+  clickBeaconController = new AbortController();
+  const snapshot = [...pendingClickIds].slice(-8);
+
+  try {
+    globalThis.fetchLater(endpoint, {
+      method: "POST",
+      headers: { "content-type": "application/json" },
+      body: JSON.stringify({ ids: snapshot }),
+      signal: clickBeaconController.signal,
+      activateAfter: 2500,
+    });
+  } catch {
+    // Respect origin quota limits gracefully
+  }
+}
+
 export function initSubmitToolDialog(onToast) {
   ensureInvokerSupport();
   initWebAppInstall(onToast);
@@ -570,8 +643,11 @@ export function initSubmitToolDialog(onToast) {
   const urlInput = document.getElementById("subToolUrl");
   const catSelect = document.getElementById("subToolCat");
   const descInput = document.getElementById("subToolDesc");
+  const hpInput = form.querySelector('input[name="website_hp"]');
   const errEl = document.getElementById("subFormError");
   const snippetEl = document.getElementById("subMarkdownSnippet");
+  const primaryBtn = document.getElementById("subPrimaryBtn") || form.querySelector('button[type="submit"]');
+  const githubBtn = document.getElementById("subGithubBtn");
   const mailBtn = document.getElementById("subMailBtn");
   const closeBtn = document.getElementById("submitDialogCloseBtn");
 
@@ -600,13 +676,13 @@ export function initSubmitToolDialog(onToast) {
     if (!field) return "";
     const val = field.value.trim();
     if (field === nameInput) {
-      if (!val) return "请填写 AI 工具名称。";
+      if (val.length < 2) return "请填写 AI 工具名称（至少 2 个字符）。";
     } else if (field === urlInput) {
       if (!val) return "请填写工具官网完整链接（以 https:// 开头）。";
       const safe = safeHttpUrl(val);
       if (!safe) return "官网链接格式不正确，请输入以 https:// 或 http:// 开头的有效网址。";
     } else if (field === descInput) {
-      if (!val) return "请用一两句话简述工具的核心功能亮点。";
+      if (val.length < 6) return "请简述工具的核心功能亮点（至少 6 个字）。";
     }
     return "";
   };
@@ -652,9 +728,7 @@ export function initSubmitToolDialog(onToast) {
     return true;
   };
 
-  form.addEventListener("submit", (e) => {
-    e.preventDefault();
-    if (!checkAllValid()) return;
+  const openGithubIssueFallback = () => {
     const { name, cat, markdown } = buildPayload();
     const issueUrl = new URL("https://github.com/biqiufeng/ai-nav-hub/issues/new");
     issueUrl.searchParams.set("title", `[收录推荐] ${name}（${cat}）`);
@@ -662,6 +736,52 @@ export function initSubmitToolDialog(onToast) {
     window.open(issueUrl.toString(), "_blank", "noopener,noreferrer");
     closeAnimatedDialog(dialog);
     onToast?.("已打开 GitHub 提交页，感谢推荐！", { force: true });
+  };
+
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    if (!checkAllValid()) return;
+    const { name, url, cat, desc } = buildPayload();
+    const origLabel = primaryBtn?.textContent || "免登录一键提交收录";
+    if (primaryBtn) {
+      primaryBtn.disabled = true;
+      primaryBtn.textContent = "正在提交并校验友链…";
+    }
+    try {
+      const res = await fetch("/api/submit", {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        body: JSON.stringify({
+          name,
+          url,
+          category: cat,
+          description: desc,
+          website_hp: hpInput?.value || "",
+        }),
+      });
+      const out = await res.json().catch(() => null);
+      if (!res.ok || !out?.ok) {
+        throw new Error(out?.error || `提交失败 (HTTP ${res.status})`);
+      }
+      form.reset();
+      syncSnippet();
+      closeAnimatedDialog(dialog);
+      onToast?.(out.message || "提交成功！已进入收录审核队列。", { force: true });
+    } catch (err) {
+      if (errEl) {
+        errEl.textContent = String(err?.message || "网络波动，也可点击右侧 GitHub 备份提交。");
+      }
+    } finally {
+      if (primaryBtn) {
+        primaryBtn.disabled = false;
+        primaryBtn.textContent = origLabel;
+      }
+    }
+  });
+
+  githubBtn?.addEventListener("click", () => {
+    if (!checkAllValid()) return;
+    openGithubIssueFallback();
   });
 
   mailBtn?.addEventListener("click", async () => {

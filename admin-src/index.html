@@ -15,9 +15,9 @@
   <title>数据后台 · AI 导航聚合站</title>
   <link rel="icon" type="image/png" sizes="64x64" href="../favicon.png?v=5">
   <link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png?v=5">
-  <link rel="stylesheet" href="../styles.css?v=19">
+  <link rel="stylesheet" href="../styles.css?v=20">
   <link rel="stylesheet" href="./admin.css?v=2">
-  <script type="module" src="./admin.js?v=5"></script>
+  <script type="module" src="./admin.js?v=6"></script>
 </head>
 <body>
   <header class="top-bar" id="topBar">
@@ -135,9 +135,43 @@
           <li><strong>图标降级策略：</strong>自动剔除出现频次 ≥ 4 的默认占位图标，前端按「真实图标 → 高清 Favicon → 域名首字母 Monogram」渲染。</li>
           <li><strong>原子安全写入：</strong>总有效工具低于安全阈值时自动拒绝覆盖，保留线上旧版数据；写入前先拷贝备份并执行单次原子替换。</li>
           <li><strong>深水区数据治理：</strong>持久化 Keep-Alive 连接池自动解包 4,100+ 短链还原真实官网，修复乱码与断句，补齐中文摘要、4 档计费模式与 3 档国内/海外网络可达性标识，并巡检剔除失效死链域名。</li>
-          <li><strong>全站 SEO 与 GEO 矩阵：</strong>自动构建 600+ 单品平替页、60+ 组 VS 两两横评页、12 大场景工作流包、<code>llms.txt</code>、<code>openapi.json</code> 与边缘 <code>/api/search</code> 接口，并通过 IndexNow 主动推送收录。</li>
+          <li><strong>全站 SEO 与 GEO 矩阵：</strong>覆盖全库 8,240+ 单品平替页（622 静态页 + 7,600+ 边缘动态 SSR）、80 组 VS 两两横评页、12 大场景工作流包、远程 <code>/api/mcp</code> MCP 服务、<code>llms.txt</code>、<code>openapi.json</code> 与分片 Sitemap Index，并通过 IndexNow 主动推送收录。</li>
         </ul>
       </section>
+    </section>
+
+    <section class="admin-panel" aria-labelledby="d1QueueHeading">
+      <div class="admin-panel__head">
+        <div>
+          <h2 class="admin-panel__title" id="d1QueueHeading">用户直投待审队列 &amp; 实时点击热度（Cloudflare D1）</h2>
+          <p class="admin-panel__desc" id="d1SummaryDesc">正在读取边缘 D1 实时提交与点击统计…</p>
+        </div>
+      </div>
+      <div tabindex="0" role="region" aria-labelledby="d1QueueHeading" class="table-wrapper">
+        <table class="sources-table">
+          <caption class="sr-only">用户提交工具收录与死链反馈明细</caption>
+          <thead>
+            <tr>
+              <th scope="col">类型 / 工具名</th>
+              <th scope="col">分类 / 状态</th>
+              <th scope="col">友链优先</th>
+              <th scope="col">链接</th>
+              <th scope="col">亮点说明 / 原因</th>
+              <th scope="col">提交时间</th>
+            </tr>
+          </thead>
+          <tbody id="d1SubmissionsBody">
+            <tr>
+              <th scope="row">加载中</th>
+              <td>—</td>
+              <td>—</td>
+              <td>—</td>
+              <td>正在读取 /api/submit</td>
+              <td>—</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </section>
 
     <section class="admin-panel" aria-labelledby="linksHeading">

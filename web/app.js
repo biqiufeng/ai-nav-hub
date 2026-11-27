@@ -11,8 +11,9 @@ import {
   safeHttpUrl,
   renderToolAvatar,
   initSubmitToolDialog,
+  queueToolClickBeacon,
   yieldToMain,
-} from "./nav.js?v=6";
+} from "./nav.js?v=7";
 
 const CAT_ICONS = {
   "对话写作": `<svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>`,
@@ -77,6 +78,8 @@ const state = {
   region: loadRegion(),
   category: "全部",
   pricingFilter: "all",
+  trendingOnly: false,
+  trendingById: {},
   query: "",
   slugById: {},
   favorites: loadFavorites(),
@@ -104,6 +107,7 @@ const els = {
   segmentedThumb: document.getElementById("segmentedThumb"),
   categoryBar: document.getElementById("categoryBar"),
   subFiltersBar: document.getElementById("subFiltersBar"),
+  trendingSortPill: document.getElementById("trendingSortPill"),
   resultCounter: document.getElementById("resultCounter"),
   shareFavBtn: document.getElementById("shareFavBtn"),
   exportFavBtn: document.getElementById("exportFavBtn"),
@@ -129,8 +133,10 @@ const els = {
   dialogDetailBtn: document.getElementById("dialogDetailBtn"),
   dialogCopyBtn: document.getElementById("dialogCopyBtn"),
   dialogCopyText: document.getElementById("dialogCopyText"),
+  dialogPosterBtn: document.getElementById("dialogPosterBtn"),
   dialogFavBtn: document.getElementById("dialogFavBtn"),
   dialogFavText: document.getElementById("dialogFavText"),
+  dialogReportBtn: document.getElementById("dialogReportBtn"),
   dialogCloseBtn: document.getElementById("dialogCloseBtn"),
   toast: document.getElementById("toast"),
 };
@@ -707,6 +713,9 @@ function renderCategories(baseItems) {
       }
       state.category = state.category === cat && cat !== "全部" ? "全部" : cat;
       state.visibleLimit = PAGE_BATCH;
+      if (state.isPartialCatalog && state.category !== "全部") {
+        hydrateFullCatalog();
+      }
       applyFilters(true);
     });
     frag.appendChild(btn);
@@ -810,7 +819,10 @@ function createCardElement(item, index, animateEnter, deferIndex = 16) {
     visitLink.rel = "noopener noreferrer";
     visitLink.setAttribute("aria-label", `直接访问 ${item.name}`);
     visitLink.innerHTML = `<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M7 7h10v10"/></svg>`;
-    visitLink.addEventListener("click", (e) => e.stopPropagation());
+    visitLink.addEventListener("click", (e) => {
+      e.stopPropagation();
+      queueToolClickBeacon(item.id, "./api/click");
+    });
     quick.append(favBtn, visitLink);
   } else {
     quick.append(favBtn);
@@ -838,6 +850,14 @@ function createCardElement(item, index, animateEnter, deferIndex = 16) {
     pTag.className = pricingChipClass(item.pricing);
     pTag.textContent = item.pricing;
     tagsWrap.appendChild(pTag);
+  }
+
+  const clicks7d = state.trendingById[item.id] || 0;
+  if (clicks7d > 0) {
+    const cTag = document.createElement("span");
+    cTag.className = "tag-chip tag-chip--free";
+    cTag.textContent = `${clicks7d} 次热击`;
+    tagsWrap.appendChild(cTag);
   }
 
   const regHint = document.createElement("span");
@@ -896,6 +916,7 @@ function renderSectionedView(items, animateEnter) {
       } else {
         state.category = cat;
         state.visibleLimit = PAGE_BATCH;
+        if (state.isPartialCatalog) hydrateFullCatalog();
         applyFilters(true);
       }
       window.scrollTo({ top: 0, behavior: prefersReducedMotion() ? "auto" : "smooth" });
@@ -940,15 +961,21 @@ function applyFilters(animateEnter = false) {
       if ((it.pricing || "免费额度") !== state.pricingFilter) continue;
     }
     if (groups.length === 0) {
-      scoredMatches.push({ sc: it.score || 0, it });
+      const clickBoost = (state.trendingById[it.id] || 0) * 25;
+      scoredMatches.push({ sc: (it.score || 0) + clickBoost, it });
     } else {
       const sc = scoreToolSearch(it, groups);
-      if (sc >= 0) scoredMatches.push({ sc, it });
+      if (sc >= 0) scoredMatches.push({ sc: sc + (state.trendingById[it.id] || 0) * 15, it });
     }
   }
 
-  if (groups.length > 0) {
-    scoredMatches.sort((a, b) => b.sc - a.sc || a.it.name.localeCompare(b.it.name));
+  if (groups.length > 0 || state.trendingOnly) {
+    scoredMatches.sort(
+      (a, b) =>
+        (state.trendingOnly ? (state.trendingById[b.it.id] || 0) - (state.trendingById[a.it.id] || 0) : 0) ||
+        b.sc - a.sc ||
+        a.it.name.localeCompare(b.it.name)
+    );
   }
   state.filtered = scoredMatches.map((x) => x.it);
 
@@ -978,7 +1005,7 @@ function applyFilters(animateEnter = false) {
 
   els.emptyState.hidden = true;
 
-  if (isSectionMode()) {
+  if (isSectionMode() && !state.trendingOnly) {
     renderSectionedView(state.filtered, animateEnter);
     updateSearchHighlights([]);
   } else {
@@ -1123,7 +1150,7 @@ function openDialog(item) {
     els.dialogVisitBtn.hidden = true;
   }
 
-  const tslug = state.slugById?.[item.id];
+  const tslug = item.slug || state.slugById?.[item.id];
   if (els.dialogDetailBtn) {
     if (tslug) {
       els.dialogDetailBtn.href = `./tool/${tslug}/`;
@@ -1146,7 +1173,7 @@ function openDialog(item) {
     if (domAlts.length > 0) {
       const frag = document.createDocumentFragment();
       for (const alt of domAlts) {
-        const altSlug = state.slugById?.[alt.id];
+        const altSlug = alt.slug || state.slugById?.[alt.id];
         if (altSlug) {
           const link = document.createElement("a");
           link.className = "dialog-alts__chip";
@@ -1177,9 +1204,86 @@ function openDialog(item) {
   els.toolDialog.showModal();
 }
 
+els.dialogVisitBtn?.addEventListener("click", () => {
+  if (state.activeTool) queueToolClickBeacon(state.activeTool.id, "./api/click");
+});
+
 els.dialogCopyBtn.addEventListener("click", () => {
   if (!state.activeTool) return;
   copyWithFeedback(state.activeTool.url, els.dialogCopyBtn, showToast, els.dialogCopyText);
+});
+
+els.dialogPosterBtn?.addEventListener("click", async () => {
+  const item = state.activeTool;
+  if (!item) return;
+  const slug = item.slug || state.slugById?.[item.id] || "";
+  const posterUrl = slug
+    ? `./api/og?type=tool&slug=${encodeURIComponent(slug)}`
+    : `./api/og?id=${encodeURIComponent(item.id)}`;
+  els.dialogPosterBtn.disabled = true;
+  try {
+    const res = await fetch(posterUrl);
+    if (!res.ok) throw new Error("og_failed");
+    const svgText = await res.text();
+    const svgBlob = new Blob([svgText], { type: "image/svg+xml;charset=utf-8" });
+    const objUrl = URL.createObjectURL(svgBlob);
+    const img = new Image();
+    await new Promise((resolve, reject) => {
+      img.onload = resolve;
+      img.onerror = reject;
+      img.src = objUrl;
+    });
+    const canvas = document.createElement("canvas");
+    canvas.width = 1200;
+    canvas.height = 630;
+    const ctx = canvas.getContext("2d");
+    ctx.drawImage(img, 0, 0, 1200, 630);
+    URL.revokeObjectURL(objUrl);
+
+    const pngBlob = await new Promise((resolve) => canvas.toBlob(resolve, "image/png"));
+    if (pngBlob && typeof ClipboardItem === "function" && navigator.clipboard?.write) {
+      try {
+        await navigator.clipboard.write([new ClipboardItem({ "image/png": pngBlob })]);
+        showToast("已将高清分享海报复制至剪贴板，可直接粘贴发送！");
+        return;
+      } catch {}
+    }
+    if (pngBlob) {
+      const dlUrl = URL.createObjectURL(pngBlob);
+      const a = document.createElement("a");
+      a.href = dlUrl;
+      a.download = `${item.name}-AI导航分享卡.png`;
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      setTimeout(() => URL.revokeObjectURL(dlUrl), 1500);
+      showToast("已下载高清 PNG 分享海报！");
+      return;
+    }
+  } catch {
+    window.open(posterUrl, "_blank", "noopener");
+  } finally {
+    els.dialogPosterBtn.disabled = false;
+  }
+});
+
+els.dialogReportBtn?.addEventListener("click", async () => {
+  const item = state.activeTool;
+  if (!item) return;
+  els.dialogReportBtn.disabled = true;
+  try {
+    await fetch("./api/report", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ id: item.id, name: item.name, url: item.url, reason: "user_dialog_report" }),
+      priority: "low",
+    });
+    showToast(`已收到「${item.name}」异常反馈，下次巡检将优先核实！`);
+  } catch {
+    showToast("已记录反馈，感谢共建纯净导航！");
+  } finally {
+    els.dialogReportBtn.disabled = false;
+  }
 });
 
 els.dialogFavBtn.addEventListener("click", () => {
@@ -1212,6 +1316,14 @@ els.subFiltersBar?.querySelectorAll("[data-pricing]").forEach((btn) => {
   });
 });
 
+els.trendingSortPill?.addEventListener("click", () => {
+  state.trendingOnly = !state.trendingOnly;
+  state.visibleLimit = PAGE_BATCH;
+  els.trendingSortPill.classList.toggle("is-active", state.trendingOnly);
+  els.trendingSortPill.setAttribute("aria-pressed", String(state.trendingOnly));
+  applyFilters(true);
+});
+
 const searchController = bindSearchBox({
   input: els.searchInput,
   clearBtn: els.searchClear,
@@ -1236,6 +1348,11 @@ els.emptyResetBtn.addEventListener("click", () => {
   state.query = "";
   state.category = "全部";
   state.pricingFilter = "all";
+  state.trendingOnly = false;
+  if (els.trendingSortPill) {
+    els.trendingSortPill.classList.remove("is-active");
+    els.trendingSortPill.setAttribute("aria-pressed", "false");
+  }
   state.visibleLimit = PAGE_BATCH;
   syncPricingPills();
   searchController.sync();
@@ -1304,13 +1421,14 @@ async function normalizeCatalogItemsChunked(rawItems) {
   return out;
 }
 
-function hydrateFullCatalog() {
+function hydrateFullCatalog({ priority = "auto" } = {}) {
   if (!state.isPartialCatalog) return Promise.resolve();
   if (state.fullFetchPromise) return state.fullFetchPromise;
 
   state.fullFetchPromise = (async () => {
     try {
-      const res = await fetch("./data/catalog.json", { cache: "no-cache" });
+      const fetchOpts = priority === "low" ? { priority: "low" } : {};
+      const res = await fetch("./data/catalog.json", fetchOpts);
       if (!res.ok) return;
       const fullCatalog = await res.json();
       await yieldToMain();
@@ -1321,7 +1439,7 @@ function hydrateFullCatalog() {
       state.items = fullItems;
       state.isPartialCatalog = false;
 
-      if (!isSectionMode()) {
+      if (!isSectionMode() || state.trendingOnly) {
         applyFilters(false);
       } else {
         updateCounts();
@@ -1352,12 +1470,29 @@ async function init() {
   const initialPricing = params.get("pricing");
   const sharedFavs = params.get("favs");
 
-  fetch("./data/tool-slugs.json")
+  // Deprioritize background 7-day click heat fetch so first-screen hot shard renders first
+  fetch("./api/trending", { priority: "low" })
     .then((r) => (r.ok ? r.json() : null))
     .then((d) => {
-      if (d?.by_id) state.slugById = d.by_id;
+      if (Array.isArray(d?.items) && d.items.length > 0) {
+        const map = {};
+        for (const row of d.items) {
+          if (row.id && row.clicks > 0) map[row.id] = row.clicks;
+        }
+        state.trendingById = map;
+        if (state.items.length > 0 && state.trendingOnly) applyFilters(false);
+      }
     })
     .catch(() => {});
+
+  // Prefetch full 4.3MB catalog at low priority ONLY when user focuses the search input
+  els.searchInput?.addEventListener(
+    "focus",
+    () => {
+      if (state.isPartialCatalog) hydrateFullCatalog({ priority: "low" });
+    },
+    { once: true }
+  );
 
   if (initialPricing && ["完全免费", "开源免费", "免费额度", "付费订阅"].includes(initialPricing)) {
     state.pricingFilter = initialPricing;
@@ -1415,7 +1550,7 @@ async function init() {
     let loadedHot = false;
     if (!needsFullImmediately) {
       try {
-        const hotRes = await fetch("./data/catalog-hot.json", { cache: "no-cache" });
+        const hotRes = await fetch("./data/catalog-hot.json");
         if (hotRes.ok) {
           const hotData = await hotRes.json();
           state.loadFailed = false;
@@ -1427,14 +1562,12 @@ async function init() {
           );
           applyFilters(!hadPrerender);
           loadedHot = true;
-          const scheduleIdle = window.requestIdleCallback || ((cb) => setTimeout(cb, 180));
-          scheduleIdle(() => hydrateFullCatalog());
         }
       } catch {}
     }
 
     if (!loadedHot) {
-      const res = await fetch("./data/catalog.json", { cache: "no-cache" });
+      const res = await fetch("./data/catalog.json");
       if (!res.ok) throw new Error(`HTTP ${res.status}`);
       const catalog = await res.json();
       state.loadFailed = false;

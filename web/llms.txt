@@ -1,16 +1,18 @@
 # AI 导航聚合站 (AI Nav Hub)
 
-> 零广告、免登录、国内直连秒开的国内外主流 AI 工具、每日 AI 行业早报与 14 平台实时科技热榜聚合站。每日自动去重更新，当前共收录 8,240 款 AI 工具，并为 622 款多源高共识工具提供独立详情与国内平替对比页（更新日期：2026-11-27）。
+> 零广告、免登录、国内直连秒开的国内外主流 AI 工具、每日 AI 行业早报与 14 平台实时科技热榜聚合站。每日自动去重更新，当前共收录 8,240 款 AI 工具，并为 8240 款多源高共识工具提供独立详情与国内平替对比页（更新日期：2026-11-27）。
 
 ## 核心频道与智能体开放接口 (GEO / Agent API)
 
 - [首页 · 全库 8,240 款 AI 工具检索](https://dlzbkj-ai.pages.dev/): 支持多词加权秒搜、计费模式筛选与 10 大分类浏览
+- [远程 MCP Server (Streamable HTTP 免鉴权直连)](https://dlzbkj-ai.pages.dev/api/mcp): 支持 Claude Desktop / Cursor / Cherry Studio / Antigravity 直接挂载 `search_ai_tools`、`get_tool_alternatives`、`get_latest_ai_news` 工具
 - [实时工具检索 JSON API (免鉴权 CORS)](https://dlzbkj-ai.pages.dev/api/search?q=AI搜索&region=domestic&limit=10): 支持参数 `q`、`category`、`region=domestic|overseas`、`pricing=完全免费|开源免费`、`limit`
+- [近 7 日真实访客热门点击榜 API](https://dlzbkj-ai.pages.dev/api/trending): 返回基于真实用户访问的近 7 日高热飙升 AI 工具统计
 - [OpenAPI 3.1.0 工具规范描述](https://dlzbkj-ai.pages.dev/openapi.json): 供外部 AI Agent / GPT Actions / Dify / Coze 直接挂载调用
 - [12 大 AI 场景工作流专题](https://dlzbkj-ai.pages.dev/scene/): 覆盖完全免费、开源本地部署、国内免翻墙、写论文、独立开发、短视频、PPT 与电商抠图
 - [热门 AI 工具两两 VS 对比库](https://dlzbkj-ai.pages.dev/vs/): 60+ 组国内外主流大模型与工具同屏横评选型
 - [分类专题大全](https://dlzbkj-ai.pages.dev/category/): 10 大 AI 垂直赛道多源共识对比排行榜
-- [热门工具详情与平替库](https://dlzbkj-ai.pages.dev/tool/): 622 款高共识 AI 工具官网直达与国内替代推荐
+- [热门工具详情与平替库](https://dlzbkj-ai.pages.dev/tool/): 8240 款高共识 AI 工具官网直达与国内替代推荐
 - [实时 AI 资讯速递](https://dlzbkj-ai.pages.dev/news/): 每 2 小时更新大模型、Agent、多模态与算力动态
 - [每日 AI 早报历史归档](https://dlzbkj-ai.pages.dev/daily/): 按日沉淀 AI 行业核心进展摘要
 - [全网实时热榜](https://dlzbkj-ai.pages.dev/moyu/): 聚合 GitHub、掘金、少数派、36氪、知乎、B站等 14 平台热榜
@@ -102,34 +104,34 @@
 - [DeepLearning.AI](https://www.deeplearning.ai) (海外直连 · 国内热推 | [平替对比](https://dlzbkj-ai.pages.dev/tool/deeplearning/)): DeepLearning.AI是一个专注于人工智能教育的平台，由Andrew Ng创办。平台为用户提供丰富的在线课程和专业认证，帮助学员学习和掌握机器学习、人工智能等领域
 
 ### 影音娱乐 (https://dlzbkj-ai.pages.dev/category/media-leisure/)
-- [MAKE](https://make.mk) (海外直连 · 国内热推): 每刻都给你不一样的资讯
-- [2020游戏](https://2020game.io) (国内直连): 重点推荐，闯关类游戏！
-- [360资源站](https://360zy5.com) (国内直连): 全网最全片库，一家顶三家！资源永久免费！
-- [51音乐下载](https://www.at38.cn) (国内直连): 支持多平台音乐解析、搜索
-- [818影视](https://www.qwqw818.sbs) (国内直连): 提供最新电影、电视剧、动漫、综艺在线观看，海量正版高清视频免费观看，支持手机电脑同步观看，更新快，画质好，打造极致追剧体验。
-- [996忍者](http://996.ninja) (国内直连): 996忍者 是一款专注于数字影音娱乐、创意互动与休闲工具的 AI 工具，适用于视听体验、在线小游戏与趣味工具探索等场景。
-- [AirConsole](https://www.airconsole.com) (国内直连): 由瑞士公司 ​​N-Dream​​ 于2015年推出的 ​​云端多人游戏平台​​，主打“​​手机即手柄​​”的创新设计，将电脑、平板、智能电视（Android TV/Am
-- [BT之家1LOU站](https://www.1lou.me) (国内直连): 提供全网最快 最新 最全 高清 电影、动漫、韩剧、日剧、美剧、无损音乐、小说等BT/网盘下载以及资讯！
+- [MAKE](https://make.mk) (海外直连 · 国内热推 | [平替对比](https://dlzbkj-ai.pages.dev/tool/make-mk/)): 每刻都给你不一样的资讯
+- [2020游戏](https://2020game.io) (国内直连 | [平替对比](https://dlzbkj-ai.pages.dev/tool/2020game/)): 重点推荐，闯关类游戏！
+- [360资源站](https://360zy5.com) (国内直连 | [平替对比](https://dlzbkj-ai.pages.dev/tool/360zy5/)): 全网最全片库，一家顶三家！资源永久免费！
+- [51音乐下载](https://www.at38.cn) (国内直连 | [平替对比](https://dlzbkj-ai.pages.dev/tool/at38/)): 支持多平台音乐解析、搜索
+- [818影视](https://www.qwqw818.sbs) (国内直连 | [平替对比](https://dlzbkj-ai.pages.dev/tool/qwqw818-sbs/)): 提供最新电影、电视剧、动漫、综艺在线观看，海量正版高清视频免费观看，支持手机电脑同步观看，更新快，画质好，打造极致追剧体验。
+- [996忍者](http://996.ninja) (国内直连 | [平替对比](https://dlzbkj-ai.pages.dev/tool/996-ninja/)): 996忍者 是一款专注于数字影音娱乐、创意互动与休闲工具的 AI 工具，适用于视听体验、在线小游戏与趣味工具探索等场景。
+- [AirConsole](https://www.airconsole.com) (国内直连 | [平替对比](https://dlzbkj-ai.pages.dev/tool/airconsole/)): 由瑞士公司 ​​N-Dream​​ 于2015年推出的 ​​云端多人游戏平台​​，主打“​​手机即手柄​​”的创新设计，将电脑、平板、智能电视（Android TV/Am
+- [BT之家1LOU站](https://www.1lou.me) (国内直连 | [平替对比](https://dlzbkj-ai.pages.dev/tool/1lou/)): 提供全网最快 最新 最全 高清 电影、动漫、韩剧、日剧、美剧、无损音乐、小说等BT/网盘下载以及资讯！
 
 ### 新品速递 (https://dlzbkj-ai.pages.dev/category/new-releases/)
-- [Superframes](https://www.producthunt.com/products/superframes-ai-video-editor) (海外直连): Superframes 是一款专注于新一代 AI 原生创新应用体验的 AI 工具：Brief an AI Director to edit the whole video
-- [Pax by Pydantic](https://www.producthunt.com/products/pydantic) (海外直连): Pax by Pydantic 是一款专注于新一代 AI 原生创新应用体验的 AI 工具：A coding agent where even coding is a pl
-- [Doodle](https://www.producthunt.com/products/doodle-5) (海外直连): Doodle 是一款专注于新一代 AI 原生创新应用体验的 AI 工具：The stick figure on your taskbar that answers que
-- [iwantmy.app](https://www.producthunt.com/products/iwantmy-app) (海外直连): iwantmy.app 是一款专注于新一代 AI 原生创新应用体验的 AI 工具：Describe a mobile app in chat and open it on
-- [Meboki](https://www.producthunt.com/products/meboki) (海外直连): Meboki 是一款专注于新一代 AI 原生创新应用体验的 AI 工具：Offline grammar checker for any Mac app. Open sou
-- [Transept AI](https://www.producthunt.com/products/transept-ai) (海外直连): Transept AI 是一款专注于多语种精准翻译、视频译制与本地化的 AI 工具：Translate your book in your own voice and p
-- [Flurra](https://www.producthunt.com/products/flurra) (海外直连): Flurra 是一款专注于新一代 AI 原生创新应用体验的 AI 工具：Ask Claude or ChatGPT to edit your videos.
-- [Nookdeck](https://www.producthunt.com/products/nookdeck) (海外直连): Nookdeck 是一款专注于新一代 AI 原生创新应用体验的 AI 工具：Turn your old phone into a Stream Deck for your
+- [Superframes](https://www.producthunt.com/products/superframes-ai-video-editor) (海外直连 | [平替对比](https://dlzbkj-ai.pages.dev/tool/producthunt-b7f3/)): Superframes 是一款专注于新一代 AI 原生创新应用体验的 AI 工具：Brief an AI Director to edit the whole video
+- [Pax by Pydantic](https://www.producthunt.com/products/pydantic) (海外直连 | [平替对比](https://dlzbkj-ai.pages.dev/tool/producthunt-ca66/)): Pax by Pydantic 是一款专注于新一代 AI 原生创新应用体验的 AI 工具：A coding agent where even coding is a pl
+- [Doodle](https://www.producthunt.com/products/doodle-5) (海外直连 | [平替对比](https://dlzbkj-ai.pages.dev/tool/producthunt-7a6e/)): Doodle 是一款专注于新一代 AI 原生创新应用体验的 AI 工具：The stick figure on your taskbar that answers que
+- [iwantmy.app](https://www.producthunt.com/products/iwantmy-app) (海外直连 | [平替对比](https://dlzbkj-ai.pages.dev/tool/producthunt-50f9/)): iwantmy.app 是一款专注于新一代 AI 原生创新应用体验的 AI 工具：Describe a mobile app in chat and open it on
+- [Meboki](https://www.producthunt.com/products/meboki) (海外直连 | [平替对比](https://dlzbkj-ai.pages.dev/tool/producthunt-2156/)): Meboki 是一款专注于新一代 AI 原生创新应用体验的 AI 工具：Offline grammar checker for any Mac app. Open sou
+- [Transept AI](https://www.producthunt.com/products/transept-ai) (海外直连 | [平替对比](https://dlzbkj-ai.pages.dev/tool/producthunt-286f/)): Transept AI 是一款专注于多语种精准翻译、视频译制与本地化的 AI 工具：Translate your book in your own voice and p
+- [Flurra](https://www.producthunt.com/products/flurra) (海外直连 | [平替对比](https://dlzbkj-ai.pages.dev/tool/producthunt-49da/)): Flurra 是一款专注于新一代 AI 原生创新应用体验的 AI 工具：Ask Claude or ChatGPT to edit your videos.
+- [Nookdeck](https://www.producthunt.com/products/nookdeck) (海外直连 | [平替对比](https://dlzbkj-ai.pages.dev/tool/producthunt-8fb7/)): Nookdeck 是一款专注于新一代 AI 原生创新应用体验的 AI 工具：Turn your old phone into a Stream Deck for your
 
 ### 其他工具 (https://dlzbkj-ai.pages.dev/category/other-tools/)
-- [Bg Eraser](https://bgeraser.com) (海外直连 · 国内热推): Bg Eraser 是一款专注于垂直场景 AI 智能化辅助处理的 AI 工具，适用于专业领域提效与在线自动化服务等场景。
-- [合同嗖嗖](https://contract.yoo-ai.com) (国内直连): 专业的AI法律合同生成工具
-- [法智](https://www.fazhi.law) (国内直连): 同花顺推出的AI法律助手
-- [海瑞智法](https://www.hairuilegal.com) (国内直连): 一站式AI法律咨询助手
-- [灵动AI](https://www.redoon.cn) (国内直连): 上传图片，挑选喜欢的场景，AI生成专业品质的商品图
-- [通义法睿](https://tongyi.aliyun.com/farui) (国内直连): 阿里推出的免费AI法律顾问助手
-- [Cutout.Pro Retouch](https://www.cutout.pro/zh-CN/image-retouch-remove-unwanted-objects) (海外直连 · 国内热推): Cutout.Pro推出的AI图片物体涂抹去除工具
-- [Seko](https://seko.cgref.cn/s/1oe7lzgn23) (国内直连): Seko 是一款专注于垂直场景 AI 智能化辅助处理的 AI 工具，适用于专业领域提效与在线自动化服务等场景。
+- [Bg Eraser](https://bgeraser.com) (海外直连 · 国内热推 | [平替对比](https://dlzbkj-ai.pages.dev/tool/bgeraser/)): Bg Eraser 是一款专注于垂直场景 AI 智能化辅助处理的 AI 工具，适用于专业领域提效与在线自动化服务等场景。
+- [合同嗖嗖](https://contract.yoo-ai.com) (国内直连 | [平替对比](https://dlzbkj-ai.pages.dev/tool/contract-yoo-ai/)): 专业的AI法律合同生成工具
+- [法智](https://www.fazhi.law) (国内直连 | [平替对比](https://dlzbkj-ai.pages.dev/tool/fazhi-law/)): 同花顺推出的AI法律助手
+- [海瑞智法](https://www.hairuilegal.com) (国内直连 | [平替对比](https://dlzbkj-ai.pages.dev/tool/hairuilegal/)): 一站式AI法律咨询助手
+- [灵动AI](https://www.redoon.cn) (国内直连 | [平替对比](https://dlzbkj-ai.pages.dev/tool/redoon/)): 上传图片，挑选喜欢的场景，AI生成专业品质的商品图
+- [通义法睿](https://tongyi.aliyun.com/farui) (国内直连 | [平替对比](https://dlzbkj-ai.pages.dev/tool/tongyi-aliyun-b320/)): 阿里推出的免费AI法律顾问助手
+- [Cutout.Pro Retouch](https://www.cutout.pro/zh-CN/image-retouch-remove-unwanted-objects) (海外直连 · 国内热推 | [平替对比](https://dlzbkj-ai.pages.dev/tool/cutout-10f1/)): Cutout.Pro推出的AI图片物体涂抹去除工具
+- [Seko](https://seko.cgref.cn/s/1oe7lzgn23) (国内直连 | [平替对比](https://dlzbkj-ai.pages.dev/tool/seko-cgref/)): Seko 是一款专注于垂直场景 AI 智能化辅助处理的 AI 工具，适用于专业领域提效与在线自动化服务等场景。
 
 ## 近期每日 AI 早报归档
 

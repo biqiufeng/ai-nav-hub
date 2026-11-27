@@ -1162,6 +1162,25 @@ def write_openapi_spec(web_dir, base_url, total_items):
                     "responses": {"200": {"description": "最新 AI 资讯 JSON"}},
                 }
             },
+            "/api/mcp": {
+                "get": {
+                    "operationId": "getMcpServerMetadata",
+                    "summary": "获取 Streamable HTTP 远程 MCP Server 元信息与客户端挂载配置",
+                    "responses": {"200": {"description": "MCP Server 元数据 JSON"}},
+                },
+                "post": {
+                    "operationId": "invokeMcpJsonRpc",
+                    "summary": "调用 MCP JSON-RPC 2.0 工具（search_ai_tools / get_tool_alternatives / get_latest_ai_news）",
+                    "responses": {"200": {"description": "JSON-RPC 2.0 响应"}},
+                },
+            },
+            "/api/trending": {
+                "get": {
+                    "operationId": "getTrendingClickedTools",
+                    "summary": "获取近 7 日真实访客点击飙升 AI 工具榜单",
+                    "responses": {"200": {"description": "7 日点击热度统计 JSON"}},
+                }
+            },
             "/api/hotlist": {
                 "get": {
                     "operationId": "getRealtimeTechHotlist",

@@ -35,10 +35,10 @@
   <meta name="twitter:image" content="https://dlzbkj-ai.pages.dev/og-cover.png?v=2">
   <link rel="icon" type="image/png" sizes="64x64" href="../../favicon.png?v=5">
   <link rel="apple-touch-icon" sizes="180x180" href="../../apple-touch-icon.png?v=5">
-  <link rel="stylesheet" href="../../styles.css?v=19">
+  <link rel="stylesheet" href="../../styles.css?v=20">
   <link rel="stylesheet" href="../../seo-geo.css?v=2">
   <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"首页","item":"https://dlzbkj-ai.pages.dev/"},{"@type":"ListItem","position":2,"name":"每日AI早报","item":"https://dlzbkj-ai.pages.dev/daily/"},{"@type":"ListItem","position":3,"name":"2026-11-13 AI 早报","item":"https://dlzbkj-ai.pages.dev/daily/2026-11-13/"}]},{"@type":"CollectionPage","name":"2026-11-13 AI 早报：OpenAI机器人业务转向\"模型内整合\"，具身智能纳入通用基础模 等 12 条大模型与行业快讯 · AI 导航聚合站","url":"https://dlzbkj-ai.pages.dev/daily/2026-11-13/","datePublished":"2026-11-13","inLanguage":"zh-CN","mainEntity":{"@type":"ItemList","numberOfItems":12,"itemListElement":[{"@type":"ListItem","position":1,"name":"OpenAI机器人业务转向\"模型内整合\"，具身智能纳入通用基础模型框架","url":"https://news.aibase.com/zh/news/32313"},{"@type":"ListItem","position":2,"name":"徐峥刷到自己的 AI 换脸视频愣了：有的真人演员还不如它","url":"https://news.aibase.com/zh/news/32312"},{"@type":"ListItem","position":3,"name":"OpenAI 上市前夜再融 150 亿,估值推到 1.25 万亿美元","url":"https://news.aibase.com/zh/news/32311"},{"@type":"ListItem","position":4,"name":"语飞国际中文教育垂直大模型发布：深度融合专业教学场景，为全球师生与机构提供智能化服务","url":"https://news.aibase.com/zh/news/32322"},{"@type":"ListItem","position":5,"name":"Edge0 重磅开源 145B 端侧模型，内存狂省 60% 还能满血写代码","url":"https://news.aibase.com/zh/news/32310"},{"@type":"ListItem","position":6,"name":"英伟达员工发起挽留黄仁勋行动，内部投票超97%支持其留任","url":"https://news.aibase.com/zh/news/32321"},{"@type":"ListItem","position":7,"name":"腾讯混元甩出实时语音模型 Hy Realtime，会聊天、能唱歌、还会自己联网搜","url":"https://news.aibase.com/zh/news/32320"},{"@type":"ListItem","position":8,"name":"\"Happy系列\"再添一员，阿里以端到端整曲生成切入AI音乐赛道","url":"https://news.aibase.com/zh/news/32309"},{"@type":"ListItem","position":9,"name":"谷歌首批 Gemini 智能眼镜震撼开启预售：395 美元起售，开创性引入“双向隐私”条款","url":"https://news.aibase.com/zh/news/32308"},{"@type":"ListItem","position":10,"name":"比高端型号还猛却更便宜，Google 用\"Gemini 4 Hydrogen\"上演反向内卷","url":"https://news.aibase.com/zh/news/32318"},{"@type":"ListItem","position":11,"name":"Claude 辅助完成 19 万行代码，成功对三元哥德巴赫猜想进行形式化证明","url":"https://news.aibase.com/zh/news/32317"},{"@type":"ListItem","position":12,"name":"Looki 自研模型 Loom Model 发布 ：让生活成为 AI 能理解的上下文","url":"https://mp.weixin.qq.com/s/iN_FRw3_eE4051F3-frTiw"}]}}]}</script>
-  <script type="module" src="../../subpage.js?v=3"></script>
+  <script type="module" src="../../subpage.js?v=4"></script>
 </head>
 <body>
   <header class="top-bar site-header" id="topBar">
@@ -296,6 +296,7 @@
         <a href="../../category/">分类专题</a>
         <a href="../../tool/">热门工具库</a>
         <a href="../../daily/">每日AI早报</a>
+        <a href="../../api/mcp">MCP服务</a>
         <a href="../../llms.txt">llms.txt</a>
         <a href="../../openapi.json">OpenAPI</a>
         <a href="../../feed.xml">RSS订阅</a>
@@ -310,7 +311,7 @@
       <div class="tool-dialog__header">
         <div class="tool-dialog__titles">
           <h1 class="tool-dialog__title" id="submitDialogTitle">免费提交 AI 工具收录</h1>
-          <p class="tool-dialog__domain">零广告纯净收录 · 欢迎自荐或推荐优质 AI 产品与开源项目</p>
+          <p class="tool-dialog__domain">免登录直投审核队列 · 欢迎自荐或推荐优质 AI 产品与开源项目</p>
         </div>
         <button class="icon-btn" id="submitDialogCloseBtn" type="button" command="close" commandfor="submitToolDialog" aria-label="关闭提交弹窗">
           <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
@@ -319,7 +320,8 @@
         </button>
       </div>
 
-      <form class="submit-form" id="submitToolForm" aria-labelledby="submitDialogTitle" novalidate>
+      <form class="submit-form" id="submitToolForm" action="/api/submit" method="POST" aria-labelledby="submitDialogTitle" novalidate>
+        <input type="text" name="website_hp" tabindex="-1" aria-hidden="true" autocomplete="off" class="sr-only">
         <div class="form-field">
           <label for="subToolName">工具名称 <span class="req-mark" aria-hidden="true">*</span></label>
           <input id="subToolName" name="name" type="text" maxlength="60" enterkeyhint="next" required autofocus placeholder="例如：DeepSeek / 秘塔 AI 搜索">
@@ -356,21 +358,18 @@
         <pre class="sr-only"><code id="subMarkdownSnippet"></code></pre>
 
         <div class="tool-dialog__actions submit-form__actions">
-          <button class="btn-primary" type="submit">
-            通过 GitHub Issue 提交收录
-            <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <path d="M7 17 17 7M7 7h10v10"/>
-            </svg>
+          <button class="btn-primary" id="subPrimaryBtn" type="submit">
+            免登录一键提交收录
           </button>
           <span class="copy-wrap">
             <button class="btn-secondary copy-button" id="subCopyBtn" type="button" command="--copy" commandfor="subMarkdownSnippet">复制收录信息</button>
             <span class="copy-tip" id="subCopyTip" role="status"></span>
           </span>
-          <button class="btn-secondary" id="subMailBtn" type="button">邮件直投站长</button>
+          <button class="btn-secondary" id="subGithubBtn" type="button">GitHub Issue 备份提交</button>
         </div>
 
         <details class="faq-item" style="margin-top:12px;">
-          <summary style="padding:10px 14px;font-size:13px;">获取「已收录徽章」官网嵌入代码（互换友链优先审核）</summary>
+          <summary style="padding:10px 14px;font-size:13px;">获取「已收录徽章」官网嵌入代码（自动检测置顶审核）</summary>
           <div class="faq-item__body" style="padding:10px 14px;">
             <p style="margin:0 0 8px;font-size:12.5px;">将以下徽章代码添加至贵站页脚或 README，提交时注明即可获得优先展示：</p>
             <pre class="sr-only"><code id="subBadgeCode">&lt;a href="https://dlzbkj-ai.pages.dev/" target="_blank" rel="noopener"&gt;&lt;img src="https://dlzbkj-ai.pages.dev/badge.svg" alt="已收录于 AI 导航聚合站" width="212" height="36"&gt;&lt;/a&gt;</code></pre>

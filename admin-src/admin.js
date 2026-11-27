@@ -3,7 +3,7 @@ import {
   initTopBarScrollHide,
   createToast,
   setRefreshBusy,
-} from "../nav.js?v=3";
+} from "../nav.js?v=7";
 
 const SOURCE_URLS = {
   "ai-bot": "https://ai-bot.cn/",
@@ -34,6 +34,8 @@ const els = {
   sourcesTableBody: document.getElementById("sourcesTableBody"),
   catStatsHeading: document.getElementById("catStatsHeading"),
   categoryStats: document.getElementById("categoryStats"),
+  d1SummaryDesc: document.getElementById("d1SummaryDesc"),
+  d1SubmissionsBody: document.getElementById("d1SubmissionsBody"),
   toast: document.getElementById("toast"),
 };
 
@@ -185,6 +187,7 @@ async function loadAdminData(showFeedback = false) {
 
     renderSourcesTable(sources);
     renderCategoryStats(stats.by_category, total);
+    loadD1OpsData();
     if (showFeedback) showToast("后台数据已刷新");
   } catch (err) {
     els.adminSubtitle.textContent = `数据加载失败（${err?.message || "未知错误"}）`;
@@ -192,6 +195,102 @@ async function loadAdminData(showFeedback = false) {
     if (showFeedback) showToast("数据刷新失败，请稍后重试");
   } finally {
     setRefreshBusy(els.refreshBtn, false, "刷新数据", "刷新中…");
+  }
+}
+
+async function loadD1OpsData() {
+  if (!els.d1SubmissionsBody) return;
+  try {
+    const [subRes, trendRes] = await Promise.all([
+      fetch(`../api/submit?t=${Date.now()}`, { cache: "no-store", priority: "low" }),
+      fetch(`../api/trending?t=${Date.now()}`, { cache: "no-store", priority: "low" }),
+    ]);
+    const subData = subRes.ok ? await subRes.json() : { submissions: [], reports: [] };
+    const trendData = trendRes.ok ? await trendRes.json() : { total_clicks_7d: 0, items: [] };
+
+    if (els.d1SummaryDesc) {
+      els.d1SummaryDesc.textContent = `待审新工具 ${subData.pending_count || 0} 款 · 死链反馈 ${subData.broken_count || 0} 条 · 近 7 日真实访客点击 ${Number(trendData.total_clicks_7d || 0).toLocaleString("zh-CN")} 次`;
+    }
+
+    const frag = document.createDocumentFragment();
+    const subs = Array.isArray(subData.submissions) ? subData.submissions : [];
+    const reps = Array.isArray(subData.reports) ? subData.reports : [];
+
+    if (subs.length === 0 && reps.length === 0) {
+      const tr = document.createElement("tr");
+      const th = document.createElement("th");
+      th.scope = "row";
+      th.textContent = "暂无待办";
+      const td = document.createElement("td");
+      td.colSpan = 5;
+      td.textContent = "当前 D1 队列暂无新的用户提交或死链反馈记录。";
+      tr.append(th, td);
+      frag.appendChild(tr);
+    } else {
+      for (const s of subs) {
+        const tr = document.createElement("tr");
+        const th = document.createElement("th");
+        th.scope = "row";
+        th.textContent = `[新收录] ${s.name}`;
+
+        const tdCat = document.createElement("td");
+        tdCat.textContent = s.category || "—";
+
+        const tdBadge = document.createElement("td");
+        const pill = document.createElement("span");
+        pill.className = s.has_badge ? "status-pill status-pill--ok" : "status-pill status-pill--ref";
+        pill.textContent = s.has_badge ? "已挂徽章置顶" : "普通提交";
+        tdBadge.appendChild(pill);
+
+        const tdUrl = document.createElement("td");
+        const a = document.createElement("a");
+        a.className = "source-link";
+        a.href = s.url;
+        a.target = "_blank";
+        a.rel = "noopener noreferrer";
+        a.textContent = s.domain || s.url;
+        tdUrl.appendChild(a);
+
+        const tdDesc = document.createElement("td");
+        tdDesc.textContent = s.description || "—";
+
+        const tdTime = document.createElement("td");
+        tdTime.textContent = formatDateTime(s.created_at);
+
+        tr.append(th, tdCat, tdBadge, tdUrl, tdDesc, tdTime);
+        frag.appendChild(tr);
+      }
+      for (const r of reps) {
+        const tr = document.createElement("tr");
+        const th = document.createElement("th");
+        th.scope = "row";
+        th.textContent = `[失效反馈] ${r.tool_name}`;
+
+        const tdCat = document.createElement("td");
+        tdCat.textContent = "死链复核";
+
+        const tdBadge = document.createElement("td");
+        const pill = document.createElement("span");
+        pill.className = "status-pill status-pill--error";
+        pill.textContent = "待巡检";
+        tdBadge.appendChild(pill);
+
+        const tdUrl = document.createElement("td");
+        tdUrl.textContent = r.url || "—";
+
+        const tdDesc = document.createElement("td");
+        tdDesc.textContent = r.reason || "用户上报无法打开";
+
+        const tdTime = document.createElement("td");
+        tdTime.textContent = formatDateTime(r.created_at);
+
+        tr.append(th, tdCat, tdBadge, tdUrl, tdDesc, tdTime);
+        frag.appendChild(tr);
+      }
+    }
+    els.d1SubmissionsBody.replaceChildren(frag);
+  } catch {
+    if (els.d1SummaryDesc) els.d1SummaryDesc.textContent = "D1 实时队列暂未返回数据";
   }
 }
 

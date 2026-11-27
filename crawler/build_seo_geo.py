@@ -215,6 +215,10 @@ def make_tool_slug(item, used_slugs):
     if slug in used_slugs:
         suffix = (item.get("id") or hashlib.sha1(url.encode()).hexdigest())[:4]
         slug = f"{base}-{suffix}"
+        idx = 2
+        while slug in used_slugs:
+            slug = f"{base}-{suffix}-{idx}"
+            idx += 1
     used_slugs.add(slug)
     return slug
 
@@ -272,7 +276,7 @@ def submit_dialog_html():
       <div class="tool-dialog__header">
         <div class="tool-dialog__titles">
           <h1 class="tool-dialog__title" id="submitDialogTitle">免费提交 AI 工具收录</h1>
-          <p class="tool-dialog__domain">零广告纯净收录 · 欢迎自荐或推荐优质 AI 产品与开源项目</p>
+          <p class="tool-dialog__domain">免登录直投审核队列 · 欢迎自荐或推荐优质 AI 产品与开源项目</p>
         </div>
         <button class="icon-btn" id="submitDialogCloseBtn" type="button" command="close" commandfor="submitToolDialog" aria-label="关闭提交弹窗">
           <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
@@ -281,7 +285,8 @@ def submit_dialog_html():
         </button>
       </div>
 
-      <form class="submit-form" id="submitToolForm" aria-labelledby="submitDialogTitle" novalidate>
+      <form class="submit-form" id="submitToolForm" action="/api/submit" method="POST" aria-labelledby="submitDialogTitle" novalidate>
+        <input type="text" name="website_hp" tabindex="-1" aria-hidden="true" autocomplete="off" class="sr-only">
         <div class="form-field">
           <label for="subToolName">工具名称 <span class="req-mark" aria-hidden="true">*</span></label>
           <input id="subToolName" name="name" type="text" maxlength="60" enterkeyhint="next" required autofocus placeholder="例如：DeepSeek / 秘塔 AI 搜索">
@@ -318,21 +323,18 @@ def submit_dialog_html():
         <pre class="sr-only"><code id="subMarkdownSnippet"></code></pre>
 
         <div class="tool-dialog__actions submit-form__actions">
-          <button class="btn-primary" type="submit">
-            通过 GitHub Issue 提交收录
-            <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <path d="M7 17 17 7M7 7h10v10"/>
-            </svg>
+          <button class="btn-primary" id="subPrimaryBtn" type="submit">
+            免登录一键提交收录
           </button>
           <span class="copy-wrap">
             <button class="btn-secondary copy-button" id="subCopyBtn" type="button" command="--copy" commandfor="subMarkdownSnippet">复制收录信息</button>
             <span class="copy-tip" id="subCopyTip" role="status"></span>
           </span>
-          <button class="btn-secondary" id="subMailBtn" type="button">邮件直投站长</button>
+          <button class="btn-secondary" id="subGithubBtn" type="button">GitHub Issue 备份提交</button>
         </div>
 
         <details class="faq-item" style="margin-top:12px;">
-          <summary style="padding:10px 14px;font-size:13px;">获取「已收录徽章」官网嵌入代码（互换友链优先审核）</summary>
+          <summary style="padding:10px 14px;font-size:13px;">获取「已收录徽章」官网嵌入代码（自动检测置顶审核）</summary>
           <div class="faq-item__body" style="padding:10px 14px;">
             <p style="margin:0 0 8px;font-size:12.5px;">将以下徽章代码添加至贵站页脚或 README，提交时注明即可获得优先展示：</p>
             <pre class="sr-only"><code id="subBadgeCode">&lt;a href="https://dlzbkj-ai.pages.dev/" target="_blank" rel="noopener"&gt;&lt;img src="https://dlzbkj-ai.pages.dev/badge.svg" alt="已收录于 AI 导航聚合站" width="212" height="36"&gt;&lt;/a&gt;</code></pre>
@@ -400,10 +402,10 @@ def page_shell_html(
   <meta name="twitter:image" content="https://dlzbkj-ai.pages.dev/og-cover.png?v=2">
   <link rel="icon" type="image/png" sizes="64x64" href="{rel_root}favicon.png?v=5">
   <link rel="apple-touch-icon" sizes="180x180" href="{rel_root}apple-touch-icon.png?v=5">
-  <link rel="stylesheet" href="{rel_root}styles.css?v=19">
+  <link rel="stylesheet" href="{rel_root}styles.css?v=20">
   <link rel="stylesheet" href="{rel_root}seo-geo.css?v=2">
   <script type="application/ld+json">{ld_json}</script>
-  <script type="module" src="{rel_root}subpage.js?v=3"></script>
+  <script type="module" src="{rel_root}subpage.js?v=4"></script>
 </head>
 <body>
   <header class="top-bar site-header" id="topBar">
@@ -473,6 +475,7 @@ def page_shell_html(
         <a href="{rel_root}category/">分类专题</a>
         <a href="{rel_root}tool/">热门工具库</a>
         <a href="{rel_root}daily/">每日AI早报</a>
+        <a href="{rel_root}api/mcp">MCP服务</a>
         <a href="{rel_root}llms.txt">llms.txt</a>
         <a href="{rel_root}openapi.json">OpenAPI</a>
         <a href="{rel_root}feed.xml">RSS订阅</a>
@@ -566,14 +569,33 @@ def render_static_card(item, cat_display, rel_root="", slug_by_id=None):
 def prepare_flagship_slugs(by_cat):
     used_slugs = set()
     flagship_items = []
+    longtail_items = []
     for cfg in CATEGORY_CONFIG:
         for it in sort_tools(by_cat.get(cfg["cat"], [])):
             if len(it.get("sources") or []) >= 3:
                 flagship_items.append(it)
-    slug_by_id = {}
+            else:
+                longtail_items.append(it)
+    # Catch any item whose category is outside CATEGORY_CONFIG
+    seen_ids = {i["id"] for i in flagship_items} | {i["id"] for i in longtail_items}
+    for cat_key, arr in by_cat.items():
+        for it in sort_tools(arr):
+            if it["id"] not in seen_ids:
+                longtail_items.append(it)
+                seen_ids.add(it["id"])
+
+    flagship_slug_by_id = {}
+    all_slug_by_id = {}
     for it in flagship_items:
-        slug_by_id[it["id"]] = make_tool_slug(it, used_slugs)
-    return flagship_items, slug_by_id
+        s = make_tool_slug(it, used_slugs)
+        it["slug"] = s
+        flagship_slug_by_id[it["id"]] = s
+        all_slug_by_id[it["id"]] = s
+    for it in longtail_items:
+        s = make_tool_slug(it, used_slugs)
+        it["slug"] = s
+        all_slug_by_id[it["id"]] = s
+    return flagship_items, flagship_slug_by_id, longtail_items, all_slug_by_id
 
 
 def build_flagship_tool_pages(
@@ -584,14 +606,15 @@ def build_flagship_tool_pages(
     os.makedirs(tool_root, exist_ok=True)
 
     if flagship_items is None or slug_by_id is None:
-        flagship_items, slug_by_id = prepare_flagship_slugs(by_cat)
+        flagship_items, _, _, slug_by_id = prepare_flagship_slugs(by_cat)
 
+    flagship_id_set = {i["id"] for i in flagship_items}
     generated_urls = []
 
     # 1. /tool/ directory hub
     hub_sections = []
     for cfg in CATEGORY_CONFIG:
-        cat_flags = [i for i in sort_tools(by_cat.get(cfg["cat"], [])) if i["id"] in slug_by_id]
+        cat_flags = [i for i in sort_tools(by_cat.get(cfg["cat"], [])) if i["id"] in flagship_id_set]
         if not cat_flags:
             continue
         links = "\n".join(
@@ -777,13 +800,14 @@ def build_flagship_tool_pages(
       </div>
       <p class="seo-hero__desc">{esc(desc)}</p>
       <div class="seo-hero__stats">
-        <a class="btn-primary" href="{esc(url)}" target="_blank" rel="noopener noreferrer">
+        <a class="btn-primary" href="{esc(url)}" target="_blank" rel="noopener noreferrer" data-track-tool="{esc(it['id'])}">
           直达 {esc(name)} 官方网站 ({esc(domain)})
           <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M7 7h10v10"/></svg>
         </a>
         <span class="stat-pill">访问属性 <strong>{esc(reg)}</strong></span>
         <span class="stat-pill">计费模式 <strong>{esc(it.get('pricing') or '免费额度')}</strong></span>
         <span class="stat-pill">所属赛道 <strong>{esc(disp)}</strong></span>
+        <a class="btn-secondary" href="../../api/og?type=tool&amp;slug={urllib.parse.quote(tslug)}" target="_blank" rel="noopener" style="padding:7px 14px;font-size:13px;">生成专属分享海报</a>
         <a class="btn-secondary" href="../../category/{cat_slug}/" style="padding:7px 14px;font-size:13px;">浏览全部 {len(by_cat.get(cfg['cat'], []))} 款{esc(disp)}工具 →</a>
       </div>
     </section>
@@ -1649,7 +1673,9 @@ def write_llms_files(web_dir, base_url, by_cat, news_data, sorted_dates, total_i
         "## 核心频道与智能体开放接口 (GEO / Agent API)",
         "",
         f"- [首页 · 全库 {total_items:,} 款 AI 工具检索]({base_url}/): 支持多词加权秒搜、计费模式筛选与 10 大分类浏览",
+        f"- [远程 MCP Server (Streamable HTTP 免鉴权直连)]({base_url}/api/mcp): 支持 Claude Desktop / Cursor / Cherry Studio / Antigravity 直接挂载 `search_ai_tools`、`get_tool_alternatives`、`get_latest_ai_news` 工具",
         f"- [实时工具检索 JSON API (免鉴权 CORS)]({base_url}/api/search?q=AI搜索&region=domestic&limit=10): 支持参数 `q`、`category`、`region=domestic|overseas`、`pricing=完全免费|开源免费`、`limit`",
+        f"- [近 7 日真实访客热门点击榜 API]({base_url}/api/trending): 返回基于真实用户访问的近 7 日高热飙升 AI 工具统计",
         f"- [OpenAPI 3.1.0 工具规范描述]({base_url}/openapi.json): 供外部 AI Agent / GPT Actions / Dify / Coze 直接挂载调用",
         f"- [12 大 AI 场景工作流专题]({base_url}/scene/): 覆盖完全免费、开源本地部署、国内免翻墙、写论文、独立开发、短视频、PPT 与电商抠图",
         f"- [热门 AI 工具两两 VS 对比库]({base_url}/vs/): 60+ 组国内外主流大模型与工具同屏横评选型",
@@ -1688,8 +1714,13 @@ def write_llms_files(web_dir, base_url, by_cat, news_data, sorted_dates, total_i
             lines.append(f"- [{dt} AI 行业早报]({base_url}/daily/{dt}/)")
         lines.append("")
 
+    llms_content = "\n".join(lines).strip() + "\n"
     with open(os.path.join(web_dir, "llms.txt"), "w", encoding="utf-8") as f:
-        f.write("\n".join(lines).strip() + "\n")
+        f.write(llms_content)
+    well_known_dir = os.path.join(web_dir, ".well-known")
+    os.makedirs(well_known_dir, exist_ok=True)
+    with open(os.path.join(well_known_dir, "llms.txt"), "w", encoding="utf-8") as f:
+        f.write(llms_content)
 
     full_lines = [
         "# AI 导航聚合站 — 完整精选工具与前沿快讯索引 (llms-full.txt)",
@@ -1760,28 +1791,51 @@ def write_rss_feed(web_dir, base_url, news_data):
         f.write(rss)
 
 
-def write_robots_and_sitemap(web_dir, base_url, extra_urls, today_str):
+def _render_urlset_xml(url_tuples):
+    seen = set()
+    unique_locs = []
+    blocks = []
+    for loc, lastmod, freq, prio in url_tuples:
+        if loc in seen:
+            continue
+        seen.add(loc)
+        unique_locs.append(loc)
+        blocks.append(f"""  <url>
+    <loc>{esc(loc)}</loc>
+    <lastmod>{esc(lastmod)}</lastmod>
+    <changefreq>{esc(freq)}</changefreq>
+    <priority>{esc(prio)}</priority>
+  </url>""")
+    xml = (
+        '<?xml version="1.0" encoding="UTF-8"?>\n'
+        '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
+        + "\n".join(blocks)
+        + "\n</urlset>\n"
+    )
+    return xml, unique_locs
+
+
+def write_robots_and_sitemap(web_dir, base_url, core_extra_urls, longtail_tool_urls, today_str):
+    ai_bots = [
+        "OAI-SearchBot",
+        "ChatGPT-User",
+        "PerplexityBot",
+        "ClaudeBot",
+        "Google-Extended",
+        "Applebot-Extended",
+        "Meta-ExternalAgent",
+        "DuckAssistBot",
+        "Bytespider",
+        "Baiduspider",
+        "Sogou web spider",
+        "YisouSpider",
+    ]
+    bot_blocks = "\n\n".join(f"User-agent: {b}\nAllow: /" for b in ai_bots)
     robots = f"""User-agent: *
 Allow: /
 Disallow: /admin
 
-User-agent: OAI-SearchBot
-Allow: /
-
-User-agent: ChatGPT-User
-Allow: /
-
-User-agent: PerplexityBot
-Allow: /
-
-User-agent: ClaudeBot
-Allow: /
-
-User-agent: Google-Extended
-Allow: /
-
-User-agent: Bytespider
-Allow: /
+{bot_blocks}
 
 Sitemap: {base_url}/sitemap.xml
 """
@@ -1792,34 +1846,34 @@ Sitemap: {base_url}/sitemap.xml
         (f"{base_url}/", today_str, "daily", "1.0"),
         (f"{base_url}/news/", today_str, "hourly", "0.9"),
         (f"{base_url}/moyu/", today_str, "hourly", "0.9"),
-    ]
-    all_urls = core_urls + extra_urls
+    ] + core_extra_urls
 
-    url_blocks = []
-    seen = set()
-    unique_locs = []
-    for loc, lastmod, freq, prio in all_urls:
-        if loc in seen:
-            continue
-        seen.add(loc)
-        unique_locs.append(loc)
-        url_blocks.append(f"""  <url>
-    <loc>{esc(loc)}</loc>
-    <lastmod>{esc(lastmod)}</lastmod>
-    <changefreq>{esc(freq)}</changefreq>
-    <priority>{esc(prio)}</priority>
-  </url>""")
+    core_xml, core_locs = _render_urlset_xml(core_urls)
+    with open(os.path.join(web_dir, "sitemap-core.xml"), "w", encoding="utf-8") as f:
+        f.write(core_xml)
 
-    sitemap = (
-        '<?xml version="1.0" encoding="UTF-8"?>\n'
-        '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
-        + "\n".join(url_blocks)
-        + "\n</urlset>\n"
-    )
+    lt_xml, lt_locs = _render_urlset_xml(longtail_tool_urls)
+    with open(os.path.join(web_dir, "sitemap-tools.xml"), "w", encoding="utf-8") as f:
+        f.write(lt_xml)
+
+    sitemap_index = f"""<?xml version="1.0" encoding="UTF-8"?>
+<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <sitemap>
+    <loc>{esc(base_url)}/sitemap-core.xml</loc>
+    <lastmod>{esc(today_str)}</lastmod>
+  </sitemap>
+  <sitemap>
+    <loc>{esc(base_url)}/sitemap-tools.xml</loc>
+    <lastmod>{esc(today_str)}</lastmod>
+  </sitemap>
+</sitemapindex>
+"""
     with open(os.path.join(web_dir, "sitemap.xml"), "w", encoding="utf-8") as f:
-        f.write(sitemap)
+        f.write(sitemap_index)
 
-    return unique_locs
+    seen_all = set(core_locs)
+    all_locs = list(core_locs) + [u for u in lt_locs if u not in seen_all]
+    return all_locs
 
 
 def push_indexnow(base_url, key, urls):
@@ -1892,15 +1946,19 @@ def main():
         with open(hotlist_path, "r", encoding="utf-8") as f:
             hotlist_data = json.load(f)
 
+    flagship_items, flagship_slug_by_id, longtail_items, all_slug_by_id = prepare_flagship_slugs(by_cat)
+    # Persist canonical `slug` onto every item in catalog.json BEFORE building catalog-hot.json
+    with open(cat_path, "w", encoding="utf-8") as f:
+        json.dump(catalog, f, ensure_ascii=False, separators=(",", ":"))
+
     hot_cnt, hot_bytes = build_hot_catalog_shard(web_dir, catalog, by_cat)
-    flagship_items, slug_by_id = prepare_flagship_slugs(by_cat)
-    entities = write_tool_slugs_index(web_dir, flagship_items, slug_by_id)
+    entities = write_tool_slugs_index(web_dir, flagship_items, flagship_slug_by_id)
     vs_urls, vs_links_by_cat, vs_links_by_tool_id = build_vs_pages(
         web_dir,
         base_url,
         by_cat,
         CATEGORY_CONFIG,
-        slug_by_id,
+        all_slug_by_id,
         today_str,
         sort_tools,
         region_label,
@@ -1914,15 +1972,19 @@ def main():
         by_cat,
         today_str,
         flagship_items=flagship_items,
-        slug_by_id=slug_by_id,
+        slug_by_id=all_slug_by_id,
         vs_links_by_tool_id=vs_links_by_tool_id,
         vs_links_by_cat=vs_links_by_cat,
     )
+    longtail_tool_urls = [
+        (f"{base_url}/tool/{all_slug_by_id[it['id']]}/", today_str, "monthly", "0.65")
+        for it in longtail_items
+    ]
     scene_urls = build_scene_pages(
         web_dir,
         base_url,
         items,
-        slug_by_id,
+        all_slug_by_id,
         today_str,
         sort_tools,
         region_label,
@@ -1931,22 +1993,26 @@ def main():
         render_static_card,
     )
     cat_urls = build_category_pages(
-        web_dir, base_url, by_cat, today_str, slug_by_id, vs_links_by_cat=vs_links_by_cat
+        web_dir, base_url, by_cat, today_str, all_slug_by_id, vs_links_by_cat=vs_links_by_cat
     )
     daily_urls, _, sorted_dates = build_daily_archives(web_dir, base_url, news_data, today_str, entities=entities)
     prerender_news_and_moyu(web_dir, base_url, news_data, hotlist_data, entities, today_str)
     write_openapi_spec(web_dir, base_url, len(items))
-    update_homepage_prerender(web_dir, base_url, by_cat, sorted_dates, len(items), dom_total, ovs_total, slug_by_id)
-    write_llms_files(web_dir, base_url, by_cat, news_data, sorted_dates, len(items), today_str, slug_by_id)
+    update_homepage_prerender(web_dir, base_url, by_cat, sorted_dates, len(items), dom_total, ovs_total, all_slug_by_id)
+    write_llms_files(web_dir, base_url, by_cat, news_data, sorted_dates, len(items), today_str, all_slug_by_id)
     write_rss_feed(web_dir, base_url, news_data)
     all_urls = write_robots_and_sitemap(
-        web_dir, base_url, scene_urls + vs_urls + cat_urls + daily_urls + tool_urls, today_str
+        web_dir,
+        base_url,
+        scene_urls + vs_urls + cat_urls + daily_urls + tool_urls,
+        longtail_tool_urls,
+        today_str,
     )
 
     print(
-        f"[SEO+GEO v3] Hot shard={hot_cnt} items ({hot_bytes // 1024} KB), "
+        f"[SEO+GEO v4] Hot shard={hot_cnt} items ({hot_bytes // 1024} KB), "
         f"{len(scene_urls)} scene pages, {len(vs_urls)} VS pages, "
-        f"{len(cat_urls)} category pages, {len(tool_urls)} tool pages, "
+        f"{len(cat_urls)} category pages, {len(tool_urls)} static flagship + {len(longtail_tool_urls)} edge SSR tool pages, "
         f"{len(daily_urls)} daily briefs -> {len(all_urls)} total sitemap URLs."
     )
 
