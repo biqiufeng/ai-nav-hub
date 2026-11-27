@@ -4,8 +4,11 @@ __pycache__/
 logs/
 web/data/catalog.json
 web/data/catalog-hot.json
+web/data/tool-slugs.json
 web/data/catalog.prev.json
 web/tool/
+web/vs/
+web/scene/
 web/data/hotlist.json
 web/data/hotlist.prev.json
 web/data/news.json

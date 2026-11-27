@@ -15,7 +15,7 @@
   <title>数据后台 · AI 导航聚合站</title>
   <link rel="icon" type="image/png" sizes="64x64" href="../favicon.png?v=5">
   <link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png?v=5">
-  <link rel="stylesheet" href="../styles.css?v=14">
+  <link rel="stylesheet" href="../styles.css?v=19">
   <link rel="stylesheet" href="./admin.css?v=2">
   <script type="module" src="./admin.js?v=5"></script>
 </head>
@@ -134,7 +134,8 @@
           <li><strong>两阶段去重：</strong>先按规范化域名/路径合并（去除追踪参数与多语言路径前缀），再将聚合页条目归并至唯一匹配的官方主域名。</li>
           <li><strong>图标降级策略：</strong>自动剔除出现频次 ≥ 4 的默认占位图标，前端按「真实图标 → 高清 Favicon → 域名首字母 Monogram」渲染。</li>
           <li><strong>原子安全写入：</strong>总有效工具低于安全阈值时自动拒绝覆盖，保留线上旧版数据；写入前先拷贝备份并执行单次原子替换。</li>
-          <li><strong>服务器私有日志：</strong>每日 04:00 定时任务错误与运行明细保存在服务器 <code>/opt/ai-nav-hub/logs/crawl-YYYYMMDD.log</code>（保留最近 30 天）。</li>
+          <li><strong>深水区数据治理：</strong>持久化 Keep-Alive 连接池自动解包 4,100+ 短链还原真实官网，修复乱码与断句，补齐中文摘要、4 档计费模式与 3 档国内/海外网络可达性标识，并巡检剔除失效死链域名。</li>
+          <li><strong>全站 SEO 与 GEO 矩阵：</strong>自动构建 600+ 单品平替页、60+ 组 VS 两两横评页、12 大场景工作流包、<code>llms.txt</code>、<code>openapi.json</code> 与边缘 <code>/api/search</code> 接口，并通过 IndexNow 主动推送收录。</li>
         </ul>
       </section>
     </section>

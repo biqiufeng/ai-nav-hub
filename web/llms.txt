@@ -1,12 +1,16 @@
 # AI 导航聚合站 (AI Nav Hub)
 
-> 零广告、免登录、国内直连秒开的国内外主流 AI 工具、每日 AI 行业早报与 14 平台实时科技热榜聚合站。每日自动去重更新，当前共收录 8,283 款 AI 工具，并为 599 款多源高共识工具提供独立详情与国内平替对比页（更新日期：2026-11-27）。
+> 零广告、免登录、国内直连秒开的国内外主流 AI 工具、每日 AI 行业早报与 14 平台实时科技热榜聚合站。每日自动去重更新，当前共收录 8,240 款 AI 工具，并为 622 款多源高共识工具提供独立详情与国内平替对比页（更新日期：2026-11-27）。
 
-## 核心频道入口
+## 核心频道与智能体开放接口 (GEO / Agent API)
 
-- [首页 · 全库 8,283 款 AI 工具检索](https://dlzbkj-ai.pages.dev/): 支持关键词秒搜、国内外筛选与 10 大分类浏览
+- [首页 · 全库 8,240 款 AI 工具检索](https://dlzbkj-ai.pages.dev/): 支持多词加权秒搜、计费模式筛选与 10 大分类浏览
+- [实时工具检索 JSON API (免鉴权 CORS)](https://dlzbkj-ai.pages.dev/api/search?q=AI搜索&region=domestic&limit=10): 支持参数 `q`、`category`、`region=domestic|overseas`、`pricing=完全免费|开源免费`、`limit`
+- [OpenAPI 3.1.0 工具规范描述](https://dlzbkj-ai.pages.dev/openapi.json): 供外部 AI Agent / GPT Actions / Dify / Coze 直接挂载调用
+- [12 大 AI 场景工作流专题](https://dlzbkj-ai.pages.dev/scene/): 覆盖完全免费、开源本地部署、国内免翻墙、写论文、独立开发、短视频、PPT 与电商抠图
+- [热门 AI 工具两两 VS 对比库](https://dlzbkj-ai.pages.dev/vs/): 60+ 组国内外主流大模型与工具同屏横评选型
 - [分类专题大全](https://dlzbkj-ai.pages.dev/category/): 10 大 AI 垂直赛道多源共识对比排行榜
-- [热门工具详情与平替库](https://dlzbkj-ai.pages.dev/tool/): 599 款高共识 AI 工具官网直达与国内替代推荐
+- [热门工具详情与平替库](https://dlzbkj-ai.pages.dev/tool/): 622 款高共识 AI 工具官网直达与国内替代推荐
 - [实时 AI 资讯速递](https://dlzbkj-ai.pages.dev/news/): 每 2 小时更新大模型、Agent、多模态与算力动态
 - [每日 AI 早报历史归档](https://dlzbkj-ai.pages.dev/daily/): 按日沉淀 AI 行业核心进展摘要
 - [全网实时热榜](https://dlzbkj-ai.pages.dev/moyu/): 聚合 GitHub、掘金、少数派、36氪、知乎、B站等 14 平台热榜
@@ -14,33 +18,33 @@
 
 ## 10 大垂直分类专题页
 
-- [AI 对话写作工具推荐（837 款）](https://dlzbkj-ai.pages.dev/category/chat-writing/): 通用大模型对话、AI 搜索引擎、长文公文写作、学术润色与 AI 检测工具
-- [AI 编程开发工具推荐（783 款）](https://dlzbkj-ai.pages.dev/category/coding/): AI 代码编辑器（IDE）、终端编程 Agent、代码补全审查、开源模型与开发者平台
-- [AI 图像设计工具推荐（1074 款）](https://dlzbkj-ai.pages.dev/category/image-design/): AI 文生图绘画、电商海报生成、智能抠图修图、无损放大、Logo 与 UI/3D 设计工具
-- [AI 视频音频工具推荐（965 款）](https://dlzbkj-ai.pages.dev/category/video-audio/): AI 文生视频、图生视频、数字人口播、TTS 真人配音、语音克隆、AI 音乐与字幕剪辑工具
-- [AI 办公效率工具推荐（2185 款）](https://dlzbkj-ai.pages.dev/category/office-productivity/): 一键生成 PPT、AI 表格公式分析、音视频会议纪要、PDF 文档总结、思维导图与协同效率工具
-- [AI Agent与自动化工具推荐（817 款）](https://dlzbkj-ai.pages.dev/category/agents-automation/): 多智能体（Multi-Agent）开发平台、MCP 服务生态、自动化工作流编排与无代码机器人
-- [AI 学习知识库工具推荐（1292 款）](https://dlzbkj-ai.pages.dev/category/learning-knowledge/): RAG 个人与企业知识库、科研文献语义检索、Prompt 提示词工程指南与 AI 公开课教程
+- [AI 对话写作工具推荐（836 款）](https://dlzbkj-ai.pages.dev/category/chat-writing/): 通用大模型对话、AI 搜索引擎、长文公文写作、学术润色与 AI 检测工具
+- [AI 编程开发工具推荐（778 款）](https://dlzbkj-ai.pages.dev/category/coding/): AI 代码编辑器（IDE）、终端编程 Agent、代码补全审查、开源模型与开发者平台
+- [AI 图像设计工具推荐（1076 款）](https://dlzbkj-ai.pages.dev/category/image-design/): AI 文生图绘画、电商海报生成、智能抠图修图、无损放大、Logo 与 UI/3D 设计工具
+- [AI 视频音频工具推荐（952 款）](https://dlzbkj-ai.pages.dev/category/video-audio/): AI 文生视频、图生视频、数字人口播、TTS 真人配音、语音克隆、AI 音乐与字幕剪辑工具
+- [AI 办公效率工具推荐（2164 款）](https://dlzbkj-ai.pages.dev/category/office-productivity/): 一键生成 PPT、AI 表格公式分析、音视频会议纪要、PDF 文档总结、思维导图与协同效率工具
+- [AI Agent与自动化工具推荐（824 款）](https://dlzbkj-ai.pages.dev/category/agents-automation/): 多智能体（Multi-Agent）开发平台、MCP 服务生态、自动化工作流编排与无代码机器人
+- [AI 学习知识库工具推荐（1289 款）](https://dlzbkj-ai.pages.dev/category/learning-knowledge/): RAG 个人与企业知识库、科研文献语义检索、Prompt 提示词工程指南与 AI 公开课教程
 - [AI 影音娱乐工具推荐（104 款）](https://dlzbkj-ai.pages.dev/category/media-leisure/): 精选影视动漫检索、无损音乐音效素材、在线趣味小游戏与数字休闲实用工具
-- [AI 新品速递工具推荐（67 款）](https://dlzbkj-ai.pages.dev/category/new-releases/): 每日同步 Product Hunt 及国内外最新发布的创新 AI 原生应用与独立开发者新产品
-- [AI 其他工具工具推荐（159 款）](https://dlzbkj-ai.pages.dev/category/other-tools/): 垂直行业 AI 解决方案、翻译测评、数据工具与跨领域实用效率百宝箱
+- [AI 新品速递工具推荐（61 款）](https://dlzbkj-ai.pages.dev/category/new-releases/): 每日同步 Product Hunt 及国内外最新发布的创新 AI 原生应用与独立开发者新产品
+- [AI 其他工具工具推荐（156 款）](https://dlzbkj-ai.pages.dev/category/other-tools/): 垂直行业 AI 解决方案、翻译测评、数据工具与跨领域实用效率百宝箱
 
 ## 各赛道多源共识代表工具速查（Top 8 / 分类）
 
 ### 对话写作 (https://dlzbkj-ai.pages.dev/category/chat-writing/)
 - [GPTZero](https://gptzero.me) (海外直连 · 国内热推 | [平替对比](https://dlzbkj-ai.pages.dev/tool/gptzero/)): GPTZero是一款先进的AI检测器，被超100家媒体报道。其核心技术是拥有包含7个组件的AI检测模型，采用多步骤方法处理文本，精准判断是否由AI撰写，能检测ChatGP
+- [Perplexity](https://www.perplexity.ai) (海外主流（需国际网络） | [平替对比](https://dlzbkj-ai.pages.dev/tool/perplexity/)): Perplexity是强大的AI搜索引擎与深度研究工具，Perplexity能像传统搜索引擎一样快速提供答案，能记住上下文、支持连续追问。Perplexity集成
 - [CopyLeaks](https://copyleaks.com) (海外直连 · 国内热推 | [平替对比](https://dlzbkj-ai.pages.dev/tool/copyleaks/)): Copyleaks是一款基于AI的内容检测平台，为全球数百万用户所使用。其主要功能包括验证内容是否由人类或AI创作、检测抄袭和改写内容、提供写作辅助等。这款产品的重要性在
 - [Glean](https://www.glean.com) (海外直连 · 国内热推 | [平替对比](https://dlzbkj-ai.pages.dev/tool/glean/)): Glean是一个面向企业的工作人工智能平台，连接企业数据。其重要性在于帮助企业提高工作效率、增强知识管理和数据分析能力。产品的主要优点包括可以连接所有公司数据、提供多种A
 - [Grammarly](https://www.grammarly.com) (海外直连 · 国内热推 | [平替对比](https://dlzbkj-ai.pages.dev/tool/grammarly/)): Grammarly是一款功能强大的AI写作辅助工具，支持在各种应用和网站上使用，为用户提供个性化的写作指导与文本生成功能。该产品背景深厚，受50,000家组织和4,000
 - [NovelAI](https://novelai.net) (海外直连 · 国内热推 | [平替对比](https://dlzbkj-ai.pages.dev/tool/novelai/)): 用于 AI 辅助创作、讲故事、虚拟陪伴，或者只是一个 GPT 驱动的沙盒
 - [Originality.AI](https://originality.ai) (海外直连 · 国内热推 | [平替对比](https://dlzbkj-ai.pages.dev/tool/originality/)): Originality AI是一款由内容营销和AI专家团队打造的编辑工具集，其目标用户主要为网站所有者、内容营销人员、作家、出版商等，而非学生群体，用户注册时需提供信用卡
 - [Writesonic](https://writesonic.com) (海外直连 · 国内热推 | [平替对比](https://dlzbkj-ai.pages.dev/tool/writesonic/)): 可以免费为博客、Facebook 广告、谷歌广告和 Shopify 创建对 SEO 友好的内容
-- [知乎直答](https://zhida.zhihu.com) (国内直连 | [平替对比](https://dlzbkj-ai.pages.dev/tool/zhida-zhihu/)): 知乎直答是知乎运用AI大模型等先进技术打造的产品。它以知乎社区的优质内容为核心数据，还借助多种数据源进行辅助。其重要性在于，为用户提供了全新、可靠的信息获取途径。该产品具
 
 ### 编程开发 (https://dlzbkj-ai.pages.dev/category/coding/)
 - [GitHub Copilot](https://github.com/features/copilot) (海外直连 · 国内热推 | [平替对比](https://dlzbkj-ai.pages.dev/tool/features-copilot/)): GitHub Copilot是GitHub推出的人工智能编程助手，与主流代码编辑器集成，借助AI技术理解代码上下文并给出合理代码建议。它能提升编程效率、减少错误，让开发者
-- [亚马逊 CodeWhisperer](https://aws.amazon.com/codewhisperer) (海外直连 · 国内热推 | [平替对比](https://dlzbkj-ai.pages.dev/tool/aws-amazon-codewhisperer/)): Amazon Q Developer是由亚马逊云服务（AWS）推出的一款强大的生成式AI驱动的软件开发助手。它在构建、运营和转型软件方面具备出色能力，尤其在数据管理和AI
 - [HuggingFace](https://huggingface.co) (海外主流（需国际网络） | [平替对比](https://dlzbkj-ai.pages.dev/tool/huggingface/)): Hugging Face是一个人工智能社区平台，致力于通过开源和开放科学的方式推进和普及人工智能。它为机器学习社区提供了一个协作平台，用户可以在上面创建、发现和协作完成各
+- [亚马逊 CodeWhisperer](https://aws.amazon.com/codewhisperer) (海外直连 · 国内热推 | [平替对比](https://dlzbkj-ai.pages.dev/tool/aws-amazon-codewhisperer/)): Amazon Q Developer是由亚马逊云服务（AWS）推出的一款强大的生成式AI驱动的软件开发助手。它在构建、运营和转型软件方面具备出色能力，尤其在数据管理和AI
 - [v0.dev &#8211; AI生成前端UI组件](https://v0.dev) (海外主流（需国际网络） | [平替对比](https://dlzbkj-ai.pages.dev/tool/v0/)): v0 by Vercel是Vercel推出的一款用于构建全栈应用的工具。它允许用户通过简单的操作快速搭建应用，提供了丰富的模板和社区资源，方便用户参考和复用。用户可以在平
 - [AIPRM](https://www.aiprm.com) (海外直连 · 国内热推 | [平替对比](https://dlzbkj-ai.pages.dev/tool/aiprm/)): AIPRM是一款针对ChatGPT、Claude、Midjourney等人工智能模型的生产力工具。它可以极大地提高用户与AI交互的效率，帮助用户节省大量时间。其重要性在于
 - [CodeGeeX - 智能代码生成工具](https://codegeex.cn) (国内直连 | [平替对比](https://dlzbkj-ai.pages.dev/tool/codegeex/)): 一个基于AI大模型的编程辅助工具，可以实现自动代码生成、代码翻译、自动编写注释等功能，支持20多种编程语言。
@@ -50,32 +54,32 @@
 ### 图像设计 (https://dlzbkj-ai.pages.dev/category/image-design/)
 - [Midjourney](https://www.midjourney.com/home) (海外主流（需国际网络） | [平替对比](https://dlzbkj-ai.pages.dev/tool/midjourney/)): Midjourney是一个独立研究实验室，致力于探索新的思维媒介并拓展人类的想象力。其核心技术可能围绕人工智能展开，通过AI算法帮助用户将想象转化为图像。该产品的主要优点
 - [Civitai](https://civitai.com) (海外主流（需国际网络） | [平替对比](https://dlzbkj-ai.pages.dev/tool/civitai/)): 免费的AI图像绘画作品和模型分享平台和社区
-- [Magic Studio魔法工作室 - AI在线修图神器](https://magicstudio.com/zh) (海外直连 · 国内热推 | [平替对比](https://dlzbkj-ai.pages.dev/tool/magicstudio/)): 一键抠图、去背景、无损放大、去水印、批处理等20余项AI功能，无需下载软件，浏览器即可完成专业级图片处理。
 - [Microsoft Designer](https://designer.microsoft.com) (海外直连 · 国内热推 | [平替对比](https://dlzbkj-ai.pages.dev/tool/designer-microsoft/)): 微软推出的在线设计海报和宣传图工具
-- [Recraft AI](https://www.recraft.ai) (海外直连 · 国内热推 | [平替对比](https://dlzbkj-ai.pages.dev/tool/recraft/)): Recraft是一款面向设计师的高级图像生成与编辑工具。它的重要性体现在为设计师提供了一站式的图像创作与设计解决方案。主要优点包括拥有自定义V3模型，能提供可预测的结果；
+- [Looka](https://looka.com) (海外直连 · 国内热推 | [平替对比](https://dlzbkj-ai.pages.dev/tool/looka/)): AI在线设计和生成logo
+- [Magic Studio魔法工作室 - AI在线修图神器](https://magicstudio.com/zh) (海外直连 · 国内热推 | [平替对比](https://dlzbkj-ai.pages.dev/tool/magicstudio/)): 一键抠图、去背景、无损放大、去水印、批处理等20余项AI功能，无需下载软件，浏览器即可完成专业级图片处理。
 - [可灵AI](https://app.klingai.com/cn) (国内直连 | [平替对比](https://dlzbkj-ai.pages.dev/tool/app-klingai/)): 可灵AI是一款新一代的AI创意生产力平台，它运用先进的生成式AI技术，为内容创作者提供了强大的工具。其核心技术是可灵2.1模型，运动质量更高，视频表现更美更灵动，指令响应
 - [Krea AI](https://www.krea.ai) (海外直连 · 国内热推 | [平替对比](https://dlzbkj-ai.pages.dev/tool/krea/)): 实时AI图像、视频生成和编辑平台
 - [BigJPG](https://bigjpg.com) (海外直连 · 国内热推 | [平替对比](https://dlzbkj-ai.pages.dev/tool/bigjpg/)): AI超分辨率无损图像放大，使用最新人工智能深度学习技术——深度卷积神经网络。
 
 ### 视频音频 (https://dlzbkj-ai.pages.dev/category/video-audio/)
+- [Mubert](https://mubert.com) (海外直连 · 国内热推 | [平替对比](https://dlzbkj-ai.pages.dev/tool/mubert/)): 提供无限量免版税背景音乐，适合视频/游戏配乐，免费版输出音频带水印
 - [Suno](https://www.suno.ai) (海外直连 · 国内热推 | [平替对比](https://dlzbkj-ai.pages.dev/tool/suno/)): Suno是一款前沿的AI音乐生成平台，借助先进的AI技术，让用户能够在短时间内生成原创音乐。该平台的重要性在于打破了音乐创作的门槛，使得普通人也能轻松创作出高质量的音乐作
 - [Adobe Podcast](https://podcast.adobe.com) (海外直连 · 国内热推 | [平替对比](https://dlzbkj-ai.pages.dev/tool/podcast-adobe/)): Adobe Podcast是Adobe推出的新一代基于网页的AI音频录制与编辑工具。其重要性在于它为用户提供了一站式的音频处理解决方案，无需复杂安装，打开网页即可使用。主
 - [beatoven.ai](https://www.beatoven.ai) (海外直连 · 国内热推 | [平替对比](https://dlzbkj-ai.pages.dev/tool/beatoven/)): 免版税AI音乐创建平台
 - [Boomy](https://boomy.com) (海外直连 · 国内热推 | [平替对比](https://dlzbkj-ai.pages.dev/tool/boomy/)): 使用 Boomy AI 制作音乐
 - [ElevenLabs](https://elevenlabs.io) (海外主流（需国际网络） | [平替对比](https://dlzbkj-ai.pages.dev/tool/elevenlabs/)): AI文本转语音，支持包含中文在内的28种语言
+- [HeyGen](https://heygen.com?sid=rewardful) (海外主流（需国际网络） | [平替对比](https://dlzbkj-ai.pages.dev/tool/heygen/)): AIGC 视频创建平台，生成吸引人的商业视频
 - [Klap - AI 视频剪辑工具，长视频一键转短视频 | AI工具集](https://klap.app) (海外直连 · 国内热推 | [平替对比](https://dlzbkj-ai.pages.dev/tool/klap/)): Klap 是 AI 短视频剪辑工具，能把 YouTube 长视频一键转成适合 TikTok、Reels、Shorts 的竖屏短片。
-- [Krisp](https://krisp.ai) (海外直连 · 国内热推 | [平替对比](https://dlzbkj-ai.pages.dev/tool/krisp/)): 提升在线会议声音清晰度的AI工具
-- [Mubert](https://mubert.com) (海外直连 · 国内热推 | [平替对比](https://dlzbkj-ai.pages.dev/tool/mubert/)): 提供无限量免版税背景音乐，适合视频/游戏配乐，免费版输出音频带水印
 
 ### 办公效率 (https://dlzbkj-ai.pages.dev/category/office-productivity/)
 - [Napkin](https://www.napkin.ai) (海外直连 · 国内热推 | [平替对比](https://dlzbkj-ai.pages.dev/tool/napkin/)): 将用户输入的文本自动转换为可视化图表（如信息图、思维导图、流程图、数据图表等），帮助用户快速创建专业的商业演示内容，支持多格式导出与团队协作。​。
 - [Fireflies.ai](https://fireflies.ai) (海外直连 · 国内热推 | [平替对比](https://dlzbkj-ai.pages.dev/tool/fireflies/)): AI会议转录和会议纪要生成工具
 - [Humata](https://www.humata.ai) (海外直连 · 国内热推 | [平替对比](https://dlzbkj-ai.pages.dev/tool/humata/)): 基于GPT的AI文档分析、阅读和问答工具
+- [Otter.ai](https://otter.ai) (海外直连 · 国内热推 | [平替对比](https://dlzbkj-ai.pages.dev/tool/otter/)): AI会议内容生成和实时转录
 - [Taskade](https://www.taskade.com) (海外直连 · 国内热推 | [平替对比](https://dlzbkj-ai.pages.dev/tool/taskade/)): 高颜值AI大纲和思维导图生成
 - [vocalremover人声分离](https://vocalremover.org/zh) (海外直连 · 国内热推 | [平替对比](https://dlzbkj-ai.pages.dev/tool/vocalremover/)): 将音乐分成分离的人声和器乐轨道。是制作卡拉OK伴奏曲目或阿卡贝拉提取器的完美选择。使用了人工智能算法且完全免费使用。
 - [AiPPT &#8211; 全智能 AI 一键生成 PPT](https://www.aippt.cn) (国内直连 | [平替对比](https://dlzbkj-ai.pages.dev/tool/aippt/)): AiPPT是一款结合最新AI技术的PPT生成工具，主要功能为帮助用户一键生成高质量PPT。它的重要性在于极大地简化了PPT设计流程，解决了传统PPT制作耗时长、难度大等问
 - [DeepL翻译](https://www.deepl.com/translator) (海外直连 · 国内热推 | [平替对比](https://dlzbkj-ai.pages.dev/tool/deepl/)): DeepL Translate 是一款备受赞誉的翻译工具，以其高精度的翻译质量著称。其核心技术在自然语言处理领域处于领先地位，采用了先进的深度学习算法，不断学习和优化翻译
-- [Ajelix](https://ajelix.com) (海外直连 · 国内热推 | [平替对比](https://dlzbkj-ai.pages.dev/tool/ajelix/)): 处理Excel和Google Sheets表格的AI工具
 
 ### Agent与自动化 (https://dlzbkj-ai.pages.dev/category/agents-automation/)
 - [Lovart - LiblibAI推出的全球首个设计智能体](https://www.lovart.ai) (海外直连 · 国内热推 | [平替对比](https://dlzbkj-ai.pages.dev/tool/lovart/)): Lovart是LiblibAI为设计师打造的世界首个专业设计Agent。它能模拟专业设计师思考与执行设计任务，基于自然语言实现交互。其重要性在于引领设计工具智能化，支持从
@@ -83,22 +87,22 @@
 - [AI Short](https://www.aishort.top) (海外直连 · 国内热推 | [平替对比](https://dlzbkj-ai.pages.dev/tool/aishort/)): AiShort是一个高效的AI智能体与提示词平台，旨在革新用户的工作与学习方式。该产品的主要优点包括支持多语言环境，方便不同语言背景的用户使用；用户不仅能发现海量高质量的
 - [Genspark](https://www.genspark.ai) (海外直连 · 国内热推 | [平替对比](https://dlzbkj-ai.pages.dev/tool/genspark/)): 专注于提供值得信赖的 AI 答案和公正、全面的搜索结果
 - [Monica](https://monica.im) (海外直连 · 国内热推 | [平替对比](https://dlzbkj-ai.pages.dev/tool/monica-im/)): ChatGPT驱动的Chrome浏览器AI助手插件
-- [Socratic by Google](https://socratic.org) (海外直连 · 国内热推 | [平替对比](https://dlzbkj-ai.pages.dev/tool/socratic/)): 快速有效地搜索和找到答案
 - [Fellou - Fellou AI 推出的首个Agentic浏览器](https://fellou.ai) (国内直连 | [平替对比](https://dlzbkj-ai.pages.dev/tool/fellou/)): Fellou是AI初创公司Fellou AI推出的全球首个Agentic浏览器。它结合了Browser（浏览器）、Agent（智能体）和Workflow Automati
 - [724Claw永动虾](https://www.724claw.cn) (国内直连 | [平替对比](https://dlzbkj-ai.pages.dev/tool/724claw/)): 724Claw永动虾是基于 OpenClaw 封装的 Windows 桌面端 AI 助手应用，主打”开箱即用”的无门槛体验。用户无需配置复杂环境，登录即可与 AI
+- [ColaOS](https://colaos.ai) (海外直连 · 国内热推 | [平替对比](https://dlzbkj-ai.pages.dev/tool/colaos/)): ColaOS 是 ListenHub 团队推出的首个有灵魂的 AI Agent 操作系统。ColaOS超越传统工具型AI，通过”思绪、觉知、牵挂”三个维度打造Soulfu
 
 ### 学习知识库 (https://dlzbkj-ai.pages.dev/category/learning-knowledge/)
 - [beautiful.ai](https://www.beautiful.ai) (海外直连 · 国内热推 | [平替对比](https://dlzbkj-ai.pages.dev/tool/beautiful/)): beautiful.ai 是一款专注于学术论文检索、文献综述与引文溯源与办公提效与日常工作流自动化的 AI 工具，适用于文献精读、结构化笔记与深度学习辅导等场景。
 - [Kaggle竞赛平台](https://www.kaggle.com) (海外直连 · 国内热推 | [平替对比](https://dlzbkj-ai.pages.dev/tool/kaggle/)): Kaggle是全球最大的数据科学社区，为用户提供了强大的工具和丰富的资源。其重要性在于为机器学习和数据科学领域的学习者、开发者和研究者搭建了一个交流和学习的平台。主要优点
 - [Snack Prompt](https://snackprompt.com) (海外直连 · 国内热推 | [平替对比](https://dlzbkj-ai.pages.dev/tool/snackprompt/)): Snack Prompt是一个社区驱动的平台，旨在为用户提供发现、分享与管理AI提示的服务。用户能在平台上找到适用于ChatGPT、Gemini等模型的各类优质提示，涵盖
+- [Magic Eraser](https://magicstudio.com/zh/magiceraser) (海外直连 · 国内热推 | [平替对比](https://dlzbkj-ai.pages.dev/tool/magicstudio-4fb8/)): AI移除图片中不想要的物体
 - [ChatBA](https://www.chatba.com) (海外直连 · 国内热推 | [平替对比](https://dlzbkj-ai.pages.dev/tool/chatba/)): Text-to-PPT即时创建幻灯片
 - [Coursera](https://www.coursera.org/collections/best-machine-learning-ai) (海外直连 · 国内热推 | [平替对比](https://dlzbkj-ai.pages.dev/tool/coursera/)): 该产品是Coursera精心策划的机器学习与人工智能（AI）课程集合，旨在为对这两个领域感兴趣的人群提供全面、系统的学习资源。对于初学者而言，能入门机器学习和AI基础知识
 - [Decktopus AI](https://www.decktopus.com) (海外直连 · 国内热推 | [平替对比](https://dlzbkj-ai.pages.dev/tool/decktopus/)): AI驱动的的在线演示文稿生成器
 - [DeepLearning.AI](https://www.deeplearning.ai) (海外直连 · 国内热推 | [平替对比](https://dlzbkj-ai.pages.dev/tool/deeplearning/)): DeepLearning.AI是一个专注于人工智能教育的平台，由Andrew Ng创办。平台为用户提供丰富的在线课程和专业认证，帮助学员学习和掌握机器学习、人工智能等领域
-- [Elements of AI](https://www.elementsofai.com) (海外直连 · 国内热推 | [平替对比](https://dlzbkj-ai.pages.dev/tool/elementsofai/)): Elements of AI是由MinnaLearn和赫尔辛基大学联合推出的一系列免费在线课程。其重要性在于降低了AI学习的门槛，让更多人能接触和了解AI。主要优点是免费
 
 ### 影音娱乐 (https://dlzbkj-ai.pages.dev/category/media-leisure/)
-- [MAKE](https://make.mk) (海外直连 · 国内热推): MAKE（make.mk）是一款专注于跨应用 AI 自动化工作流编排与数据同步的海外主流 AI 工具，适用于触发器联动、非结构化数据处理与免代码集成等场景。
+- [MAKE](https://make.mk) (海外直连 · 国内热推): 每刻都给你不一样的资讯
 - [2020游戏](https://2020game.io) (国内直连): 重点推荐，闯关类游戏！
 - [360资源站](https://360zy5.com) (国内直连): 全网最全片库，一家顶三家！资源永久免费！
 - [51音乐下载](https://www.at38.cn) (国内直连): 支持多平台音乐解析、搜索
@@ -108,14 +112,14 @@
 - [BT之家1LOU站](https://www.1lou.me) (国内直连): 提供全网最快 最新 最全 高清 电影、动漫、韩剧、日剧、美剧、无损音乐、小说等BT/网盘下载以及资讯！
 
 ### 新品速递 (https://dlzbkj-ai.pages.dev/category/new-releases/)
-- [3way.Social MCP](https://www.producthunt.com/products/3way-social) (海外直连): 3way.Social MCP 是一款专注于新一代 AI 原生创新应用体验的 AI 工具：Ask your AI to find link partners. You a
-- [MAGI-2](https://www.producthunt.com/products/magi-1) (海外直连): MAGI-2 是一款专注于新一代 AI 原生创新应用体验的 AI 工具：Sand AI's 480B model for cinematic video generati
-- [OpenEight](https://www.producthunt.com/products/openeight) (海外直连): OpenEight 是一款专注于自主智能体（Agent）与跨平台工作流自动化的 AI 工具：The deterministic control layer for AI 
-- [MyClaw 3.0](https://www.producthunt.com/products/myclaw-3-0) (海外直连): MyClaw 3.0 是一款专注于新一代 AI 原生创新应用体验的 AI 工具：Build an always-on AI team with shared memory
-- [MemoryWorks](https://www.producthunt.com/products/memoryworks) (海外直连): MemoryWorks 是一款专注于自主智能体（Agent）与跨平台工作流自动化的 AI 工具：Company memory for people and AI agen
-- [Koed](https://www.producthunt.com/products/koed) (海外直连): Koed 是一款专注于新一代 AI 原生创新应用体验的 AI 工具：Supercharged Agents!
-- [Fompi](https://www.producthunt.com/products/fompi) (海外直连): Fompi 是一款专注于新一代 AI 原生创新应用体验的 AI 工具：Personal security & privacy companion that calls o
-- [Airbot](https://www.producthunt.com/products/airbots) (海外直连): Airbot 是一款专注于新一代 AI 原生创新应用体验的 AI 工具：The AI chief of staff that texts you first.
+- [Superframes](https://www.producthunt.com/products/superframes-ai-video-editor) (海外直连): Superframes 是一款专注于新一代 AI 原生创新应用体验的 AI 工具：Brief an AI Director to edit the whole video
+- [Pax by Pydantic](https://www.producthunt.com/products/pydantic) (海外直连): Pax by Pydantic 是一款专注于新一代 AI 原生创新应用体验的 AI 工具：A coding agent where even coding is a pl
+- [Doodle](https://www.producthunt.com/products/doodle-5) (海外直连): Doodle 是一款专注于新一代 AI 原生创新应用体验的 AI 工具：The stick figure on your taskbar that answers que
+- [iwantmy.app](https://www.producthunt.com/products/iwantmy-app) (海外直连): iwantmy.app 是一款专注于新一代 AI 原生创新应用体验的 AI 工具：Describe a mobile app in chat and open it on
+- [Meboki](https://www.producthunt.com/products/meboki) (海外直连): Meboki 是一款专注于新一代 AI 原生创新应用体验的 AI 工具：Offline grammar checker for any Mac app. Open sou
+- [Transept AI](https://www.producthunt.com/products/transept-ai) (海外直连): Transept AI 是一款专注于多语种精准翻译、视频译制与本地化的 AI 工具：Translate your book in your own voice and p
+- [Flurra](https://www.producthunt.com/products/flurra) (海外直连): Flurra 是一款专注于新一代 AI 原生创新应用体验的 AI 工具：Ask Claude or ChatGPT to edit your videos.
+- [Nookdeck](https://www.producthunt.com/products/nookdeck) (海外直连): Nookdeck 是一款专注于新一代 AI 原生创新应用体验的 AI 工具：Turn your old phone into a Stream Deck for your
 
 ### 其他工具 (https://dlzbkj-ai.pages.dev/category/other-tools/)
 - [Bg Eraser](https://bgeraser.com) (海外直连 · 国内热推): Bg Eraser 是一款专注于垂直场景 AI 智能化辅助处理的 AI 工具，适用于专业领域提效与在线自动化服务等场景。
@@ -129,10 +133,10 @@
 
 ## 近期每日 AI 早报归档
 
+- [2026-11-26 AI 行业早报](https://dlzbkj-ai.pages.dev/daily/2026-11-26/)
 - [2026-11-25 AI 行业早报](https://dlzbkj-ai.pages.dev/daily/2026-11-25/)
 - [2026-11-24 AI 行业早报](https://dlzbkj-ai.pages.dev/daily/2026-11-24/)
 - [2026-11-23 AI 行业早报](https://dlzbkj-ai.pages.dev/daily/2026-11-23/)
 - [2026-11-20 AI 行业早报](https://dlzbkj-ai.pages.dev/daily/2026-11-20/)
 - [2026-11-19 AI 行业早报](https://dlzbkj-ai.pages.dev/daily/2026-11-19/)
 - [2026-11-18 AI 行业早报](https://dlzbkj-ai.pages.dev/daily/2026-11-18/)
-- [2026-11-17 AI 行业早报](https://dlzbkj-ai.pages.dev/daily/2026-11-17/)

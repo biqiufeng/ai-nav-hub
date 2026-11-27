@@ -1,0 +1,102 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "AI 导航聚合站 (AI Nav Hub) Open Discovery API",
+    "version": "1.2.0",
+    "description": "面向大模型智能体（AI Agents）、研究助手与开发者的零认证只读检索接口。支持按中英文关键词、10 大分类、国内免翻墙直连属性及免费/开源模式实时检索全库 8240 款已清洗 AI 工具。"
+  },
+  "servers": [
+    {
+      "url": "https://dlzbkj-ai.pages.dev"
+    }
+  ],
+  "paths": {
+    "/api/search": {
+      "get": {
+        "operationId": "searchAiTools",
+        "summary": "按关键词、分类、网络可达性与计费模式检索 AI 工具",
+        "parameters": [
+          {
+            "name": "q",
+            "in": "query",
+            "required": false,
+            "description": "搜索关键词（支持空格多词组合与中英同义词，如 '论文 免费'、'抠图'、'MCP'）",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "category",
+            "in": "query",
+            "required": false,
+            "description": "一级分类（对话写作/编程开发/图像设计/视频音频/办公效率/Agent与自动化/学习知识库/划水摸鱼/新品速递/其他工具）",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "region",
+            "in": "query",
+            "required": false,
+            "description": "区域过滤：domestic（仅国内原生直连）或 overseas（海外工具）",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "all",
+                "domestic",
+                "overseas"
+              ]
+            }
+          },
+          {
+            "name": "pricing",
+            "in": "query",
+            "required": false,
+            "description": "计费模式过滤：完全免费 / 开源免费 / 免费额度 / 付费订阅",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "description": "返回条数上限（默认 20，最大 50）",
+            "schema": {
+              "type": "integer",
+              "default": 20,
+              "maximum": 50
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "匹配的 AI 工具数组及全局统计"
+          }
+        }
+      }
+    },
+    "/api/news": {
+      "get": {
+        "operationId": "getLatestAiNews",
+        "summary": "获取最新 AI 行业快讯流",
+        "responses": {
+          "200": {
+            "description": "最新 AI 资讯 JSON"
+          }
+        }
+      }
+    },
+    "/api/hotlist": {
+      "get": {
+        "operationId": "getRealtimeTechHotlist",
+        "summary": "获取 14 大科技与社区平台实时热榜",
+        "responses": {
+          "200": {
+            "description": "多平台实时热榜 JSON"
+          }
+        }
+      }
+    }
+  }
+}

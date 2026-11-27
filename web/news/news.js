@@ -36,6 +36,8 @@ const els = {
   newsDialogCloseBtn: document.getElementById("newsDialogCloseBtn"),
   newsDialogCover: document.getElementById("newsDialogCover"),
   newsDialogBody: document.getElementById("newsDialogBody"),
+  newsDialogToolsWrap: document.getElementById("newsDialogToolsWrap"),
+  newsDialogToolsList: document.getElementById("newsDialogToolsList"),
   newsDialogVisitBtn: document.getElementById("newsDialogVisitBtn"),
   newsDialogSourceBtn: document.getElementById("newsDialogSourceBtn"),
   newsDialogCopyBtn: document.getElementById("newsDialogCopyBtn"),
@@ -53,6 +55,30 @@ let loadFailed = false;
 let generatedAt = "";
 let activeDialogItem = null;
 let isLoading = false;
+let toolEntities = [];
+
+fetch("../data/tool-slugs.json")
+  .then((r) => (r.ok ? r.json() : null))
+  .then((d) => {
+    if (Array.isArray(d?.entities)) toolEntities = d.entities;
+  })
+  .catch(() => {});
+
+function matchNewsTools(text) {
+  if (!text || toolEntities.length === 0) return [];
+  const low = text.toLowerCase();
+  const out = [];
+  for (const ent of toolEntities) {
+    const nm = ent.name;
+    const nl = nm.toLowerCase();
+    const hasZh = /[\u4e00-\u9fff]/.test(nm);
+    if (hasZh ? low.includes(nl) : new RegExp(`(?<![a-z0-9])${nl.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}(?![a-z0-9])`).test(low)) {
+      out.push(ent);
+      if (out.length >= 4) break;
+    }
+  }
+  return out;
+}
 
 function supportsTopLayerExit() {
   return Boolean(window.CSS?.supports?.("overlay", "auto") && canTransitionDisplay());
@@ -229,6 +255,25 @@ function openNewsDialog(item) {
   }
   els.newsDialogBody.replaceChildren(bodyFrag);
   els.newsDialogBody.scrollTop = 0;
+
+  if (els.newsDialogToolsWrap && els.newsDialogToolsList) {
+    const fullTxt = `${item.title || ""} ${item.summary || ""} ${(item.paragraphs || []).map((p) => p.text).join(" ")}`;
+    const matched = matchNewsTools(fullTxt);
+    if (matched.length > 0) {
+      const tFrag = document.createDocumentFragment();
+      for (const ent of matched) {
+        const a = document.createElement("a");
+        a.className = "dialog-alts__chip";
+        a.href = `../tool/${ent.slug}/`;
+        a.textContent = `${ent.name}（${ent.pricing}）→`;
+        tFrag.appendChild(a);
+      }
+      els.newsDialogToolsList.replaceChildren(tFrag);
+      els.newsDialogToolsWrap.hidden = false;
+    } else {
+      els.newsDialogToolsWrap.hidden = true;
+    }
+  }
 
   const visitHref = safeHttpUrl(item.url);
   if (visitHref) {
@@ -423,7 +468,7 @@ async function loadNews(showFeedback = false) {
   isLoading = true;
   loadFailed = false;
   els.newsEmpty.hidden = true;
-  if (items.length === 0) renderSkeletons();
+  if (items.length === 0 && els.newsGrid.childElementCount === 0) renderSkeletons();
 
   try {
     const { data, fromLive } = await fetchNewsPayload(showFeedback);

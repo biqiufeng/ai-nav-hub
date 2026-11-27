@@ -243,7 +243,7 @@ async function loadHotlist(showFeedback = false) {
   hotLoadFailed = false;
   els.hotEmpty.hidden = true;
   setRefreshBusy(els.refreshHotBtn, true, "刷新热榜", "刷新中…");
-  if (platforms.length === 0) renderHotSkeletons();
+  if (platforms.length === 0 && els.hotGrid.childElementCount === 0) renderHotSkeletons();
 
   try {
     const { data, fromLive } = await fetchHotlistPayload(showFeedback);

@@ -76,7 +76,9 @@ const state = {
   visibleLimit: PAGE_BATCH,
   region: loadRegion(),
   category: "全部",
+  pricingFilter: "all",
   query: "",
+  slugById: {},
   favorites: loadFavorites(),
   activeTool: null,
   pendingFavoritesRefresh: false,
@@ -101,6 +103,7 @@ const els = {
   regionSegmented: document.getElementById("regionSegmented"),
   segmentedThumb: document.getElementById("segmentedThumb"),
   categoryBar: document.getElementById("categoryBar"),
+  subFiltersBar: document.getElementById("subFiltersBar"),
   resultCounter: document.getElementById("resultCounter"),
   shareFavBtn: document.getElementById("shareFavBtn"),
   exportFavBtn: document.getElementById("exportFavBtn"),
@@ -120,7 +123,10 @@ const els = {
   dialogRegionBadge: document.getElementById("dialogRegionBadge"),
   dialogPricingBadge: document.getElementById("dialogPricingBadge"),
   dialogCategoryBadge: document.getElementById("dialogCategoryBadge"),
+  dialogAltsWrap: document.getElementById("dialogAltsWrap"),
+  dialogAltsList: document.getElementById("dialogAltsList"),
   dialogVisitBtn: document.getElementById("dialogVisitBtn"),
+  dialogDetailBtn: document.getElementById("dialogDetailBtn"),
   dialogCopyBtn: document.getElementById("dialogCopyBtn"),
   dialogCopyText: document.getElementById("dialogCopyText"),
   dialogFavBtn: document.getElementById("dialogFavBtn"),
@@ -326,7 +332,133 @@ function getBaseItems() {
 }
 
 function isSectionMode() {
-  return state.region === "all" && state.category === "全部" && !state.query.trim();
+  return (
+    state.region === "all" &&
+    state.category === "全部" &&
+    state.pricingFilter === "all" &&
+    !state.query.trim()
+  );
+}
+
+const SYNONYM_GROUPS = [
+  [["ppt", "slides", "幻灯片", "演示", "演示文稿"], ["ppt", "幻灯片", "演示文稿", "slides", "presentations"]],
+  [["生图", "画图", "绘画", "文生图", "draw"], ["文生图", "绘画", "图像生成", "text-to-image"]],
+  [["抠图", "去背景", "koutu"], ["抠图", "去背景", "背景替换", "remove background"]],
+  [["配音", "语音合成", "tts", "声音克隆", "peiyin"], ["配音", "语音合成", "tts", "声音克隆", "speech"]],
+  [["字幕", "转写", "录音转文字", "asr"], ["字幕", "语音转文字", "转写", "会议纪要", "transcri"]],
+  [["论文", "文献", "学术", "科研", "lunwen"], ["论文", "文献", "学术", "科研", "research", "consensus"]],
+  [["简历", "面试", "求职", "jianli"], ["简历", "面试", "求职", "招聘", "resume", "interview"]],
+  [["翻译", "互译", "fanyi"], ["翻译", "多语种", "本地化", "translat"]],
+  [["编程", "代码", "ide", "biancheng"], ["编程", "代码", "ide", "cursor", "copilot"]],
+  [["智能体", "agent", "mcp", "工作流"], ["智能体", "agent", "mcp", "工作流", "自动化"]],
+  [["免费", "白嫖", "free"], ["完全免费", "开源免费"]],
+  [["开源", "本地部署", "opensource"], ["开源免费", "github", "本地部署"]],
+  [["国内", "国产", "免翻墙", "直连"], ["国内直连", "cn_native"]],
+];
+
+function expandSearchQuery(rawQuery) {
+  const tokens = rawQuery.trim().toLowerCase().split(/\s+/).filter(Boolean).slice(0, 6);
+  const highlightTerms = [...tokens];
+  const groups = tokens.map((tok) => {
+    const set = new Set([tok]);
+    for (const [triggers, expansions] of SYNONYM_GROUPS) {
+      if (triggers.includes(tok)) {
+        expansions.forEach((ex) => set.add(ex.toLowerCase()));
+      }
+    }
+    return [...set];
+  });
+  return { groups, highlightTerms };
+}
+
+function scoreToolSearch(item, groups) {
+  if (groups.length === 0) return item.score || 0;
+  const nameL = (item.name || "").toLowerCase();
+  const domL = (item.domain || "").toLowerCase();
+  const catL = `${item.category || ""} ${item._leisureSub || ""}`.toLowerCase();
+  const priceL = (item.pricing || "").toLowerCase();
+  const accessL = `${item.access_mode || ""} ${formatAccessLabel(item, false)}`.toLowerCase();
+  const descL = (item.description || "").toLowerCase();
+  const fullHay = `${nameL} ${domL} ${catL} ${priceL} ${accessL} ${descL}`;
+
+  let rel = 0;
+  for (const alts of groups) {
+    let matched = false;
+    let best = 0;
+    for (const term of alts) {
+      if (!fullHay.includes(term)) continue;
+      matched = true;
+      let s = 40;
+      if (nameL === term) s = 1200;
+      else if (nameL.startsWith(term)) s = 650;
+      else if (nameL.includes(term)) s = 380;
+      else if (domL.startsWith(term) || domL === term) s = 320;
+      else if (priceL.includes(term) || catL.includes(term) || accessL.includes(term)) s = 220;
+      else if (descL.includes(term)) s = 90;
+      if (s > best) best = s;
+    }
+    if (!matched) return -1;
+    rel += best;
+  }
+  return rel + (item.score || 0) * 0.25;
+}
+
+/* CSS Custom Highlight API (modern-web-guidance: highlight-text-ranges) */
+function updateSearchHighlights(terms) {
+  const cleanTerms = (terms || []).filter((t) => t.length >= 2);
+  if (typeof CSS !== "undefined" && CSS.highlights && typeof Highlight !== "undefined") {
+    CSS.highlights.clear();
+    if (cleanTerms.length === 0 || !els.catalogContainer) return;
+    const walker = document.createTreeWalker(els.catalogContainer, NodeFilter.SHOW_TEXT);
+    const ranges = [];
+    for (let node = walker.nextNode(); node; node = walker.nextNode()) {
+      const parent = node.parentElement;
+      if (!parent || !parent.matches(".tool-card__name, .tool-card__name *, .tool-card__desc, .tool-card__domain")) {
+        continue;
+      }
+      const txt = node.textContent || "";
+      const low = txt.toLowerCase();
+      for (const term of cleanTerms) {
+        let pos = low.indexOf(term);
+        while (pos !== -1 && ranges.length < 240) {
+          const r = new Range();
+          r.setStart(node, pos);
+          r.setEnd(node, pos + term.length);
+          ranges.push(r);
+          pos = low.indexOf(term, pos + term.length);
+        }
+      }
+    }
+    if (ranges.length > 0) {
+      CSS.highlights.set("search-results", new Highlight(...ranges));
+    }
+  } else if (els.catalogContainer && cleanTerms.length > 0) {
+    // Safe textContent <mark> fallback for older browsers without CSS.highlights
+    const walker = document.createTreeWalker(els.catalogContainer, NodeFilter.SHOW_TEXT);
+    const nodes = [];
+    for (let n = walker.nextNode(); n; n = walker.nextNode()) {
+      if (n.parentElement?.matches(".tool-card__name, .tool-card__desc")) nodes.push(n);
+    }
+    const term = cleanTerms[0];
+    for (const textNode of nodes) {
+      const text = textNode.textContent || "";
+      let pos = text.toLowerCase().indexOf(term);
+      if (pos === -1) continue;
+      const frag = document.createDocumentFragment();
+      let last = 0;
+      while (pos !== -1) {
+        frag.append(text.slice(last, pos));
+        const mark = document.createElement("mark");
+        mark.className = "search-mark";
+        mark.textContent = text.slice(pos, pos + term.length);
+        frag.append(mark);
+        last = pos + term.length;
+        pos = text.toLowerCase().indexOf(term, last);
+      }
+      frag.append(text.slice(last));
+      textNode.replaceWith(frag);
+    }
+  }
 }
 
 function setRegion(nextRegion) {
@@ -796,16 +928,29 @@ function applyFilters(animateEnter = false) {
   renderSidebarInto(els.mobileSidebarHost, true);
 
   const isLeisureView = state.region === "leisure";
-  const q = state.query.trim().toLowerCase();
-  state.filtered = baseItems.filter((it) => {
+  const { groups, highlightTerms } = expandSearchQuery(state.query);
+  const scoredMatches = [];
+
+  for (const it of baseItems) {
     if (state.category !== "全部") {
       const catKey = isLeisureView ? it._leisureSub : it.category;
-      if (catKey !== state.category) return false;
+      if (catKey !== state.category) continue;
     }
-    if (!q) return true;
-    const hay = `${it.name} ${it.description} ${it.domain} ${it.category} ${it.pricing || ""} ${it._leisureSub || ""}`.toLowerCase();
-    return hay.includes(q);
-  });
+    if (state.pricingFilter !== "all") {
+      if ((it.pricing || "免费额度") !== state.pricingFilter) continue;
+    }
+    if (groups.length === 0) {
+      scoredMatches.push({ sc: it.score || 0, it });
+    } else {
+      const sc = scoreToolSearch(it, groups);
+      if (sc >= 0) scoredMatches.push({ sc, it });
+    }
+  }
+
+  if (groups.length > 0) {
+    scoredMatches.sort((a, b) => b.sc - a.sc || a.it.name.localeCompare(b.it.name));
+  }
+  state.filtered = scoredMatches.map((x) => x.it);
 
   const totalDisplayed =
     state.isPartialCatalog && isSectionMode() && state.globalCounts?.all
@@ -827,6 +972,7 @@ function applyFilters(animateEnter = false) {
       els.emptyResetBtn.textContent = "重置筛选条件";
     }
     setupScrollspy();
+    updateSearchHighlights([]);
     return;
   }
 
@@ -834,12 +980,14 @@ function applyFilters(animateEnter = false) {
 
   if (isSectionMode()) {
     renderSectionedView(state.filtered, animateEnter);
+    updateSearchHighlights([]);
   } else {
     const shown = state.filtered.slice(0, state.visibleLimit);
     const grid = document.createElement("div");
     grid.className = "cards-grid";
     shown.forEach((it, idx) => grid.appendChild(createCardElement(it, idx, animateEnter, 16)));
     els.catalogContainer.replaceChildren(grid);
+    updateSearchHighlights(highlightTerms);
 
     const remaining = state.filtered.length - shown.length;
     els.loadMoreWrap.hidden = remaining <= 0;
@@ -975,6 +1123,52 @@ function openDialog(item) {
     els.dialogVisitBtn.hidden = true;
   }
 
+  const tslug = state.slugById?.[item.id];
+  if (els.dialogDetailBtn) {
+    if (tslug) {
+      els.dialogDetailBtn.href = `./tool/${tslug}/`;
+      els.dialogDetailBtn.hidden = false;
+    } else {
+      els.dialogDetailBtn.removeAttribute("href");
+      els.dialogDetailBtn.hidden = true;
+    }
+  }
+
+  if (els.dialogAltsWrap && els.dialogAltsList) {
+    const domAlts = state.items
+      .filter(
+        (cand) =>
+          cand.id !== item.id &&
+          cand.category === item.category &&
+          (cand.access_mode === "cn_native" || cand.region === "domestic")
+      )
+      .slice(0, 3);
+    if (domAlts.length > 0) {
+      const frag = document.createDocumentFragment();
+      for (const alt of domAlts) {
+        const altSlug = state.slugById?.[alt.id];
+        if (altSlug) {
+          const link = document.createElement("a");
+          link.className = "dialog-alts__chip";
+          link.href = `./tool/${altSlug}/`;
+          link.textContent = `${alt.name} →`;
+          frag.appendChild(link);
+        } else {
+          const btn = document.createElement("button");
+          btn.type = "button";
+          btn.className = "dialog-alts__chip";
+          btn.textContent = alt.name;
+          btn.addEventListener("click", () => openDialog(alt));
+          frag.appendChild(btn);
+        }
+      }
+      els.dialogAltsList.replaceChildren(frag);
+      els.dialogAltsWrap.hidden = false;
+    } else {
+      els.dialogAltsWrap.hidden = true;
+    }
+  }
+
   els.dialogCopyBtn.classList.remove("is-copied");
   els.dialogCopyText.textContent = "复制链接";
   els.dialogFavText.textContent = state.favorites.has(item.id) ? "已收藏 ★" : "收藏";
@@ -995,6 +1189,27 @@ els.dialogFavBtn.addEventListener("click", () => {
 /* ---------- Events & keyboard shortcuts ---------- */
 els.regionSegmented.querySelectorAll(".segmented__btn").forEach((btn) => {
   btn.addEventListener("click", () => setRegion(btn.dataset.region));
+});
+
+function syncPricingPills() {
+  els.subFiltersBar?.querySelectorAll("[data-pricing]").forEach((btn) => {
+    const active = btn.dataset.pricing === state.pricingFilter;
+    btn.classList.toggle("is-active", active);
+    btn.setAttribute("aria-pressed", String(active));
+  });
+}
+
+els.subFiltersBar?.querySelectorAll("[data-pricing]").forEach((btn) => {
+  btn.addEventListener("click", () => {
+    const next = btn.dataset.pricing || "all";
+    state.pricingFilter = state.pricingFilter === next && next !== "all" ? "all" : next;
+    state.visibleLimit = PAGE_BATCH;
+    if (state.isPartialCatalog && state.pricingFilter !== "all") {
+      hydrateFullCatalog();
+    }
+    syncPricingPills();
+    applyFilters(true);
+  });
 });
 
 const searchController = bindSearchBox({
@@ -1020,7 +1235,9 @@ els.emptyResetBtn.addEventListener("click", () => {
   els.searchInput.value = "";
   state.query = "";
   state.category = "全部";
+  state.pricingFilter = "all";
   state.visibleLimit = PAGE_BATCH;
+  syncPricingPills();
   searchController.sync();
   if (state.region === "favorites") {
     setRegion("all");
@@ -1132,7 +1349,20 @@ async function init() {
   const params = new URLSearchParams(location.search);
   const initialQ = params.get("q");
   const initialCat = params.get("cat");
+  const initialPricing = params.get("pricing");
   const sharedFavs = params.get("favs");
+
+  fetch("./data/tool-slugs.json")
+    .then((r) => (r.ok ? r.json() : null))
+    .then((d) => {
+      if (d?.by_id) state.slugById = d.by_id;
+    })
+    .catch(() => {});
+
+  if (initialPricing && ["完全免费", "开源免费", "免费额度", "付费订阅"].includes(initialPricing)) {
+    state.pricingFilter = initialPricing;
+    syncPricingPills();
+  }
 
   let importedFavCount = 0;
   if (sharedFavs) {
@@ -1178,7 +1408,7 @@ async function init() {
   }
 
   const needsFullImmediately = Boolean(
-    initialQ || initialCat || sharedFavs || state.region !== "all"
+    initialQ || initialCat || initialPricing || sharedFavs || state.region !== "all"
   );
 
   try {

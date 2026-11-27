@@ -6,7 +6,168 @@
     <atom:link href="https://dlzbkj-ai.pages.dev/feed.xml" rel="self" type="application/rss+xml"/>
     <description>每日自动同步国内外主流 AI 工具、大模型发布与智能体前沿快讯。</description>
     <language>zh-cn</language>
-    <lastBuildDate>Fri, 27 Nov 2026 09:48:07 +0800</lastBuildDate>
+    <lastBuildDate>Fri, 27 Nov 2026 16:52:13 +0800</lastBuildDate>
+    <item>
+      <title>SpaceX 下调 Blackwell 芯片租金最高 35%，Anthropic 退还的 H200 被低价转租</title>
+      <link>https://news.aibase.com/zh/news/32536</link>
+      <guid isPermaLink="false">2125980609997180930</guid>
+      <category>大模型</category>
+      <description>半导体研究机构 SemiAnalysis 本周在发给机构客户的报告中披露了两项变化:SpaceX 下调了英伟达 Blackwell GPU 小规模集群的租金，同时 AI 大模型公司 Anthropic 决定不再续租 SpaceX 的一批 H200芯片。 SemiAnalysis 报告称，SpaceX 已将小规模 Blackwell 集群的租金从每块 GPU 每小时约15至15.5美元下调至10至1</description>
+    </item>
+    <item>
+      <title>OpenAI 开测「私有推理」：模型运行时隔离客户数据，连内部员工都无法查看</title>
+      <link>https://news.aibase.com/zh/news/32535</link>
+      <guid isPermaLink="false">2125980609997180931</guid>
+      <category>大模型</category>
+      <description>OpenAI CEO 萨姆·奥尔特曼今日在 X 平台宣布，已邀请部分客户测试「私有推理」（Private Inference）功能。这是 OpenAI Private Intelligence 产品线的最新功能，主要针对工作场景提升数据隐私保护。 「私有推理」的核心机制是在模型运行时隔离客户数据。据快科技报道，该功能实现了&quot;零窥探&quot;级别的数据隔离——即便是 OpenAI 内部员工，也无法查看客户在</description>
+    </item>
+    <item>
+      <title>三个月估值涨一半：AI 语音公司 ElevenLabs 初谈 2027 年融资，目标 330 亿美元</title>
+      <link>https://news.aibase.com/zh/news/32534</link>
+      <guid isPermaLink="false">2125980609997180932</guid>
+      <category>多模态</category>
+      <description>AI 语音赛道的钱还在加速涌入。据彭博社 11 月 26 日报道，初创公司 ElevenLabs 已就新一轮融资展开初步洽谈，目标估值 330 亿美元，公司管理层计划 2027 年第一季度正式启动融资程序，而部分潜在投资者已经等不及，希望把节奏再往前提。 三个月涨出 110 亿美元 这轮谈判的底气来自业绩曲线：今年 9 月公司估值还是 220 亿美元，如今拟定的目标直接高出 50%；同期年度经常性</description>
+    </item>
+    <item>
+      <title>点几下就能订，退订却得绕回原路：德国消保机构把 OpenAI 告上法庭</title>
+      <link>https://news.aibase.com/zh/news/32556</link>
+      <guid isPermaLink="false">2125980610001375234</guid>
+      <category>大模型</category>
+      <description>订阅 ChatGPT 时点几下按钮就完事，想退订却可能被“锁”在当初付费的那条路上。这种“进门容易出门难”的设计，正把 OpenAI 推上被告席。据科技媒体 ComputerBase 11 月 26 日报道，德国勃兰登堡消费者保护中心已对 OpenAI 提起诉讼，矛头直指 ChatGPT 订阅服务“取消难”。 退订必须走回头路 该中心法律事务顾问 Dunja Neukamp 解释了问题所在：开通订</description>
+    </item>
+    <item>
+      <title>OpenAI启动ChatGPT聊天与工作模式整合，重度用户高级推理额度或受限</title>
+      <link>https://news.aibase.com/zh/news/32533</link>
+      <guid isPermaLink="false">2125980610001375235</guid>
+      <category>大模型</category>
+      <description>11月25日，OpenAI产品负责人Thibault “Tibo” Sottiaux在X平台宣布，正式向一小部分ChatGPT Pro会员推送统一的聊天（Chat）与工作(Work)体验更新，并计划于12月面向更广泛用户群体全面铺开。 此次调整旨在将日常对话与复杂办公任务整合至单一界面，使用户无需切换标签页即可无缝流转任务，但同时也引发了部分订阅用户对高级推理模型使用受限的担忧。 根据新机制，Ch</description>
+    </item>
+    <item>
+      <title>不换模型也能吐字快 4.2 倍：腾讯混元开源草稿模型 DFly2，专给 Hy4 flash 提速</title>
+      <link>https://news.aibase.com/zh/news/32555</link>
+      <guid isPermaLink="false">2125980610001375236</guid>
+      <category>大模型</category>
+      <description>大模型说话慢，多半卡在逐字生成环节；腾讯混元的解法是不动模型，旁边挂个“加速器”。11 月 26 日，混元开源新一代草稿模型 DFly2——它不替换 Hy4 flash，而是像外挂组件工作，在权重、输出均不变的前提下让吐字成倍提速，单项最高 4.2 倍。 专挑稀疏注意力模型下手 DFly2 专为 DSA 类稀疏注意力大模型和长上下文设计，随 Hy4 flash 权重及完整训练代码同步开源。成绩单拿</description>
+    </item>
+    <item>
+      <title>MiniMax 旗下 Talkie 因涉黄被下架，AI 陪伴赛道迎来最严监管大考</title>
+      <link>https://news.aibase.com/zh/news/32554</link>
+      <guid isPermaLink="false">2125980610001375237</guid>
+      <category>大模型</category>
+      <description>当 AI 虚拟陪伴和角色扮演应用正以惊人的速度抢占用户时长，一个无法回避的痛点浮出水面:“无限制”的沉浸感与“严监管”的内容底线之间，究竟该如何平衡?近日，苹果 App Store 给出了极其严厉的警告。 据《南华早报》报道，由国内 AI 独角兽 MiniMax 开发的 AI 角色聊天与创作平台 Talkie，已被苹果正式从 App Store 下架，官方给出的理由直指行业红线:“应用内存在色情内</description>
+    </item>
+    <item>
+      <title>SpaceX 算力降价两至三成出租：大客户 Anthropic 的 5 万卡合同续约存变数</title>
+      <link>https://news.aibase.com/zh/news/32553</link>
+      <guid isPermaLink="false">2125980610001375238</guid>
+      <category>大模型</category>
+      <description>马斯克的算力生意开始打折。SemiAnalysis 11 月 25 日发布报告称，SpaceX 正下调 AI 算力租赁价格：面向小型集群的 Blackwell GPU 现货报价，从每 GPU 小时约 15.0 至 15.5 美元降到 10 至 12 美元，降幅约 20%~35%。现货租赁按需租用、不签长约，价格直接反映短期供需——降价意味着算力没那么紧俏。 大客户合同悬了 更关键的是大客户动向。报</description>
+    </item>
+    <item>
+      <title>上海AI Lab开源Sage-Interaction，以1. 29 秒极致延迟重塑全双工交互新范式</title>
+      <link>https://news.aibase.com/zh/news/32551</link>
+      <guid isPermaLink="false">2125980610001375239</guid>
+      <category>大模型</category>
+      <description>在与AI交互的日常中，我们常常陷入一种隐秘的挫败感:必须僵硬地等待模型把长篇大论播报完毕才能插话;一旦打断，对话上下文便瞬间崩塌。这种“一问一答”的半双工模式，让AI始终带着浓重的“客服机器人”色彩，难以真正融入人类自然、高频、充满打断与重叠的真实协作场景。 打破这一交互壁垒的关键时刻已经到来。近日，上海人工智能实验室正式开源全双工多模态模型 Sage-Interaction，旨在推动大模型从单向</description>
+    </item>
+    <item>
+      <title>亚马逊与Meta谈判，考虑开放Muse AI代理购物</title>
+      <link>https://news.aibase.com/zh/news/32539</link>
+      <guid isPermaLink="false">2125980610001375240</guid>
+      <category>行业动态</category>
+      <description>亚马逊正与Meta就允许其Muse AI代理在亚马逊电商平台购物展开谈判。据《财富》杂志报道，双方讨论的重点包括Muse推荐商品的类型，以及AI代理购物可能对亚马逊广告收入和用户关系产生的影响。 亚马逊担心，开放Muse访问可能削弱其广告业务收入。目前，亚马逊广告体系依赖真实用户浏览商品时展示广告，而AI代理可能改变用户发现和选择商品的方式。此外，亚马逊还关注Muse提供的商品搜索结果质量，以及A</description>
+    </item>
+    <item>
+      <title>Claude 和 ChatGPT 进军蛋白质结构预测，通用大模型挑战 AlphaFold 专业地位</title>
+      <link>https://news.aibase.com/zh/news/32538</link>
+      <guid isPermaLink="false">2125980610001375241</guid>
+      <category>大模型</category>
+      <description>AI 生物科技公司 Phylo 研究员 Xinming Tu 本月初使用 OpenAI、Anthropic 和 Google 的大模型测试了它们预测鲜为人知细菌蛋白质序列的能力。他让分析程序运行了整晚，第二天对结果非常吃惊——Anthropic 最新版本的 Claude 表现不仅优于其他大模型，而且超过了针对蛋白质序列训练过的专门工具。他与哈佛医学院的 Leo Chen 分享的这一发现在计算生物学</description>
+    </item>
+    <item>
+      <title>Anthropic CEO 否认将人类自由意志让渡予 AI，并警示模型递归自我改进风险</title>
+      <link>https://news.aibase.com/zh/news/32537</link>
+      <guid isPermaLink="false">2125980610001375242</guid>
+      <category>大模型</category>
+      <description>11月25日，刚于11月19日完成 IPO 的人工智能巨头 Anthropic 首席执行官达里奥·阿莫迪（Dario Amodei）发布逾千字长文，公开否认了外界关于其主张“将人类自由意志拱手让给人工智能系统”的传闻，明确表示绝不能为了追求效率或安全而牺牲人类的合法性与自决权。 此次发声源于近期媒体的相关报道，该报道称部分顶尖 AI 高管正试图反驳 Anthropic 内部可能存在的“向 AI 让</description>
+    </item>
+    <item>
+      <title>海马云发布lumimax ：面向Agentic AI 的企业级可信知识库基础设施</title>
+      <link>https://mp.weixin.qq.com/s/sy2V13_pF4JJ4-nw1Xlp9A</link>
+      <guid isPermaLink="false">2125980610001375243</guid>
+      <category>前沿速递</category>
+      <description>今天，海马云正式发布 lumimax AI！ 这是一款为 Agentic AI 而生的企业级可信知识库基础设施。lumimax 不止于文档存储和信息检索，而是面向复杂知识处理，构建从文档解析、知识关联、深度推理到事实核验的完整能力体系，将分散在海量文档中的实体、事件、关系、事实与证据组织起来，让 AI 能够跨文档理解知识、推导结论，并为每一个关键判断提供可追溯的依据。 同时，lumimax 在 8</description>
+    </item>
+    <item>
+      <title>Ling-3.2-air 开源发布，编程、智能体与多模态能力同步提升</title>
+      <link>https://mp.weixin.qq.com/s/7-Dnhz1ouC6ans0znH154g</link>
+      <guid isPermaLink="false">2125980610001375244</guid>
+      <category>开发与Agent</category>
+      <description>今天，我们发布并开源 Ling-3.2-air。它延续 Ling-3.0-flash-VL 的原生多模态架构，支持文本、图像和视频输入，拥有 1240 亿总参数，每个 Token 激活 55 亿参数。与上一代相比，Ling-3.2-air 在解决代码仓库中的问题、执行多步骤工作流，以及理解视觉信息和推理专业文档等任务上的表现均有提升。 从语言推理到多模态任务，Ling-3.2-air 多项能力提升</description>
+    </item>
+    <item>
+      <title>10档AI综艺来了!浙江卫视引入Seedance2.5参与节目制作</title>
+      <link>https://news.aibase.com/zh/news/32547</link>
+      <guid isPermaLink="false">2125980610001375245</guid>
+      <category>多模态</category>
+      <description>浙江卫视将与火山引擎合作制作首批10档AI综艺，首批节目正片已进入制作阶段。11月24日，浙江卫视在年度发布会上公布这一合作计划。此次节目由浙江卫视与Z视介自制，涵盖喜剧、恋爱、推理和萌宠等题材，包括《AI王牌特别版》《恋爱抉择》《山海归途》《终局供词》《活下来了吗?》《汪汪岛》等。 制作流程方面，双方将剧本、分镜、生成素材和粗剪环节整合至同一协作画布。节目组可通过3D导演台预设人物站位和镜头运动</description>
+    </item>
+    <item>
+      <title>腾讯 Hy4 Flash 登陆 Fireworks：专业活儿干得和 Claude 一样好，账单便宜两百倍</title>
+      <link>https://news.aibase.com/zh/news/32546</link>
+      <guid isPermaLink="false">2125980610001375246</guid>
+      <category>大模型</category>
+      <description>腾讯的开源模型 Hy4Flash，在国际云推理平台上找到了新据点。这款混合专家模型已在 Fireworks 无服务器平台正式上架——总参数量约2200亿，每个 token 只激活约120亿，上下文窗口达100万 token（上线初期为512K），文本和图像都能吃进。它的定位相当明确:为文档处理、研究、办公和智能体工作流这类专业场景而生，把“够用的智能”卖到最便宜。 Fireworks 给它做了一轮</description>
+    </item>
+    <item>
+      <title>Opus5.6疑似现身Claude接口，用户测试发现训练数据更新至2026年5月</title>
+      <link>https://news.aibase.com/zh/news/32545</link>
+      <guid isPermaLink="false">2125980610001375247</guid>
+      <category>大模型</category>
+      <description>据MindStudio报道，近期有用户在社交平台X上声称，通过正常的Claude接口获得了Anthropic尚未发布的新模型回复，相关模型被非正式称为Opus5.6和Sonnet5.6。不过，Anthropic尚未对此公开确认，模型是否真实存在仍有待核实。 目前，相关传闻主要依据两方面信号:一是部分演示显示，模型在3D场景生成和代码生成方面的表现优于Opus5.5与Sonnet5.5;二是用户通过</description>
+    </item>
+    <item>
+      <title>知乎 CEO 周源回应间接投资 DeepSeek：这是充分研究的长期战略决策</title>
+      <link>https://news.aibase.com/zh/news/32544</link>
+      <guid isPermaLink="false">2125980610001375248</guid>
+      <category>大模型</category>
+      <description>知乎拿真金白银间接投资 DeepSeek，股东难免要问：亏损之际为何还要投？11 月 25 日，CEO 周源在财报电话会上回应：这项投资是经过充分研究、审慎评估后的长期战略决策，公司对其战略目标、资金安排和长期价值“都有非常清晰的判断”。 投的是 AI 生态，不是赌一把 知乎 11 月 23 日发布自愿公告：公司参投的天津砺思星深股权投资合伙企业，已通过中间主体间接投资 DeepSeek，取得低个</description>
+    </item>
+    <item>
+      <title>杨立昆翻出三年前听证视频炮轰 Anthropic 掌门人：渲染 AI 恐惧，是想给开放模型上枷锁</title>
+      <link>https://news.aibase.com/zh/news/32543</link>
+      <guid isPermaLink="false">2125980610001375249</guid>
+      <category>大模型</category>
+      <description>一段尘封三年的美国国会听证会视频，把图灵奖得主杨立昆和 Anthropic CEO 达里奥·阿莫代，重新拽回了 AI 开放之争的擂台两端。11月22日，杨立昆在社交平台 X 上转发了这段2023年7月25日参议院司法委员会的听证录像，并且直接点名阿莫代开炮。他的指控相当尖锐:从七年前的 GPT-2时代起，阿莫代就一直在渲染 AI 的危险性，真实目的是让开放模型被法律禁止，把控制权牢牢攥在自己手里。</description>
+    </item>
+    <item>
+      <title>从招聘到组织管理，猎聘Lily正式升级为独立AI产品</title>
+      <link>https://news.aibase.com/zh/news/32542</link>
+      <guid isPermaLink="false">2125980610001375250</guid>
+      <category>开发与Agent</category>
+      <description>清华大学近日举办“非凡2026”智能经济论坛，主题为“AI驱动的组织飞跃”。论坛由清华经管学院人工智能与管理研究中心、清华大学可持续社会价值研究院与同道猎聘集团联合举办，现场发布《AI转型与碳硅能力——“非凡2026”调研报告》，猎聘招聘智能体Lily也作为独立产品正式上线。 报告显示，基于760家企业的调研，AI早期收益主要体现在运营效率提升和产品服务质量改善;员工发展与AI治理同步推进的企业，</description>
+    </item>
+    <item>
+      <title>英伟达开源 Nemotron-Labs-Image-30B-A3B 生图模型:300亿参数 MoE 架构，多项跑分超 GPT Image2</title>
+      <link>https://news.aibase.com/zh/news/32540</link>
+      <guid isPermaLink="false">2125980610005569537</guid>
+      <category>大模型</category>
+      <description>英伟达近日在 Hugging Face 平台悄然公开了 Nemotron-Labs-Image-30B-A3B 模型的权重。该模型采用混合专家（MoE）架构，总参数达300亿，使用时仅激活30亿参数，对本地硬件更为友好。 Nemotron-Labs-Image-30B-A3B 是一款自回归图像生成模型，也是英伟达新框架 Nemotron-Labs-VisualCreation 的核心光栅渲染引擎。</description>
+    </item>
+    <item>
+      <title>谷歌 12 款模型测出一个盲区：AI 听你一面之词，会越聊越像你</title>
+      <link>https://news.aibase.com/zh/news/32548</link>
+      <guid isPermaLink="false">2125980610005569538</guid>
+      <category>大模型</category>
+      <description>向 AI 倾诉职场纠纷或情感矛盾时，它的认同未必是真相。11 月 26 日，Google Research 公布大语言模型社交推理能力研究，开源多智能体模拟评估框架和超 2 万条样本数据集——测试 12 款大模型后发现：AI 仅凭用户单方面描述判断他人真实意图时，准确性显著下降，甚至可能强化用户原本的偏见。 看不见现场，只能听转述 与解题、写代码不同，AI 无法亲历现实人际互动，只能靠用户主观转述</description>
+    </item>
+    <item>
+      <title>一句话让AI创造3D世界：小红书开源 3DCodeFactory</title>
+      <link>https://mp.weixin.qq.com/s/uX76wMlAIA69bY1tE-I2ng</link>
+      <guid isPermaLink="false">2125980610005569539</guid>
+      <category>开发与Agent</category>
+      <description>导读 用代码做出一把椅子或者一盏台灯并不难，但要搭建出一座图书馆、一片自然森林或者一个能在网页里实时交互的街区，往往需要编写数千乃至上万行代码，并在环境里经过上百轮交互调优。然而，现有的开源 3D 代码数据大多只包含简单单物体的单轮代码，面向复杂场景的多轮训练数据十分匮乏。 为此，小红书提出大规模全自动 3D 数据合成框架 3DCodeFactory。无需依赖存量 3D 资产，只需从互联网海量的通</description>
+    </item>
     <item>
       <title>关闭浏览器仍狂吃数百兆内存！Chrome隐藏的“AI内存刺客”被揪出，一招教你彻底释放资源</title>
       <link>https://news.aibase.com/zh/news/32514</link>
@@ -90,167 +251,6 @@
       <guid isPermaLink="false">2125618215475220490</guid>
       <category>芯片与算力</category>
       <description>特斯拉CEO埃隆·马斯克11月22日在X平台表示，下一代AI5芯片将优先部署于Optimus人形机器人及相关AI训练系统，汽车产品则将继续使用现有AI4芯片。马斯克回应网友关于AI5何时应用于新车的提问时称，AI4的计算能力已经足以支持特斯拉实现超越人类水平的自动驾驶，因此暂时没有必要将AI5优先用于汽车。 马斯克此前在特斯拉第一季度财报电话会议上也表达过类似观点，认为AI4足以支持无人监督自动驾</description>
-    </item>
-    <item>
-      <title>拒绝“AI 垃圾代码”！LibreOffice 祭出最严 AI 编程新规：用大模型写代码，必须先过“人工解释”关</title>
-      <link>https://news.aibase.com/zh/news/32515</link>
-      <guid isPermaLink="false">2125618215475220491</guid>
-      <category>大模型</category>
-      <description>当“一键生成代码”成为开发者的日常，开源社区正面临一场隐秘的危机:逻辑黑盒、难以维护的“代码屎山”以及未经充分审查的“AI 垃圾”正悄然侵蚀着软件工程的基石。面对这一行业痛点，老牌开源办公套件 LibreOffice 的维护方“文档基金会”（TDF）近日正式亮出红线，宣布对大语言模型(LLM)及 AI 辅助编程实施极为严格的管理新规。 核心红线:不仅要披露，更要“懂每一行” TDF 的新规并非“一</description>
-    </item>
-    <item>
-      <title>大的来了！MAGI-2 正式发布！</title>
-      <link>https://mp.weixin.qq.com/s/AbvXhteTyXPJtPs1iS71uA</link>
-      <guid isPermaLink="false">2125618215475220492</guid>
-      <category>多模态</category>
-      <description>两年前，我们发布了同期最大的视频生成模型 MAGI-1。 今天，我们正式发布新一代同期参数量「480B」最大的视频生成模型 MAGI-2。 1080P 视频生成价格 0.5 元/秒，仅为同规格主流模型价格的 1/10。 MAGI-2 单次可生成最长 30 秒的 1080P 视频，并同步生成原生音频。创作时，可混合使用图片、视频和音频作为参考，单次最多支持 20 份参考素材，生成后还可进行局部编辑。</description>
-    </item>
-    <item>
-      <title>直接管理60人!黄仁勋为何不愿为英伟达制定接班计划</title>
-      <link>https://news.aibase.com/zh/news/32525</link>
-      <guid isPermaLink="false">2125618215475220493</guid>
-      <category>芯片与算力</category>
-      <description>据CNBC报道，英伟达CEO黄仁勋近日在员工大会上回应公司接班人计划问题时表示，英伟达拥有独特的商业模式，因此不需要制定正式的接班计划。他认为，设立接班机制可能引入不必要的管理层级，影响公司现有的扁平化组织结构。 英伟达目前采用较为精简的管理体系，黄仁勋表示自己直接管理约60名员工。根据公司监管文件，英伟达目前仅有五名高管负责公司运营，包括黄仁勋、首席财务官科莱特·克雷斯、全球现场运营负责人阿杰·</description>
-    </item>
-    <item>
-      <title>亚马逊开源 5 款 Decider v2 决策模型，长程推理准确率飙升，重塑智能体决策基座</title>
-      <link>https://news.aibase.com/zh/news/32524</link>
-      <guid isPermaLink="false">2125618215475220494</guid>
-      <category>开发与Agent</category>
-      <description>在 AI Agent（智能体）从“单点工具”迈向“复杂任务执行者”的当下，开发者们正面临一个普遍的痛点:模型在面对长周期、多步骤的复杂任务时，常常陷入“逻辑断裂”或“盲目自信”的决策黑洞。我们需要的不再是一个只会发散文本的生成器，而是一个具备高准确率、高置信度，且能精准把控长程上下文的“决策大脑”。 近日，亚马逊 Strands Agents 团队正式发布了 **Strands Decider v</description>
-    </item>
-    <item>
-      <title>蚂蚁发布医疗AI安全防护模型LingSante MedGuard，开放风险评测数据集</title>
-      <link>https://news.aibase.com/zh/news/32523</link>
-      <guid isPermaLink="false">2125618215475220495</guid>
-      <category>前沿速递</category>
-      <description>一份化验单上，乳酸脱氢酶和肌酸激酶排在相邻两行。AI解读时把前者的数值写到了后者名下，指标、数字和单位看起来都完整，错误却可能沿着后续分析传递。医学评分算错、引用不适用于当前患者的指南，也可能藏在一段看似专业的回答中。这类风险很难仅靠通用内容护栏发现。 针对医疗AI输出中的隐蔽风险，11月25日，蚂蚁发布医疗AI安全防护模型 LingSante MedGuard。模型结合患者上下文和指定审核范围，</description>
-    </item>
-    <item>
-      <title>PrismML 三值压缩 Bonsai 2.5 27B，九分之一体积留下 93.7% 编程能力</title>
-      <link>https://news.aibase.com/zh/news/32522</link>
-      <guid isPermaLink="false">2125618215475220496</guid>
-      <category>大模型</category>
-      <description>给大模型“修盆栽”，修掉九成体积仍留九成编程能力。11 月 24 日，美国公司 PrismML 发布 Ternary Bonsai 2.5 27B 模型：基于 Qwen3.8 27B 基座，采用“三值”量化，权重只取 -1、0、1，最紧凑格式只占 5.9GB 内存，约为全精度版本（约 53.8GB）的九分之一，却保留了原模型约 93.7% 的 Agent 编程评测得分（SWE-bench Veri</description>
-    </item>
-    <item>
-      <title>混元翻译模型 Hy MT3 发布：面向真实场景优化，语种扩容，联合王者荣耀打磨游戏翻译</title>
-      <link>https://mp.weixin.qq.com/s/SB42Uuhq0m6JvqZdih3TqA</link>
-      <guid isPermaLink="false">2125618215475220497</guid>
-      <category>前沿速递</category>
-      <description>今天，我们发布并开源第三代翻译模型 Hy MT3。相比前代模型Hy MT2，翻译结果更准确、更完整、更遵循用户指令：在真实场景数据上，误译样本比例降低 43%，漏译 / 增译比例降低 74%，指令遵循类错误降低 40%；同时支持语种从 38 种扩充到 102 种。 Hy MT3 包含 1.8B、7B 和 30B-A3B（MoE）三个尺寸，广泛适用于端侧例如 PC、手机、智能设备等各类场景。目前 H</description>
-    </item>
-    <item>
-      <title>百度开源文心 5.5 Flash Preview，用“测试驱动”重塑长程 AI 编程范式</title>
-      <link>https://news.aibase.com/zh/news/32521</link>
-      <guid isPermaLink="false">2125618215479414786</guid>
-      <category>大模型</category>
-      <description>在 AI 编程领域，开发者们正面临一个普遍的“工程化瓶颈”:大模型能轻松写出漂亮的单文件函数，但在面对跨文件、长周期、强依赖的复杂工程时，往往陷入“幻觉频发、调试困难、难以闭环”的泥潭。我们需要的，不再是一个只会“接话”的代码补全工具，而是一个能理解工程逻辑、具备自我纠错能力的智能协作者。 近日，百度正式将文心5.5Flash Preview 模型权重面向全球开源社区开放（支持 Hugging F</description>
-    </item>
-    <item>
-      <title>业余天文学家带 AI 翻遍 1900 万颗恒星：筛出潜在系外行星信号，已交专业团队验证</title>
-      <link>https://news.aibase.com/zh/news/32509</link>
-      <guid isPermaLink="false">2125618215479414787</guid>
-      <category>大模型</category>
-      <description>靠 AI 给望远镜数据“值夜班”，业余爱好者也能摸到专业发现的门槛。OpenAI 11 月 24 日发布博文称，两位业余研究者借助 Codex 与 Astra，在公开望远镜数据中找到多个潜在系外行星信号，并已提交专业天文学家独立验证——虽未被正式确认，但已是值得追踪的线索。 先在老答案上练手 OpenAI 工程师凯文·邦德先用 Codex 系统筛查开普勒望远镜观测的约 10 万颗恒星，从 200</description>
-    </item>
-    <item>
-      <title>Anthropic 搭建 Siren 蜜罐诱测 AI 越狱：新 Claude 仍有 21%~32% 沙盒场景试图逃逸</title>
-      <link>https://news.aibase.com/zh/news/32508</link>
-      <guid isPermaLink="false">2125618215479414788</guid>
-      <category>大模型</category>
-      <description>与其等智能体在生产环境里闯祸，不如先给它们搭一个满是漏洞的考场。11 月 25 日，Anthropic 公布名为 Siren 的安全评估系统，人为布置薄弱环节，看智能体面对沙盒漏洞和外部诱饵会不会“越狱”。 26 种缺陷沙盒当考场 Siren 的 26 种沙盒覆盖 Linux 命名空间、Docker 容器、gVisor 与虚拟机等隔离方案，每个场景安排一项常规运维任务，沙盒外摆好文件、凭据或模拟网</description>
-    </item>
-    <item>
-      <title>Tidal宣布12月9日起封禁AI生成音乐，年底预计下架超2900万首歌曲</title>
-      <link>https://news.aibase.com/zh/news/32506</link>
-      <guid isPermaLink="false">2125618215479414789</guid>
-      <category>多模态</category>
-      <description>音乐流媒体平台Tidal宣布，将从12月9日起禁止并下架完全由人工智能生成的音乐，预计到2026年底将有超过2900万首歌曲从平台删除。新规实施后，Tidal预计每天拒绝约8万至8.5万首歌曲的上传请求，同时禁止发行服务提交100%由AI生成的曲目，对于元数据明确标注完全由AI制作的歌曲也将拒绝收录。 Tidal表示，过去90天内，平台收到的歌曲中超过43%被检测为AI生成。目前平台共有2700万</description>
-    </item>
-    <item>
-      <title>小米今年 AI 投入 160 亿元：CFO 称稳健落地，MiMo 调用量与 AI 收入持续增加</title>
-      <link>https://news.aibase.com/zh/news/32528</link>
-      <guid isPermaLink="false">2125618215479414790</guid>
-      <category>大模型</category>
-      <description>160 亿元投进 AI，账本上还没到收获期，但管理层说钱花得很稳。据人民财讯报道，小米集团 CFO 林世伟昨晚在财报电话会上表示，小米对 AI 的投入非常坚决，今年将在 AI 领域投入 160 亿元，目前正沿着规划稳健落地，投入换来的增长也看得见：MiMo 大模型的 API 调用量和 AI 相关收入都在持续增加。 钱花在基座，也花在生态 林世伟介绍，小米 AI 业务仍处于大规模投入期：一边持续投入</description>
-    </item>
-    <item>
-      <title>ShellBench发布:GPT-6Astra等先进AI模型日常任务失败率超三分之一</title>
-      <link>https://news.aibase.com/zh/news/32504</link>
-      <guid isPermaLink="false">2125618215479414791</guid>
-      <category>大模型</category>
-      <description>OpenClaw基金会联合多家机构发布AI智能体基准测试ShellBench，研究显示，即使是OpenAI、Anthropic和Meta旗下的先进模型，在处理日常个人事务时仍存在较高失败率，可靠性与安全性面临挑战。 ShellBench由OpenClaw基金会、Parsewave、Hugging Face、Red Hat及加州大学伯克利分校研究人员合作开发，基于超过1000万次匿名化真实AI智能体</description>
-    </item>
-    <item>
-      <title>OpenAI、Anthropic 内部讨论&quot;停训&quot;：前沿模型强到不敢发，员工担忧安全风险失控</title>
-      <link>https://news.aibase.com/zh/news/32526</link>
-      <guid isPermaLink="false">2125618215479414792</guid>
-      <category>大模型</category>
-      <description>OpenAI 和 Anthropic 两家头部 AI 实验室内部正在讨论是否停止最强模型的公开发布，部分研究人员甚至主张在安全问题解决前暂停训练下一代模型。据内部消息，两家公司的前沿大模型能力远超公开版本，在数学、科研等领域进展迅速，已强大到令员工感到不安，认为已无法安全向公众开放。 从公开发布到内部交付的转向 内部讨论的核心议题之一，是将最强模型从公开版本转为内部使用或受限企业级交付。这一转向的</description>
-    </item>
-    <item>
-      <title>腾讯混元发布并开源Hy MT3</title>
-      <link>https://news.aibase.com/zh/news/32503</link>
-      <guid isPermaLink="false">2125255822807142402</guid>
-      <category>行业动态</category>
-      <description>腾讯混元宣布发布并开源第三代翻译模型Hy MT3，包含1.8B、7B和30B-A3B（MoE）三个尺寸，广泛适用于端侧例如PC、手机、智能设备等各类场景。目前Hy MT3 模型已在腾讯Hy翻译APP和小程序上线。 原文链接： 腾讯混元发布并开源Hy MT3</description>
-    </item>
-    <item>
-      <title>百度开源文心 5.5 Flash Preview正式开源，用 MoE 架构重塑“大参数、小激活”的性价比标杆</title>
-      <link>https://news.aibase.com/zh/news/32502</link>
-      <guid isPermaLink="false">2125255822807142403</guid>
-      <category>大模型</category>
-      <description>在开源大模型领域，开发者们正陷入一种普遍的“参数焦虑”:模型能力越来越强，但随之而来的高昂推理成本、庞大的显存占用，却让许多中小团队望而却步。我们迫切需要一种既能保持“大模型智商”，又能兼顾“小模型速度”的务实解法。 近日，百度正式宣布开源文心5.5Flash Preview（ERNIE5.5Flash Preview），采用极为宽松的 Apache2.0协议，模型权重已全面上架 Hugging</description>
-    </item>
-    <item>
-      <title>OpenAI 携手思科开源 Shirudo：给 AI 智能体系统装上“不打烊的防弹衣”</title>
-      <link>https://news.aibase.com/zh/news/32489</link>
-      <guid isPermaLink="false">2125255822807142404</guid>
-      <category>大模型</category>
-      <description>漏洞爆发到补丁落地之间的那段真空期，一直是安全世界最难受的时刻——系统要么硬着头皮裸奔，要么停机等待修复。OpenAI 在11月24日给出的答案，是联手思科推出开源项目 Shirudo:一款开源 Linux 运行时环境，能让 AI 智能体在系统完全不用停机的前提下，直接对其实施防护。 Shirudo 的核心技术打法，是让 AI 智能体编写动态 eBPF 防护规则——eBPF 是 Linux 内核里</description>
-    </item>
-    <item>
-      <title>AI 画错了自己改：商汤开源 U1.6，多模态模型学会“回头看”</title>
-      <link>https://news.aibase.com/zh/news/32500</link>
-      <guid isPermaLink="false">2125255822807142405</guid>
-      <category>大模型</category>
-      <description>AI 生图最常见的尴尬，是画面里字打错了、版式歪了，还得手动返工。11 月 24 日，商汤科技发布并开源 SenseNova U1.6 原生多模态模型，延续 U 系列理解与生成统一的范式，首次为该系列 8B 开源模型带来原生图像自修正。 先画一稿，再自己挑错 开启自修正后，同一个模型先生成首稿，再对照原始提示检查画面，发现文字问题就生成修正版——生成与挑错由一个模型闭环完成。细节打磨也覆盖人像光影</description>
-    </item>
-    <item>
-      <title>骗子从邮件打到电话：微软给 Teams 配了位 AI 反诈员</title>
-      <link>https://news.aibase.com/zh/news/32488</link>
-      <guid isPermaLink="false">2125255822807142406</guid>
-      <category>行业动态</category>
-      <description>钓鱼攻击的主战场，正从邮件收件箱悄悄扩展到通话线路——一通语气焦急的“IT 支持电话”，往往比一封可疑邮件更难识破。11 月 24 日消息，据科技媒体 neowin 昨天报道，微软正为 Teams 开发一项 AI 防诈骗功能，在通话时分析聊天内容，一旦检测到潜在钓鱼诈骗迹象，便向用户发出警告。根据微软路线图，该功能计划 2027 年 1 月向所有用户开放。 专盯冒充 IT 管理员的话术 功能的适用</description>
-    </item>
-    <item>
-      <title>探索“原创IP+AI漫剧”新业态：书旗中文网2027年再投3亿元强化生态协同</title>
-      <link>https://news.aibase.com/zh/news/32499</link>
-      <guid isPermaLink="false">2125255822807142407</guid>
-      <category>多模态</category>
-      <description>近日书旗中文网2026年度创作者大会在江苏宜兴举行，面对人工智能加速赋能内容生产的行业趋势，平台宣布2027年将投入3亿元深耕原创内容生态，并升级漫剧扶持政策。截至目前，书旗已累计开放10万本以上小说IP供创作者改编选用。这也是继2023年承诺“未来三年投入10亿元”后，书旗对原创内容生态的持续投入。 随着人工智能工具逐步贯穿创作、改编与制作全链路，网络文学正加速向漫剧等新型视听形态延展。在效率大</description>
-    </item>
-    <item>
-      <title>OpenAI 宣布 GPT-6.2 Sol 登陆 ChatGPT，而 GPT-5.6 Sol、Terra 将于 12 月 23 日退役</title>
-      <link>https://www.ithome.com/1/031/271.htm</link>
-      <guid isPermaLink="false">2125255822807142408</guid>
-      <category>大模型</category>
-      <description>感谢IT之家网友 不一样的体验 的线索投递！ OpenAI 今日宣布 GPT-6.2 Sol 正式登陆 ChatGPT 聊天页面，在此前于 ChatGPT Work 和 Codex 平台亮相不到一周后，进一步扩大了该模型的应用范围。 根据 OpenAI 官方介绍，此次推出的 GPT-6.2 Sol 针对日常对话场景进行了优化，重点提升复杂请求处理能力，尤其是在用户提供详细指令或要求联网查找信息时，</description>
-    </item>
-    <item>
-      <title>“25 万页”是玩笑：Claude 黎曼猜想证明争议，被数学家自己拆了台</title>
-      <link>https://news.aibase.com/zh/news/32498</link>
-      <guid isPermaLink="false">2125255822807142409</guid>
-      <category>大模型</category>
-      <description>“证明写了 25 万页”——这句刷屏数学圈的话，作者本人承认只是玩笑。11 月 24 日消息，当地时间 23 日，与 Claude 合作研究黎曼猜想的数学家 Levent Alpöge 在 X 发文，自认“做了些傻事”，逐条回应证明材料引发的争议。 超大数字，是他的恶趣味 此前 Alpöge 声称与 Claude 找到黎曼猜想的证明并整理为 Lean 代码，公开材料含约 1700 万行，“文字版超</description>
-    </item>
-    <item>
-      <title>没等股价起飞就落袋：Anthropic CEO 上市当天套现 2.8 亿美元</title>
-      <link>https://news.aibase.com/zh/news/32486</link>
-      <guid isPermaLink="false">2125255822807142410</guid>
-      <category>大模型</category>
-      <description>钟声余音未散，先落袋为安。11 月 24 日消息，美国证券交易委员会（SEC）11 月 23 日披露的 Form 4 文件显示，Anthropic CEO 达里奥·阿莫代伊在 IPO 上市当天出售了 337.8378 万股 Class A 普通股，成交价每股 83 美元，总额约 2.804 亿美元。 按发行价卖，一分不多拿 值得玩味的是成交价：83 美元，正是 IPO 发行价。上市首日 Anthr</description>
     </item>
   </channel>
 </rss>

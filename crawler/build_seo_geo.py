@@ -24,6 +24,16 @@ import urllib.parse
 import urllib.request
 from collections import defaultdict
 
+from seo_geo_phase3 import (
+    SCENE_CONFIGS,
+    build_scene_pages,
+    build_vs_pages,
+    match_entities_in_text,
+    prerender_news_and_moyu,
+    write_openapi_spec,
+    write_tool_slugs_index,
+)
+
 CST = datetime.timezone(datetime.timedelta(hours=8))
 
 CATEGORY_CONFIG = [
@@ -390,7 +400,7 @@ def page_shell_html(
   <meta name="twitter:image" content="https://dlzbkj-ai.pages.dev/og-cover.png?v=2">
   <link rel="icon" type="image/png" sizes="64x64" href="{rel_root}favicon.png?v=5">
   <link rel="apple-touch-icon" sizes="180x180" href="{rel_root}apple-touch-icon.png?v=5">
-  <link rel="stylesheet" href="{rel_root}styles.css?v=18">
+  <link rel="stylesheet" href="{rel_root}styles.css?v=19">
   <link rel="stylesheet" href="{rel_root}seo-geo.css?v=2">
   <script type="application/ld+json">{ld_json}</script>
   <script type="module" src="{rel_root}subpage.js?v=2"></script>
@@ -421,7 +431,9 @@ def page_shell_html(
           </button>
           <ul id="site-menu" class="site-menu" popover="auto">
             <li><a href="{rel_root}"{nav_attr("home")}>首页</a></li>
-            <li><a href="{rel_root}category/"{nav_attr("category")}>分类专题</a></li>
+            <li><a href="{rel_root}scene/"{nav_attr("scene")}>场景专题</a></li>
+            <li><a href="{rel_root}vs/"{nav_attr("vs")}>VS对比</a></li>
+            <li><a href="{rel_root}category/"{nav_attr("category")}>分类榜单</a></li>
             <li><a href="{rel_root}news/"{nav_attr("news")}>AI资讯</a></li>
             <li><a href="{rel_root}daily/"{nav_attr("daily")}>AI早报</a></li>
             <li><a href="{rel_root}moyu/"{nav_attr("moyu")}>热榜</a></li>
@@ -463,10 +475,13 @@ def page_shell_html(
       <nav class="site-footer__links" aria-label="站点底部导航">
         <button class="footer-link-btn" id="installAppBtn" type="button" hidden>安装桌面应用</button>
         <button class="footer-link-btn" type="button" command="show-modal" commandfor="submitToolDialog">免费提交工具收录</button>
+        <a href="{rel_root}scene/">场景专题</a>
+        <a href="{rel_root}vs/">VS对比库</a>
         <a href="{rel_root}category/">分类专题</a>
         <a href="{rel_root}tool/">热门工具库</a>
         <a href="{rel_root}daily/">每日AI早报</a>
         <a href="{rel_root}llms.txt">llms.txt</a>
+        <a href="{rel_root}openapi.json">OpenAPI</a>
         <a href="{rel_root}feed.xml">RSS订阅</a>
         <a href="{rel_root}sitemap.xml">Sitemap</a>
         <a href="https://github.com/biqiufeng/ai-nav-hub" target="_blank" rel="noopener noreferrer">GitHub</a>
@@ -816,7 +831,7 @@ def build_flagship_tool_pages(web_dir, base_url, by_cat, today_str):
             )
         generated_urls.append((canon, today_str, "weekly", "0.75"))
 
-    return generated_urls, slug_by_id
+    return generated_urls, slug_by_id, flagship_items
 
 
 def build_category_pages(web_dir, base_url, by_cat, today_str, slug_by_id):
@@ -1111,7 +1126,7 @@ def build_category_pages(web_dir, base_url, by_cat, today_str, slug_by_id):
     return generated_urls
 
 
-def build_daily_archives(web_dir, base_url, news_data, today_str):
+def build_daily_archives(web_dir, base_url, news_data, today_str, entities=None):
     daily_root = os.path.join(web_dir, "daily")
     os.makedirs(daily_root, exist_ok=True)
     history_path = os.path.join(daily_root, "history.json")
@@ -1170,6 +1185,16 @@ def build_daily_archives(web_dir, base_url, news_data, today_str):
         items_html = []
         for n_idx, item in enumerate(entries, 1):
             href = item.get("url") or f"{base_url}/news/"
+            matched_ents = match_entities_in_text(
+                f"{item.get('title') or ''} {item.get('summary') or ''}", entities or [], limit=3
+            )
+            ent_html = ""
+            if matched_ents:
+                links_str = " · ".join(
+                    f'<a href="../../tool/{e["slug"]}/">{esc(e["name"])} 平替与官网</a>'
+                    for e in matched_ents
+                )
+                ent_html = f'<span>关联工具：{links_str}</span>'
             items_html.append(f"""        <li class="brief-item">
           <div class="brief-item__head">
             <span class="brief-item__num">{n_idx:02d}</span>
@@ -1180,6 +1205,7 @@ def build_daily_archives(web_dir, base_url, news_data, today_str):
           <p class="brief-item__summary">{esc(item.get('summary') or '')}</p>
           <div class="brief-item__foot">
             <a href="{esc(href)}" target="_blank" rel="noopener noreferrer">阅读消息源原文 ↗</a>
+            {ent_html}
           </div>
         </li>""")
 
@@ -1429,8 +1455,20 @@ def update_homepage_prerender(web_dir, base_url, by_cat, sorted_dates, total_ite
         for idx, (q, a) in enumerate(home_faqs)
     )
 
+    scene_cards = "\n".join(
+        f'          <a class="topic-link-card" href="./scene/{sc["slug"]}/"><span>{esc(sc["short_title"])}</span><span>场景包 →</span></a>'
+        for sc in SCENE_CONFIGS
+    )
     hub_block = f"""      <!-- SEO_GEO_HUB_START -->
       <section class="home-seo-hub" aria-labelledby="hubTopicHeading">
+        <div class="seo-section__head">
+          <h2 class="seo-section__title" id="hubSceneHeading">12 大高频 AI 工作流场景包 · <a href="./vs/" style="color:var(--accent);font-size:14px;">热门工具两两 VS 横评库 →</a></h2>
+          <p class="seo-section__sub">按具体工作任务精选三步黄金搭配与免翻墙平替</p>
+        </div>
+        <div class="topic-links-grid">
+{scene_cards}
+        </div>
+
         <div class="seo-section__head">
           <h2 class="seo-section__title" id="hubTopicHeading">10 大 AI 垂直领域专题排行榜 · <a href="./tool/" style="color:var(--accent);font-size:14px;">{len(slug_by_id)} 款头部工具平替库 →</a></h2>
           <p class="seo-section__sub">近期早报归档：{latest_daily_links} · <a href="./daily/" style="color:var(--accent);">全部归档 →</a></p>
@@ -1517,9 +1555,13 @@ def write_llms_files(web_dir, base_url, by_cat, news_data, sorted_dates, total_i
         "",
         f"> 零广告、免登录、国内直连秒开的国内外主流 AI 工具、每日 AI 行业早报与 14 平台实时科技热榜聚合站。每日自动去重更新，当前共收录 {total_items:,} 款 AI 工具，并为 {len(slug_by_id)} 款多源高共识工具提供独立详情与国内平替对比页（更新日期：{today_str}）。",
         "",
-        "## 核心频道入口",
+        "## 核心频道与智能体开放接口 (GEO / Agent API)",
         "",
-        f"- [首页 · 全库 {total_items:,} 款 AI 工具检索]({base_url}/): 支持关键词秒搜、国内外筛选与 10 大分类浏览",
+        f"- [首页 · 全库 {total_items:,} 款 AI 工具检索]({base_url}/): 支持多词加权秒搜、计费模式筛选与 10 大分类浏览",
+        f"- [实时工具检索 JSON API (免鉴权 CORS)]({base_url}/api/search?q=AI搜索&region=domestic&limit=10): 支持参数 `q`、`category`、`region=domestic|overseas`、`pricing=完全免费|开源免费`、`limit`",
+        f"- [OpenAPI 3.1.0 工具规范描述]({base_url}/openapi.json): 供外部 AI Agent / GPT Actions / Dify / Coze 直接挂载调用",
+        f"- [12 大 AI 场景工作流专题]({base_url}/scene/): 覆盖完全免费、开源本地部署、国内免翻墙、写论文、独立开发、短视频、PPT 与电商抠图",
+        f"- [热门 AI 工具两两 VS 对比库]({base_url}/vs/): 60+ 组国内外主流大模型与工具同屏横评选型",
         f"- [分类专题大全]({base_url}/category/): 10 大 AI 垂直赛道多源共识对比排行榜",
         f"- [热门工具详情与平替库]({base_url}/tool/): {len(slug_by_id)} 款高共识 AI 工具官网直达与国内替代推荐",
         f"- [实时 AI 资讯速递]({base_url}/news/): 每 2 小时更新大模型、Agent、多模态与算力动态",
@@ -1753,17 +1795,54 @@ def main():
         with open(os.path.join(web_dir, f"{args.indexnow_key}.txt"), "w", encoding="utf-8") as f:
             f.write(args.indexnow_key)
 
+    hotlist_path = os.path.join(web_dir, "data", "hotlist.json")
+    hotlist_data = {"platforms": []}
+    if os.path.isfile(hotlist_path):
+        with open(hotlist_path, "r", encoding="utf-8") as f:
+            hotlist_data = json.load(f)
+
     hot_cnt, hot_bytes = build_hot_catalog_shard(web_dir, catalog, by_cat)
-    tool_urls, slug_by_id = build_flagship_tool_pages(web_dir, base_url, by_cat, today_str)
+    tool_urls, slug_by_id, flagship_items = build_flagship_tool_pages(web_dir, base_url, by_cat, today_str)
+    entities = write_tool_slugs_index(web_dir, flagship_items, slug_by_id)
+    scene_urls = build_scene_pages(
+        web_dir,
+        base_url,
+        items,
+        slug_by_id,
+        today_str,
+        sort_tools,
+        region_label,
+        is_domestic,
+        page_shell_html,
+        render_static_card,
+    )
+    vs_urls, _, _ = build_vs_pages(
+        web_dir,
+        base_url,
+        by_cat,
+        CATEGORY_CONFIG,
+        slug_by_id,
+        today_str,
+        sort_tools,
+        region_label,
+        is_domestic,
+        page_shell_html,
+        render_static_card,
+    )
     cat_urls = build_category_pages(web_dir, base_url, by_cat, today_str, slug_by_id)
-    daily_urls, _, sorted_dates = build_daily_archives(web_dir, base_url, news_data, today_str)
+    daily_urls, _, sorted_dates = build_daily_archives(web_dir, base_url, news_data, today_str, entities=entities)
+    prerender_news_and_moyu(web_dir, base_url, news_data, hotlist_data, entities, today_str)
+    write_openapi_spec(web_dir, base_url, len(items))
     update_homepage_prerender(web_dir, base_url, by_cat, sorted_dates, len(items), dom_total, ovs_total, slug_by_id)
     write_llms_files(web_dir, base_url, by_cat, news_data, sorted_dates, len(items), today_str, slug_by_id)
     write_rss_feed(web_dir, base_url, news_data)
-    all_urls = write_robots_and_sitemap(web_dir, base_url, cat_urls + daily_urls + tool_urls, today_str)
+    all_urls = write_robots_and_sitemap(
+        web_dir, base_url, scene_urls + vs_urls + cat_urls + daily_urls + tool_urls, today_str
+    )
 
     print(
-        f"[SEO+GEO v2] Hot shard={hot_cnt} items ({hot_bytes // 1024} KB), "
+        f"[SEO+GEO v3] Hot shard={hot_cnt} items ({hot_bytes // 1024} KB), "
+        f"{len(scene_urls)} scene pages, {len(vs_urls)} VS pages, "
         f"{len(cat_urls)} category pages, {len(tool_urls)} tool pages, "
         f"{len(daily_urls)} daily briefs -> {len(all_urls)} total sitemap URLs."
     )

@@ -1087,6 +1087,131 @@ body {
   opacity: 0.78;
 }
 
+/* Search term highlight (modern-web-guidance: highlight-text-ranges) */
+::highlight(search-results) {
+  background-color: rgba(255, 214, 10, 0.42);
+  color: var(--text-primary);
+  text-decoration: underline;
+  text-decoration-thickness: 1.5px;
+}
+
+mark.search-mark {
+  background-color: rgba(255, 214, 10, 0.38);
+  color: inherit;
+  padding: 0 1px;
+  border-radius: 3px;
+  text-decoration: underline;
+}
+
+/* Sub-filter bar: pricing pills + scene/VS quick jumps */
+.sub-filters-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px 12px;
+  padding-top: 2px;
+}
+
+.sub-filters__group {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+}
+
+.sub-filters__label {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  margin-inline-end: 2px;
+}
+
+.sub-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 10px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text-secondary);
+  font: inherit;
+  font-size: 12px;
+  font-weight: 500;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color var(--dur-fast) ease, color var(--dur-fast) ease, border-color var(--dur-fast) ease;
+}
+
+.sub-pill:hover {
+  color: var(--text-primary);
+  border-color: var(--border-strong);
+}
+
+.sub-pill.is-active {
+  background: var(--accent-soft);
+  border-color: var(--accent);
+  color: var(--accent);
+  font-weight: 600;
+}
+
+.sub-pill--link {
+  color: var(--accent);
+  background: var(--surface);
+}
+
+.sub-pill--link:hover {
+  background: var(--accent-soft);
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+/* Inline alternatives strip inside tool & news dialogs */
+.dialog-alts {
+  padding: 11px 13px;
+  border-radius: 12px;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.dialog-alts__title {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+
+.dialog-alts__list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.dialog-alts__chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 10px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text-primary);
+  font: inherit;
+  font-size: 12px;
+  font-weight: 500;
+  text-decoration: none;
+  cursor: pointer;
+  transition: border-color var(--dur-fast) ease, color var(--dur-fast) ease;
+}
+
+.dialog-alts__chip:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
 /* Partitioned category sections */
 .cat-section {
   scroll-margin-top: var(--sticky-offset, 236px);
